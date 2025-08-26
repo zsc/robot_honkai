@@ -147,17 +147,10 @@
                                     <animate attributeName="r" values="2.5;3.5;2.5" dur="2s" repeatCount="indefinite"/>
                                 </circle>
                                 
-                                <!-- 眼睛 - 梅花瞳 -->
-                                <g>
-                                    <circle cx="-6" cy="-25" r="3" fill="#8B0000" opacity="0.9"/>
-                                    <circle cx="-6" cy="-25" r="1.5" fill="#FF6347" filter="url(#glow-hutao)">
-                                        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
-                                    </circle>
-                                    <circle cx="6" cy="-25" r="3" fill="#8B0000" opacity="0.9"/>
-                                    <circle cx="6" cy="-25" r="1.5" fill="#FF6347" filter="url(#glow-hutao)">
-                                        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
-                                    </circle>
-                                </g>
+                                <!-- 观测窗口 -->
+                                <rect x="-10" y="-28" width="20" height="3" fill="#FF1493" opacity="0.7">
+                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+                                </rect>
                                 
                                 <!-- 核心 - 生命之印 -->
                                 <g>
@@ -591,19 +584,62 @@
                                     </path>
                                 </g>
                                 
-                                <!-- 冰华旋转 -->
+                                <!-- 冰华旋转 - 雪花元素 -->
                                 <g opacity="0.7">
                                     <animateTransform attributeName="transform" type="rotate"
                                                       from="0 0 0" to="360 0 0" dur="8s" repeatCount="indefinite"/>
-                                    <!-- 冰晶花瓣 -->
-                                    <path d="M 0,-50 Q 10,-55 15,-50 Q 10,-45 0,-40 Q -10,-45 -15,-50 Q -10,-55 0,-50"
-                                          fill="url(#ice-gradient-ayaka)" opacity="0.6"/>
-                                    <path d="M 50,0 Q 55,10 50,15 Q 45,10 40,0 Q 45,-10 50,-15 Q 55,-10 50,0"
-                                          fill="url(#ice-gradient-ayaka)" opacity="0.6" transform="rotate(90)"/>
-                                    <path d="M 0,50 Q -10,55 -15,50 Q -10,45 0,40 Q 10,45 15,50 Q 10,55 0,50"
-                                          fill="url(#ice-gradient-ayaka)" opacity="0.6" transform="rotate(180)"/>
-                                    <path d="M -50,0 Q -55,-10 -50,-15 Q -45,-10 -40,0 Q -45,10 -50,15 Q -55,10 -50,0"
-                                          fill="url(#ice-gradient-ayaka)" opacity="0.6" transform="rotate(270)"/>
+                                    <!-- 六角雪花晶体 -->
+                                    <g transform="scale(1.2)">
+                                        <!-- 主雪花六角形 -->
+                                        <path d="M 0,-40 L 5,-35 L 5,-25 L 0,-20 L -5,-25 L -5,-35 Z" 
+                                              fill="url(#ice-gradient-ayaka)" opacity="0.7"/>
+                                        <path d="M 35,-20 L 40,-15 L 40,-5 L 35,0 L 30,-5 L 30,-15 Z" 
+                                              fill="url(#ice-gradient-ayaka)" opacity="0.7" transform="rotate(60)"/>
+                                        <path d="M 35,20 L 40,25 L 40,35 L 35,40 L 30,35 L 30,25 Z" 
+                                              fill="url(#ice-gradient-ayaka)" opacity="0.7" transform="rotate(120)"/>
+                                        <path d="M 0,40 L 5,35 L 5,25 L 0,20 L -5,25 L -5,35 Z" 
+                                              fill="url(#ice-gradient-ayaka)" opacity="0.7" transform="rotate(180)"/>
+                                        <path d="M -35,20 L -30,25 L -30,35 L -35,40 L -40,35 L -40,25 Z" 
+                                              fill="url(#ice-gradient-ayaka)" opacity="0.7" transform="rotate(240)"/>
+                                        <path d="M -35,-20 L -30,-15 L -30,-5 L -35,0 L -40,-5 L -40,-15 Z" 
+                                              fill="url(#ice-gradient-ayaka)" opacity="0.7" transform="rotate(300)"/>
+                                        <!-- 雪花分支 -->
+                                        <line x1="0" y1="0" x2="0" y2="-40" stroke="#E0FFFF" stroke-width="2" opacity="0.8"/>
+                                        <line x1="0" y1="0" x2="35" y2="-20" stroke="#E0FFFF" stroke-width="2" opacity="0.8"/>
+                                        <line x1="0" y1="0" x2="35" y2="20" stroke="#E0FFFF" stroke-width="2" opacity="0.8"/>
+                                        <line x1="0" y1="0" x2="0" y2="40" stroke="#E0FFFF" stroke-width="2" opacity="0.8"/>
+                                        <line x1="0" y1="0" x2="-35" y2="20" stroke="#E0FFFF" stroke-width="2" opacity="0.8"/>
+                                        <line x1="0" y1="0" x2="-35" y2="-20" stroke="#E0FFFF" stroke-width="2" opacity="0.8"/>
+                                        <!-- 雪花细节 -->
+                                        <circle cx="0" cy="-30" r="2" fill="#FFFFFF" opacity="0.9"/>
+                                        <circle cx="26" cy="-15" r="2" fill="#FFFFFF" opacity="0.9"/>
+                                        <circle cx="26" cy="15" r="2" fill="#FFFFFF" opacity="0.9"/>
+                                        <circle cx="0" cy="30" r="2" fill="#FFFFFF" opacity="0.9"/>
+                                        <circle cx="-26" cy="15" r="2" fill="#FFFFFF" opacity="0.9"/>
+                                        <circle cx="-26" cy="-15" r="2" fill="#FFFFFF" opacity="0.9"/>
+                                    </g>
+                                </g>
+                                
+                                <!-- 飘落雪花 -->
+                                <g opacity="0.5">
+                                    <!-- 小雪花1 -->
+                                    <g transform="translate(-30, -50)">
+                                        <path d="M 0,-8 L 2,-6 L 2,-2 L 0,0 L -2,-2 L -2,-6 Z" fill="#E0FFFF">
+                                            <animateTransform attributeName="transform" type="translate"
+                                                              values="0,0; 10,30; -5,60" dur="5s" repeatCount="indefinite"/>
+                                            <animateTransform attributeName="transform" type="rotate"
+                                                              from="0" to="360" dur="3s" repeatCount="indefinite" additive="sum"/>
+                                        </path>
+                                    </g>
+                                    <!-- 小雪花2 -->
+                                    <g transform="translate(40, -40)">
+                                        <path d="M 0,-6 L 1.5,-4.5 L 1.5,-1.5 L 0,0 L -1.5,-1.5 L -1.5,-4.5 Z" fill="#FFFFFF" opacity="0.7">
+                                            <animateTransform attributeName="transform" type="translate"
+                                                              values="0,0; -15,35; 5,70" dur="6s" repeatCount="indefinite"/>
+                                            <animateTransform attributeName="transform" type="rotate"
+                                                              from="0" to="-360" dur="4s" repeatCount="indefinite" additive="sum"/>
+                                        </path>
+                                    </g>
                                 </g>
                                 
                                 <!-- 冰雾环绕 -->
@@ -728,17 +764,32 @@
                                 <!-- 躯干 - 小巧精灵风格 -->
                                 <ellipse cx="0" cy="0" rx="25" ry="35" fill="url(#dendro-gradient-nahida)" opacity="0.9"/>
                                 
-                                <!-- 头部 - 精灵造型 -->
-                                <circle cx="0" cy="-30" r="18" fill="#90EE90" stroke="#32CD32" stroke-width="1"/>
-                                <!-- 精灵耳朵 -->
-                                <ellipse cx="-15" cy="-30" rx="5" ry="10" fill="#90EE90" transform="rotate(-20 -15 -30)"/>
-                                <ellipse cx="15" cy="-30" rx="5" ry="10" fill="#90EE90" transform="rotate(20 15 -30)"/>
-                                
-                                <!-- 大眼睛 -->
-                                <ellipse cx="-6" cy="-28" rx="4" ry="6" fill="#228B22" opacity="0.9"/>
-                                <ellipse cx="6" cy="-28" rx="4" ry="6" fill="#228B22" opacity="0.9"/>
-                                <circle cx="-5" cy="-29" r="2" fill="#FFFFFF" opacity="0.9"/>
-                                <circle cx="7" cy="-29" r="2" fill="#FFFFFF" opacity="0.9"/>
+                                <!-- 核心处理器 - 抽象几何形 -->
+                                <g transform="translate(0, -30)">
+                                    <!-- 主核心 -->
+                                    <polygon points="0,-15 10,-5 10,5 0,15 -10,5 -10,-5" 
+                                             fill="url(#dendro-gradient-nahida)" stroke="#32CD32" stroke-width="1.5"/>
+                                    <!-- 数据流指示灯 -->
+                                    <rect x="-6" y="-2" width="12" height="2" fill="#ADFF2F" opacity="0.8">
+                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/>
+                                    </rect>
+                                    <!-- 叶片装饰环绕 -->
+                                    <g opacity="0.8">
+                                        <path d="M -12,-8 Q -15,-5 -12,-2 Q -10,-5 -8,-8" fill="#32CD32" opacity="0.7"/>
+                                        <path d="M 12,-8 Q 15,-5 12,-2 Q 10,-5 8,-8" fill="#32CD32" opacity="0.7"/>
+                                        <path d="M 0,-18 Q -3,-15 0,-12 Q 3,-15 0,-18" fill="#228B22" opacity="0.6" transform="scale(1.5)"/>
+                                    </g>
+                                    <!-- 生长纹路 -->
+                                    <path d="M 0,5 Q 3,8 0,12" stroke="#7FFF00" stroke-width="1" fill="none" opacity="0.6">
+                                        <animate attributeName="stroke-dasharray" values="0 10;10 0" dur="2s" repeatCount="indefinite"/>
+                                    </path>
+                                    <path d="M -5,3 Q -7,6 -5,10" stroke="#7FFF00" stroke-width="0.8" fill="none" opacity="0.5">
+                                        <animate attributeName="stroke-dasharray" values="0 8;8 0" dur="2.5s" repeatCount="indefinite"/>
+                                    </path>
+                                    <path d="M 5,3 Q 7,6 5,10" stroke="#7FFF00" stroke-width="0.8" fill="none" opacity="0.5">
+                                        <animate attributeName="stroke-dasharray" values="0 8;8 0" dur="3s" repeatCount="indefinite"/>
+                                    </path>
+                                </g>
                                 
                                 <!-- 智慧光环 -->
                                 <g opacity="0.7">
