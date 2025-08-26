@@ -730,6 +730,9 @@
 
         <!-- 评级显示 -->
         <div id="rankDisplay">S</div>
+        
+        <!-- 粒子特效容器 -->
+        <div id="particles"></div>
     </div>
 
     <script>
@@ -748,6 +751,12 @@
             bullets: [],
             particles: [],
             currentCharacter: 'hutao',
+            currentWeapon: 0,
+            weapons: [
+                { name: '能量步枪', color: '#FFD700', damage: 50, speed: 10 },
+                { name: '激光炮', color: '#00CED1', damage: 100, speed: 15 },
+                { name: '火焰喷射器', color: '#FF6347', damage: 30, speed: 8 }
+            ],
             isPaused: false,
             tutorialStages: [
                 { name: '移动教学', objective: '学习八方向移动', hint: '按 W A S D 八方向移动' },
@@ -807,9 +816,12 @@
                     performDodge();
                     break;
                 case 'e':
-                    useSkill();
+                    switchWeapon(1);
                     break;
                 case 'q':
+                    switchWeapon(-1);
+                    break;
+                case 'r':
                     useUltimate();
                     break;
                 case ' ':
@@ -828,9 +840,9 @@
             if (keys['a']) dx -= speed;
             if (keys['d']) dx += speed;
             
-            // 垂直移动 - W向上（远离），S向下（靠近）
-            if (keys['w']) dy += speed;   // W键向屏幕深处
-            if (keys['s']) dy -= speed;  // S键向屏幕前方
+            // 垂直移动 - W向上（屏幕上方），S向下（屏幕下方）
+            if (keys['w']) dy += speed;   // W键向屏幕上方
+            if (keys['s']) dy -= speed;  // S键向屏幕下方
 
             // 归一化斜向移动
             if (dx !== 0 && dy !== 0) {
@@ -845,12 +857,12 @@
             // 应用位置
             player.style.left = game.playerX + '%';
             
-            // 2.5D Y轴定位
-            const bottomPos = 5 + (90 - game.playerY) * 0.7;  // Y越大，位置越高
+            // 2.5D Y轴定位 - Y越大，屏幕位置越高（向上）
+            const bottomPos = 5 + game.playerY * 0.7;
             player.style.bottom = bottomPos + '%';
             
-            // 2.5D深度缩放 - Y越大（越远）越小
-            const depthScale = 0.5 + (90 - game.playerY) / 100;
+            // 2.5D深度缩放 - Y越大（越远越上）越小
+            const depthScale = 1.4 - (game.playerY / 100) * 0.9;
             const zIndex = Math.floor(100 - game.playerY);
             player.style.transform = `translateX(-50%) scale(${depthScale})`;
             player.style.zIndex = zIndex;
@@ -933,10 +945,23 @@
 
         // 创建子弹
         function createBullet(startX, startY, targetX, targetY) {
+            const weapon = game.weapons[game.currentWeapon];
             const bullet = document.createElement('div');
             bullet.className = 'bullet';
             bullet.style.left = startX + '%';
             bullet.style.bottom = startY + 'px';
+            bullet.style.background = `linear-gradient(90deg, ${weapon.color}, ${weapon.color}DD)`;
+            bullet.style.boxShadow = `0 0 15px ${weapon.color}`;
+            
+            // 武器类型的特殊效果
+            if (weapon.name === '激光炮') {
+                bullet.style.width = '40px';
+                bullet.style.height = '4px';
+            } else if (weapon.name === '火焰喷射器') {
+                bullet.style.borderRadius = '50%';
+                bullet.style.width = '20px';
+                bullet.style.height = '20px';
+            }
             
             const container = document.getElementById('gameContainer');
             container.appendChild(bullet);
@@ -945,18 +970,30 @@
             const dx = targetX - startX;
             const dy = (targetY * 5) - (startY - 150); // 转换Y坐标
             const distance = Math.sqrt(dx * dx + dy * dy);
-            const vx = (dx / distance) * 10;
-            const vy = (dy / distance) * 10;
+            const vx = (dx / distance) * weapon.speed;
+            const vy = (dy / distance) * weapon.speed;
             
             const bulletData = {
                 element: bullet,
                 x: startX,
                 y: startY,
                 vx: vx,
-                vy: vy
+                vy: vy,
+                damage: weapon.damage
             };
             
             game.bullets.push(bulletData);
+        }
+        
+        // 切换武器
+        function switchWeapon(direction) {
+            game.currentWeapon = (game.currentWeapon + direction + game.weapons.length) % game.weapons.length;
+            const weapon = game.weapons[game.currentWeapon];
+            showPaimonDialog(`切换到${weapon.name}！`);
+            
+            // 更新武器显示
+            const hint = document.getElementById('tutorialHint');
+            hint.innerHTML = `当前武器: <span class="key-hint">${weapon.name}</span> | Q/E切换武器`;
         }
 
         // 更新子弹
@@ -993,7 +1030,7 @@
                     bulletRect.bottom > enemyRect.top) {
                     
                     // 击中敌人
-                    damageEnemy(enemy, 50);
+                    damageEnemy(enemy, bullet.damage || 50);
                     createParticles(bullet.x, bullet.y);
                     return true;
                 }
@@ -1081,6 +1118,11 @@
             game.enemies.forEach(enemy => {
                 damageEnemy(enemy, 100);
             });
+            
+            // 如果在QTE教学阶段，标记完成
+            if (game.currentStage === 3) {
+                game.qteCompleted = true;
+            }
         }
 
         // 使用技能
@@ -1125,6 +1167,11 @@
             }, 1000);
             
             startCooldown('ultimateBtn', 20000);
+            
+            // 如果在必杀技教学阶段，标记完成
+            if (game.currentStage === 4) {
+                game.ultimateUsed = true;
+            }
         }
 
         // 技能冷却
@@ -1383,14 +1430,110 @@
             if (!game.isPaused) {
                 updatePlayerMovement();
                 updateBullets();
+                updateEnemies();
+                
+                // 自动生成敌人（高级阶段）
+                if (game.currentStage >= 2 && Math.random() < 0.005) {
+                    spawnEnemy(90 + Math.random() * 10, 100 + Math.random() * 100);
+                }
                 
                 // 检查阶段完成
-                if (game.currentStage === 2 && game.maxCombo >= 10) {
-                    setTimeout(() => startTutorialStage(3), 1000);
-                }
+                checkStageCompletion();
             }
             
             requestAnimationFrame(gameLoop);
+        }
+        
+        // 更新敌人
+        function updateEnemies() {
+            game.enemies.forEach(enemy => {
+                // 简单的敌人移动AI
+                if (Math.abs(enemy.x - game.playerX) > 5) {
+                    const direction = enemy.x > game.playerX ? -1 : 1;
+                    enemy.x += direction * 0.3;
+                    enemy.element.style.left = enemy.x + '%';
+                }
+                
+                // 敌人攻击（靠近玩家时）
+                if (Math.abs(enemy.x - game.playerX) < 10 && Math.random() < 0.01) {
+                    enemyAttack(enemy);
+                }
+            });
+        }
+        
+        // 敌人攻击
+        function enemyAttack(enemy) {
+            // 创建敌人子弹
+            const bullet = document.createElement('div');
+            bullet.className = 'bullet';
+            bullet.style.background = 'linear-gradient(90deg, #8B008B, #FF1493)';
+            bullet.style.left = enemy.x + '%';
+            bullet.style.bottom = enemy.y + 'px';
+            
+            document.getElementById('gameContainer').appendChild(bullet);
+            
+            // 瞄准玩家
+            const bulletData = {
+                element: bullet,
+                x: enemy.x,
+                y: enemy.y,
+                vx: (game.playerX - enemy.x) * 0.1,
+                vy: (game.playerY - (enemy.y - 150)) * 0.05,
+                isEnemy: true
+            };
+            
+            game.bullets.push(bulletData);
+        }
+        
+        // 检查阶段完成
+        function checkStageCompletion() {
+            const stage = game.currentStage;
+            let completed = false;
+            
+            switch(stage) {
+                case 0: // 移动教学
+                    // 移动一定距离后完成
+                    if (Math.abs(game.playerX - 50) > 30 || Math.abs(game.playerY - 50) > 30) {
+                        completed = true;
+                    }
+                    break;
+                    
+                case 1: // 闪避教学
+                    // 成功闪避后完成
+                    if (game.isDashing) {
+                        completed = true;
+                    }
+                    break;
+                    
+                case 2: // 连击教学
+                    if (game.maxCombo >= 10) {
+                        completed = true;
+                    }
+                    break;
+                    
+                case 3: // QTE教学
+                    if (game.qteCompleted) {
+                        completed = true;
+                        game.qteCompleted = false;
+                    }
+                    break;
+                    
+                case 4: // 必杀技教学
+                    if (game.ultimateUsed) {
+                        completed = true;
+                        game.ultimateUsed = false;
+                    }
+                    break;
+            }
+            
+            if (completed && !game.stageCompleting) {
+                game.stageCompleting = true;
+                showPaimonDialog('做得好！让我们进入下一个训练！');
+                setTimeout(() => {
+                    game.stageCompleting = false;
+                    startTutorialStage(stage + 1);
+                }, 2000);
+            }
         }
 
         // CSS动画
