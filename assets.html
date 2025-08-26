@@ -473,6 +473,320 @@
                     <p class="description">岩系护盾机甲，无敌护盾系统，全队保护。搭载玉璋护盾发生器，可生成坚不可摧的防护屏障</p>
                 </div>
 
+                <!-- 行秋型机甲（水系副C） -->
+                <div class="resource-card">
+                    <h3>行秋型机甲 - 古华剑雨</h3>
+                    <div class="svg-container">
+                        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 水元素渐变 -->
+                                <radialGradient id="water-gradient-xingqiu">
+                                    <stop offset="0%" stop-color="#87CEEB" stop-opacity="1"/>
+                                    <stop offset="50%" stop-color="#4682B4" stop-opacity="0.8"/>
+                                    <stop offset="100%" stop-color="#1E90FF" stop-opacity="0.6"/>
+                                </radialGradient>
+                                <!-- 书卷纹理 -->
+                                <linearGradient id="book-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#F5DEB3"/>
+                                    <stop offset="50%" stop-color="#DEB887"/>
+                                    <stop offset="100%" stop-color="#D2691E"/>
+                                </linearGradient>
+                                <!-- 剑雨特效 -->
+                                <linearGradient id="rain-sword" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#00BFFF" stop-opacity="0.9"/>
+                                    <stop offset="100%" stop-color="#87CEEB" stop-opacity="0.3"/>
+                                </linearGradient>
+                            </defs>
+                            
+                            <!-- 机甲主体 -->
+                            <g transform="translate(110, 110)">
+                                <!-- 躯干 - 书生风格 -->
+                                <rect x="-20" y="-30" width="40" height="50" fill="#1E3A8A" rx="5"/>
+                                <rect x="-18" y="-28" width="36" height="46" fill="url(#book-gradient)" opacity="0.3"/>
+                                
+                                <!-- 头部 - 文雅造型 -->
+                                <ellipse cx="0" cy="-40" rx="15" ry="12" fill="#1E3A8A"/>
+                                <rect x="-12" y="-48" width="24" height="8" fill="url(#book-gradient)" opacity="0.6"/>
+                                
+                                <!-- 水剑环绕 -->
+                                <g opacity="0.8">
+                                    <animateTransform attributeName="transform" type="rotate"
+                                                      from="0 0 0" to="360 0 0" dur="6s" repeatCount="indefinite"/>
+                                    <!-- 剑1 -->
+                                    <rect x="35" y="-2" width="3" height="15" fill="url(#rain-sword)" transform="rotate(0)">
+                                        <animate attributeName="y" values="-2;-10;-2" dur="2s" repeatCount="indefinite"/>
+                                    </rect>
+                                    <!-- 剑2 -->
+                                    <rect x="-38" y="-2" width="3" height="15" fill="url(#rain-sword)" transform="rotate(180)">
+                                        <animate attributeName="y" values="-2;-10;-2" dur="2.5s" repeatCount="indefinite"/>
+                                    </rect>
+                                    <!-- 剑3 -->
+                                    <rect x="0" y="-40" width="3" height="15" fill="url(#rain-sword)" transform="rotate(90)">
+                                        <animate attributeName="x" values="0;-8;0" dur="2.2s" repeatCount="indefinite"/>
+                                    </rect>
+                                    <!-- 剑4 -->
+                                    <rect x="0" y="35" width="3" height="15" fill="url(#rain-sword)" transform="rotate(-90)">
+                                        <animate attributeName="x" values="0;8;0" dur="2.7s" repeatCount="indefinite"/>
+                                    </rect>
+                                </g>
+                                
+                                <!-- 水波护盾 -->
+                                <ellipse cx="0" cy="0" rx="50" ry="50" fill="none" 
+                                         stroke="url(#water-gradient-xingqiu)" stroke-width="2" opacity="0.5">
+                                    <animate attributeName="rx" values="45;55;45" dur="3s" repeatCount="indefinite"/>
+                                    <animate attributeName="ry" values="45;55;45" dur="3s" repeatCount="indefinite"/>
+                                </ellipse>
+                                
+                                <!-- 古华符文 -->
+                                <text x="0" y="5" text-anchor="middle" fill="#4682B4" font-size="12" opacity="0.7">古華</text>
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="description">水系副C机甲，古华剑术传承，雨帘剑防护系统，持续挂水减伤</p>
+                </div>
+
+                <!-- 神里绫华型机甲（冰系主C） -->
+                <div class="resource-card">
+                    <h3>神里绫华型机甲 - 霜华舞姿</h3>
+                    <div class="svg-container">
+                        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 冰元素渐变 -->
+                                <radialGradient id="ice-gradient-ayaka">
+                                    <stop offset="0%" stop-color="#E0FFFF" stop-opacity="1"/>
+                                    <stop offset="50%" stop-color="#87CEEB" stop-opacity="0.8"/>
+                                    <stop offset="100%" stop-color="#4682B4" stop-opacity="0.6"/>
+                                </radialGradient>
+                                <!-- 樱花冰晶 -->
+                                <radialGradient id="ice-sakura">
+                                    <stop offset="0%" stop-color="#FFE4E1" stop-opacity="0.8"/>
+                                    <stop offset="50%" stop-color="#FFC0CB" stop-opacity="0.5"/>
+                                    <stop offset="100%" stop-color="#FFB6C1" stop-opacity="0.2"/>
+                                </radialGradient>
+                                <!-- 冰刃特效 -->
+                                <linearGradient id="ice-blade" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+                                    <stop offset="50%" stop-color="#E0FFFF" stop-opacity="0.7"/>
+                                    <stop offset="100%" stop-color="#87CEEB" stop-opacity="0.5"/>
+                                </linearGradient>
+                            </defs>
+                            
+                            <!-- 机甲主体 -->
+                            <g transform="translate(110, 110)">
+                                <!-- 主躯干 - 优雅和服风格 -->
+                                <path d="M 0,-45 L 20,-35 L 25,-10 L 20,30 L 10,40 L 0,45 
+                                         L -10,40 L -20,30 L -25,-10 L -20,-35 Z" 
+                                      fill="url(#ice-gradient-ayaka)" stroke="#87CEEB" stroke-width="1" opacity="0.9"/>
+                                
+                                <!-- 头部 - 公主造型 -->
+                                <ellipse cx="0" cy="-40" rx="15" ry="13" fill="#E0FFFF" stroke="#87CEEB" stroke-width="1"/>
+                                <!-- 头饰 -->
+                                <circle cx="0" cy="-45" r="3" fill="url(#ice-sakura)"/>
+                                
+                                <!-- 扇子武器 -->
+                                <g transform="rotate(45)">
+                                    <path d="M 30,0 L 40,-10 L 45,0 L 40,10 Z" fill="url(#ice-blade)" opacity="0.8">
+                                        <animateTransform attributeName="transform" type="rotate"
+                                                          values="0 35 0; 30 35 0; 0 35 0" dur="2s" repeatCount="indefinite"/>
+                                    </path>
+                                </g>
+                                
+                                <!-- 冰华旋转 -->
+                                <g opacity="0.7">
+                                    <animateTransform attributeName="transform" type="rotate"
+                                                      from="0 0 0" to="360 0 0" dur="8s" repeatCount="indefinite"/>
+                                    <!-- 冰晶花瓣 -->
+                                    <path d="M 0,-50 Q 10,-55 15,-50 Q 10,-45 0,-40 Q -10,-45 -15,-50 Q -10,-55 0,-50"
+                                          fill="url(#ice-gradient-ayaka)" opacity="0.6"/>
+                                    <path d="M 50,0 Q 55,10 50,15 Q 45,10 40,0 Q 45,-10 50,-15 Q 55,-10 50,0"
+                                          fill="url(#ice-gradient-ayaka)" opacity="0.6" transform="rotate(90)"/>
+                                    <path d="M 0,50 Q -10,55 -15,50 Q -10,45 0,40 Q 10,45 15,50 Q 10,55 0,50"
+                                          fill="url(#ice-gradient-ayaka)" opacity="0.6" transform="rotate(180)"/>
+                                    <path d="M -50,0 Q -55,-10 -50,-15 Q -45,-10 -40,0 Q -45,10 -50,15 Q -55,10 -50,0"
+                                          fill="url(#ice-gradient-ayaka)" opacity="0.6" transform="rotate(270)"/>
+                                </g>
+                                
+                                <!-- 冰雾环绕 -->
+                                <ellipse cx="0" cy="35" rx="30" ry="8" fill="url(#ice-gradient-ayaka)" opacity="0.4">
+                                    <animate attributeName="rx" values="25;35;25" dur="3s" repeatCount="indefinite"/>
+                                    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="3s" repeatCount="indefinite"/>
+                                </ellipse>
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="description">冰系主C机甲，神里流剑术，冰华舞步系统，冻结控制持续输出</p>
+                </div>
+
+                <!-- 万叶型机甲（风系辅助） -->
+                <div class="resource-card">
+                    <h3>万叶型机甲 - 千风诗篇</h3>
+                    <div class="svg-container">
+                        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 风元素渐变 -->
+                                <radialGradient id="wind-gradient-kazuha">
+                                    <stop offset="0%" stop-color="#00FA9A" stop-opacity="1"/>
+                                    <stop offset="50%" stop-color="#00FF7F" stop-opacity="0.7"/>
+                                    <stop offset="100%" stop-color="#228B22" stop-opacity="0.4"/>
+                                </radialGradient>
+                                <!-- 枫叶渐变 -->
+                                <linearGradient id="maple-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#FF6347"/>
+                                    <stop offset="50%" stop-color="#DC143C"/>
+                                    <stop offset="100%" stop-color="#8B0000"/>
+                                </linearGradient>
+                                <!-- 旋风特效 -->
+                                <radialGradient id="swirl-gradient">
+                                    <stop offset="0%" stop-color="#00FF7F" stop-opacity="0"/>
+                                    <stop offset="50%" stop-color="#00FA9A" stop-opacity="0.5"/>
+                                    <stop offset="100%" stop-color="#228B22" stop-opacity="0.2"/>
+                                </radialGradient>
+                            </defs>
+                            
+                            <!-- 机甲主体 -->
+                            <g transform="translate(110, 110)">
+                                <!-- 躯干 - 浪人风格 -->
+                                <path d="M 0,-40 L 18,-30 L 22,-5 L 18,25 L 0,35 L -18,25 L -22,-5 L -18,-30 Z"
+                                      fill="#2F4F4F" stroke="#00FF7F" stroke-width="1" opacity="0.9"/>
+                                
+                                <!-- 头部 - 武士斗笠造型 -->
+                                <ellipse cx="0" cy="-38" rx="20" ry="8" fill="#3C4142" opacity="0.8"/>
+                                <ellipse cx="0" cy="-35" rx="12" ry="10" fill="#2F4F4F"/>
+                                
+                                <!-- 枫叶装饰 -->
+                                <g transform="translate(0, -45)">
+                                    <path d="M 0,-5 L 2,-3 L 4,-5 L 3,-2 L 5,0 L 2,0 L 0,3 L -2,0 L -5,0 L -3,-2 L -4,-5 L -2,-3 Z"
+                                          fill="url(#maple-gradient)" opacity="0.9" transform="scale(2)"/>
+                                </g>
+                                
+                                <!-- 旋风环绕 -->
+                                <g opacity="0.6">
+                                    <animateTransform attributeName="transform" type="rotate"
+                                                      from="0 0 0" to="360 0 0" dur="4s" repeatCount="indefinite"/>
+                                    <path d="M 0,0 Q 20,-30 40,0 Q 20,30 0,50 Q -20,30 -40,0 Q -20,-30 0,0"
+                                          fill="none" stroke="url(#wind-gradient-kazuha)" stroke-width="2" opacity="0.7"/>
+                                    <path d="M 0,0 Q -25,-35 -45,0 Q -25,35 0,55 Q 25,35 45,0 Q 25,-35 0,0"
+                                          fill="none" stroke="#00FA9A" stroke-width="1" opacity="0.5"/>
+                                </g>
+                                
+                                <!-- 飘落的枫叶 -->
+                                <g>
+                                    <path d="M 0,-5 L 2,-3 L 4,-5 L 3,-2 L 5,0 L 2,0 L 0,3 L -2,0 L -5,0 L -3,-2 L -4,-5 L -2,-3 Z"
+                                          fill="url(#maple-gradient)" opacity="0.7" transform="translate(-30, -20)">
+                                        <animateTransform attributeName="transform" type="translate"
+                                                          values="-30,-20; -25,10; -35,40" dur="5s" repeatCount="indefinite"/>
+                                        <animateTransform attributeName="transform" type="rotate"
+                                                          from="0" to="360" dur="3s" repeatCount="indefinite" additive="sum"/>
+                                    </path>
+                                    <path d="M 0,-5 L 2,-3 L 4,-5 L 3,-2 L 5,0 L 2,0 L 0,3 L -2,0 L -5,0 L -3,-2 L -4,-5 L -2,-3 Z"
+                                          fill="url(#maple-gradient)" opacity="0.7" transform="translate(30, -15) scale(0.8)">
+                                        <animateTransform attributeName="transform" type="translate"
+                                                          values="30,-15; 25,15; 35,45" dur="6s" repeatCount="indefinite"/>
+                                        <animateTransform attributeName="transform" type="rotate"
+                                                          from="0" to="-360" dur="4s" repeatCount="indefinite" additive="sum"/>
+                                    </path>
+                                </g>
+                                
+                                <!-- 元素扩散圈 -->
+                                <circle cx="0" cy="0" r="50" fill="url(#swirl-gradient)" opacity="0.4">
+                                    <animate attributeName="r" values="45;60;45" dur="4s" repeatCount="indefinite"/>
+                                </circle>
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="description">风系辅助机甲，枫原万叶传承，聚怪增伤系统，元素扩散核心</p>
+                </div>
+
+                <!-- 纳西妲型机甲（草系辅助） -->
+                <div class="resource-card">
+                    <h3>纳西妲型机甲 - 摩诃智慧</h3>
+                    <div class="svg-container">
+                        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 草元素渐变 -->
+                                <radialGradient id="dendro-gradient-nahida">
+                                    <stop offset="0%" stop-color="#90EE90" stop-opacity="1"/>
+                                    <stop offset="50%" stop-color="#32CD32" stop-opacity="0.8"/>
+                                    <stop offset="100%" stop-color="#228B22" stop-opacity="0.6"/>
+                                </radialGradient>
+                                <!-- 智慧之光 -->
+                                <radialGradient id="wisdom-glow">
+                                    <stop offset="0%" stop-color="#ADFF2F" stop-opacity="0.9"/>
+                                    <stop offset="50%" stop-color="#7FFF00" stop-opacity="0.6"/>
+                                    <stop offset="100%" stop-color="#32CD32" stop-opacity="0.3"/>
+                                </radialGradient>
+                                <!-- 梦境效果 -->
+                                <linearGradient id="dream-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#98FB98" stop-opacity="0.6"/>
+                                    <stop offset="50%" stop-color="#90EE90" stop-opacity="0.4"/>
+                                    <stop offset="100%" stop-color="#00FF7F" stop-opacity="0.2"/>
+                                </linearGradient>
+                            </defs>
+                            
+                            <!-- 机甲主体 -->
+                            <g transform="translate(110, 110)">
+                                <!-- 躯干 - 小巧精灵风格 -->
+                                <ellipse cx="0" cy="0" rx="25" ry="35" fill="url(#dendro-gradient-nahida)" opacity="0.9"/>
+                                
+                                <!-- 头部 - 精灵造型 -->
+                                <circle cx="0" cy="-30" r="18" fill="#90EE90" stroke="#32CD32" stroke-width="1"/>
+                                <!-- 精灵耳朵 -->
+                                <ellipse cx="-15" cy="-30" rx="5" ry="10" fill="#90EE90" transform="rotate(-20 -15 -30)"/>
+                                <ellipse cx="15" cy="-30" rx="5" ry="10" fill="#90EE90" transform="rotate(20 15 -30)"/>
+                                
+                                <!-- 大眼睛 -->
+                                <ellipse cx="-6" cy="-28" rx="4" ry="6" fill="#228B22" opacity="0.9"/>
+                                <ellipse cx="6" cy="-28" rx="4" ry="6" fill="#228B22" opacity="0.9"/>
+                                <circle cx="-5" cy="-29" r="2" fill="#FFFFFF" opacity="0.9"/>
+                                <circle cx="7" cy="-29" r="2" fill="#FFFFFF" opacity="0.9"/>
+                                
+                                <!-- 智慧光环 -->
+                                <g opacity="0.7">
+                                    <animateTransform attributeName="transform" type="rotate"
+                                                      from="0 0 -35" to="360 0 -35" dur="10s" repeatCount="indefinite"/>
+                                    <circle cx="0" cy="-35" r="25" fill="none" stroke="url(#wisdom-glow)" stroke-width="2"/>
+                                    <path d="M -20,-35 L -10,-30 L 0,-35 L 10,-30 L 20,-35" 
+                                          stroke="#ADFF2F" stroke-width="1" fill="none" opacity="0.8"/>
+                                </g>
+                                
+                                <!-- 梦之链接 -->
+                                <g opacity="0.6">
+                                    <!-- 连接线1 -->
+                                    <line x1="0" y1="0" x2="40" y2="-30" stroke="url(#dendro-gradient-nahida)" stroke-width="1">
+                                        <animate attributeName="stroke-dasharray" values="0 80;80 0" dur="2s" repeatCount="indefinite"/>
+                                    </line>
+                                    <circle cx="40" cy="-30" r="4" fill="#32CD32" opacity="0.8">
+                                        <animate attributeName="r" values="3;5;3" dur="1.5s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <!-- 连接线2 -->
+                                    <line x1="0" y1="0" x2="-45" y2="20" stroke="url(#dendro-gradient-nahida)" stroke-width="1">
+                                        <animate attributeName="stroke-dasharray" values="0 80;80 0" dur="2.5s" repeatCount="indefinite"/>
+                                    </line>
+                                    <circle cx="-45" cy="20" r="4" fill="#32CD32" opacity="0.8">
+                                        <animate attributeName="r" values="3;5;3" dur="2s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <!-- 连接线3 -->
+                                    <line x1="0" y1="0" x2="35" y2="35" stroke="url(#dendro-gradient-nahida)" stroke-width="1">
+                                        <animate attributeName="stroke-dasharray" values="0 80;80 0" dur="3s" repeatCount="indefinite"/>
+                                    </line>
+                                    <circle cx="35" cy="35" r="4" fill="#32CD32" opacity="0.8">
+                                        <animate attributeName="r" values="3;5;3" dur="2.2s" repeatCount="indefinite"/>
+                                    </circle>
+                                </g>
+                                
+                                <!-- 梦境泡泡 -->
+                                <circle cx="20" cy="-50" r="8" fill="url(#dream-gradient)" opacity="0.5">
+                                    <animate attributeName="cy" values="-50;-60;-50" dur="4s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="-25" cy="-45" r="6" fill="url(#dream-gradient)" opacity="0.5">
+                                    <animate attributeName="cy" values="-45;-52;-45" dur="3.5s" repeatCount="indefinite"/>
+                                </circle>
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="description">草系辅助机甲，摩诃智慧核心，梦之链接系统，元素精通增幅</p>
+                </div>
+
             </div>
         </div>
 
