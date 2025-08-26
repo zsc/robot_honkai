@@ -886,6 +886,387 @@
             </div>
         </div>
 
+        <!-- 武器系统 Section -->
+        <div class="resource-section">
+            <h2>三、武器装备系统</h2>
+            <div class="resource-grid">
+                
+                <!-- 护摩之杖（五星长枪） -->
+                <div class="resource-card">
+                    <h3>护摩之杖 - ⭐⭐⭐⭐⭐</h3>
+                    <div class="svg-container">
+                        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 武器本体渐变 -->
+                                <linearGradient id="homa-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#8B0000"/>
+                                    <stop offset="30%" stop-color="#DC143C"/>
+                                    <stop offset="60%" stop-color="#FF4500"/>
+                                    <stop offset="100%" stop-color="#8B0000"/>
+                                </linearGradient>
+                                <!-- 金属装饰 -->
+                                <linearGradient id="homa-metal" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#FFD700"/>
+                                    <stop offset="50%" stop-color="#FFA500"/>
+                                    <stop offset="100%" stop-color="#FF8C00"/>
+                                </linearGradient>
+                                <!-- 火焰特效 -->
+                                <radialGradient id="homa-fire">
+                                    <stop offset="0%" stop-color="#FF6347" stop-opacity="0.8"/>
+                                    <stop offset="50%" stop-color="#FF4500" stop-opacity="0.5"/>
+                                    <stop offset="100%" stop-color="#8B0000" stop-opacity="0"/>
+                                </radialGradient>
+                            </defs>
+                            
+                            <g transform="translate(110, 110) rotate(-45)">
+                                <!-- 枪杆 -->
+                                <rect x="-3" y="-80" width="6" height="140" fill="url(#homa-gradient)"/>
+                                <!-- 装饰纹路 -->
+                                <rect x="-1" y="-80" width="2" height="140" fill="url(#homa-metal)" opacity="0.6"/>
+                                
+                                <!-- 枪尖 -->
+                                <path d="M 0,-80 L -8,-65 L -5,-60 L 0,-55 L 5,-60 L 8,-65 Z" 
+                                      fill="url(#homa-gradient)" stroke="#FFD700" stroke-width="1"/>
+                                
+                                <!-- 护手 -->
+                                <ellipse cx="0" cy="20" rx="15" ry="8" fill="url(#homa-metal)"/>
+                                <circle cx="0" cy="20" r="5" fill="#8B0000"/>
+                                
+                                <!-- 枪尾装饰 -->
+                                <path d="M -5,60 L 0,70 L 5,60 Z" fill="url(#homa-metal)"/>
+                                
+                                <!-- 火焰环绕特效 -->
+                                <g opacity="0.7">
+                                    <circle cx="0" cy="-60" r="15" fill="url(#homa-fire)">
+                                        <animate attributeName="r" values="12;18;12" dur="2s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.5;0.8;0.5" dur="2s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <circle cx="0" cy="0" r="20" fill="none" stroke="#FF4500" stroke-width="1" opacity="0.5">
+                                        <animate attributeName="r" values="18;25;18" dur="3s" repeatCount="indefinite"/>
+                                    </circle>
+                                </g>
+                            </g>
+                            
+                            <!-- 属性文字 -->
+                            <text x="110" y="200" text-anchor="middle" fill="#FFD700" font-size="10">暴击伤害 +66.2%</text>
+                        </svg>
+                    </div>
+                    <p class="description">长枪型武器，生命值转化攻击力，胡桃型机甲专属武器</p>
+                </div>
+
+                <!-- 雾切之回光（五星单手剑） -->
+                <div class="resource-card">
+                    <h3>雾切之回光 - ⭐⭐⭐⭐⭐</h3>
+                    <div class="svg-container">
+                        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 剑身渐变 -->
+                                <linearGradient id="mistsplitter-blade" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#E6E6FA"/>
+                                    <stop offset="50%" stop-color="#9370DB"/>
+                                    <stop offset="100%" stop-color="#4B0082"/>
+                                </linearGradient>
+                                <!-- 雷电纹路 -->
+                                <linearGradient id="mistsplitter-electric" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#DDA0DD" stop-opacity="0.8"/>
+                                    <stop offset="50%" stop-color="#9932CC" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="#8B008B" stop-opacity="0.8"/>
+                                </linearGradient>
+                                <!-- 雾气效果 -->
+                                <radialGradient id="mist-effect">
+                                    <stop offset="0%" stop-color="#E6E6FA" stop-opacity="0.6"/>
+                                    <stop offset="100%" stop-color="#9370DB" stop-opacity="0"/>
+                                </radialGradient>
+                            </defs>
+                            
+                            <g transform="translate(110, 110) rotate(-45)">
+                                <!-- 剑身 -->
+                                <rect x="-4" y="-70" width="8" height="110" fill="url(#mistsplitter-blade)"/>
+                                <!-- 剑刃 -->
+                                <rect x="-2" y="-70" width="4" height="110" fill="#FFFFFF" opacity="0.7"/>
+                                
+                                <!-- 剑尖 -->
+                                <path d="M 0,-70 L -4,-65 L 0,-60 L 4,-65 Z" fill="url(#mistsplitter-blade)"/>
+                                
+                                <!-- 护手 -->
+                                <rect x="-20" y="40" width="40" height="4" fill="#4B0082"/>
+                                <circle cx="0" cy="40" r="6" fill="url(#mistsplitter-electric)"/>
+                                
+                                <!-- 剑柄 -->
+                                <rect x="-3" y="40" width="6" height="25" fill="#4B0082"/>
+                                <ellipse cx="0" cy="65" rx="5" ry="3" fill="#9370DB"/>
+                                
+                                <!-- 雷电特效 -->
+                                <g opacity="0.8">
+                                    <path d="M -2,-60 L 0,-40 L -2,-20 L 0,0 L -2,20" 
+                                          stroke="url(#mistsplitter-electric)" stroke-width="1" fill="none">
+                                        <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/>
+                                    </path>
+                                    <path d="M 2,-50 L 0,-30 L 2,-10 L 0,10 L 2,30" 
+                                          stroke="url(#mistsplitter-electric)" stroke-width="1" fill="none">
+                                        <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+                                    </path>
+                                </g>
+                                
+                                <!-- 雾气环绕 -->
+                                <ellipse cx="0" cy="0" rx="50" ry="30" fill="url(#mist-effect)" opacity="0.4">
+                                    <animateTransform attributeName="transform" type="rotate"
+                                                      from="0 0 0" to="360 0 0" dur="10s" repeatCount="indefinite"/>
+                                </ellipse>
+                            </g>
+                            
+                            <!-- 属性文字 -->
+                            <text x="110" y="200" text-anchor="middle" fill="#9370DB" font-size="10">暴击伤害 +44.1%</text>
+                        </svg>
+                    </div>
+                    <p class="description">单手剑型武器，元素伤害递增机制，神里绫华型机甲理想武器</p>
+                </div>
+
+                <!-- 西风长枪（四星长枪） -->
+                <div class="resource-card">
+                    <h3>西风长枪 - ⭐⭐⭐⭐</h3>
+                    <div class="svg-container">
+                        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 武器渐变 -->
+                                <linearGradient id="favonius-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#4682B4"/>
+                                    <stop offset="50%" stop-color="#5F9EA0"/>
+                                    <stop offset="100%" stop-color="#4682B4"/>
+                                </linearGradient>
+                                <!-- 风元素效果 -->
+                                <radialGradient id="wind-effect">
+                                    <stop offset="0%" stop-color="#00CED1" stop-opacity="0.6"/>
+                                    <stop offset="100%" stop-color="#40E0D0" stop-opacity="0"/>
+                                </radialGradient>
+                            </defs>
+                            
+                            <g transform="translate(110, 110) rotate(-45)">
+                                <!-- 枪杆 -->
+                                <rect x="-2.5" y="-75" width="5" height="130" fill="url(#favonius-gradient)"/>
+                                
+                                <!-- 枪尖 -->
+                                <path d="M 0,-75 L -6,-63 L 0,-58 L 6,-63 Z" fill="#4682B4"/>
+                                
+                                <!-- 风元素装饰 -->
+                                <g transform="translate(0, 20)">
+                                    <circle cx="0" cy="0" r="10" fill="none" stroke="#00CED1" stroke-width="1.5">
+                                        <animate attributeName="r" values="8;12;8" dur="3s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <path d="M -8,0 Q 0,-8 8,0 Q 0,8 -8,0" fill="none" stroke="#40E0D0" stroke-width="1" opacity="0.7">
+                                        <animateTransform attributeName="transform" type="rotate"
+                                                          from="0 0 0" to="360 0 0" dur="5s" repeatCount="indefinite"/>
+                                    </path>
+                                </g>
+                                
+                                <!-- 能量微粒效果 -->
+                                <g opacity="0.7">
+                                    <circle cx="10" cy="-20" r="2" fill="#00CED1">
+                                        <animate attributeName="cy" values="-20;-40;-20" dur="2s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <circle cx="-10" cy="0" r="2" fill="#40E0D0">
+                                        <animate attributeName="cy" values="0;-20;0" dur="2.5s" repeatCount="indefinite"/>
+                                    </circle>
+                                </g>
+                            </g>
+                            
+                            <!-- 属性文字 -->
+                            <text x="110" y="200" text-anchor="middle" fill="#00CED1" font-size="10">充能效率 +30.6%</text>
+                        </svg>
+                    </div>
+                    <p class="description">长枪型武器，暴击产生元素微粒，辅助角色充能神器</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 圣遗物系统 Section -->
+        <div class="resource-section">
+            <h2>四、圣遗物套装系统</h2>
+            <div class="resource-grid">
+                
+                <!-- 绝缘之旗印 -->
+                <div class="resource-card">
+                    <h3>绝缘之旗印 - 充能爆发套</h3>
+                    <div class="svg-container">
+                        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 雷电纹理 -->
+                                <linearGradient id="emblem-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#9932CC"/>
+                                    <stop offset="50%" stop-color="#8A2BE2"/>
+                                    <stop offset="100%" stop-color="#4B0082"/>
+                                </linearGradient>
+                                <!-- 充能光环 -->
+                                <radialGradient id="energy-glow">
+                                    <stop offset="0%" stop-color="#E6E6FA" stop-opacity="0.8"/>
+                                    <stop offset="50%" stop-color="#9932CC" stop-opacity="0.5"/>
+                                    <stop offset="100%" stop-color="#4B0082" stop-opacity="0"/>
+                                </radialGradient>
+                            </defs>
+                            
+                            <!-- 套装图标 - 旗印造型 -->
+                            <g transform="translate(110, 110)">
+                                <!-- 外环 -->
+                                <circle cx="0" cy="0" r="50" fill="none" stroke="url(#emblem-gradient)" stroke-width="3"/>
+                                
+                                <!-- 内部旗帜图案 -->
+                                <path d="M -20,-30 L -20,30 L 25,20 L 25,-20 Z" fill="url(#emblem-gradient)" opacity="0.8"/>
+                                <path d="M -20,-30 L -20,30" stroke="#E6E6FA" stroke-width="2"/>
+                                
+                                <!-- 雷电纹路 -->
+                                <g opacity="0.7">
+                                    <path d="M 0,-40 L -5,-20 L 5,-10 L -5,0 L 5,10 L -5,20 L 0,40" 
+                                          stroke="#E6E6FA" stroke-width="1.5" fill="none">
+                                        <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+                                    </path>
+                                </g>
+                                
+                                <!-- 充能特效 -->
+                                <circle cx="0" cy="0" r="35" fill="url(#energy-glow)" opacity="0.4">
+                                    <animate attributeName="r" values="30;40;30" dur="3s" repeatCount="indefinite"/>
+                                </circle>
+                                
+                                <!-- 套装效果标识 -->
+                                <g transform="translate(0, -70)">
+                                    <text text-anchor="middle" fill="#E6E6FA" font-size="8">2件套: 充能+20%</text>
+                                </g>
+                                <g transform="translate(0, 70)">
+                                    <text text-anchor="middle" fill="#E6E6FA" font-size="8">4件套: Q伤害+75%</text>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="description">充能效率提升元素爆发伤害，雷电将军型机甲最佳选择</p>
+                </div>
+
+                <!-- 翠绿之影 -->
+                <div class="resource-card">
+                    <h3>翠绿之影 - 风系减抗套</h3>
+                    <div class="svg-container">
+                        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 风元素渐变 -->
+                                <radialGradient id="vv-gradient">
+                                    <stop offset="0%" stop-color="#00FA9A"/>
+                                    <stop offset="50%" stop-color="#00FF7F"/>
+                                    <stop offset="100%" stop-color="#228B22"/>
+                                </radialGradient>
+                                <!-- 扩散效果 -->
+                                <radialGradient id="swirl-effect">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.6"/>
+                                    <stop offset="50%" stop-color="#00FF7F" stop-opacity="0.3"/>
+                                    <stop offset="100%" stop-color="#00FA9A" stop-opacity="0"/>
+                                </radialGradient>
+                            </defs>
+                            
+                            <!-- 套装图标 - 羽毛造型 -->
+                            <g transform="translate(110, 110)">
+                                <!-- 羽毛主体 -->
+                                <path d="M 0,-50 Q -20,-30 -25,-10 Q -20,10 -10,30 L 0,40 L 10,30 Q 20,10 25,-10 Q 20,-30 0,-50 Z"
+                                      fill="url(#vv-gradient)" opacity="0.8"/>
+                                
+                                <!-- 羽毛纹理 -->
+                                <g opacity="0.6">
+                                    <path d="M 0,-40 L -15,-20" stroke="#FFFFFF" stroke-width="1"/>
+                                    <path d="M 0,-40 L 15,-20" stroke="#FFFFFF" stroke-width="1"/>
+                                    <path d="M 0,-30 L -12,-10" stroke="#FFFFFF" stroke-width="1"/>
+                                    <path d="M 0,-30 L 12,-10" stroke="#FFFFFF" stroke-width="1"/>
+                                    <path d="M 0,-20 L -10,0" stroke="#FFFFFF" stroke-width="1"/>
+                                    <path d="M 0,-20 L 10,0" stroke="#FFFFFF" stroke-width="1"/>
+                                </g>
+                                
+                                <!-- 风旋效果 -->
+                                <g opacity="0.7">
+                                    <animateTransform attributeName="transform" type="rotate"
+                                                      from="0 0 0" to="360 0 0" dur="8s" repeatCount="indefinite"/>
+                                    <path d="M 0,0 Q 30,-20 40,0 Q 30,20 0,30 Q -30,20 -40,0 Q -30,-20 0,0"
+                                          fill="none" stroke="#00FF7F" stroke-width="1" opacity="0.5"/>
+                                </g>
+                                
+                                <!-- 扩散粒子 -->
+                                <circle cx="0" cy="0" r="45" fill="url(#swirl-effect)" opacity="0.5">
+                                    <animate attributeName="r" values="40;55;40" dur="4s" repeatCount="indefinite"/>
+                                </circle>
+                                
+                                <!-- 套装效果标识 -->
+                                <g transform="translate(0, -70)">
+                                    <text text-anchor="middle" fill="#00FF7F" font-size="8">2件套: 风伤+15%</text>
+                                </g>
+                                <g transform="translate(0, 70)">
+                                    <text text-anchor="middle" fill="#00FF7F" font-size="8">4件套: 减抗40%</text>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="description">扩散减抗神器，万叶型机甲必备套装，全队增伤核心</p>
+                </div>
+
+                <!-- 千岩牢固 -->
+                <div class="resource-card">
+                    <h3>千岩牢固 - 护盾增益套</h3>
+                    <div class="svg-container">
+                        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 岩元素渐变 -->
+                                <linearGradient id="tenacity-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#DAA520"/>
+                                    <stop offset="50%" stop-color="#B8860B"/>
+                                    <stop offset="100%" stop-color="#8B6914"/>
+                                </linearGradient>
+                                <!-- 护盾光效 -->
+                                <radialGradient id="shield-glow">
+                                    <stop offset="0%" stop-color="#FFD700" stop-opacity="0.6"/>
+                                    <stop offset="50%" stop-color="#DAA520" stop-opacity="0.3"/>
+                                    <stop offset="100%" stop-color="#B8860B" stop-opacity="0"/>
+                                </radialGradient>
+                            </defs>
+                            
+                            <!-- 套装图标 - 岩盾造型 -->
+                            <g transform="translate(110, 110)">
+                                <!-- 六边形护盾 -->
+                                <polygon points="0,-45 39,-22.5 39,22.5 0,45 -39,22.5 -39,-22.5"
+                                         fill="url(#tenacity-gradient)" stroke="#FFD700" stroke-width="2" opacity="0.8"/>
+                                
+                                <!-- 岩石纹理 -->
+                                <g opacity="0.5">
+                                    <polygon points="0,-30 20,-15 20,15 0,30 -20,15 -20,-15" 
+                                             fill="none" stroke="#FFD700" stroke-width="1"/>
+                                    <polygon points="0,-15 10,-7.5 10,7.5 0,15 -10,7.5 -10,-7.5" 
+                                             fill="#B8860B" opacity="0.7"/>
+                                </g>
+                                
+                                <!-- 护盾波纹 -->
+                                <g opacity="0.6">
+                                    <polygon points="0,-50 43,-25 43,25 0,50 -43,25 -43,-25"
+                                             fill="none" stroke="#FFD700" stroke-width="1">
+                                        <animate attributeName="opacity" values="0;0.6;0" dur="3s" repeatCount="indefinite"/>
+                                        <animateTransform attributeName="transform" type="scale"
+                                                          values="1;1.1;1" dur="3s" repeatCount="indefinite"/>
+                                    </polygon>
+                                </g>
+                                
+                                <!-- 护盾光环 -->
+                                <circle cx="0" cy="0" r="50" fill="url(#shield-glow)" opacity="0.4">
+                                    <animate attributeName="r" values="45;55;45" dur="4s" repeatCount="indefinite"/>
+                                </circle>
+                                
+                                <!-- 套装效果标识 -->
+                                <g transform="translate(0, -70)">
+                                    <text text-anchor="middle" fill="#FFD700" font-size="8">2件套: HP+20%</text>
+                                </g>
+                                <g transform="translate(0, 70)">
+                                    <text text-anchor="middle" fill="#FFD700" font-size="8">4件套: 护盾+30%</text>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="description">护盾强效提升，全队攻击力加成，钟离型机甲标配</p>
+                </div>
+
+            </div>
+        </div>
+
         <!-- 待续提示 -->
         <div class="resource-section" style="text-align: center; padding: 40px;">
             <h2 style="color: #FFB6C1; border: none;">更多资源正在制作中...</h2>
