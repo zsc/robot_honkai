@@ -2317,87 +2317,133 @@
                     <div class="svg-container">
                         <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
                             <defs>
-                                <!-- 飞行器金属 -->
-                                <linearGradient id="hunter-metal" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#B0C4DE"/>
-                                    <stop offset="50%" stop-color="#778899"/>
+                                <!-- 机械金属渐变 -->
+                                <linearGradient id="hunter-body" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#A9A9A9"/>
+                                    <stop offset="50%" stop-color="#696969"/>
                                     <stop offset="100%" stop-color="#2F4F4F"/>
                                 </linearGradient>
-                                <!-- 推进器光芒 -->
-                                <radialGradient id="thruster-glow">
-                                    <stop offset="0%" stop-color="#00FFFF" stop-opacity="1"/>
-                                    <stop offset="50%" stop-color="#00CED1" stop-opacity="0.7"/>
-                                    <stop offset="100%" stop-color="#008B8B" stop-opacity="0.3"/>
+                                <!-- 能量核心 -->
+                                <radialGradient id="hunter-core">
+                                    <stop offset="0%" stop-color="#FFD700" stop-opacity="1"/>
+                                    <stop offset="50%" stop-color="#FFA500" stop-opacity="0.8"/>
+                                    <stop offset="100%" stop-color="#FF4500" stop-opacity="0.5"/>
                                 </radialGradient>
+                                <!-- 推进火焰 -->
+                                <linearGradient id="jet-flame" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#00FFFF" stop-opacity="0.9"/>
+                                    <stop offset="50%" stop-color="#1E90FF" stop-opacity="0.7"/>
+                                    <stop offset="100%" stop-color="#0000FF" stop-opacity="0.3"/>
+                                </linearGradient>
                             </defs>
                             
                             <!-- 遗迹猎者主体 -->
                             <g transform="translate(110, 90)">
-                                <!-- 主体核心 -->
-                                <ellipse cx="0" cy="0" rx="25" ry="20" fill="url(#hunter-metal)"/>
-                                
-                                <!-- 飞行机翼 -->
-                                <g>
-                                    <!-- 左翼 -->
-                                    <path d="M -25,0 L -50,-10 L -55,-5 L -50,5 L -45,8 L -25,5 Z" 
-                                          fill="url(#hunter-metal)" stroke="#2F4F4F" stroke-width="1">
-                                        <animateTransform attributeName="transform" type="rotate"
-                                                          values="0 -25 0;-5 -25 0;0 -25 0" dur="2s" repeatCount="indefinite"/>
-                                    </path>
-                                    <!-- 右翼 -->
-                                    <path d="M 25,0 L 50,-10 L 55,-5 L 50,5 L 45,8 L 25,5 Z" 
-                                          fill="url(#hunter-metal)" stroke="#2F4F4F" stroke-width="1">
-                                        <animateTransform attributeName="transform" type="rotate"
-                                                          values="0 25 0;5 25 0;0 25 0" dur="2s" repeatCount="indefinite"/>
-                                    </path>
-                                </g>
-                                
-                                <!-- 旋转刀片 -->
-                                <g>
-                                    <animateTransform attributeName="transform" type="rotate"
-                                                      from="0 0 -15" to="360 0 -15" dur="1s" repeatCount="indefinite"/>
-                                    <path d="M 0,-15 L 15,-20 L 15,-10 Z" fill="#708090" opacity="0.7"/>
-                                    <path d="M 0,-15 L -15,-20 L -15,-10 Z" fill="#708090" opacity="0.7"/>
-                                    <path d="M 0,-15 L 5,-5 L -5,-5 Z" fill="#708090" opacity="0.7"/>
-                                    <path d="M 0,-15 L 5,-25 L -5,-25 Z" fill="#708090" opacity="0.7"/>
-                                </g>
-                                
-                                <!-- 眼部扫描器 -->
-                                <rect x="-15" y="-5" width="30" height="3" fill="#FF0000" opacity="0.8">
-                                    <animate attributeName="width" values="30;35;30" dur="1.5s" repeatCount="indefinite"/>
-                                    <animate attributeName="x" values="-15;-17.5;-15" dur="1.5s" repeatCount="indefinite"/>
-                                </rect>
-                                
-                                <!-- 推进器 -->
-                                <g>
-                                    <!-- 主推进器 -->
-                                    <ellipse cx="0" cy="20" rx="8" ry="5" fill="url(#thruster-glow)">
-                                        <animate attributeName="ry" values="5;8;5" dur="0.5s" repeatCount="indefinite"/>
-                                        <animate attributeName="opacity" values="0.7;1;0.7" dur="0.5s" repeatCount="indefinite"/>
-                                    </ellipse>
-                                    <!-- 左侧推进器 -->
-                                    <ellipse cx="-20" cy="15" rx="5" ry="3" fill="url(#thruster-glow)">
-                                        <animate attributeName="ry" values="3;5;3" dur="0.6s" repeatCount="indefinite"/>
-                                    </ellipse>
-                                    <!-- 右侧推进器 -->
-                                    <ellipse cx="20" cy="15" rx="5" ry="3" fill="url(#thruster-glow)">
-                                        <animate attributeName="ry" values="3;5;3" dur="0.6s" repeatCount="indefinite"/>
-                                    </ellipse>
-                                </g>
-                                
-                                <!-- 能量炮充能 -->
-                                <circle cx="0" cy="-8" r="5" fill="#FFD700" opacity="0.6">
-                                    <animate attributeName="r" values="5;7;5" dur="2s" repeatCount="indefinite"/>
-                                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
-                                </circle>
-                                
                                 <!-- 飘浮动画 -->
                                 <animateTransform attributeName="transform" type="translate"
-                                                  values="0,0;0,-5;0,0" dur="3s" repeatCount="indefinite"/>
+                                                  values="0,0;0,-8;0,0" dur="4s" repeatCount="indefinite" additive="sum"/>
+                                
+                                <!-- 主体机身 -->
+                                <g>
+                                    <!-- 下半身（倒三角形） -->
+                                    <path d="M 0,0 L -20,-15 L -15,-25 L -8,-30 L 0,-32 L 8,-30 L 15,-25 L 20,-15 L 0,0 Z"
+                                          fill="url(#hunter-body)" stroke="#2F4F4F" stroke-width="1.5"/>
+                                    
+                                    <!-- 上半身（头部） -->
+                                    <ellipse cx="0" cy="-20" rx="12" ry="15" fill="url(#hunter-body)"/>
+                                    
+                                    <!-- 装甲板细节 -->
+                                    <rect x="-8" y="-25" width="16" height="8" fill="#4A4A4A" opacity="0.7"/>
+                                    <rect x="-6" y="-10" width="12" height="6" fill="#4A4A4A" opacity="0.7"/>
+                                </g>
+                                
+                                <!-- 机械臂 -->
+                                <g>
+                                    <!-- 左臂 -->
+                                    <g transform="rotate(-25)">
+                                        <rect x="-30" y="-20" width="15" height="6" fill="url(#hunter-body)" rx="2"/>
+                                        <!-- 关节 -->
+                                        <circle cx="-30" cy="-17" r="3" fill="#505050"/>
+                                        <!-- 钻头 -->
+                                        <path d="M -35,-17 L -40,-20 L -42,-17 L -40,-14 L -35,-14 Z" fill="#303030">
+                                            <animateTransform attributeName="transform" type="rotate"
+                                                              from="0 -38 -17" to="360 -38 -17" dur="2s" repeatCount="indefinite"/>
+                                        </path>
+                                    </g>
+                                    
+                                    <!-- 右臂 -->
+                                    <g transform="rotate(25)">
+                                        <rect x="15" y="-20" width="15" height="6" fill="url(#hunter-body)" rx="2"/>
+                                        <!-- 关节 -->
+                                        <circle cx="30" cy="-17" r="3" fill="#505050"/>
+                                        <!-- 钻头 -->
+                                        <path d="M 35,-17 L 40,-20 L 42,-17 L 40,-14 L 35,-14 Z" fill="#303030">
+                                            <animateTransform attributeName="transform" type="rotate"
+                                                              from="0 38 -17" to="-360 38 -17" dur="2s" repeatCount="indefinite"/>
+                                        </path>
+                                    </g>
+                                </g>
+                                
+                                <!-- 核心眼部（弱点） -->
+                                <circle cx="0" cy="-20" r="6" fill="url(#hunter-core)">
+                                    <animate attributeName="r" values="6;7;6" dur="1.5s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="0" cy="-20" r="3" fill="#FFFF00"/>
+                                
+                                <!-- 扫描激光 -->
+                                <line x1="-8" y1="-20" x2="-25" y2="-20" stroke="#FF0000" stroke-width="1" opacity="0.6">
+                                    <animate attributeName="x2" values="-25;-30;-25" dur="2s" repeatCount="indefinite"/>
+                                    <animate attributeName="opacity" values="0.6;0.9;0.6" dur="2s" repeatCount="indefinite"/>
+                                </line>
+                                <line x1="8" y1="-20" x2="25" y2="-20" stroke="#FF0000" stroke-width="1" opacity="0.6">
+                                    <animate attributeName="x2" values="25;30;25" dur="2s" repeatCount="indefinite"/>
+                                    <animate attributeName="opacity" values="0.6;0.9;0.6" dur="2s" repeatCount="indefinite"/>
+                                </line>
+                                
+                                <!-- 推进器组 -->
+                                <g>
+                                    <!-- 主推进器 -->
+                                    <ellipse cx="0" cy="5" rx="10" ry="6" fill="url(#jet-flame)">
+                                        <animate attributeName="ry" values="6;10;6" dur="0.5s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.7;1;0.7" dur="0.5s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                    
+                                    <!-- 左推进器 -->
+                                    <ellipse cx="-15" cy="2" rx="5" ry="4" fill="url(#jet-flame)">
+                                        <animate attributeName="ry" values="4;6;4" dur="0.6s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                    
+                                    <!-- 右推进器 -->
+                                    <ellipse cx="15" cy="2" rx="5" ry="4" fill="url(#jet-flame)">
+                                        <animate attributeName="ry" values="4;6;4" dur="0.6s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                </g>
+                                
+                                <!-- 旋转刀刃环 -->
+                                <g opacity="0.7">
+                                    <animateTransform attributeName="transform" type="rotate"
+                                                      from="0 0 10" to="360 0 10" dur="1.5s" repeatCount="indefinite"/>
+                                    <!-- 刀刃1 -->
+                                    <path d="M 0,10 L -25,15 L -28,12 L -25,8 Z" fill="#606060"/>
+                                    <!-- 刀刃2 -->
+                                    <path d="M 0,10 L 25,15 L 28,12 L 25,8 Z" fill="#606060"/>
+                                    <!-- 刀刃3 -->
+                                    <path d="M 0,10 L -5,35 L 0,38 L 5,35 Z" fill="#606060"/>
+                                    <!-- 刀刃4 -->
+                                    <path d="M 0,10 L -5,-15 L 0,-18 L 5,-15 Z" fill="#606060"/>
+                                </g>
+                                
+                                <!-- 能量充能效果 -->
+                                <g opacity="0.5">
+                                    <circle cx="0" cy="-20" r="20" fill="none" stroke="#FFD700" stroke-width="1">
+                                        <animate attributeName="r" values="15;25;15" dur="3s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0;0.5;0" dur="3s" repeatCount="indefinite"/>
+                                    </circle>
+                                </g>
                             </g>
                         </svg>
                     </div>
-                    <p class="description">遗迹猎者·追踪型，3500HP，飞行单位，能量炮攻击</p>
+                    <p class="description">遗迹猎者·追踪型，3500HP，飞行单位，钻头攻击，旋转刀刃</p>
                 </div>
 
                 <!-- 无相之火 BOSS -->
