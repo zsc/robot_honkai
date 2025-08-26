@@ -818,16 +818,19 @@
             }
         }
 
-        // 玩家移动（八方向）
+        // 玩家移动（2.5D八方向）
         function updatePlayerMovement() {
             const player = document.getElementById('playerMecha');
             let dx = 0, dy = 0;
-            const speed = game.isDashing ? 8 : 4;
+            const speed = game.isDashing ? 10 : 5;
 
+            // 水平移动
             if (keys['a']) dx -= speed;
             if (keys['d']) dx += speed;
-            if (keys['w']) dy -= speed;
-            if (keys['s']) dy += speed;
+            
+            // 垂直移动 - W向上（远离），S向下（靠近）
+            if (keys['w']) dy += speed;   // W键向屏幕深处
+            if (keys['s']) dy -= speed;  // S键向屏幕前方
 
             // 归一化斜向移动
             if (dx !== 0 && dy !== 0) {
@@ -835,13 +838,22 @@
                 dy *= 0.707;
             }
 
-            game.playerX = Math.max(5, Math.min(95, game.playerX + dx * 0.5));
+            // 更新位置 - 更大的移动范围
+            game.playerX = Math.max(2, Math.min(98, game.playerX + dx * 0.7));
+            game.playerY = Math.max(5, Math.min(90, game.playerY + dy * 0.5));
+            
+            // 应用位置
             player.style.left = game.playerX + '%';
-
-            if (!game.isJumping) {
-                game.playerY = Math.max(0, Math.min(100, game.playerY + dy * 0.5));
-                player.style.bottom = (150 + game.playerY) + 'px';
-            }
+            
+            // 2.5D Y轴定位
+            const bottomPos = 5 + (90 - game.playerY) * 0.7;  // Y越大，位置越高
+            player.style.bottom = bottomPos + '%';
+            
+            // 2.5D深度缩放 - Y越大（越远）越小
+            const depthScale = 0.5 + (90 - game.playerY) / 100;
+            const zIndex = Math.floor(100 - game.playerY);
+            player.style.transform = `translateX(-50%) scale(${depthScale})`;
+            player.style.zIndex = zIndex;
         }
 
         // 跳跃
