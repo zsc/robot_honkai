@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>机甲崩坏：变异纪元</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "微软雅黑", Arial, sans-serif;
+            background: #000;
+            color: #E5E5E5;
+            overflow: hidden;
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* 背景动画 */
+        .background-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #0a0a0a 100%);
+            animation: backgroundShift 20s infinite ease-in-out;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { filter: hue-rotate(0deg) brightness(0.8); }
+            25% { filter: hue-rotate(15deg) brightness(0.9); }
+            50% { filter: hue-rotate(-15deg) brightness(0.85); }
+            75% { filter: hue-rotate(30deg) brightness(0.95); }
+        }
+
+        /* 粒子效果 */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: radial-gradient(circle, rgba(155, 89, 182, 0.8), transparent);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* 主菜单容器 */
+        .main-menu {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .main-menu.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* 游戏标题 */
+        .game-title {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: titleGlow 3s infinite ease-in-out;
+        }
+
+        .game-title h1 {
+            font-size: 4.5em;
+            font-weight: bold;
+            background: linear-gradient(90deg, #FFB6C1, #9B59B6, #00CED1, #FFB6C1);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 40px rgba(155, 89, 182, 0.6);
+            animation: gradientShift 4s infinite linear;
+            margin-bottom: 10px;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: brightness(1) drop-shadow(0 0 20px rgba(155, 89, 182, 0.5)); }
+            50% { filter: brightness(1.2) drop-shadow(0 0 40px rgba(0, 206, 209, 0.8)); }
+        }
+
+        .game-subtitle {
+            font-size: 1.3em;
+            color: rgba(255, 182, 193, 0.8);
+            letter-spacing: 5px;
+        }
+
+        /* 菜单按钮 */
+        .menu-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .menu-button {
+            position: relative;
+            width: 280px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(155, 89, 182, 0.1), rgba(0, 206, 209, 0.1));
+            border: 2px solid transparent;
+            border-image: linear-gradient(90deg, #9B59B6, #00CED1) 1;
+            color: #E5E5E5;
+            font-size: 1.3em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 2px;
+        }
+
+        .menu-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 182, 193, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .menu-button:hover::before {
+            left: 100%;
+        }
+
+        .menu-button:hover {
+            transform: translateX(10px);
+            box-shadow: 0 0 30px rgba(155, 89, 182, 0.5);
+            background: linear-gradient(135deg, rgba(155, 89, 182, 0.3), rgba(0, 206, 209, 0.3));
+        }
+
+        /* 游戏UI容器 */
+        .game-ui {
+            position: relative;
+            z-index: 10;
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .game-ui.active {
+            display: block;
+        }
+
+        /* HUD界面 */
+        .hud {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        /* 队伍状态栏 */
+        .team-status {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            gap: 15px;
+            pointer-events: auto;
+        }
+
+        .character-slot {
+            width: 80px;
+            height: 100px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid rgba(155, 89, 182, 0.3);
+            border-radius: 10px;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .character-slot.active {
+            border-color: #00CED1;
+            box-shadow: 0 0 20px rgba(0, 206, 209, 0.5);
+            transform: scale(1.1);
+        }
+
+        .character-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(155, 89, 182, 0.2);
+            border-radius: 5px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hp-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .hp-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FF6347, #FF4500);
+            transition: width 0.3s;
+        }
+
+        .energy-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+
+        .energy-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            transition: width 0.3s;
+        }
+
+        /* 技能栏 */
+        .skill-bar {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            pointer-events: auto;
+        }
+
+        .skill-slot {
+            width: 70px;
+            height: 70px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid rgba(0, 206, 209, 0.5);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .skill-slot:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 206, 209, 0.6);
+        }
+
+        .skill-key {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(155, 89, 182, 0.8);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .skill-cooldown {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFB6C1;
+        }
+
+        /* 小地图 */
+        .minimap {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 200px;
+            height: 150px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid rgba(0, 206, 209, 0.3);
+            border-radius: 10px;
+            padding: 5px;
+        }
+
+        .minimap-content {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0, 206, 209, 0.1), transparent);
+            position: relative;
+        }
+
+        /* 分数显示 */
+        .score-display {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid rgba(255, 182, 193, 0.5);
+            border-radius: 10px;
+            padding: 10px 30px;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .score-label {
+            color: rgba(255, 182, 193, 0.8);
+        }
+
+        .score-value {
+            color: #FFD700;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        /* 游戏场景容器 */
+        .game-scene {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 设置面板 */
+        .settings-panel {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            background: rgba(20, 20, 30, 0.95);
+            border: 2px solid rgba(155, 89, 182, 0.5);
+            border-radius: 15px;
+            padding: 30px;
+            display: none;
+            z-index: 100;
+        }
+
+        .settings-panel.active {
+            display: block;
+        }
+
+        .settings-title {
+            font-size: 2em;
+            color: #00CED1;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .settings-option {
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .settings-label {
+            color: rgba(255, 182, 193, 0.9);
+            font-size: 1.1em;
+        }
+
+        .settings-slider {
+            width: 200px;
+            height: 6px;
+            background: rgba(155, 89, 182, 0.3);
+            border-radius: 3px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .settings-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #00CED1;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .close-settings {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            border: 2px solid #FF6347;
+            border-radius: 50%;
+            color: #FF6347;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            transition: all 0.3s;
+        }
+
+        .close-settings:hover {
+            background: rgba(255, 99, 71, 0.2);
+            transform: rotate(90deg);
+        }
+
+        /* 版本号 */
+        .version {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            color: rgba(255, 182, 193, 0.5);
+            font-size: 0.9em;
+        }
+
+        /* 加载屏幕 */
+        .loading-screen {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.5s;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-text {
+            font-size: 1.5em;
+            color: #00CED1;
+            margin-bottom: 30px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .loading-bar {
+            width: 300px;
+            height: 10px;
+            background: rgba(155, 89, 182, 0.2);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #9B59B6, #00CED1);
+            border-radius: 5px;
+            animation: loading 2s ease-in-out;
+        }
+
+        @keyframes loading {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景容器 -->
+    <div class="background-container">
+        <div class="particles" id="particles"></div>
+    </div>
+
+    <!-- 加载屏幕 -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-text">正在加载游戏资源...</div>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
+
+    <!-- 主菜单 -->
+    <div class="main-menu" id="mainMenu">
+        <div class="game-title">
+            <h1>机甲崩坏</h1>
+            <div class="game-subtitle">变异纪元</div>
+        </div>
+        
+        <div class="menu-buttons">
+            <button class="menu-button" onclick="startNewGame()">开始游戏</button>
+            <button class="menu-button" onclick="continueGame()">继续游戏</button>
+            <button class="menu-button" onclick="openSettings()">游戏设置</button>
+            <button class="menu-button" onclick="showCredits()">关于游戏</button>
+            <button class="menu-button" onclick="exitGame()">退出游戏</button>
+        </div>
+        
+        <div class="version">Version 1.0.0 Beta</div>
+    </div>
+
+    <!-- 游戏UI -->
+    <div class="game-ui" id="gameUI">
+        <!-- HUD界面 -->
+        <div class="hud">
+            <!-- 队伍状态栏 -->
+            <div class="team-status">
+                <div class="character-slot active" data-slot="1">
+                    <div class="character-icon">
+                        <svg width="50" height="50" viewBox="0 0 50 50">
+                            <!-- 简化的胡桃机甲图标 -->
+                            <circle cx="25" cy="25" r="20" fill="url(#fireGradient)" opacity="0.8"/>
+                            <path d="M25,10 L30,20 L35,18 L32,25 L35,32 L30,30 L25,40 L20,30 L15,32 L18,25 L15,18 L20,20 Z" 
+                                  fill="#FF69B4" stroke="#8B008B" stroke-width="1"/>
+                            <defs>
+                                <radialGradient id="fireGradient">
+                                    <stop offset="0%" stop-color="#FF6347"/>
+                                    <stop offset="100%" stop-color="#DC143C"/>
+                                </radialGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="hp-bar">
+                        <div class="hp-fill" style="width: 80%"></div>
+                    </div>
+                    <div class="energy-bar">
+                        <div class="energy-fill" style="width: 60%"></div>
+                    </div>
+                </div>
+                
+                <div class="character-slot" data-slot="2">
+                    <div class="character-icon">
+                        <svg width="50" height="50" viewBox="0 0 50 50">
+                            <!-- 雷电将军机甲图标 -->
+                            <circle cx="25" cy="25" r="20" fill="url(#thunderGradient)" opacity="0.8"/>
+                            <path d="M25,5 L30,20 L45,20 L28,32 L35,45 L25,35 L15,45 L22,32 L5,20 L20,20 Z" 
+                                  fill="#9B59B6" stroke="#4B0082" stroke-width="1"/>
+                            <defs>
+                                <radialGradient id="thunderGradient">
+                                    <stop offset="0%" stop-color="#9B59B6"/>
+                                    <stop offset="100%" stop-color="#4B0082"/>
+                                </radialGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="hp-bar">
+                        <div class="hp-fill" style="width: 100%"></div>
+                    </div>
+                    <div class="energy-bar">
+                        <div class="energy-fill" style="width: 30%"></div>
+                    </div>
+                </div>
+                
+                <div class="character-slot" data-slot="3">
+                    <div class="character-icon">
+                        <svg width="50" height="50" viewBox="0 0 50 50">
+                            <!-- 行秋机甲图标 -->
+                            <circle cx="25" cy="25" r="20" fill="url(#waterGradient)" opacity="0.8"/>
+                            <path d="M25,10 Q15,15 15,25 Q15,35 25,40 Q35,35 35,25 Q35,15 25,10" 
+                                  fill="#00CED1" stroke="#008B8B" stroke-width="1"/>
+                            <circle cx="25" cy="25" r="5" fill="#87CEEB"/>
+                            <defs>
+                                <radialGradient id="waterGradient">
+                                    <stop offset="0%" stop-color="#00CED1"/>
+                                    <stop offset="100%" stop-color="#008B8B"/>
+                                </radialGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="hp-bar">
+                        <div class="hp-fill" style="width: 90%"></div>
+                    </div>
+                    <div class="energy-bar">
+                        <div class="energy-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+                
+                <div class="character-slot" data-slot="4">
+                    <div class="character-icon">
+                        <svg width="50" height="50" viewBox="0 0 50 50">
+                            <!-- 钟离机甲图标 -->
+                            <circle cx="25" cy="25" r="20" fill="url(#earthGradient)" opacity="0.8"/>
+                            <rect x="15" y="15" width="20" height="20" fill="#D4A574" stroke="#8B7355" stroke-width="1"/>
+                            <polygon points="25,10 35,20 35,30 25,40 15,30 15,20" fill="#C19A6B" opacity="0.7"/>
+                            <defs>
+                                <radialGradient id="earthGradient">
+                                    <stop offset="0%" stop-color="#D4A574"/>
+                                    <stop offset="100%" stop-color="#8B7355"/>
+                                </radialGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="hp-bar">
+                        <div class="hp-fill" style="width: 100%"></div>
+                    </div>
+                    <div class="energy-bar">
+                        <div class="energy-fill" style="width: 50%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 分数显示 -->
+            <div class="score-display">
+                <span class="score-label">得分:</span>
+                <span class="score-value" id="scoreValue">0</span>
+            </div>
+
+            <!-- 小地图 -->
+            <div class="minimap">
+                <div class="minimap-content">
+                    <svg width="100%" height="100%" viewBox="0 0 200 150">
+                        <!-- 玩家位置 -->
+                        <circle cx="100" cy="75" r="3" fill="#00CED1">
+                            <animate attributeName="r" values="2;4;2" dur="1s" repeatCount="indefinite"/>
+                        </circle>
+                        <!-- 敌人位置示例 -->
+                        <circle cx="150" cy="50" r="2" fill="#FF6347" opacity="0.8"/>
+                        <circle cx="60" cy="100" r="2" fill="#FF6347" opacity="0.8"/>
+                        <circle cx="120" cy="30" r="2" fill="#FF6347" opacity="0.8"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- 技能栏 -->
+            <div class="skill-bar">
+                <div class="skill-slot">
+                    <span class="skill-key">Q</span>
+                    <svg width="50" height="50">
+                        <circle cx="25" cy="25" r="20" fill="none" stroke="#FFD700" stroke-width="2"/>
+                        <path d="M25,10 L30,20 L40,20 L32,28 L35,38 L25,32 L15,38 L18,28 L10,20 L20,20 Z" 
+                              fill="#FFD700" opacity="0.8"/>
+                    </svg>
+                </div>
+                <div class="skill-slot">
+                    <span class="skill-key">E</span>
+                    <svg width="50" height="50">
+                        <circle cx="25" cy="25" r="18" fill="none" stroke="#9B59B6" stroke-width="2"/>
+                        <path d="M25,15 Q35,25 25,35 Q15,25 25,15" fill="#9B59B6" opacity="0.8"/>
+                    </svg>
+                    <div class="skill-cooldown">3</div>
+                </div>
+                <div class="skill-slot">
+                    <span class="skill-key">Space</span>
+                    <svg width="50" height="50">
+                        <rect x="15" y="20" width="20" height="10" fill="#00CED1" opacity="0.8"/>
+                        <path d="M10,25 L15,20 L15,30 Z" fill="#00CED1"/>
+                        <path d="M40,25 L35,20 L35,30 Z" fill="#00CED1"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- 游戏场景 -->
+        <div class="game-scene" id="gameScene">
+            <!-- 这里将渲染游戏主场景 -->
+        </div>
+    </div>
+
+    <!-- 设置面板 -->
+    <div class="settings-panel" id="settingsPanel">
+        <button class="close-settings" onclick="closeSettings()">×</button>
+        <h2 class="settings-title">游戏设置</h2>
+        
+        <div class="settings-option">
+            <span class="settings-label">音效音量</span>
+            <input type="range" class="settings-slider" min="0" max="100" value="70">
+        </div>
+        
+        <div class="settings-option">
+            <span class="settings-label">背景音乐</span>
+            <input type="range" class="settings-slider" min="0" max="100" value="50">
+        </div>
+        
+        <div class="settings-option">
+            <span class="settings-label">画面质量</span>
+            <select style="width: 200px; height: 30px; background: rgba(155, 89, 182, 0.2); color: #E5E5E5; border: 1px solid rgba(0, 206, 209, 0.5); border-radius: 5px;">
+                <option>低</option>
+                <option selected>中</option>
+                <option>高</option>
+                <option>极致</option>
+            </select>
+        </div>
+        
+        <div class="settings-option">
+            <span class="settings-label">粒子效果</span>
+            <input type="checkbox" checked style="width: 20px; height: 20px;">
+        </div>
+    </div>
+
+    <script>
+        // 生成粒子效果
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // 初始化加载
+        window.addEventListener('load', () => {
+            createParticles();
+            
+            // 模拟加载完成
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hidden');
+            }, 2000);
+        });
+
+        // 菜单功能
+        function startNewGame() {
+            console.log('开始新游戏');
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.getElementById('gameUI').classList.add('active');
+            initGame();
+        }
+
+        function continueGame() {
+            console.log('继续游戏');
+            // 加载存档逻辑
+        }
+
+        function openSettings() {
+            document.getElementById('settingsPanel').classList.add('active');
+        }
+
+        function closeSettings() {
+            document.getElementById('settingsPanel').classList.remove('active');
+        }
+
+        function showCredits() {
+            alert('机甲崩坏：变异纪元\n\n开发团队：尘歌壶工作室\n版本：1.0.0 Beta\n\n感谢您的支持！');
+        }
+
+        function exitGame() {
+            if (confirm('确定要退出游戏吗？')) {
+                window.close();
+            }
+        }
+
+        // 游戏初始化
+        function initGame() {
+            console.log('游戏初始化中...');
+            
+            // 角色切换
+            document.querySelectorAll('.character-slot').forEach((slot, index) => {
+                slot.addEventListener('click', () => {
+                    document.querySelectorAll('.character-slot').forEach(s => s.classList.remove('active'));
+                    slot.classList.add('active');
+                    console.log(`切换到角色 ${index + 1}`);
+                });
+            });
+
+            // 键盘控制
+            document.addEventListener('keydown', (e) => {
+                switch(e.key) {
+                    case '1':
+                    case '2':
+                    case '3':
+                    case '4':
+                        switchCharacter(parseInt(e.key));
+                        break;
+                    case 'q':
+                    case 'Q':
+                        useUltimate();
+                        break;
+                    case 'e':
+                    case 'E':
+                        useSkill();
+                        break;
+                    case ' ':
+                        jump();
+                        break;
+                    case 'Escape':
+                        togglePause();
+                        break;
+                }
+            });
+
+            // 模拟分数增长
+            let score = 0;
+            setInterval(() => {
+                score += Math.floor(Math.random() * 10);
+                document.getElementById('scoreValue').textContent = score;
+            }, 1000);
+        }
+
+        // 游戏功能
+        function switchCharacter(slot) {
+            const slotElement = document.querySelector(`.character-slot[data-slot="${slot}"]`);
+            if (slotElement) {
+                document.querySelectorAll('.character-slot').forEach(s => s.classList.remove('active'));
+                slotElement.classList.add('active');
+            }
+        }
+
+        function useUltimate() {
+            console.log('释放大招！');
+            // 大招动画效果
+        }
+
+        function useSkill() {
+            console.log('使用技能！');
+            // 技能冷却显示
+            const cooldownElement = document.querySelector('.skill-cooldown');
+            if (cooldownElement) {
+                let cooldown = 3;
+                cooldownElement.style.display = 'flex';
+                const interval = setInterval(() => {
+                    cooldown--;
+                    cooldownElement.textContent = cooldown;
+                    if (cooldown <= 0) {
+                        clearInterval(interval);
+                        cooldownElement.style.display = 'none';
+                    }
+                }, 1000);
+            }
+        }
+
+        function jump() {
+            console.log('跳跃！');
+        }
+
+        function togglePause() {
+            console.log('暂停/继续游戏');
+        }
+    </script>
+</body>
+</html>

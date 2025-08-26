@@ -2019,6 +2019,515 @@
                     <p class="description">变异丘丘人战士，400HP，腐蚀木棒，狂暴机制</p>
                 </div>
 
+                <!-- 变异丘丘萨满 -->
+                <div class="resource-card">
+                    <h3>变异丘丘萨满</h3>
+                    <div class="svg-container">
+                        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 萨满皮肤 -->
+                                <radialGradient id="shaman-skin-gradient">
+                                    <stop offset="0%" stop-color="#704214" stop-opacity="1"/>
+                                    <stop offset="50%" stop-color="#5C3317" stop-opacity="0.9"/>
+                                    <stop offset="100%" stop-color="#3E2723" stop-opacity="0.8"/>
+                                </radialGradient>
+                                <!-- 元素光芒 -->
+                                <radialGradient id="element-aura">
+                                    <stop offset="0%" stop-color="#FF00FF" stop-opacity="0.8"/>
+                                    <stop offset="50%" stop-color="#9400D3" stop-opacity="0.5"/>
+                                    <stop offset="100%" stop-color="#4B0082" stop-opacity="0.2"/>
+                                </radialGradient>
+                            </defs>
+                            
+                            <!-- 萨满主体 -->
+                            <g transform="translate(110, 110)">
+                                <!-- 长袍 -->
+                                <path d="M -20,10 L -25,50 L -15,55 L -5,50 L 0,52 L 5,50 L 15,55 L 25,50 L 20,10 L 15,-10 L 0,-15 L -15,-10 Z"
+                                      fill="#2F004F" stroke="#1A0033" stroke-width="2"/>
+                                
+                                <!-- 身体 -->
+                                <ellipse cx="0" cy="5" rx="18" ry="25" fill="url(#shaman-skin-gradient)"/>
+                                
+                                <!-- 头部 -->
+                                <circle cx="0" cy="-25" r="20" fill="url(#shaman-skin-gradient)"/>
+                                
+                                <!-- 法杖 -->
+                                <g transform="rotate(-15)">
+                                    <rect x="-35" y="-3" width="40" height="6" fill="#4B382A" rx="3"/>
+                                    <!-- 法杖顶部元素核心 -->
+                                    <circle cx="-40" cy="0" r="8" fill="url(#element-aura)">
+                                        <animate attributeName="r" values="8;10;8" dur="2s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <!-- 元素符文 -->
+                                    <g transform="translate(-40, 0)">
+                                        <text x="0" y="2" text-anchor="middle" fill="#FFFFFF" font-size="8" opacity="0.9">元</text>
+                                    </g>
+                                </g>
+                                
+                                <!-- 面具 -->
+                                <path d="M -12,-30 L -8,-32 L 0,-33 L 8,-32 L 12,-30 L 10,-22 L 0,-20 L -10,-22 Z"
+                                      fill="#800080" opacity="0.7"/>
+                                
+                                <!-- 发光眼睛 -->
+                                <g>
+                                    <circle cx="-6" cy="-25" r="2" fill="#FF00FF">
+                                        <animate attributeName="fill" values="#FF00FF;#FFFF00;#FF00FF" dur="1.5s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <circle cx="6" cy="-25" r="2" fill="#FF00FF">
+                                        <animate attributeName="fill" values="#FF00FF;#FFFF00;#FF00FF" dur="1.5s" repeatCount="indefinite"/>
+                                    </circle>
+                                </g>
+                                
+                                <!-- 元素图腾（召唤物） -->
+                                <g transform="translate(35, 20)">
+                                    <rect x="-5" y="0" width="10" height="25" fill="#4B382A"/>
+                                    <!-- 图腾顶部 -->
+                                    <path d="M -8,-5 L 0,-10 L 8,-5 L 5,0 L -5,0 Z" fill="#800080"/>
+                                    <!-- 元素火焰 -->
+                                    <ellipse cx="0" cy="-10" rx="6" ry="8" fill="url(#element-aura)">
+                                        <animate attributeName="ry" values="8;12;8" dur="1.5s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                </g>
+                                
+                                <!-- 哏唱特效 -->
+                                <g opacity="0.5">
+                                    <circle cx="0" cy="-25" r="25" fill="none" stroke="#FF00FF" stroke-width="1">
+                                        <animate attributeName="r" values="20;30;20" dur="3s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0;0.5;0" dur="3s" repeatCount="indefinite"/>
+                                    </circle>
+                                </g>
+                                
+                                <!-- 元素弹幕轨迹 -->
+                                <g opacity="0.6">
+                                    <circle cx="-20" cy="-40" r="3" fill="#FF00FF">
+                                        <animate attributeName="cx" values="-20;-30;-20" dur="2s" repeatCount="indefinite"/>
+                                        <animate attributeName="cy" values="-40;-45;-40" dur="2s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <circle cx="20" cy="-40" r="3" fill="#FF00FF">
+                                        <animate attributeName="cx" values="20;30;20" dur="2.2s" repeatCount="indefinite"/>
+                                        <animate attributeName="cy" values="-40;-45;-40" dur="2.2s" repeatCount="indefinite"/>
+                                    </circle>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="description">变异丘丘萨满，350HP，元素法杖，召唤图腾</p>
+                </div>
+
+                <!-- 深渊咏者·激流 -->
+                <div class="resource-card">
+                    <h3>深渊咏者·激流</h3>
+                    <div class="svg-container">
+                        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 深渊渐变 -->
+                                <radialGradient id="abyss-gradient">
+                                    <stop offset="0%" stop-color="#1a1a2e" stop-opacity="1"/>
+                                    <stop offset="50%" stop-color="#16213e" stop-opacity="0.9"/>
+                                    <stop offset="100%" stop-color="#0f3460" stop-opacity="0.8"/>
+                                </radialGradient>
+                                <!-- 水元素护盾 -->
+                                <radialGradient id="water-shield-gradient">
+                                    <stop offset="0%" stop-color="#00BFFF" stop-opacity="0.8"/>
+                                    <stop offset="50%" stop-color="#1E90FF" stop-opacity="0.6"/>
+                                    <stop offset="100%" stop-color="#0000CD" stop-opacity="0.3"/>
+                                </radialGradient>
+                                <!-- 水刃效果 -->
+                                <linearGradient id="water-blade" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#87CEEB" stop-opacity="0.9"/>
+                                    <stop offset="100%" stop-color="#4682B4" stop-opacity="0.7"/>
+                                </linearGradient>
+                            </defs>
+                            
+                            <!-- 深渊咏者主体 -->
+                            <g transform="translate(110, 100)">
+                                <!-- 水元素护盾 -->
+                                <ellipse cx="0" cy="10" rx="45" ry="55" fill="url(#water-shield-gradient)" opacity="0.5">
+                                    <animate attributeName="rx" values="45;50;45" dur="3s" repeatCount="indefinite"/>
+                                    <animate attributeName="ry" values="55;60;55" dur="3s" repeatCount="indefinite"/>
+                                </ellipse>
+                                
+                                <!-- 主体躯干 -->
+                                <path d="M 0,-40 L 15,-35 L 20,-10 L 18,20 L 12,40 L 0,45 L -12,40 L -18,20 L -20,-10 L -15,-35 Z"
+                                      fill="url(#abyss-gradient)" stroke="#0f3460" stroke-width="2"/>
+                                
+                                <!-- 斗篷 -->
+                                <path d="M -20,-20 L -25,-10 L -30,30 L -20,35 L -10,30 L 0,32 L 10,30 L 20,35 L 30,30 L 25,-10 L 20,-20 Z"
+                                      fill="#0f3460" opacity="0.8"/>
+                                
+                                <!-- 头部兼帽 -->
+                                <path d="M 0,-45 L 12,-42 L 15,-35 L 12,-25 L 0,-20 L -12,-25 L -15,-35 L -12,-42 Z"
+                                      fill="#1a1a2e"/>
+                                <path d="M -15,-35 L -18,-30 L -12,-25 L 0,-22 L 12,-25 L 18,-30 L 15,-35"
+                                      fill="#16213e" opacity="0.7"/>
+                                
+                                <!-- 发光眼睛 -->
+                                <g>
+                                    <ellipse cx="-5" cy="-32" rx="3" ry="4" fill="#00FFFF">
+                                        <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                    <ellipse cx="5" cy="-32" rx="3" ry="4" fill="#00FFFF">
+                                        <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                </g>
+                                
+                                <!-- 水刃武器 -->
+                                <g transform="rotate(20)">
+                                    <!-- 左手水刃 -->
+                                    <path d="M -35,0 L -30,-5 L -25,0 L -30,5 Z" fill="url(#water-blade)">
+                                        <animateTransform attributeName="transform" type="rotate"
+                                                          values="0 -30 0;10 -30 0;0 -30 0" dur="1.5s" repeatCount="indefinite"/>
+                                    </path>
+                                    <!-- 右手水刃 -->
+                                    <path d="M 25,0 L 30,-5 L 35,0 L 30,5 Z" fill="url(#water-blade)">
+                                        <animateTransform attributeName="transform" type="rotate"
+                                                          values="0 30 0;-10 30 0;0 30 0" dur="1.5s" repeatCount="indefinite"/>
+                                    </path>
+                                </g>
+                                
+                                <!-- 水流环绕 -->
+                                <g opacity="0.6">
+                                    <path d="M -30,10 Q -35,0 -30,-10 Q -20,-15 -10,-10 Q 0,-5 10,-10 Q 20,-15 30,-10 Q 35,0 30,10"
+                                          stroke="#00BFFF" stroke-width="2" fill="none">
+                                        <animate attributeName="d" 
+                                                 values="M -30,10 Q -35,0 -30,-10 Q -20,-15 -10,-10 Q 0,-5 10,-10 Q 20,-15 30,-10 Q 35,0 30,10;
+                                                         M -30,5 Q -35,-5 -30,-15 Q -20,-20 -10,-15 Q 0,-10 10,-15 Q 20,-20 30,-15 Q 35,-5 30,5;
+                                                         M -30,10 Q -35,0 -30,-10 Q -20,-15 -10,-10 Q 0,-5 10,-10 Q 20,-15 30,-10 Q 35,0 30,10"
+                                                 dur="3s" repeatCount="indefinite"/>
+                                    </path>
+                                </g>
+                                
+                                <!-- 深渊能量 -->
+                                <g opacity="0.4">
+                                    <ellipse cx="0" cy="50" rx="40" ry="10" fill="#0f3460">
+                                        <animate attributeName="rx" values="35;45;35" dur="4s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="description">深渊咏者·激流，1200HP，水元素护盾，瞬移机制</p>
+                </div>
+
+                <!-- 遗迹守卫·暴走型 -->
+                <div class="resource-card">
+                    <h3>遗迹守卫·暴走型</h3>
+                    <div class="svg-container">
+                        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 机械金属渐变 -->
+                                <linearGradient id="metal-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#C0C0C0"/>
+                                    <stop offset="50%" stop-color="#808080"/>
+                                    <stop offset="100%" stop-color="#404040"/>
+                                </linearGradient>
+                                <!-- 能量核心 -->
+                                <radialGradient id="core-glow">
+                                    <stop offset="0%" stop-color="#FF6347" stop-opacity="1"/>
+                                    <stop offset="50%" stop-color="#FF4500" stop-opacity="0.7"/>
+                                    <stop offset="100%" stop-color="#8B0000" stop-opacity="0.3"/>
+                                </radialGradient>
+                                <!-- 损坏纹理 -->
+                                <filter id="damage-texture">
+                                    <feTurbulence baseFrequency="0.05" numOctaves="2"/>
+                                    <feColorMatrix values="0 0 0 0 0.3
+                                                          0 0 0 0 0.2
+                                                          0 0 0 0 0.1
+                                                          0 0 0 1 0"/>
+                                </filter>
+                            </defs>
+                            
+                            <!-- 遗迹守卫主体 -->
+                            <g transform="translate(110, 110)">
+                                <!-- 主躯干 -->
+                                <rect x="-25" y="-20" width="50" height="60" fill="url(#metal-gradient)" rx="5"/>
+                                
+                                <!-- 损坏痕迹 -->
+                                <rect x="-25" y="-20" width="50" height="60" fill="black" opacity="0.2" filter="url(#damage-texture)" rx="5"/>
+                                
+                                <!-- 头部 -->
+                                <circle cx="0" cy="-35" r="18" fill="url(#metal-gradient)"/>
+                                
+                                <!-- 核心（眼部弱点） -->
+                                <circle cx="0" cy="-35" r="8" fill="url(#core-glow)">
+                                    <animate attributeName="r" values="8;10;8" dur="1.5s" repeatCount="indefinite"/>
+                                    <animate attributeName="opacity" values="0.8;1;0.8" dur="1.5s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="0" cy="-35" r="4" fill="#FFFF00"/>
+                                
+                                <!-- 左臂 -->
+                                <g transform="rotate(-30)">
+                                    <rect x="-45" y="-5" width="25" height="12" fill="url(#metal-gradient)" rx="3"/>
+                                    <!-- 关节 -->
+                                    <circle cx="-45" cy="0" r="6" fill="#606060"/>
+                                    <!-- 手部 -->
+                                    <path d="M -50,-5 L -55,-3 L -58,0 L -55,3 L -50,5 L -45,3 L -45,-3 Z" fill="url(#metal-gradient)"/>
+                                </g>
+                                
+                                <!-- 右臂 -->
+                                <g transform="rotate(30)">
+                                    <rect x="20" y="-5" width="25" height="12" fill="url(#metal-gradient)" rx="3"/>
+                                    <!-- 关节 -->
+                                    <circle cx="45" cy="0" r="6" fill="#606060"/>
+                                    <!-- 手部 -->
+                                    <path d="M 45,-3 L 45,3 L 50,5 L 55,3 L 58,0 L 55,-3 L 50,-5 Z" fill="url(#metal-gradient)"/>
+                                </g>
+                                
+                                <!-- 左腿 -->
+                                <rect x="-15" y="35" width="12" height="25" fill="url(#metal-gradient)" rx="3"/>
+                                <circle cx="-9" cy="35" r="5" fill="#606060"/>
+                                <!-- 左脚 -->
+                                <ellipse cx="-9" cy="60" rx="8" ry="5" fill="url(#metal-gradient)"/>
+                                
+                                <!-- 右腿 -->
+                                <rect x="3" y="35" width="12" height="25" fill="url(#metal-gradient)" rx="3"/>
+                                <circle cx="9" cy="35" r="5" fill="#606060"/>
+                                <!-- 右脚 -->
+                                <ellipse cx="9" cy="60" rx="8" ry="5" fill="url(#metal-gradient)"/>
+                                
+                                <!-- 能量波动 -->
+                                <g opacity="0.5">
+                                    <circle cx="0" cy="0" r="50" fill="none" stroke="#FF6347" stroke-width="2">
+                                        <animate attributeName="r" values="45;55;45" dur="2s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0;0.5;0" dur="2s" repeatCount="indefinite"/>
+                                    </circle>
+                                </g>
+                                
+                                <!-- 蒸汽效果 -->
+                                <g opacity="0.4">
+                                    <ellipse cx="-10" cy="-45" rx="3" ry="5" fill="#808080">
+                                        <animate attributeName="cy" values="-45;-55;-65" dur="2s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.4;0.2;0" dur="2s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                    <ellipse cx="10" cy="-45" rx="3" ry="5" fill="#808080">
+                                        <animate attributeName="cy" values="-45;-55;-65" dur="2.2s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.4;0.2;0" dur="2.2s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="description">遗迹守卫·暴走型，5000HP，核心弱点，多阶段机制</p>
+                </div>
+
+                <!-- 遗迹猎者·追踪型 -->
+                <div class="resource-card">
+                    <h3>遗迹猎者·追踪型</h3>
+                    <div class="svg-container">
+                        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 飞行器金属 -->
+                                <linearGradient id="hunter-metal" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#B0C4DE"/>
+                                    <stop offset="50%" stop-color="#778899"/>
+                                    <stop offset="100%" stop-color="#2F4F4F"/>
+                                </linearGradient>
+                                <!-- 推进器光芒 -->
+                                <radialGradient id="thruster-glow">
+                                    <stop offset="0%" stop-color="#00FFFF" stop-opacity="1"/>
+                                    <stop offset="50%" stop-color="#00CED1" stop-opacity="0.7"/>
+                                    <stop offset="100%" stop-color="#008B8B" stop-opacity="0.3"/>
+                                </radialGradient>
+                            </defs>
+                            
+                            <!-- 遗迹猎者主体 -->
+                            <g transform="translate(110, 90)">
+                                <!-- 主体核心 -->
+                                <ellipse cx="0" cy="0" rx="25" ry="20" fill="url(#hunter-metal)"/>
+                                
+                                <!-- 飞行机翼 -->
+                                <g>
+                                    <!-- 左翼 -->
+                                    <path d="M -25,0 L -50,-10 L -55,-5 L -50,5 L -45,8 L -25,5 Z" 
+                                          fill="url(#hunter-metal)" stroke="#2F4F4F" stroke-width="1">
+                                        <animateTransform attributeName="transform" type="rotate"
+                                                          values="0 -25 0;-5 -25 0;0 -25 0" dur="2s" repeatCount="indefinite"/>
+                                    </path>
+                                    <!-- 右翼 -->
+                                    <path d="M 25,0 L 50,-10 L 55,-5 L 50,5 L 45,8 L 25,5 Z" 
+                                          fill="url(#hunter-metal)" stroke="#2F4F4F" stroke-width="1">
+                                        <animateTransform attributeName="transform" type="rotate"
+                                                          values="0 25 0;5 25 0;0 25 0" dur="2s" repeatCount="indefinite"/>
+                                    </path>
+                                </g>
+                                
+                                <!-- 旋转刀片 -->
+                                <g>
+                                    <animateTransform attributeName="transform" type="rotate"
+                                                      from="0 0 -15" to="360 0 -15" dur="1s" repeatCount="indefinite"/>
+                                    <path d="M 0,-15 L 15,-20 L 15,-10 Z" fill="#708090" opacity="0.7"/>
+                                    <path d="M 0,-15 L -15,-20 L -15,-10 Z" fill="#708090" opacity="0.7"/>
+                                    <path d="M 0,-15 L 5,-5 L -5,-5 Z" fill="#708090" opacity="0.7"/>
+                                    <path d="M 0,-15 L 5,-25 L -5,-25 Z" fill="#708090" opacity="0.7"/>
+                                </g>
+                                
+                                <!-- 眼部扫描器 -->
+                                <rect x="-15" y="-5" width="30" height="3" fill="#FF0000" opacity="0.8">
+                                    <animate attributeName="width" values="30;35;30" dur="1.5s" repeatCount="indefinite"/>
+                                    <animate attributeName="x" values="-15;-17.5;-15" dur="1.5s" repeatCount="indefinite"/>
+                                </rect>
+                                
+                                <!-- 推进器 -->
+                                <g>
+                                    <!-- 主推进器 -->
+                                    <ellipse cx="0" cy="20" rx="8" ry="5" fill="url(#thruster-glow)">
+                                        <animate attributeName="ry" values="5;8;5" dur="0.5s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.7;1;0.7" dur="0.5s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                    <!-- 左侧推进器 -->
+                                    <ellipse cx="-20" cy="15" rx="5" ry="3" fill="url(#thruster-glow)">
+                                        <animate attributeName="ry" values="3;5;3" dur="0.6s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                    <!-- 右侧推进器 -->
+                                    <ellipse cx="20" cy="15" rx="5" ry="3" fill="url(#thruster-glow)">
+                                        <animate attributeName="ry" values="3;5;3" dur="0.6s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                </g>
+                                
+                                <!-- 能量炮充能 -->
+                                <circle cx="0" cy="-8" r="5" fill="#FFD700" opacity="0.6">
+                                    <animate attributeName="r" values="5;7;5" dur="2s" repeatCount="indefinite"/>
+                                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+                                </circle>
+                                
+                                <!-- 飘浮动画 -->
+                                <animateTransform attributeName="transform" type="translate"
+                                                  values="0,0;0,-5;0,0" dur="3s" repeatCount="indefinite"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="description">遗迹猎者·追踪型，3500HP，飞行单位，能量炮攻击</p>
+                </div>
+
+                <!-- 无相之火 BOSS -->
+                <div class="resource-card">
+                    <h3>无相之火</h3>
+                    <div class="svg-container">
+                        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 火焰立方体渐变 -->
+                                <radialGradient id="fire-cube-gradient">
+                                    <stop offset="0%" stop-color="#FFD700" stop-opacity="1"/>
+                                    <stop offset="30%" stop-color="#FF8C00" stop-opacity="0.9"/>
+                                    <stop offset="60%" stop-color="#FF4500" stop-opacity="0.8"/>
+                                    <stop offset="100%" stop-color="#8B0000" stop-opacity="0.6"/>
+                                </radialGradient>
+                                <!-- 核心光芒 -->
+                                <radialGradient id="fire-core-glow">
+                                    <stop offset="0%" stop-color="#FFFF00" stop-opacity="1"/>
+                                    <stop offset="50%" stop-color="#FFA500" stop-opacity="0.7"/>
+                                    <stop offset="100%" stop-color="#FF0000" stop-opacity="0.3"/>
+                                </radialGradient>
+                            </defs>
+                            
+                            <!-- 无相之火主体 -->
+                            <g transform="translate(110, 110)">
+                                <!-- 环绕立方体组 -->
+                                <g>
+                                    <animateTransform attributeName="transform" type="rotate"
+                                                      from="0 0 0" to="360 0 0" dur="8s" repeatCount="indefinite"/>
+                                    
+                                    <!-- 立方体1 -->
+                                    <g transform="translate(0, -40) rotate(0)">
+                                        <rect x="-8" y="-8" width="16" height="16" fill="url(#fire-cube-gradient)" stroke="#8B0000" stroke-width="1">
+                                            <animateTransform attributeName="transform" type="rotate"
+                                                              from="0 0 0" to="360 0 0" dur="3s" repeatCount="indefinite"/>
+                                        </rect>
+                                    </g>
+                                    
+                                    <!-- 立方体2 -->
+                                    <g transform="translate(28, -28) rotate(45)">
+                                        <rect x="-8" y="-8" width="16" height="16" fill="url(#fire-cube-gradient)" stroke="#8B0000" stroke-width="1">
+                                            <animateTransform attributeName="transform" type="rotate"
+                                                              from="0 0 0" to="360 0 0" dur="3.5s" repeatCount="indefinite"/>
+                                        </rect>
+                                    </g>
+                                    
+                                    <!-- 立方体3 -->
+                                    <g transform="translate(40, 0) rotate(90)">
+                                        <rect x="-8" y="-8" width="16" height="16" fill="url(#fire-cube-gradient)" stroke="#8B0000" stroke-width="1">
+                                            <animateTransform attributeName="transform" type="rotate"
+                                                              from="0 0 0" to="360 0 0" dur="4s" repeatCount="indefinite"/>
+                                        </rect>
+                                    </g>
+                                    
+                                    <!-- 立方体4 -->
+                                    <g transform="translate(28, 28) rotate(135)">
+                                        <rect x="-8" y="-8" width="16" height="16" fill="url(#fire-cube-gradient)" stroke="#8B0000" stroke-width="1">
+                                            <animateTransform attributeName="transform" type="rotate"
+                                                              from="0 0 0" to="360 0 0" dur="3.2s" repeatCount="indefinite"/>
+                                        </rect>
+                                    </g>
+                                    
+                                    <!-- 立方体5 -->
+                                    <g transform="translate(0, 40) rotate(180)">
+                                        <rect x="-8" y="-8" width="16" height="16" fill="url(#fire-cube-gradient)" stroke="#8B0000" stroke-width="1">
+                                            <animateTransform attributeName="transform" type="rotate"
+                                                              from="0 0 0" to="360 0 0" dur="3.7s" repeatCount="indefinite"/>
+                                        </rect>
+                                    </g>
+                                    
+                                    <!-- 立方体6 -->
+                                    <g transform="translate(-28, 28) rotate(225)">
+                                        <rect x="-8" y="-8" width="16" height="16" fill="url(#fire-cube-gradient)" stroke="#8B0000" stroke-width="1">
+                                            <animateTransform attributeName="transform" type="rotate"
+                                                              from="0 0 0" to="360 0 0" dur="4.2s" repeatCount="indefinite"/>
+                                        </rect>
+                                    </g>
+                                    
+                                    <!-- 立方体7 -->
+                                    <g transform="translate(-40, 0) rotate(270)">
+                                        <rect x="-8" y="-8" width="16" height="16" fill="url(#fire-cube-gradient)" stroke="#8B0000" stroke-width="1">
+                                            <animateTransform attributeName="transform" type="rotate"
+                                                              from="0 0 0" to="360 0 0" dur="3.3s" repeatCount="indefinite"/>
+                                        </rect>
+                                    </g>
+                                    
+                                    <!-- 立方体8 -->
+                                    <g transform="translate(-28, -28) rotate(315)">
+                                        <rect x="-8" y="-8" width="16" height="16" fill="url(#fire-cube-gradient)" stroke="#8B0000" stroke-width="1">
+                                            <animateTransform attributeName="transform" type="rotate"
+                                                              from="0 0 0" to="360 0 0" dur="3.8s" repeatCount="indefinite"/>
+                                        </rect>
+                                    </g>
+                                </g>
+                                
+                                <!-- 核心（暴露时显示） -->
+                                <circle cx="0" cy="0" r="12" fill="url(#fire-core-glow)">
+                                    <animate attributeName="opacity" values="0;0;1;1;0" dur="5s" repeatCount="indefinite"/>
+                                    <animate attributeName="r" values="12;15;15;12" dur="5s" repeatCount="indefinite"/>
+                                </circle>
+                                
+                                <!-- 火焰领域 -->
+                                <g opacity="0.4">
+                                    <ellipse cx="0" cy="50" rx="60" ry="15" fill="#FF4500">
+                                        <animate attributeName="rx" values="55;65;55" dur="3s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.3;0.5;0.3" dur="3s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                </g>
+                                
+                                <!-- 火焰粒子 -->
+                                <g opacity="0.7">
+                                    <circle cx="-30" cy="-30" r="3" fill="#FFD700">
+                                        <animate attributeName="cy" values="-30;-50;-70" dur="2s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.7;0.4;0" dur="2s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <circle cx="30" cy="-25" r="2.5" fill="#FFA500">
+                                        <animate attributeName="cy" values="-25;-45;-65" dur="2.3s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.7;0.4;0" dur="2.3s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <circle cx="0" cy="-35" r="3.5" fill="#FF4500">
+                                        <animate attributeName="cy" values="-35;-55;-75" dur="2.5s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.7;0.4;0" dur="2.5s" repeatCount="indefinite"/>
+                                    </circle>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="description">无相之火 BOSS，30000HP，火元素免疫，核心暴露机制</p>
+                </div>
+
             </div>
         </div>
 
