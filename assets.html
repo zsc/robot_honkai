@@ -1726,6 +1726,299 @@
                     <p class="description">火元素史莱姆，150HP，火免疫，自爆机制</p>
                 </div>
 
+                <!-- 水史莱姆 -->
+                <div class="resource-card">
+                    <h3>水史莱姆</h3>
+                    <div class="svg-container">
+                        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 水元素渐变 -->
+                                <radialGradient id="water-slime-gradient">
+                                    <stop offset="0%" stop-color="#00CED1" stop-opacity="0.9"/>
+                                    <stop offset="40%" stop-color="#1E90FF" stop-opacity="0.8"/>
+                                    <stop offset="70%" stop-color="#4169E1" stop-opacity="0.7"/>
+                                    <stop offset="100%" stop-color="#000080" stop-opacity="0.6"/>
+                                </radialGradient>
+                                <!-- 水泡效果 -->
+                                <radialGradient id="bubble-gradient">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+                                    <stop offset="60%" stop-color="#87CEEB" stop-opacity="0.4"/>
+                                    <stop offset="100%" stop-color="#4682B4" stop-opacity="0.2"/>
+                                </radialGradient>
+                                <!-- 水波纹 -->
+                                <filter id="water-ripple">
+                                    <feTurbulence baseFrequency="0.02" numOctaves="3"/>
+                                    <feColorMatrix values="0 0 0 0 0.2
+                                                          0 0 0 0 0.5
+                                                          0 0 0 0 0.9
+                                                          0 0 0 0.5 0"/>
+                                </filter>
+                            </defs>
+                            
+                            <!-- 水史莱姆主体 -->
+                            <g transform="translate(110, 130)">
+                                <!-- 水波纹底部 -->
+                                <ellipse cx="0" cy="38" rx="50" ry="10" fill="#4682B4" opacity="0.3">
+                                    <animate attributeName="rx" values="45;55;45" dur="3s" repeatCount="indefinite"/>
+                                    <animate attributeName="ry" values="8;12;8" dur="3s" repeatCount="indefinite"/>
+                                </ellipse>
+                                
+                                <!-- 主体 - 水滴形状 -->
+                                <path d="M 0,-45 Q 25,-35 35,-15 Q 40,5 35,20 Q 25,35 0,40 Q -25,35 -35,20 Q -40,5 -35,-15 Q -25,-35 0,-45 Z"
+                                      fill="url(#water-slime-gradient)" stroke="#4169E1" stroke-width="1.5" opacity="0.85">
+                                    <!-- 摇摆动画 -->
+                                    <animateTransform attributeName="transform" type="rotate"
+                                                      values="-5;5;-5" dur="4s" repeatCount="indefinite"/>
+                                </path>
+                                
+                                <!-- 内部水流 -->
+                                <g opacity="0.6">
+                                    <path d="M -20,10 Q -10,0 0,5 Q 10,0 20,10 Q 10,20 0,15 Q -10,20 -20,10"
+                                          fill="#87CEEB">
+                                        <animate attributeName="d" 
+                                                 values="M -20,10 Q -10,0 0,5 Q 10,0 20,10 Q 10,20 0,15 Q -10,20 -20,10;
+                                                         M -22,8 Q -12,-2 0,7 Q 12,-2 22,8 Q 12,18 0,13 Q -12,18 -22,8;
+                                                         M -20,10 Q -10,0 0,5 Q 10,0 20,10 Q 10,20 0,15 Q -10,20 -20,10"
+                                                 dur="3s" repeatCount="indefinite"/>
+                                    </path>
+                                </g>
+                                
+                                <!-- 眼睛 -->
+                                <g>
+                                    <!-- 左眼 -->
+                                    <ellipse cx="-10" cy="-8" rx="4" ry="7" fill="#000080"/>
+                                    <ellipse cx="-10" cy="-8" rx="2" ry="4" fill="#00CED1">
+                                        <animate attributeName="ry" values="4;2;4" dur="3.5s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                    <!-- 右眼 -->
+                                    <ellipse cx="10" cy="-8" rx="4" ry="7" fill="#000080"/>
+                                    <ellipse cx="10" cy="-8" rx="2" ry="4" fill="#00CED1">
+                                        <animate attributeName="ry" values="4;2;4" dur="3.5s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                </g>
+                                
+                                <!-- 水泡效果 -->
+                                <g>
+                                    <circle cx="-15" cy="10" r="4" fill="url(#bubble-gradient)">
+                                        <animate attributeName="cy" values="10;-10;-30" dur="3s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.7;0.5;0" dur="3s" repeatCount="indefinite"/>
+                                        <animate attributeName="r" values="4;6;3" dur="3s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <circle cx="20" cy="15" r="3" fill="url(#bubble-gradient)">
+                                        <animate attributeName="cy" values="15;-5;-25" dur="3.5s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.7;0.5;0" dur="3.5s" repeatCount="indefinite"/>
+                                        <animate attributeName="r" values="3;5;2" dur="3.5s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <circle cx="0" cy="20" r="5" fill="url(#bubble-gradient)">
+                                        <animate attributeName="cy" values="20;0;-20" dur="4s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.7;0.5;0" dur="4s" repeatCount="indefinite"/>
+                                        <animate attributeName="r" values="5;7;4" dur="4s" repeatCount="indefinite"/>
+                                    </circle>
+                                </g>
+                                
+                                <!-- 水滴溅射 -->
+                                <g opacity="0.7">
+                                    <ellipse cx="-35" cy="30" rx="3" ry="5" fill="#1E90FF">
+                                        <animate attributeName="cy" values="30;25;35" dur="2s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                    <ellipse cx="35" cy="30" rx="3" ry="5" fill="#1E90FF">
+                                        <animate attributeName="cy" values="30;25;35" dur="2.2s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="description">水元素史莱姆，180HP，水免疫，分裂机制</p>
+                </div>
+
+                <!-- 雷史莱姆 -->
+                <div class="resource-card">
+                    <h3>雷史莱姆</h3>
+                    <div class="svg-container">
+                        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 雷电渐变 -->
+                                <radialGradient id="thunder-slime-gradient">
+                                    <stop offset="0%" stop-color="#DDA0DD" stop-opacity="1"/>
+                                    <stop offset="40%" stop-color="#9370DB" stop-opacity="0.9"/>
+                                    <stop offset="70%" stop-color="#8B008B" stop-opacity="0.8"/>
+                                    <stop offset="100%" stop-color="#4B0082" stop-opacity="0.7"/>
+                                </radialGradient>
+                                <!-- 电弧效果 -->
+                                <linearGradient id="lightning-arc" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#FFFF00" stop-opacity="0.9"/>
+                                    <stop offset="50%" stop-color="#FFD700" stop-opacity="0.7"/>
+                                    <stop offset="100%" stop-color="#FFA500" stop-opacity="0.5"/>
+                                </linearGradient>
+                                <!-- 电光特效 -->
+                                <filter id="electric-glow">
+                                    <feGaussianBlur stdDeviation="3"/>
+                                    <feComponentTransfer>
+                                        <feFuncA type="discrete" tableValues="0 .5 .6 .7 .8 .9 1"/>
+                                    </feComponentTransfer>
+                                </filter>
+                            </defs>
+                            
+                            <!-- 雷史莱姆主体 -->
+                            <g transform="translate(110, 130)">
+                                <!-- 电场光环 -->
+                                <ellipse cx="0" cy="0" rx="55" ry="50" fill="#9370DB" opacity="0.2" filter="url(#electric-glow)"/>
+                                
+                                <!-- 主体 - 带刺形状 -->
+                                <path d="M 0,-42 L 8,-38 L 15,-40 L 20,-35 L 30,-30 L 35,-20 L 38,-10 L 40,0 L 38,10 L 35,20 L 30,30 L 20,35 L 0,40 L -20,35 L -30,30 L -35,20 L -38,10 L -40,0 L -38,-10 L -35,-20 L -30,-30 L -20,-35 L -15,-40 L -8,-38 Z"
+                                      fill="url(#thunder-slime-gradient)" stroke="#8B008B" stroke-width="2">
+                                    <!-- 电击脉动 -->
+                                    <animate attributeName="opacity" values="0.9;1;0.9" dur="0.5s" repeatCount="indefinite"/>
+                                </path>
+                                
+                                <!-- 电刺装饰 -->
+                                <g>
+                                    <path d="M 0,-42 L -3,-50 L 0,-45 L 3,-50 Z" fill="#FFD700" opacity="0.8"/>
+                                    <path d="M 30,-30 L 35,-35 L 32,-32 L 37,-30 Z" fill="#FFD700" opacity="0.8"/>
+                                    <path d="M -30,-30 L -37,-30 L -32,-32 L -35,-35 Z" fill="#FFD700" opacity="0.8"/>
+                                    <path d="M 40,0 L 48,0 L 43,-3 L 43,3 Z" fill="#FFD700" opacity="0.8"/>
+                                    <path d="M -40,0 L -48,0 L -43,3 L -43,-3 Z" fill="#FFD700" opacity="0.8"/>
+                                </g>
+                                
+                                <!-- 眼睛 -->
+                                <g>
+                                    <!-- 左眼 -->
+                                    <ellipse cx="-12" cy="-10" rx="5" ry="8" fill="#4B0082"/>
+                                    <ellipse cx="-12" cy="-10" rx="3" ry="5" fill="#FFFF00">
+                                        <animate attributeName="fill" values="#FFFF00;#FFFFFF;#FFFF00" dur="1s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                    <!-- 右眼 -->
+                                    <ellipse cx="12" cy="-10" rx="5" ry="8" fill="#4B0082"/>
+                                    <ellipse cx="12" cy="-10" rx="3" ry="5" fill="#FFFF00">
+                                        <animate attributeName="fill" values="#FFFF00;#FFFFFF;#FFFF00" dur="1s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                </g>
+                                
+                                <!-- 电弧效果 -->
+                                <g opacity="0.7">
+                                    <!-- 电弧1 -->
+                                    <path d="M -20,-15 L -15,-20 L -10,-15 L -5,-25 L 0,-20 L 5,-25 L 10,-15 L 15,-20 L 20,-15"
+                                          stroke="url(#lightning-arc)" stroke-width="2" fill="none">
+                                        <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+                                    </path>
+                                    <!-- 电弧2 -->
+                                    <path d="M -25,5 L -20,0 L -15,8 L -10,0 L -5,5 L 0,-5 L 5,5 L 10,0 L 15,8 L 20,0 L 25,5"
+                                          stroke="url(#lightning-arc)" stroke-width="1.5" fill="none">
+                                        <animate attributeName="opacity" values="0;1;0" dur="2.5s" repeatCount="indefinite"/>
+                                    </path>
+                                </g>
+                                
+                                <!-- 静电粒子 -->
+                                <g>
+                                    <circle cx="-30" cy="-20" r="2" fill="#FFFF00">
+                                        <animate attributeName="r" values="2;4;2" dur="1.5s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <circle cx="30" cy="-20" r="2" fill="#FFFF00">
+                                        <animate attributeName="r" values="2;4;2" dur="1.7s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="1;0.3;1" dur="1.7s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <circle cx="0" cy="-35" r="2" fill="#FFFF00">
+                                        <animate attributeName="r" values="2;4;2" dur="2s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+                                    </circle>
+                                </g>
+                                
+                                <!-- 地面电场 -->
+                                <ellipse cx="0" cy="38" rx="45" ry="8" fill="#9370DB" opacity="0.4">
+                                    <animate attributeName="opacity" values="0.4;0.6;0.4" dur="1s" repeatCount="indefinite"/>
+                                </ellipse>
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="description">雷元素史莱姆，160HP，雷免疫，电击链接</p>
+                </div>
+
+                <!-- 变异丘丘人战士 -->
+                <div class="resource-card">
+                    <h3>变异丘丘人战士</h3>
+                    <div class="svg-container">
+                        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 变异皮肤渐变 -->
+                                <radialGradient id="mutant-skin-gradient">
+                                    <stop offset="0%" stop-color="#8B4513" stop-opacity="1"/>
+                                    <stop offset="50%" stop-color="#654321" stop-opacity="0.9"/>
+                                    <stop offset="100%" stop-color="#3E2723" stop-opacity="0.8"/>
+                                </radialGradient>
+                                <!-- 腐蚀效果 -->
+                                <linearGradient id="corruption-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#800080" stop-opacity="0.7"/>
+                                    <stop offset="50%" stop-color="#4B0082" stop-opacity="0.5"/>
+                                    <stop offset="100%" stop-color="#2F003F" stop-opacity="0.3"/>
+                                </linearGradient>
+                            </defs>
+                            
+                            <!-- 丘丘人主体 -->
+                            <g transform="translate(110, 110)">
+                                <!-- 身体 -->
+                                <ellipse cx="0" cy="15" rx="30" ry="40" fill="url(#mutant-skin-gradient)"/>
+                                
+                                <!-- 腐蚀纹路 -->
+                                <g opacity="0.6">
+                                    <path d="M -15,0 Q -10,10 -5,5 Q 0,15 5,5 Q 10,10 15,0"
+                                          stroke="url(#corruption-gradient)" stroke-width="3" fill="none"/>
+                                    <path d="M -20,20 Q -15,25 -10,20 Q -5,30 0,25 Q 5,30 10,20 Q 15,25 20,20"
+                                          stroke="url(#corruption-gradient)" stroke-width="2" fill="none"/>
+                                </g>
+                                
+                                <!-- 头部 -->
+                                <circle cx="0" cy="-20" r="22" fill="url(#mutant-skin-gradient)"/>
+                                
+                                <!-- 面具 -->
+                                <path d="M -15,-25 L -10,-30 L 0,-32 L 10,-30 L 15,-25 L 12,-15 L 0,-10 L -12,-15 Z"
+                                      fill="#1C1C1C" opacity="0.8"/>
+                                
+                                <!-- 眼睛（发光） -->
+                                <g>
+                                    <circle cx="-7" cy="-20" r="3" fill="#FF0000">
+                                        <animate attributeName="r" values="3;4;3" dur="2s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <circle cx="7" cy="-20" r="3" fill="#FF0000">
+                                        <animate attributeName="r" values="3;4;3" dur="2s" repeatCount="indefinite"/>
+                                    </circle>
+                                </g>
+                                
+                                <!-- 武器 - 腐蚀木棒 -->
+                                <g transform="rotate(30)">
+                                    <rect x="25" y="-5" width="35" height="8" fill="#4B382A" rx="2"/>
+                                    <!-- 腐蚀效果 -->
+                                    <rect x="25" y="-5" width="35" height="8" fill="url(#corruption-gradient)" opacity="0.5" rx="2"/>
+                                    <!-- 尖刺 -->
+                                    <polygon points="60,-2 65,-5 63,0 65,5 60,2" fill="#800080"/>
+                                </g>
+                                
+                                <!-- 破损盾牌 -->
+                                <g transform="rotate(-20) translate(-35, 0)">
+                                    <path d="M 0,-15 L 8,-12 L 10,0 L 8,12 L 0,15 L -8,12 L -10,0 L -8,-12 Z"
+                                          fill="#5D4E37" stroke="#3E2723" stroke-width="2"/>
+                                    <!-- 破损痕迹 -->
+                                    <path d="M -5,-10 L -3,-5 L -6,0" stroke="#000000" stroke-width="1" fill="none" opacity="0.5"/>
+                                    <path d="M 3,5 L 5,8 L 2,10" stroke="#000000" stroke-width="1" fill="none" opacity="0.5"/>
+                                </g>
+                                
+                                <!-- 腿部 -->
+                                <rect x="-8" y="45" width="6" height="20" fill="url(#mutant-skin-gradient)" rx="3"/>
+                                <rect x="2" y="45" width="6" height="20" fill="url(#mutant-skin-gradient)" rx="3"/>
+                                
+                                <!-- 毒气效果 -->
+                                <g opacity="0.4">
+                                    <ellipse cx="0" cy="60" rx="35" ry="10" fill="#800080">
+                                        <animate attributeName="rx" values="30;40;30" dur="3s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.3;0.5;0.3" dur="3s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="description">变异丘丘人战士，400HP，腐蚀木棒，狂暴机制</p>
+                </div>
+
             </div>
         </div>
 
