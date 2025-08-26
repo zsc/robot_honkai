@@ -367,6 +367,10 @@
                                     <path d="M 0,0 Q -3,-8 0,-12 Q 3,-8 0,0" 
                                           fill="url(#sakura-gradient)" opacity="0.9"/>
                                 </g>
+                                <g id="sakura-petal-small">
+                                    <path d="M 0,0 Q -2,-5 0,-8 Q 2,-5 0,0" 
+                                          fill="url(#sakura-gradient)" opacity="0.7"/>
+                                </g>
                                 <radialGradient id="sakura-gradient">
                                     <stop offset="0%" stop-color="#FFE4E1"/>
                                     <stop offset="70%" stop-color="#FFB6C1"/>
@@ -382,7 +386,20 @@
                                 </filter>
                             </defs>
                             
-                            <!-- 多个樱花花瓣 -->
+                            <!-- 樱花树剪影 -->
+                            <g opacity="0.3">
+                                <path d="M 240,220 L 240,150 Q 230,140 220,130 Q 210,120 200,110 
+                                        Q 190,100 180,95 Q 170,92 160,95 Q 150,100 145,110
+                                        Q 140,120 135,130 Q 130,140 125,150
+                                        Q 180,145 230,150 L 240,220"
+                                      fill="#2C2040" opacity="0.6"/>
+                                <!-- 树枝 -->
+                                <path d="M 240,180 Q 220,170 200,165 M 240,160 Q 210,150 180,145
+                                        M 200,110 Q 185,105 170,108 M 180,95 Q 165,90 150,95"
+                                      stroke="#2C2040" stroke-width="2" fill="none" opacity="0.5"/>
+                            </g>
+                            
+                            <!-- 多个樱花花瓣 - 第一层 -->
                             <use href="#sakura-petal" transform="translate(30, 20)" filter="url(#sakura-glow)">
                                 <animateTransform attributeName="transform" type="translate"
                                                   values="30,20; 35,80; 25,140; 30,200" dur="8s" repeatCount="indefinite"/>
@@ -417,9 +434,45 @@
                                 <animateTransform attributeName="transform" type="rotate"
                                                   from="0" to="360" dur="6s" repeatCount="indefinite" additive="sum"/>
                             </use>
+                            
+                            <!-- 第二层花瓣 - 更多更小 -->
+                            <use href="#sakura-petal-small" transform="translate(55, 35)" filter="url(#sakura-glow)">
+                                <animateTransform attributeName="transform" type="translate"
+                                                  values="55,35; 60,95; 50,155; 55,215" dur="7.5s" repeatCount="indefinite"/>
+                                <animateTransform attributeName="transform" type="rotate"
+                                                  from="0" to="-360" dur="4.5s" repeatCount="indefinite" additive="sum"/>
+                            </use>
+                            
+                            <use href="#sakura-petal-small" transform="translate(110, 20)" filter="url(#sakura-glow)">
+                                <animateTransform attributeName="transform" type="translate"
+                                                  values="110,20; 105,80; 115,140; 110,200" dur="8.5s" repeatCount="indefinite"/>
+                                <animateTransform attributeName="transform" type="rotate"
+                                                  from="0" to="360" dur="5.5s" repeatCount="indefinite" additive="sum"/>
+                            </use>
+                            
+                            <use href="#sakura-petal-small" transform="translate(170, 40)" filter="url(#sakura-glow)">
+                                <animateTransform attributeName="transform" type="translate"
+                                                  values="170,40; 175,100; 165,160; 170,220" dur="9.5s" repeatCount="indefinite"/>
+                                <animateTransform attributeName="transform" type="rotate"
+                                                  from="0" to="-360" dur="6s" repeatCount="indefinite" additive="sum"/>
+                            </use>
+                            
+                            <use href="#sakura-petal-small" transform="translate(225, 30)" filter="url(#sakura-glow)">
+                                <animateTransform attributeName="transform" type="translate"
+                                                  values="225,30; 220,90; 230,150; 225,210" dur="8s" repeatCount="indefinite"/>
+                                <animateTransform attributeName="transform" type="rotate"
+                                                  from="0" to="360" dur="4s" repeatCount="indefinite" additive="sum"/>
+                            </use>
+                            
+                            <use href="#sakura-petal" transform="translate(15, 45) scale(0.7)" filter="url(#sakura-glow)">
+                                <animateTransform attributeName="transform" type="translate"
+                                                  values="15,45; 20,105; 10,165; 15,225" dur="9s" repeatCount="indefinite"/>
+                                <animateTransform attributeName="transform" type="rotate"
+                                                  from="0" to="-360" dur="5s" repeatCount="indefinite" additive="sum"/>
+                            </use>
                         </svg>
                     </div>
-                    <p class="description">梦幻樱花飘落效果，S型贝塞尔曲线轨迹，随风摇曳动画</p>
+                    <p class="description">梦幻樱花飘落效果，S型贝塞尔曲线轨迹，随风摇曳动画，樱花树剪影背景</p>
                 </div>
 
                 <!-- 极光效果 -->
@@ -447,126 +500,199 @@
                                     <stop offset="100%" stop-color="#00FA9A" stop-opacity="0.3"/>
                                 </linearGradient>
                                 
-                                <!-- 波动滤镜 -->
-                                <filter id="wave-filter">
-                                    <feTurbulence baseFrequency="0.02 0.05" numOctaves="3" result="turbulence">
-                                        <animate attributeName="baseFrequency" 
-                                                 values="0.02 0.05;0.03 0.08;0.02 0.05" 
-                                                 dur="6s" repeatCount="indefinite"/>
-                                    </feTurbulence>
-                                    <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="20" xChannelSelector="R" yChannelSelector="G"/>
-                                </filter>
+                                <linearGradient id="aurora-gradient-3" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#FF1493" stop-opacity="0.3"/>
+                                    <stop offset="50%" stop-color="#00CED1" stop-opacity="0.5"/>
+                                    <stop offset="100%" stop-color="#7FFF00" stop-opacity="0.3"/>
+                                </linearGradient>
                             </defs>
                             
-                            <!-- 极光层1 -->
-                            <path d="M 0,100 Q 70,60 140,100 Q 210,140 280,100 L 280,130 Q 210,170 140,130 Q 70,90 0,130 Z"
-                                  fill="url(#aurora-gradient-1)" filter="url(#wave-filter)" opacity="0.7">
-                                <animateTransform attributeName="transform" type="translate"
-                                                  values="0,0; 0,-20; 0,20; 0,0" dur="5s" repeatCount="indefinite"/>
+                            <!-- 极光层1 - 底层 -->
+                            <path d="M 0,80 L 280,80 L 280,120 L 0,120 Z"
+                                  fill="url(#aurora-gradient-1)" opacity="0.7">
+                                <animate attributeName="d" 
+                                         values="M 0,80 L 280,80 L 280,120 L 0,120 Z;
+                                                 M 0,70 L 280,70 L 280,140 L 0,140 Z;
+                                                 M 0,85 L 280,85 L 280,110 L 0,110 Z;
+                                                 M 0,80 L 280,80 L 280,120 L 0,120 Z"
+                                         dur="6s" repeatCount="indefinite"/>
                             </path>
                             
-                            <!-- 极光层2 -->
-                            <path d="M 0,50 Q 100,20 200,50 Q 240,80 280,50 L 280,90 Q 240,120 200,90 Q 100,60 0,90 Z"
-                                  fill="url(#aurora-gradient-2)" filter="url(#wave-filter)" opacity="0.6">
-                                <animateTransform attributeName="transform" type="translate"
-                                                  values="0,0; 0,25; 0,-25; 0,0" dur="6s" repeatCount="indefinite"/>
+                            <!-- 极光层2 - 中层 -->
+                            <path d="M 0,50 L 280,50 L 280,90 L 0,90 Z"
+                                  fill="url(#aurora-gradient-2)" opacity="0.6">
+                                <animate attributeName="d" 
+                                         values="M 0,50 L 280,50 L 280,90 L 0,90 Z;
+                                                 M 0,40 L 280,40 L 280,100 L 0,100 Z;
+                                                 M 0,55 L 280,55 L 280,85 L 0,85 Z;
+                                                 M 0,45 L 280,45 L 280,95 L 0,95 Z;
+                                                 M 0,50 L 280,50 L 280,90 L 0,90 Z"
+                                         dur="7s" repeatCount="indefinite"/>
                             </path>
                             
-                            <!-- 极光层3 -->
-                            <path d="M 0,140 Q 90,100 180,140 Q 230,180 280,140 L 280,170 Q 230,210 180,170 Q 90,130 0,170 Z"
-                                  fill="url(#aurora-gradient-1)" filter="url(#wave-filter)" opacity="0.5">
-                                <animateTransform attributeName="transform" type="translate"
-                                                  values="0,0; 0,-30; 0,30; 0,0" dur="7s" repeatCount="indefinite"/>
+                            <!-- 极光层3 - 顶层 -->
+                            <path d="M 0,120 L 280,120 L 280,150 L 0,150 Z"
+                                  fill="url(#aurora-gradient-3)" opacity="0.5">
+                                <animate attributeName="d" 
+                                         values="M 0,120 L 280,120 L 280,150 L 0,150 Z;
+                                                 M 0,115 L 280,115 L 280,165 L 0,165 Z;
+                                                 M 0,125 L 280,125 L 280,145 L 0,145 Z;
+                                                 M 0,110 L 280,110 L 280,160 L 0,160 Z;
+                                                 M 0,120 L 280,120 L 280,150 L 0,150 Z"
+                                         dur="8s" repeatCount="indefinite"/>
                             </path>
+                            
+                            <!-- 额外的细薄层 -->
+                            <rect x="0" y="30" width="280" height="8" fill="url(#aurora-gradient-1)" opacity="0.4">
+                                <animate attributeName="height" values="8;20;5;15;8" dur="5s" repeatCount="indefinite"/>
+                                <animate attributeName="y" values="30;25;32;28;30" dur="5s" repeatCount="indefinite"/>
+                            </rect>
+                            
+                            <rect x="0" y="160" width="280" height="10" fill="url(#aurora-gradient-2)" opacity="0.3">
+                                <animate attributeName="height" values="10;25;8;20;10" dur="6s" repeatCount="indefinite"/>
+                                <animate attributeName="y" values="160;152;162;155;160" dur="6s" repeatCount="indefinite"/>
+                            </rect>
                         </svg>
                     </div>
-                    <p class="description">多层极光波动效果，色彩循环变换，梦幻光带流动</p>
+                    <p class="description">多层极光波动效果，垂直厚度变化，梦幻光带呼吸</p>
                 </div>
 
                 <!-- 星尘粒子 -->
                 <div class="resource-card">
-                    <h3>星尘环绕</h3>
-                    <div class="svg-container" style="background: radial-gradient(circle, #1a1a2e 0%, #0f0f1e 100%);">
+                    <h3>星河漩涡</h3>
+                    <div class="svg-container" style="background: radial-gradient(circle at center, #0a0a1e 0%, #000511 40%, #000000 100%);">
                         <svg width="280" height="220" viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg">
                             <defs>
-                                <!-- 星尘粒子 -->
-                                <radialGradient id="stardust-glow">
-                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
-                                    <stop offset="40%" stop-color="#FFFACD" stop-opacity="0.8"/>
-                                    <stop offset="100%" stop-color="#FFD700" stop-opacity="0"/>
+                                <!-- 星云渐变 -->
+                                <radialGradient id="nebula-gradient">
+                                    <stop offset="0%" stop-color="#4169E1" stop-opacity="0.6"/>
+                                    <stop offset="30%" stop-color="#9370DB" stop-opacity="0.4"/>
+                                    <stop offset="60%" stop-color="#FF1493" stop-opacity="0.2"/>
+                                    <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
                                 </radialGradient>
                                 
-                                <!-- 拖尾效果 -->
-                                <filter id="motion-trail">
-                                    <feGaussianBlur in="SourceGraphic" stdDeviation="2,0">
-                                        <animate attributeName="stdDeviation" values="0,0;3,0;0,0" dur="1s" repeatCount="indefinite"/>
-                                    </feGaussianBlur>
+                                <!-- 恒星光晕 -->
+                                <radialGradient id="star-core">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="20%" stop-color="#87CEEB" stop-opacity="0.9"/>
+                                    <stop offset="50%" stop-color="#4169E1" stop-opacity="0.5"/>
+                                    <stop offset="100%" stop-color="#191970" stop-opacity="0"/>
+                                </radialGradient>
+                                
+                                <!-- 星尘粒子 -->
+                                <radialGradient id="dust-particle">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="50%" stop-color="#E6E6FA" stop-opacity="0.6"/>
+                                    <stop offset="100%" stop-color="#9370DB" stop-opacity="0"/>
+                                </radialGradient>
+                                
+                                <!-- 光晕滤镜 -->
+                                <filter id="mega-glow">
+                                    <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                    <feMerge>
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
                                 </filter>
                             </defs>
                             
-                            <!-- 中心光源 -->
-                            <circle cx="140" cy="110" r="15" fill="url(#stardust-glow)" opacity="0.8">
-                                <animate attributeName="r" values="12;18;12" dur="3s" repeatCount="indefinite"/>
+                            <!-- 背景星云 -->
+                            <ellipse cx="140" cy="110" rx="120" ry="90" fill="url(#nebula-gradient)" opacity="0.5">
+                                <animateTransform attributeName="transform" type="rotate"
+                                                  from="0 140 110" to="360 140 110" dur="60s" repeatCount="indefinite"/>
+                            </ellipse>
+                            
+                            <!-- 核心恒星 -->
+                            <circle cx="140" cy="110" r="8" fill="url(#star-core)" filter="url(#mega-glow)">
+                                <animate attributeName="r" values="6;10;6" dur="4s" repeatCount="indefinite"/>
                             </circle>
                             
-                            <!-- 环绕粒子轨道1 -->
+                            <!-- 螺旋臂1 - 内环 -->
                             <g transform="translate(140, 110)">
                                 <animateTransform attributeName="transform" type="rotate"
-                                                  from="0 0 0" to="360 0 0" dur="8s" repeatCount="indefinite"/>
-                                <circle cx="50" cy="0" r="3" fill="url(#stardust-glow)" filter="url(#motion-trail)">
-                                    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+                                                  from="0 0 0" to="360 0 0" dur="20s" repeatCount="indefinite"/>
+                                <path d="M 0,0 Q 30,-20 60,-10 T 120,0" fill="none" stroke="none">
+                                    <animate attributeName="d" 
+                                             values="M 0,0 Q 30,-20 60,-10 T 120,0;
+                                                     M 0,0 Q 30,-25 60,-5 T 120,0;
+                                                     M 0,0 Q 30,-20 60,-10 T 120,0"
+                                             dur="10s" repeatCount="indefinite"/>
+                                </path>
+                                <circle r="1.5" fill="url(#dust-particle)">
+                                    <animateMotion dur="8s" repeatCount="indefinite">
+                                        <mpath href="#spiral-path-1"/>
+                                    </animateMotion>
                                 </circle>
-                                <circle cx="-50" cy="0" r="3" fill="url(#stardust-glow)" filter="url(#motion-trail)">
-                                    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+                                <circle r="1" fill="#FFFFFF" opacity="0.8">
+                                    <animate attributeName="cx" values="20;40;60;80;100" dur="5s" repeatCount="indefinite"/>
+                                    <animate attributeName="opacity" values="0;1;0.5;1;0" dur="5s" repeatCount="indefinite"/>
                                 </circle>
                             </g>
                             
-                            <!-- 环绕粒子轨道2 -->
+                            <!-- 螺旋臂2 - 中环 -->
                             <g transform="translate(140, 110)">
                                 <animateTransform attributeName="transform" type="rotate"
-                                                  from="0 0 0" to="-360 0 0" dur="6s" repeatCount="indefinite"/>
-                                <circle cx="0" cy="35" r="2.5" fill="url(#stardust-glow)" filter="url(#motion-trail)">
-                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
-                                </circle>
-                                <circle cx="0" cy="-35" r="2.5" fill="url(#stardust-glow)" filter="url(#motion-trail)">
-                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
-                                </circle>
+                                                  from="0 0 0" to="-360 0 0" dur="30s" repeatCount="indefinite"/>
+                                <!-- 大量星尘粒子 -->
+                                <circle cx="40" cy="0" r="1" fill="url(#dust-particle)" opacity="0.7"/>
+                                <circle cx="50" cy="-10" r="0.8" fill="url(#dust-particle)" opacity="0.6"/>
+                                <circle cx="60" cy="5" r="1.2" fill="url(#dust-particle)" opacity="0.8"/>
+                                <circle cx="70" cy="-15" r="0.6" fill="#FFFFFF" opacity="0.9"/>
+                                <circle cx="80" cy="10" r="1" fill="url(#dust-particle)" opacity="0.7"/>
+                                <circle cx="-40" cy="0" r="1" fill="url(#dust-particle)" opacity="0.7"/>
+                                <circle cx="-50" cy="10" r="0.8" fill="url(#dust-particle)" opacity="0.6"/>
+                                <circle cx="-60" cy="-5" r="1.2" fill="url(#dust-particle)" opacity="0.8"/>
+                                <circle cx="-70" cy="15" r="0.6" fill="#FFFFFF" opacity="0.9"/>
+                                <circle cx="-80" cy="-10" r="1" fill="url(#dust-particle)" opacity="0.7"/>
                             </g>
                             
-                            <!-- 环绕粒子轨道3 -->
+                            <!-- 螺旋臂3 - 外环 -->
                             <g transform="translate(140, 110)">
                                 <animateTransform attributeName="transform" type="rotate"
-                                                  from="0 0 0" to="360 0 0" dur="10s" repeatCount="indefinite"/>
-                                <circle cx="60" cy="30" r="2" fill="url(#stardust-glow)" opacity="0.7">
-                                    <animate attributeName="r" values="1.5;3;1.5" dur="2.5s" repeatCount="indefinite"/>
-                                </circle>
-                                <circle cx="-60" cy="-30" r="2" fill="url(#stardust-glow)" opacity="0.7">
-                                    <animate attributeName="r" values="1.5;3;1.5" dur="2.5s" repeatCount="indefinite"/>
-                                </circle>
-                                <circle cx="-60" cy="30" r="2" fill="url(#stardust-glow)" opacity="0.7">
-                                    <animate attributeName="r" values="1.5;3;1.5" dur="3s" repeatCount="indefinite"/>
-                                </circle>
-                                <circle cx="60" cy="-30" r="2" fill="url(#stardust-glow)" opacity="0.7">
-                                    <animate attributeName="r" values="1.5;3;1.5" dur="3s" repeatCount="indefinite"/>
-                                </circle>
+                                                  from="0 0 0" to="360 0 0" dur="40s" repeatCount="indefinite"/>
+                                <!-- 外环星团 -->
+                                <g transform="translate(90, 0)">
+                                    <circle cx="0" cy="0" r="2" fill="url(#star-core)" opacity="0.6"/>
+                                    <circle cx="5" cy="-5" r="0.5" fill="#FFFFFF" opacity="0.8"/>
+                                    <circle cx="-5" cy="5" r="0.5" fill="#FFFFFF" opacity="0.8"/>
+                                    <circle cx="8" cy="3" r="0.3" fill="#87CEEB" opacity="0.7"/>
+                                </g>
+                                <g transform="translate(-90, 0)">
+                                    <circle cx="0" cy="0" r="2" fill="url(#star-core)" opacity="0.6"/>
+                                    <circle cx="5" cy="5" r="0.5" fill="#FFFFFF" opacity="0.8"/>
+                                    <circle cx="-5" cy="-5" r="0.5" fill="#FFFFFF" opacity="0.8"/>
+                                    <circle cx="-8" cy="3" r="0.3" fill="#87CEEB" opacity="0.7"/>
+                                </g>
+                                <g transform="translate(0, 70)">
+                                    <circle cx="0" cy="0" r="1.5" fill="url(#star-core)" opacity="0.5"/>
+                                    <circle cx="3" cy="-3" r="0.4" fill="#FFFFFF" opacity="0.9"/>
+                                </g>
+                                <g transform="translate(0, -70)">
+                                    <circle cx="0" cy="0" r="1.5" fill="url(#star-core)" opacity="0.5"/>
+                                    <circle cx="-3" cy="3" r="0.4" fill="#FFFFFF" opacity="0.9"/>
+                                </g>
                             </g>
                             
-                            <!-- 随机闪烁星点 -->
-                            <circle cx="40" cy="30" r="1" fill="#FFFFFF" opacity="0">
-                                <animate attributeName="opacity" values="0;1;0" dur="3s" begin="0s" repeatCount="indefinite"/>
+                            <!-- 远景星星 -->
+                            <circle cx="20" cy="20" r="0.5" fill="#FFFFFF" opacity="0.6">
+                                <animate attributeName="opacity" values="0.2;1;0.2" dur="4s" repeatCount="indefinite"/>
                             </circle>
-                            <circle cx="240" cy="50" r="1" fill="#FFFFFF" opacity="0">
-                                <animate attributeName="opacity" values="0;1;0" dur="3s" begin="1s" repeatCount="indefinite"/>
+                            <circle cx="260" cy="30" r="0.5" fill="#FFFFFF" opacity="0.6">
+                                <animate attributeName="opacity" values="0.2;1;0.2" dur="3.5s" repeatCount="indefinite"/>
                             </circle>
-                            <circle cx="80" cy="180" r="1" fill="#FFFFFF" opacity="0">
-                                <animate attributeName="opacity" values="0;1;0" dur="3s" begin="2s" repeatCount="indefinite"/>
+                            <circle cx="30" cy="190" r="0.5" fill="#FFFFFF" opacity="0.6">
+                                <animate attributeName="opacity" values="0.2;1;0.2" dur="4.5s" repeatCount="indefinite"/>
                             </circle>
-                            <circle cx="200" cy="170" r="1" fill="#FFFFFF" opacity="0">
-                                <animate attributeName="opacity" values="0;1;0" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+                            <circle cx="250" cy="180" r="0.5" fill="#FFFFFF" opacity="0.6">
+                                <animate attributeName="opacity" values="0.2;1;0.2" dur="3s" repeatCount="indefinite"/>
                             </circle>
+                            <circle cx="100" cy="40" r="0.3" fill="#87CEEB" opacity="0.5"/>
+                            <circle cx="180" cy="50" r="0.3" fill="#E6E6FA" opacity="0.5"/>
+                            <circle cx="120" cy="170" r="0.3" fill="#87CEEB" opacity="0.5"/>
+                            <circle cx="160" cy="160" r="0.3" fill="#E6E6FA" opacity="0.5"/>
                         </svg>
                     </div>
-                    <p class="description">星尘粒子环绕系统，多轨道运动，拖尾光效</p>
+                    <p class="description">宏大星河漩涡系统，多层螺旋臂，星云环绕，恒星闪烁</p>
                 </div>
 
             </div>
