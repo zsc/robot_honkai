@@ -1,7 +1,7 @@
 （交流可以用英文，所有文档中文，保留这句）
 
 ## 项目目标
-编写一个机器人（坦克形态、高达形态等）组队大战变异生物横版射击的中文spec markdown，完整描述各大组件需求
+编写一个机器人（坦克形态、高达形态等）组队大战变异生物Houkai Gakuen 2的中文spec markdown，完整描述各大组件需求
 文件组织是 index.md + chapter1.md + ...
 游戏资源（背景、精灵、敌人怪物、Boss等）统一生成在 assets.html 中。注意各 chapter 里的名字要和 assets.html 里的名字一致。
 只写 spec 不写代码
