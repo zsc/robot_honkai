@@ -1632,10 +1632,107 @@
             </div>
         </div>
 
+        <!-- 变异生物图鉴 Section -->
+        <div class="resource-section">
+            <h2>变异生物图鉴</h2>
+            <div class="resource-grid">
+                
+                <!-- 火史莱姆 -->
+                <div class="resource-card">
+                    <h3>火史莱姆</h3>
+                    <div class="svg-container">
+                        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 火焰渐变 -->
+                                <radialGradient id="fire-slime-gradient">
+                                    <stop offset="0%" stop-color="#FFD700" stop-opacity="1"/>
+                                    <stop offset="40%" stop-color="#FF6347" stop-opacity="0.9"/>
+                                    <stop offset="70%" stop-color="#DC143C" stop-opacity="0.8"/>
+                                    <stop offset="100%" stop-color="#8B0000" stop-opacity="0.7"/>
+                                </radialGradient>
+                                <!-- 内部熔岩 -->
+                                <radialGradient id="lava-core">
+                                    <stop offset="0%" stop-color="#FFFF00" stop-opacity="0.9"/>
+                                    <stop offset="50%" stop-color="#FFA500" stop-opacity="0.7"/>
+                                    <stop offset="100%" stop-color="#FF4500" stop-opacity="0.5"/>
+                                </radialGradient>
+                                <!-- 火焰光晕 -->
+                                <filter id="fire-glow">
+                                    <feGaussianBlur stdDeviation="4"/>
+                                </filter>
+                            </defs>
+                            
+                            <!-- 史莱姆主体 -->
+                            <g transform="translate(110, 130)">
+                                <!-- 外层火焰光晕 -->
+                                <ellipse cx="0" cy="0" rx="55" ry="45" fill="#FF6347" opacity="0.3" filter="url(#fire-glow)"/>
+                                
+                                <!-- 主体 - 弹性形状 -->
+                                <path d="M -40,20 Q -45,0 -35,-20 Q -25,-35 0,-40 Q 25,-35 35,-20 Q 45,0 40,20 Q 30,35 0,40 Q -30,35 -40,20 Z"
+                                      fill="url(#fire-slime-gradient)" stroke="#DC143C" stroke-width="2">
+                                    <!-- 呼吸动画 -->
+                                    <animate attributeName="d" 
+                                             values="M -40,20 Q -45,0 -35,-20 Q -25,-35 0,-40 Q 25,-35 35,-20 Q 45,0 40,20 Q 30,35 0,40 Q -30,35 -40,20 Z;
+                                                     M -42,22 Q -47,2 -37,-18 Q -27,-33 0,-38 Q 27,-33 37,-18 Q 47,2 42,22 Q 32,37 0,42 Q -32,37 -42,22 Z;
+                                                     M -40,20 Q -45,0 -35,-20 Q -25,-35 0,-40 Q 25,-35 35,-20 Q 45,0 40,20 Q 30,35 0,40 Q -30,35 -40,20 Z"
+                                             dur="3s" repeatCount="indefinite"/>
+                                </path>
+                                
+                                <!-- 内部熔岩纹理 -->
+                                <g opacity="0.7">
+                                    <ellipse cx="-10" cy="-5" rx="15" ry="12" fill="url(#lava-core)">
+                                        <animate attributeName="rx" values="15;18;15" dur="2s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                    <ellipse cx="12" cy="5" rx="12" ry="10" fill="url(#lava-core)">
+                                        <animate attributeName="ry" values="10;13;10" dur="2.5s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                </g>
+                                
+                                <!-- 眼睛 -->
+                                <g>
+                                    <!-- 左眼 -->
+                                    <ellipse cx="-12" cy="-10" rx="5" ry="8" fill="#8B0000"/>
+                                    <ellipse cx="-12" cy="-10" rx="3" ry="5" fill="#FFD700">
+                                        <animate attributeName="ry" values="5;2;5" dur="4s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                    <!-- 右眼 -->
+                                    <ellipse cx="12" cy="-10" rx="5" ry="8" fill="#8B0000"/>
+                                    <ellipse cx="12" cy="-10" rx="3" ry="5" fill="#FFD700">
+                                        <animate attributeName="ry" values="5;2;5" dur="4s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                </g>
+                                
+                                <!-- 火焰粒子效果 -->
+                                <g opacity="0.8">
+                                    <circle cx="-30" cy="-25" r="3" fill="#FFD700">
+                                        <animate attributeName="cy" values="-25;-40;-55" dur="2s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.8;0.5;0" dur="2s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <circle cx="30" cy="-20" r="2.5" fill="#FFA500">
+                                        <animate attributeName="cy" values="-20;-35;-50" dur="2.3s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.8;0.5;0" dur="2.3s" repeatCount="indefinite"/>
+                                    </circle>
+                                    <circle cx="0" cy="-35" r="3.5" fill="#FF6347">
+                                        <animate attributeName="cy" values="-35;-50;-65" dur="2.5s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.8;0.5;0" dur="2.5s" repeatCount="indefinite"/>
+                                    </circle>
+                                </g>
+                                
+                                <!-- 地面火焰痕迹 -->
+                                <ellipse cx="0" cy="38" rx="45" ry="8" fill="#DC143C" opacity="0.4"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="description">火元素史莱姆，150HP，火免疫，自爆机制</p>
+                </div>
+
+            </div>
+        </div>
+
         <!-- 待续提示 -->
         <div class="resource-section" style="text-align: center; padding: 40px;">
             <h2 style="color: #FFB6C1; border: none;">更多资源正在制作中...</h2>
-            <p style="color: #B0B0B0;">包括：变异生物、Boss设计、场景背景、UI元素等</p>
+            <p style="color: #B0B0B0;">包括：更多变异生物、Boss设计、场景背景、UI元素等</p>
         </div>
         
     </div>
