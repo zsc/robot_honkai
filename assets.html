@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>机甲崩坏：变异纪元 - 游戏资源库</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1C1C1C 0%, #2C2C3E 50%, #1C1C1C 100%);
+            color: #E5E5E5;
+            font-family: "微软雅黑", Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            background: linear-gradient(90deg, #FFB6C1, #9B59B6, #00CED1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 3em;
+            text-shadow: 0 0 30px rgba(155, 89, 182, 0.5);
+        }
+        .resource-section {
+            margin: 40px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(155, 89, 182, 0.2);
+        }
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .resource-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(155, 89, 182, 0.3);
+        }
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 206, 209, 0.3);
+            border-color: rgba(0, 206, 209, 0.6);
+        }
+        .resource-card h3 {
+            color: #FFB6C1;
+            margin: 10px 0;
+        }
+        .svg-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        svg {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .description {
+            color: #B0B0B0;
+            font-size: 0.9em;
+            margin-top: 10px;
+            line-height: 1.4;
+        }
+        h2 {
+            color: #00CED1;
+            border-bottom: 2px solid rgba(0, 206, 209, 0.3);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>游戏资源库</h1>
+        
+        <!-- 机甲精灵 Section -->
+        <div class="resource-section">
+            <h2>一、机甲精灵设计</h2>
+            <div class="resource-grid">
+                
+                <!-- 胡桃型机甲（火系主C） -->
+                <div class="resource-card">
+                    <h3>胡桃型机甲 - 烈焰蝴蝶</h3>
+                    <div class="svg-container">
+                        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 火焰渐变 -->
+                                <radialGradient id="fire-gradient-hutao">
+                                    <stop offset="0%" stop-color="#FF6347" stop-opacity="1"/>
+                                    <stop offset="50%" stop-color="#FF4500" stop-opacity="0.8"/>
+                                    <stop offset="100%" stop-color="#DC143C" stop-opacity="0.6"/>
+                                </radialGradient>
+                                <!-- 金属质感 -->
+                                <linearGradient id="metal-gradient-hutao" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#2C1810"/>
+                                    <stop offset="30%" stop-color="#8B4513"/>
+                                    <stop offset="50%" stop-color="#D2691E"/>
+                                    <stop offset="70%" stop-color="#8B4513"/>
+                                    <stop offset="100%" stop-color="#2C1810"/>
+                                </linearGradient>
+                                <!-- 能量脉动 -->
+                                <filter id="glow-hutao">
+                                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                    <feMerge>
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            
+                            <!-- 机甲主体 -->
+                            <g transform="translate(110, 110)">
+                                <!-- 躯干 -->
+                                <ellipse cx="0" cy="0" rx="35" ry="45" 
+                                         fill="url(#metal-gradient-hutao)" 
+                                         stroke="#FF4500" stroke-width="1" opacity="0.9"/>
+                                
+                                <!-- 蝴蝶翅膀（左） -->
+                                <path d="M -35,-20 Q -60,-30 -70,-20 Q -65,0 -45,10 Q -40,0 -35,-20" 
+                                      fill="url(#fire-gradient-hutao)" 
+                                      opacity="0.7" filter="url(#glow-hutao)">
+                                    <animateTransform attributeName="transform" type="rotate"
+                                                      values="0 -35 0; -5 -35 0; 0 -35 0" 
+                                                      dur="2s" repeatCount="indefinite"/>
+                                </path>
+                                
+                                <!-- 蝴蝶翅膀（右） -->
+                                <path d="M 35,-20 Q 60,-30 70,-20 Q 65,0 45,10 Q 40,0 35,-20" 
+                                      fill="url(#fire-gradient-hutao)" 
+                                      opacity="0.7" filter="url(#glow-hutao)">
+                                    <animateTransform attributeName="transform" type="rotate"
+                                                      values="0 35 0; 5 35 0; 0 35 0" 
+                                                      dur="2s" repeatCount="indefinite"/>
+                                </path>
+                                
+                                <!-- 头部 -->
+                                <ellipse cx="0" cy="-35" rx="20" ry="18" 
+                                         fill="url(#metal-gradient-hutao)" 
+                                         stroke="#FF4500" stroke-width="1"/>
+                                
+                                <!-- 眼睛（发光） -->
+                                <circle cx="-8" cy="-35" r="4" fill="#FF6347" filter="url(#glow-hutao)">
+                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="8" cy="-35" r="4" fill="#FF6347" filter="url(#glow-hutao)">
+                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+                                </circle>
+                                
+                                <!-- 核心能量 -->
+                                <circle cx="0" cy="0" r="10" fill="none" 
+                                        stroke="url(#fire-gradient-hutao)" stroke-width="2" filter="url(#glow-hutao)">
+                                    <animate attributeName="r" values="8;12;8" dur="1.5s" repeatCount="indefinite"/>
+                                    <animate attributeName="opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite"/>
+                                </circle>
+                                
+                                <!-- 火焰装饰纹路 -->
+                                <path d="M -20,20 Q -10,25 0,20 Q 10,25 20,20" 
+                                      stroke="#FF6347" stroke-width="1.5" fill="none" opacity="0.8">
+                                    <animate attributeName="stroke-dasharray" values="0 50;50 0;0 50" dur="3s" repeatCount="indefinite"/>
+                                </path>
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="description">火系主C机甲，生命值转换机制，爆发输出型。配备蝴蝶翅膀推进系统，核心温度可达3000°C</p>
+                </div>
+
+                <!-- 雷电将军型机甲（雷系主C） -->
+                <div class="resource-card">
+                    <h3>雷电将军型机甲 - 雷鸣统御</h3>
+                    <div class="svg-container">
+                        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 雷电渐变 -->
+                                <linearGradient id="thunder-gradient-raiden" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#9932CC"/>
+                                    <stop offset="50%" stop-color="#8A2BE2"/>
+                                    <stop offset="100%" stop-color="#9400D3"/>
+                                </linearGradient>
+                                <!-- 能量环 -->
+                                <radialGradient id="energy-ring-raiden">
+                                    <stop offset="0%" stop-color="#E6E6FA" stop-opacity="0.8"/>
+                                    <stop offset="70%" stop-color="#9932CC" stop-opacity="0.5"/>
+                                    <stop offset="100%" stop-color="#4B0082" stop-opacity="0.2"/>
+                                </radialGradient>
+                                <!-- 电弧特效 -->
+                                <filter id="electric-glow">
+                                    <feGaussianBlur stdDeviation="2"/>
+                                    <feComponentTransfer>
+                                        <feFuncA type="discrete" tableValues="0 .8 .8 .8 .8 .8 .8 .8 .8 .8 .8 .8 .8 .8 .8 .8 1"/>
+                                    </feComponentTransfer>
+                                </filter>
+                            </defs>
+                            
+                            <!-- 机甲主体 -->
+                            <g transform="translate(110, 110)">
+                                <!-- 能量环（背景） -->
+                                <circle cx="0" cy="0" r="65" fill="none" 
+                                        stroke="url(#energy-ring-raiden)" stroke-width="3" opacity="0.6">
+                                    <animateTransform attributeName="transform" type="rotate"
+                                                      from="0 0 0" to="360 0 0" dur="8s" repeatCount="indefinite"/>
+                                </circle>
+                                
+                                <!-- 主体装甲 -->
+                                <path d="M 0,-50 L 25,-30 L 30,0 L 20,35 L 0,45 L -20,35 L -30,0 L -25,-30 Z"
+                                      fill="url(#thunder-gradient-raiden)" 
+                                      stroke="#9932CC" stroke-width="2" opacity="0.9"/>
+                                
+                                <!-- 肩甲（左） -->
+                                <path d="M -30,-15 L -45,-20 L -50,-10 L -45,0 L -30,-5 Z"
+                                      fill="#4B0082" stroke="#9932CC" stroke-width="1"/>
+                                
+                                <!-- 肩甲（右） -->
+                                <path d="M 30,-15 L 45,-20 L 50,-10 L 45,0 L 30,-5 Z"
+                                      fill="#4B0082" stroke="#9932CC" stroke-width="1"/>
+                                
+                                <!-- 头部 -->
+                                <path d="M 0,-50 L 15,-45 L 15,-30 L 0,-25 L -15,-30 L -15,-45 Z"
+                                      fill="#4B0082" stroke="#E6E6FA" stroke-width="1"/>
+                                
+                                <!-- 眼部发光 -->
+                                <line x1="-8" y1="-38" x2="-3" y2="-38" stroke="#E6E6FA" stroke-width="2" filter="url(#electric-glow)">
+                                    <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/>
+                                </line>
+                                <line x1="3" y1="-38" x2="8" y2="-38" stroke="#E6E6FA" stroke-width="2" filter="url(#electric-glow)">
+                                    <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/>
+                                </line>
+                                
+                                <!-- 核心反应炉 -->
+                                <circle cx="0" cy="5" r="12" fill="none" 
+                                        stroke="url(#thunder-gradient-raiden)" stroke-width="3">
+                                    <animate attributeName="stroke-dasharray" values="0 76;76 0" dur="2s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="0" cy="5" r="6" fill="#E6E6FA" filter="url(#electric-glow)">
+                                    <animate attributeName="r" values="4;8;4" dur="1s" repeatCount="indefinite"/>
+                                </circle>
+                                
+                                <!-- 电弧装饰 -->
+                                <path d="M -20,-15 L -15,-5 L -18,5 L -13,15" 
+                                      stroke="#E6E6FA" stroke-width="1" fill="none" filter="url(#electric-glow)" opacity="0.8">
+                                    <animate attributeName="opacity" values="0;1;0" dur="0.5s" repeatCount="indefinite"/>
+                                </path>
+                                <path d="M 20,-15 L 15,-5 L 18,5 L 13,15" 
+                                      stroke="#E6E6FA" stroke-width="1" fill="none" filter="url(#electric-glow)" opacity="0.8">
+                                    <animate attributeName="opacity" values="0;1;0" dur="0.7s" repeatCount="indefinite"/>
+                                </path>
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="description">雷系主C机甲，充能循环系统，协同爆发输出。搭载雷鸣引擎，可产生百万伏特电压</p>
+                </div>
+
+                <!-- 钟离型机甲（岩系护盾） -->
+                <div class="resource-card">
+                    <h3>钟离型机甲 - 磐石守护</h3>
+                    <div class="svg-container">
+                        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 岩元素渐变 -->
+                                <linearGradient id="geo-gradient-zhongli" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#DAA520"/>
+                                    <stop offset="50%" stop-color="#B8860B"/>
+                                    <stop offset="100%" stop-color="#8B6508"/>
+                                </linearGradient>
+                                <!-- 护盾效果 -->
+                                <radialGradient id="shield-gradient-zhongli">
+                                    <stop offset="0%" stop-color="#FFD700" stop-opacity="0.3"/>
+                                    <stop offset="60%" stop-color="#DAA520" stop-opacity="0.2"/>
+                                    <stop offset="100%" stop-color="#B8860B" stop-opacity="0.1"/>
+                                </radialGradient>
+                                <!-- 晶石纹理 -->
+                                <pattern id="crystal-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                    <polygon points="10,2 18,10 10,18 2,10" fill="none" stroke="#DAA520" stroke-width="0.5" opacity="0.5"/>
+                                </pattern>
+                            </defs>
+                            
+                            <g transform="translate(110, 110)">
+                                <!-- 护盾层（最外层） -->
+                                <circle cx="0" cy="0" r="75" fill="url(#shield-gradient-zhongli)" 
+                                        stroke="#DAA520" stroke-width="2" stroke-dasharray="5 3" opacity="0.7">
+                                    <animateTransform attributeName="transform" type="rotate"
+                                                      from="0 0 0" to="-360 0 0" dur="20s" repeatCount="indefinite"/>
+                                </circle>
+                                
+                                <!-- 六边形核心护甲 -->
+                                <polygon points="0,-45 39,-22.5 39,22.5 0,45 -39,22.5 -39,-22.5"
+                                         fill="url(#geo-gradient-zhongli)" 
+                                         stroke="#FFD700" stroke-width="2" opacity="0.9"/>
+                                
+                                <!-- 晶石装饰层 -->
+                                <polygon points="0,-45 39,-22.5 39,22.5 0,45 -39,22.5 -39,-22.5"
+                                         fill="url(#crystal-pattern)" opacity="0.4"/>
+                                
+                                <!-- 头部单元 -->
+                                <polygon points="0,-35 15,-25 15,-10 0,-5 -15,-10 -15,-25"
+                                         fill="#8B6508" stroke="#DAA520" stroke-width="1.5"/>
+                                
+                                <!-- 视觉传感器 -->
+                                <rect x="-10" y="-25" width="20" height="3" fill="#FFD700" opacity="0.8">
+                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite"/>
+                                </rect>
+                                
+                                <!-- 核心宝石 -->
+                                <polygon points="0,-5 8,0 5,10 -5,10 -8,0"
+                                         fill="#FFD700" stroke="#DAA520" stroke-width="1" opacity="0.9">
+                                    <animateTransform attributeName="transform" type="scale"
+                                                      values="1;1.2;1" dur="2s" repeatCount="indefinite"/>
+                                </polygon>
+                                
+                                <!-- 能量纹路 -->
+                                <path d="M 0,10 L 0,30" stroke="#FFD700" stroke-width="2" opacity="0.6"/>
+                                <path d="M -20,0 L -35,15" stroke="#FFD700" stroke-width="2" opacity="0.6"/>
+                                <path d="M 20,0 L 35,15" stroke="#FFD700" stroke-width="2" opacity="0.6"/>
+                                
+                                <!-- 浮动岩石块 -->
+                                <g>
+                                    <polygon points="-50,-40 -45,-35 -48,-30 -53,-35" fill="#B8860B" opacity="0.7">
+                                        <animateTransform attributeName="transform" type="translate"
+                                                          values="0,0; 0,-5; 0,0" dur="3s" repeatCount="indefinite"/>
+                                    </polygon>
+                                    <polygon points="50,-40 55,-35 52,-30 47,-35" fill="#B8860B" opacity="0.7">
+                                        <animateTransform attributeName="transform" type="translate"
+                                                          values="0,0; 0,-7; 0,0" dur="3.5s" repeatCount="indefinite"/>
+                                    </polygon>
+                                    <polygon points="0,60 5,65 0,70 -5,65" fill="#B8860B" opacity="0.7">
+                                        <animateTransform attributeName="transform" type="translate"
+                                                          values="0,0; 0,-4; 0,0" dur="4s" repeatCount="indefinite"/>
+                                    </polygon>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="description">岩系护盾机甲，无敌护盾系统，全队保护。搭载玉璋护盾发生器，可生成坚不可摧的防护屏障</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 唯美特效 Section -->
+        <div class="resource-section">
+            <h2>二、唯美特效系统</h2>
+            <div class="resource-grid">
+                
+                <!-- 樱花飘散特效 -->
+                <div class="resource-card">
+                    <h3>樱花飘散</h3>
+                    <div class="svg-container" style="background: linear-gradient(135deg, #3D3856 0%, #4A3F5E 25%, #5A4768 50%, #6B5478 75%, #7C6188 100%);">
+                        <svg width="280" height="220" viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 樱花花瓣 -->
+                                <g id="sakura-petal">
+                                    <path d="M 0,0 Q -3,-8 0,-12 Q 3,-8 0,0" 
+                                          fill="url(#sakura-gradient)" opacity="0.9"/>
+                                </g>
+                                <radialGradient id="sakura-gradient">
+                                    <stop offset="0%" stop-color="#FFE4E1"/>
+                                    <stop offset="70%" stop-color="#FFB6C1"/>
+                                    <stop offset="100%" stop-color="#FF1493"/>
+                                </radialGradient>
+                                <!-- 发光效果 -->
+                                <filter id="sakura-glow">
+                                    <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+                                    <feMerge>
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            
+                            <!-- 多个樱花花瓣 -->
+                            <use href="#sakura-petal" transform="translate(30, 20)" filter="url(#sakura-glow)">
+                                <animateTransform attributeName="transform" type="translate"
+                                                  values="30,20; 35,80; 25,140; 30,200" dur="8s" repeatCount="indefinite"/>
+                                <animateTransform attributeName="transform" type="rotate"
+                                                  from="0" to="360" dur="4s" repeatCount="indefinite" additive="sum"/>
+                            </use>
+                            
+                            <use href="#sakura-petal" transform="translate(80, 10) scale(1.2)" filter="url(#sakura-glow)">
+                                <animateTransform attributeName="transform" type="translate"
+                                                  values="80,10; 70,70; 85,130; 75,200" dur="9s" repeatCount="indefinite"/>
+                                <animateTransform attributeName="transform" type="rotate"
+                                                  from="0" to="-360" dur="5s" repeatCount="indefinite" additive="sum"/>
+                            </use>
+                            
+                            <use href="#sakura-petal" transform="translate(140, 30) scale(0.8)" filter="url(#sakura-glow)">
+                                <animateTransform attributeName="transform" type="translate"
+                                                  values="140,30; 150,90; 135,150; 145,210" dur="7s" repeatCount="indefinite"/>
+                                <animateTransform attributeName="transform" type="rotate"
+                                                  from="0" to="360" dur="3.5s" repeatCount="indefinite" additive="sum"/>
+                            </use>
+                            
+                            <use href="#sakura-petal" transform="translate(200, 15) scale(1.1)" filter="url(#sakura-glow)">
+                                <animateTransform attributeName="transform" type="translate"
+                                                  values="200,15; 190,75; 205,135; 195,200" dur="8.5s" repeatCount="indefinite"/>
+                                <animateTransform attributeName="transform" type="rotate"
+                                                  from="0" to="-360" dur="4.5s" repeatCount="indefinite" additive="sum"/>
+                            </use>
+                            
+                            <use href="#sakura-petal" transform="translate(250, 25) scale(0.9)" filter="url(#sakura-glow)">
+                                <animateTransform attributeName="transform" type="translate"
+                                                  values="250,25; 245,85; 255,145; 240,205" dur="10s" repeatCount="indefinite"/>
+                                <animateTransform attributeName="transform" type="rotate"
+                                                  from="0" to="360" dur="6s" repeatCount="indefinite" additive="sum"/>
+                            </use>
+                        </svg>
+                    </div>
+                    <p class="description">梦幻樱花飘落效果，S型贝塞尔曲线轨迹，随风摇曳动画</p>
+                </div>
+
+                <!-- 极光效果 -->
+                <div class="resource-card">
+                    <h3>极光波动</h3>
+                    <div class="svg-container" style="background: linear-gradient(180deg, #001133 0%, #003366 100%);">
+                        <svg width="280" height="220" viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 极光渐变层 -->
+                                <linearGradient id="aurora-gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#00FF00" stop-opacity="0.2">
+                                        <animate attributeName="stop-opacity" values="0;0.6;0" dur="4s" repeatCount="indefinite"/>
+                                    </stop>
+                                    <stop offset="50%" stop-color="#00FFFF" stop-opacity="0.5"/>
+                                    <stop offset="100%" stop-color="#FF00FF" stop-opacity="0.2">
+                                        <animate attributeName="stop-opacity" values="0;0.4;0" dur="5s" repeatCount="indefinite"/>
+                                    </stop>
+                                </linearGradient>
+                                
+                                <linearGradient id="aurora-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#9400D3" stop-opacity="0.3"/>
+                                    <stop offset="50%" stop-color="#00CED1" stop-opacity="0.4">
+                                        <animate attributeName="stop-opacity" values="0.2;0.6;0.2" dur="3s" repeatCount="indefinite"/>
+                                    </stop>
+                                    <stop offset="100%" stop-color="#00FA9A" stop-opacity="0.3"/>
+                                </linearGradient>
+                                
+                                <!-- 波动滤镜 -->
+                                <filter id="wave-filter">
+                                    <feTurbulence baseFrequency="0.02 0.05" numOctaves="3" result="turbulence">
+                                        <animate attributeName="baseFrequency" 
+                                                 values="0.02 0.05;0.03 0.08;0.02 0.05" 
+                                                 dur="6s" repeatCount="indefinite"/>
+                                    </feTurbulence>
+                                    <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="20" xChannelSelector="R" yChannelSelector="G"/>
+                                </filter>
+                            </defs>
+                            
+                            <!-- 极光层1 -->
+                            <path d="M 0,100 Q 70,60 140,100 Q 210,140 280,100 L 280,130 Q 210,170 140,130 Q 70,90 0,130 Z"
+                                  fill="url(#aurora-gradient-1)" filter="url(#wave-filter)" opacity="0.7">
+                                <animateTransform attributeName="transform" type="translate"
+                                                  values="0,0; 0,-20; 0,20; 0,0" dur="5s" repeatCount="indefinite"/>
+                            </path>
+                            
+                            <!-- 极光层2 -->
+                            <path d="M 0,50 Q 100,20 200,50 Q 240,80 280,50 L 280,90 Q 240,120 200,90 Q 100,60 0,90 Z"
+                                  fill="url(#aurora-gradient-2)" filter="url(#wave-filter)" opacity="0.6">
+                                <animateTransform attributeName="transform" type="translate"
+                                                  values="0,0; 0,25; 0,-25; 0,0" dur="6s" repeatCount="indefinite"/>
+                            </path>
+                            
+                            <!-- 极光层3 -->
+                            <path d="M 0,140 Q 90,100 180,140 Q 230,180 280,140 L 280,170 Q 230,210 180,170 Q 90,130 0,170 Z"
+                                  fill="url(#aurora-gradient-1)" filter="url(#wave-filter)" opacity="0.5">
+                                <animateTransform attributeName="transform" type="translate"
+                                                  values="0,0; 0,-30; 0,30; 0,0" dur="7s" repeatCount="indefinite"/>
+                            </path>
+                        </svg>
+                    </div>
+                    <p class="description">多层极光波动效果，色彩循环变换，梦幻光带流动</p>
+                </div>
+
+                <!-- 星尘粒子 -->
+                <div class="resource-card">
+                    <h3>星尘环绕</h3>
+                    <div class="svg-container" style="background: radial-gradient(circle, #1a1a2e 0%, #0f0f1e 100%);">
+                        <svg width="280" height="220" viewBox="0 0 280 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- 星尘粒子 -->
+                                <radialGradient id="stardust-glow">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
+                                    <stop offset="40%" stop-color="#FFFACD" stop-opacity="0.8"/>
+                                    <stop offset="100%" stop-color="#FFD700" stop-opacity="0"/>
+                                </radialGradient>
+                                
+                                <!-- 拖尾效果 -->
+                                <filter id="motion-trail">
+                                    <feGaussianBlur in="SourceGraphic" stdDeviation="2,0">
+                                        <animate attributeName="stdDeviation" values="0,0;3,0;0,0" dur="1s" repeatCount="indefinite"/>
+                                    </feGaussianBlur>
+                                </filter>
+                            </defs>
+                            
+                            <!-- 中心光源 -->
+                            <circle cx="140" cy="110" r="15" fill="url(#stardust-glow)" opacity="0.8">
+                                <animate attributeName="r" values="12;18;12" dur="3s" repeatCount="indefinite"/>
+                            </circle>
+                            
+                            <!-- 环绕粒子轨道1 -->
+                            <g transform="translate(140, 110)">
+                                <animateTransform attributeName="transform" type="rotate"
+                                                  from="0 0 0" to="360 0 0" dur="8s" repeatCount="indefinite"/>
+                                <circle cx="50" cy="0" r="3" fill="url(#stardust-glow)" filter="url(#motion-trail)">
+                                    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="-50" cy="0" r="3" fill="url(#stardust-glow)" filter="url(#motion-trail)">
+                                    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+                                </circle>
+                            </g>
+                            
+                            <!-- 环绕粒子轨道2 -->
+                            <g transform="translate(140, 110)">
+                                <animateTransform attributeName="transform" type="rotate"
+                                                  from="0 0 0" to="-360 0 0" dur="6s" repeatCount="indefinite"/>
+                                <circle cx="0" cy="35" r="2.5" fill="url(#stardust-glow)" filter="url(#motion-trail)">
+                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="0" cy="-35" r="2.5" fill="url(#stardust-glow)" filter="url(#motion-trail)">
+                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
+                                </circle>
+                            </g>
+                            
+                            <!-- 环绕粒子轨道3 -->
+                            <g transform="translate(140, 110)">
+                                <animateTransform attributeName="transform" type="rotate"
+                                                  from="0 0 0" to="360 0 0" dur="10s" repeatCount="indefinite"/>
+                                <circle cx="60" cy="30" r="2" fill="url(#stardust-glow)" opacity="0.7">
+                                    <animate attributeName="r" values="1.5;3;1.5" dur="2.5s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="-60" cy="-30" r="2" fill="url(#stardust-glow)" opacity="0.7">
+                                    <animate attributeName="r" values="1.5;3;1.5" dur="2.5s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="-60" cy="30" r="2" fill="url(#stardust-glow)" opacity="0.7">
+                                    <animate attributeName="r" values="1.5;3;1.5" dur="3s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="60" cy="-30" r="2" fill="url(#stardust-glow)" opacity="0.7">
+                                    <animate attributeName="r" values="1.5;3;1.5" dur="3s" repeatCount="indefinite"/>
+                                </circle>
+                            </g>
+                            
+                            <!-- 随机闪烁星点 -->
+                            <circle cx="40" cy="30" r="1" fill="#FFFFFF" opacity="0">
+                                <animate attributeName="opacity" values="0;1;0" dur="3s" begin="0s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="240" cy="50" r="1" fill="#FFFFFF" opacity="0">
+                                <animate attributeName="opacity" values="0;1;0" dur="3s" begin="1s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="80" cy="180" r="1" fill="#FFFFFF" opacity="0">
+                                <animate attributeName="opacity" values="0;1;0" dur="3s" begin="2s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="200" cy="170" r="1" fill="#FFFFFF" opacity="0">
+                                <animate attributeName="opacity" values="0;1;0" dur="3s" begin="1.5s" repeatCount="indefinite"/>
+                            </circle>
+                        </svg>
+                    </div>
+                    <p class="description">星尘粒子环绕系统，多轨道运动，拖尾光效</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 待续提示 -->
+        <div class="resource-section" style="text-align: center; padding: 40px;">
+            <h2 style="color: #FFB6C1; border: none;">更多资源正在制作中...</h2>
+            <p style="color: #B0B0B0;">包括：变异生物、Boss设计、场景背景、UI元素等</p>
+        </div>
+        
+    </div>
+</body>
+</html>
