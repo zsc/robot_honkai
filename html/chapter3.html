@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="./">
+    <title>第三章 - 战斗系统与伤害计算</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/highlight.css">
+    <script src="assets/script.js" defer></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']],
+                processEscapes: false,
+                packages: {'[+]': ['noerrors', 'ams']}
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            },
+            loader: {
+                load: ['[tex]/noerrors', '[tex]/ams']
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h3>目录</h3>
+                <button id="sidebar-toggle" class="sidebar-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <div class="sidebar-search">
+                <input type="text" id="sidebar-search-input" placeholder="搜索..." autocomplete="off">
+            </div>
+            <div id="tree-container">
+                <nav class="tree-nav" role="tree">
+                    <div class="tree-item " >
+                        <a href="index.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">机甲崩坏：变异纪元 - 游戏设计规格说明书</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter1.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第一章 - 世界观与故事背景</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter2.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第二章 - UI/UX与唯美风格美术规范</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item active" >
+                        <a href="chapter3.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第三章 - 战斗系统与伤害计算</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter4.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第四章 - 武器装备与强化系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter5.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第五章 - 机甲驾驶员角色设计</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter6.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第六章 - 变异生物图鉴与数值设计</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter7.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第七章 - 提瓦特废土地形系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter8.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第八章 - 圣遗物装备进阶系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter9.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第九章 - 召唤物与僚机系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter10.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十章 - 补给系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter11.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十一章 - 宿舍系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter13.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十章 - 凯瑟琳的试炼（教学关卡）</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter14.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十一章 - 层岩巨渊·机械废墟</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter15.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十二章 - 深渊螺旋·终焉之刻</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="CLAUDE.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">Untitled</span>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </nav>
+        
+        <main class="content">
+            <article>
+                <h1 id="-">第三章 - 战斗系统与伤害计算</h1>
+<h2 id="_1">章节大纲</h2>
+<h3 id="31">3.1 基础伤害公式体系</h3>
+<ul>
+<li>3.1.1 伤害计算核心公式</li>
+<li>3.1.2 攻击力系统详解</li>
+<li>3.1.3 技能倍率机制</li>
+<li>3.1.4 伤害加成类型与叠加规则</li>
+</ul>
+<h3 id="32">3.2 防御减免计算</h3>
+<ul>
+<li>3.2.1 防御力减伤公式</li>
+<li>3.2.2 减防机制与上限</li>
+<li>3.2.3 抗性系统详解</li>
+<li>3.2.4 护盾吸收机制</li>
+</ul>
+<h3 id="33">3.3 元素反应倍率系统</h3>
+<ul>
+<li>3.3.1 增幅反应（蒸发/融化）</li>
+<li>3.3.2 剧变反应（超载/感电/超导）</li>
+<li>3.3.3 特殊反应（冻结/扩散/结晶）</li>
+<li>3.3.4 元素精通加成计算</li>
+</ul>
+<h3 id="34">3.4 充能机制</h3>
+<ul>
+<li>3.4.1 元素能量系统</li>
+<li>3.4.2 元素微粒与晶球</li>
+<li>3.4.3 充能效率计算</li>
+<li>3.4.4 能量循环优化</li>
+</ul>
+<h3 id="35">3.5 暴击系统</h3>
+<ul>
+<li>3.5.1 暴击率与暴击伤害</li>
+<li>3.5.2 暴击收益曲线</li>
+<li>3.5.3 暴击动画与特效</li>
+<li>3.5.4 暴击流派构建</li>
+</ul>
+<h3 id="36-combo">3.6 连击与combo系统</h3>
+<ul>
+<li>3.6.1 连击计数机制</li>
+<li>3.6.2 连击伤害加成</li>
+<li>3.6.3 连击中断条件</li>
+<li>3.6.4 连击奖励系统</li>
+</ul>
+<h3 id="37-buffdebuff">3.7 buff与debuff机制</h3>
+<ul>
+<li>3.7.1 增益效果分类</li>
+<li>3.7.2 减益效果类型</li>
+<li>3.7.3 效果叠加规则</li>
+<li>3.7.4 状态优先级</li>
+</ul>
+<h3 id="38-ai">3.8 战斗AI系统</h3>
+<ul>
+<li>3.8.1 敌人AI行为树</li>
+<li>3.8.2 仇恨值机制</li>
+<li>3.8.3 技能释放逻辑</li>
+<li>3.8.4 协同作战AI</li>
+</ul>
+<hr />
+<h2 id="31_1">3.1 基础伤害公式体系</h2>
+<h3 id="311">3.1.1 伤害计算核心公式</h3>
+<h4 id="_2">完整伤害计算流程</h4>
+<p><strong>第一步：基础伤害计算</strong></p>
+<div class="codehilite"><pre><span></span><code>基础伤害 = (角色攻击力 + 武器攻击力 + 圣遗物攻击力) × 技能倍率％
+</code></pre></div>
+
+<p><strong>第二步：伤害加成计算</strong></p>
+<div class="codehilite"><pre><span></span><code>增幅后伤害 = 基础伤害 × (1 + 全伤害加成％ + 元素伤害加成％ + 普攻/重击/技能伤害加成％)
+</code></pre></div>
+
+<p><strong>第三步：暴击判定</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="ss">(</span>随机数<span class="w"> </span><span class="o">&lt;</span><span class="w"> </span>暴击率<span class="ss">)</span><span class="w"> </span>{
+<span class="w">    </span>暴击伤害<span class="w"> </span><span class="o">=</span><span class="w"> </span>增幅后伤害<span class="w"> </span>×<span class="w"> </span><span class="ss">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>暴击伤害％<span class="ss">)</span>
+}<span class="w"> </span><span class="k">else</span><span class="w"> </span>{
+<span class="w">    </span>暴击伤害<span class="w"> </span><span class="o">=</span><span class="w"> </span>增幅后伤害
+}
+</code></pre></div>
+
+<p><strong>第四步：防御减免</strong></p>
+<div class="codehilite"><pre><span></span><code>防御减免后伤害 = 暴击伤害 × 防御减免系数
+防御减免系数 = (角色等级 + 100) / [(角色等级 + 100) + (怪物防御 × (1 - 减防％))]
+</code></pre></div>
+
+<p><strong>第五步：抗性减免</strong></p>
+<div class="codehilite"><pre><span></span><code>抗性减免后伤害 = 防御减免后伤害 × 抗性减免系数
+抗性减免系数计算:
+
+- 抗性 &lt; 0: 1 - (抗性/2)
+- 0 ≤ 抗性 &lt; 75%: 1 - 抗性
+- 抗性 ≥ 75%: 1 / (1 + 4×抗性)
+</code></pre></div>
+
+<p><strong>第六步：元素反应加成</strong></p>
+<div class="codehilite"><pre><span></span><code>最终伤害 = 抗性减免后伤害 × 元素反应倍率
+</code></pre></div>
+
+<h4 id="_3">伤害浮动机制</h4>
+<ul>
+<li><strong>浮动范围</strong>：±5%随机浮动</li>
+<li><strong>距离衰减</strong>：超过最佳射程后每100像素递减2%伤害</li>
+<li><strong>连击加成</strong>：每10连击增加1%伤害，上限50%</li>
+</ul>
+<h3 id="312">3.1.2 攻击力系统详解</h3>
+<h4 id="_4">攻击力来源</h4>
+<p><strong>基础攻击力（白值）</strong></p>
+<ul>
+<li><strong>角色基础攻击</strong>：1级时89-106，90级时298-335</li>
+<li><strong>武器基础攻击</strong>：</li>
+<li>3星武器：38-401</li>
+<li>4星武器：42-510  </li>
+<li>5星武器：44-608</li>
+</ul>
+<p><strong>额外攻击力（绿值）</strong></p>
+<ul>
+<li><strong>固定数值加成</strong>：圣遗物羽毛主属性（311）、副属性（14-19每条）</li>
+<li><strong>百分比加成</strong>：圣遗物沙漏主属性（46.6%）、副属性（4.1%-5.8%每条）</li>
+<li><strong>武器副属性</strong>：攻击力％（10.8%-49.6%）</li>
+<li><strong>角色天赋</strong>：突破加成、被动天赋</li>
+</ul>
+<h4 id="_5">攻击力计算示例</h4>
+<div class="codehilite"><pre><span></span><code>胡桃90级配置：
+基础攻击 = 角色白值(106) + 护摩之杖(608) = 714
+圣遗物攻击％ = 时之沙(46.6%) + 副词条(15%) = 61.6%
+圣遗物固定攻击 = 羽毛(311) + 副词条(50) = 361
+
+总攻击力 = 714 × (1 + 0.616) + 361 = 1515
+</code></pre></div>
+
+<h3 id="313">3.1.3 技能倍率机制</h3>
+<h4 id="_6">技能倍率分类</h4>
+<p><strong>普通攻击倍率</strong></p>
+<ul>
+<li>1级：50%-80%每段</li>
+<li>10级：90%-150%每段</li>
+<li>连击段数：3-6段循环</li>
+</ul>
+<p><strong>元素战技（E技能）倍率</strong></p>
+<ul>
+<li>1级：100%-300%</li>
+<li>10级：180%-540%</li>
+<li>冷却时间：6-15秒</li>
+</ul>
+<p><strong>元素爆发（Q技能）倍率</strong></p>
+<ul>
+<li>1级：200%-800%</li>
+<li>10级：360%-1440%</li>
+<li>能量需求：40-90点</li>
+</ul>
+<h4 id="_7">倍率成长公式</h4>
+<div class="codehilite"><pre><span></span><code>当前等级倍率 = 1级倍率 × [1 + (技能等级-1) × 成长系数]
+成长系数 = 0.06-0.08（根据技能类型）
+</code></pre></div>
+
+<h3 id="314">3.1.4 伤害加成类型与叠加规则</h3>
+<h4 id="_8">加成类型分类</h4>
+<p><strong>独立乘区</strong></p>
+<ol>
+<li><strong>攻击力乘区</strong>：基础攻击 × (1 + 攻击力％总和)</li>
+<li><strong>伤害加成乘区</strong>：包含以下子类（加法叠加）
+   - 元素伤害加成（杯子主属性46.6%）
+   - 物理伤害加成（杯子主属性58.3%）
+   - 普攻/重击/元素战技/元素爆发伤害加成
+   - 全伤害加成（较少见）</li>
+<li><strong>暴击乘区</strong>：1 + 暴击伤害％（暴击时生效）</li>
+<li><strong>元素反应乘区</strong>：蒸发2.0x/融化1.5x等</li>
+<li><strong>防御乘区</strong>：防御减免系数</li>
+<li><strong>抗性乘区</strong>：抗性减免系数</li>
+</ol>
+<h4 id="_9">叠加规则</h4>
+<ul>
+<li><strong>同类加法</strong>：相同乘区内的加成相加</li>
+<li><strong>不同类乘法</strong>：不同乘区之间相乘</li>
+<li><strong>快照机制</strong>：部分技能释放时锁定当时属性</li>
+</ul>
+<h2 id="32_1">3.2 防御减免计算</h2>
+<h3 id="321">3.2.1 防御力减伤公式</h3>
+<h4 id="_10">标准防御公式</h4>
+<div class="codehilite"><pre><span></span><code>防御减免 = (角色等级 + 100) / [(角色等级 + 100) + (敌人防御 × (1 - 减防％) × (1 - 无视防御％))]
+</code></pre></div>
+
+<h4 id="_11">等级压制机制</h4>
+<ul>
+<li><strong>同等级</strong>：标准防御减免</li>
+<li><strong>高20级</strong>：额外5%伤害加成</li>
+<li><strong>低20级</strong>：额外5%伤害减免</li>
+<li><strong>等级差上限</strong>：±30级</li>
+</ul>
+<h4 id="_12">防御数值参考</h4>
+<p><strong>普通敌人防御</strong></p>
+<ul>
+<li>1级：50-100</li>
+<li>50级：300-500</li>
+<li>90级：500-800</li>
+</ul>
+<p><strong>精英怪物防御</strong></p>
+<ul>
+<li>1级：150-200</li>
+<li>50级：600-800</li>
+<li>90级：1000-1200</li>
+</ul>
+<p><strong>Boss防御</strong></p>
+<ul>
+<li>1级：200-300</li>
+<li>50级：800-1000</li>
+<li>90级：1200-1500</li>
+</ul>
+<h3 id="322">3.2.2 减防机制与上限</h3>
+<h4 id="_13">减防技能类型</h4>
+<p><strong>百分比减防</strong></p>
+<ul>
+<li>钟离护盾：全抗性-20%</li>
+<li>雷电将军E：防御力-30%</li>
+<li>可莉2命：防御力-23%</li>
+<li>减防上限：90%</li>
+</ul>
+<p><strong>固定值减防</strong></p>
+<ul>
+<li>部分技能提供固定防御降低</li>
+<li>计算优先级低于百分比减防</li>
+<li>可使防御变为负数</li>
+</ul>
+<h4 id="_14">减防叠加规则</h4>
+<ol>
+<li>同类型减防：取最高值</li>
+<li>不同类型减防：乘法叠加</li>
+<li>减防持续时间：独立计算</li>
+<li>减防debuff图标：最多显示5个</li>
+</ol>
+<h3 id="323">3.2.3 抗性系统详解</h3>
+<h4 id="_15">元素抗性机制</h4>
+<p><strong>基础抗性设定</strong></p>
+<ul>
+<li>普通敌人：10%全元素抗性</li>
+<li>元素史莱姆：对应元素免疫，其他10%</li>
+<li>深渊使徒：护盾期间70%全抗</li>
+<li>部分Boss：特定元素50%抗性</li>
+</ul>
+<p><strong>抗性计算公式</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">计算抗性减免</span><span class="p">(</span><span class="nx">基础抗性</span><span class="p">,</span><span class="w"> </span><span class="nx">减抗值</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">最终抗性</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">基础抗性</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">减抗值</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">最终抗性</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 负抗性增伤</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="nx">最终抗性</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">最终抗性</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.75</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 正常抗性</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">最终抗性</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 高抗性递减</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mf">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">最终抗性</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4 id="_16">减抗手段</h4>
+<ul>
+<li><strong>风套4件</strong>：扩散元素-40%抗性</li>
+<li><strong>超导反应</strong>：物理抗性-40%，持续12秒</li>
+<li><strong>钟离盾</strong>：周围敌人全抗性-20%</li>
+</ul>
+<h3 id="324">3.2.4 护盾吸收机制</h3>
+<h4 id="_17">护盾类型</h4>
+<p><strong>元素护盾</strong></p>
+<ul>
+<li>基础吸收量：角色生命值的10%-30%</li>
+<li>元素吸收效率：</li>
+<li>同元素：250%吸收</li>
+<li>克制元素：50%吸收</li>
+<li>其他元素：100%吸收</li>
+</ul>
+<p><strong>全元素护盾</strong></p>
+<ul>
+<li>钟离玉璋护盾：基础值+生命值％</li>
+<li>吸收效率：150%全伤害</li>
+<li>特殊效果：减抗光环</li>
+</ul>
+<h4 id="_18">护盾叠加规则</h4>
+<ul>
+<li>不同角色护盾：独立计算</li>
+<li>同角色护盾：刷新持续时间</li>
+<li>护盾上限：生命值的200%</li>
+</ul>
+<h2 id="33_1">3.3 元素反应倍率系统</h2>
+<h3 id="331">3.3.1 增幅反应（蒸发/融化）</h3>
+<h4 id="_19">蒸发反应机制</h4>
+<p><strong>反应倍率</strong></p>
+<ul>
+<li><strong>火触发蒸发</strong>（火打水）：2.0倍伤害</li>
+<li><strong>水触发蒸发</strong>（水打火）：1.5倍伤害</li>
+</ul>
+<p><strong>元素消耗规则</strong></p>
+<div class="codehilite"><pre><span></span><code>元素消耗量计算：
+触发元素消耗 = 1U（标准单位）
+被触发元素消耗 = 触发元素 × 反应系数
+
+- 蒸发反应系数：0.5（强反应）或0.625（弱反应）
+</code></pre></div>
+
+<p><strong>蒸发反应优化</strong></p>
+<ul>
+<li><strong>元素附着顺序</strong>：先挂水后打火获得2倍增幅</li>
+<li><strong>内置冷却（ICD）</strong>：普攻2.5秒/3次，技能无ICD</li>
+<li><strong>多段伤害处理</strong>：每段独立判定反应</li>
+</ul>
+<h4 id="_20">融化反应机制</h4>
+<p><strong>反应倍率</strong></p>
+<ul>
+<li><strong>火触发融化</strong>（火打冰）：1.5倍伤害</li>
+<li><strong>冰触发融化</strong>（冰打火）：2.0倍伤害</li>
+</ul>
+<p><strong>元素残留机制</strong></p>
+<ul>
+<li>强元素（2U/4U）可能在反应后残留</li>
+<li>弱元素（1U）完全消耗</li>
+<li>残留量 = 原附着量 - 消耗量</li>
+</ul>
+<h4 id="_21">增幅反应加成计算</h4>
+<p><strong>元素精通加成公式</strong></p>
+<div class="codehilite"><pre><span></span><code>反应系数 = 2.78 × 元素精通 / (元素精通 + 1400)
+最终倍率 = 基础倍率 × (1 + 反应系数 + 反应加成％)
+
+示例（300元素精通）：
+反应系数 = 2.78 × 300 / (300 + 1400) = 0.49
+蒸发最终倍率 = 2.0 × (1 + 0.49) = 2.98倍
+</code></pre></div>
+
+<p><strong>反应加成来源</strong></p>
+<ul>
+<li>4件魔女套装：蒸发融化+15%</li>
+<li>部分角色天赋：额外反应加成</li>
+<li>深渊祝福：特定反应+20%-50%</li>
+</ul>
+<h3 id="332">3.3.2 剧变反应（超载/感电/超导）</h3>
+<h4 id="_22">超载反应</h4>
+<p><strong>基础伤害计算</strong></p>
+<div class="codehilite"><pre><span></span><code>超载基础伤害 = 等级系数 × 反应基础倍率
+90级超载基础 = 2766 × 4 = 11064
+
+元素精通加成：
+精通加成％ = 16 × 元素精通 / (元素精通 + 2000)
+500精通加成 = 16 × 500 / 2500 = 3.2倍
+
+最终伤害 = 11064 × (1 + 3.2) = 46469
+</code></pre></div>
+
+<p><strong>超载特殊效果</strong></p>
+<ul>
+<li><strong>范围爆炸</strong>：半径200像素</li>
+<li><strong>击退效果</strong>：小体型敌人击退300像素</li>
+<li><strong>破盾效率</strong>：对岩盾3倍伤害</li>
+<li><strong>自伤风险</strong>：近距离受到20%反伤</li>
+</ul>
+<h4 id="_23">感电反应</h4>
+<p><strong>持续伤害机制</strong></p>
+<div class="codehilite"><pre><span></span><code>感电tick伤害 = 等级系数 × 2.4
+90级感电 = 2766 × 2.4 = 6638每跳
+
+触发间隔：1秒
+持续时间：水电共存期间
+伤害类型：雷元素伤害
+</code></pre></div>
+
+<p><strong>感电特性</strong></p>
+<ul>
+<li><strong>传导效果</strong>：水域中自动传播</li>
+<li><strong>多目标</strong>：最多影响5个目标</li>
+<li><strong>打断效果</strong>：每跳造成轻微硬直</li>
+<li><strong>元素共存</strong>：水雷元素同时存在</li>
+</ul>
+<h4 id="_24">超导反应</h4>
+<p><strong>减防效果</strong></p>
+<div class="codehilite"><pre><span></span><code>物理抗性降低：40%
+持续时间：12秒
+伤害倍率：1.0（冰伤害）
+范围：半径150像素
+</code></pre></div>
+
+<p><strong>超导运用场景</strong></p>
+<ul>
+<li>物理队核心反应</li>
+<li>优菈最佳辅助反应</li>
+<li>对高物抗敌人效果显著</li>
+</ul>
+<h3 id="333">3.3.3 特殊反应（冻结/扩散/结晶）</h3>
+<h4 id="_25">冻结反应</h4>
+<p><strong>冻结机制</strong></p>
+<ul>
+<li><strong>冻结时长</strong>：基础2秒，受元素量影响</li>
+<li><strong>冻结公式</strong>：时间 = min(4, 2 × √(水量×冰量))</li>
+<li><strong>碎冰伤害</strong>：重击或钝器攻击触发</li>
+<li><strong>控制免疫</strong>：Boss免疫冻结</li>
+</ul>
+<p><strong>冻结流派配合</strong></p>
+<ul>
+<li>神里绫华+莫娜：永冻流</li>
+<li>甘雨+温迪：冻结聚怪</li>
+<li>冰冻延长：部分角色天赋+20%时长</li>
+</ul>
+<h4 id="_26">扩散反应</h4>
+<p><strong>扩散机制</strong></p>
+<div class="codehilite"><pre><span></span><code>扩散伤害 = 等级系数 × 1.2 × 精通加成
+扩散范围：半径300像素
+元素传播：将被扩散元素附着周围敌人
+减抗效果：风套4件触发-40%元素抗性
+</code></pre></div>
+
+<p><strong>扩散优先级</strong></p>
+<ol>
+<li>火元素（最高优先）</li>
+<li>水元素</li>
+<li>雷元素</li>
+<li>冰元素（最低优先）</li>
+</ol>
+<p><strong>多元素扩散</strong></p>
+<ul>
+<li>可同时扩散2种元素</li>
+<li>触发对应元素反应</li>
+<li>染色机制：风元素转化</li>
+</ul>
+<h4 id="_27">结晶反应</h4>
+<p><strong>护盾生成</strong></p>
+<div class="codehilite"><pre><span></span><code>护盾量 = 等级系数 × 4.44 × (1 + 精通加成)
+90级基础 = 2766 × 4.44 = 12281
+300精通 = 12281 × 2.5 = 30702护盾量
+</code></pre></div>
+
+<p><strong>结晶特性</strong></p>
+<ul>
+<li><strong>拾取范围</strong>：100像素</li>
+<li><strong>持续时间</strong>：15秒</li>
+<li><strong>护盾类型</strong>：对应元素150%吸收</li>
+<li><strong>上限数量</strong>：场上最多3个</li>
+</ul>
+<h3 id="334">3.3.4 元素精通加成计算</h3>
+<h4 id="_28">精通收益公式汇总</h4>
+<p><strong>增幅反应（蒸发/融化）</strong></p>
+<div class="codehilite"><pre><span></span><code>加成％ = 2.78 × EM / (EM + 1400)
+</code></pre></div>
+
+<p><strong>剧变反应（超载/感电/超导/碎冰）</strong></p>
+<div class="codehilite"><pre><span></span><code>加成％ = 16 × EM / (EM + 2000)
+</code></pre></div>
+
+<p><strong>结晶反应</strong></p>
+<div class="codehilite"><pre><span></span><code>加成％ = 4.44 × EM / (EM + 1400)
+</code></pre></div>
+
+<h4 id="_29">元素精通阈值</h4>
+<p>| 精通值 | 增幅反应加成 | 剧变反应加成 | 推荐适用角色 |</p>
+<table>
+<thead>
+<tr>
+<th>精通值</th>
+<th>增幅反应加成</th>
+<th>剧变反应加成</th>
+<th>推荐适用角色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0%</td>
+<td>0%</td>
+<td>纯输出角色</td>
+</tr>
+<tr>
+<td>100</td>
+<td>18.6%</td>
+<td>74.2%</td>
+<td>副C角色</td>
+</tr>
+<tr>
+<td>200</td>
+<td>33.3%</td>
+<td>137.8%</td>
+<td>反应副C</td>
+</tr>
+<tr>
+<td>300</td>
+<td>45.4%</td>
+<td>192.5%</td>
+<td>精通辅助</td>
+</tr>
+<tr>
+<td>500</td>
+<td>63.5%</td>
+<td>280.0%</td>
+<td>纳西妲等</td>
+</tr>
+<tr>
+<td>800</td>
+<td>79.5%</td>
+<td>371.2%</td>
+<td>极限精通流</td>
+</tr>
+</tbody>
+</table>
+<h2 id="34_1">3.4 充能机制</h2>
+<h3 id="341">3.4.1 元素能量系统</h3>
+<h4 id="_30">能量需求分类</h4>
+<p><strong>低能量需求（40点）</strong></p>
+<ul>
+<li>技能循环快</li>
+<li>适合主C角色</li>
+<li>代表：胡桃、宵宫</li>
+</ul>
+<p><strong>中能量需求（60点）</strong></p>
+<ul>
+<li>平衡型设计</li>
+<li>大部分角色</li>
+<li>代表：神里绫华、甘雨</li>
+</ul>
+<p><strong>高能量需求（80-90点）</strong></p>
+<ul>
+<li>强力爆发技能</li>
+<li>需要充能支持</li>
+<li>代表：雷电将军、北斗</li>
+</ul>
+<h4 id="_31">能量获取途径</h4>
+<ol>
+<li><strong>普攻产球</strong>：0.5-1点/次（概率性）</li>
+<li><strong>E技能产球</strong>：3-5个元素微粒</li>
+<li><strong>击杀奖励</strong>：2-4点能量</li>
+<li><strong>队友产球</strong>：共享能量机制</li>
+</ol>
+<h3 id="342">3.4.2 元素微粒与晶球</h3>
+<h4 id="_32">微粒/晶球属性</h4>
+<p><strong>元素微粒</strong></p>
+<div class="codehilite"><pre><span></span><code>基础能量：3点（同元素）/ 1点（异元素）/ 2点（无元素）
+拾取范围：自动吸收（7秒后）
+移动速度：逐渐加速飞向角色
+颜色标识：对应元素色彩
+</code></pre></div>
+
+<p><strong>元素晶球</strong></p>
+<div class="codehilite"><pre><span></span><code>基础能量：9点（同元素）/ 3点（异元素）/ 6点（无元素）
+生成条件：精英怪物死亡、特定技能
+体积：微粒的2倍
+优先级：高于微粒
+</code></pre></div>
+
+<h4 id="_33">能量分配机制</h4>
+<p><strong>前台角色获取</strong></p>
+<ul>
+<li>100%能量值</li>
+<li>直接加入能量槽</li>
+</ul>
+<p><strong>后台角色获取</strong></p>
+<ul>
+<li>60%能量值</li>
+<li>延迟0.1秒到账</li>
+</ul>
+<p><strong>特殊机制</strong></p>
+<ul>
+<li>雷电将军：为全队充能</li>
+<li>西风武器：产生无色微粒</li>
+<li>祭礼武器：重置E技能</li>
+</ul>
+<h3 id="343">3.4.3 充能效率计算</h3>
+<h4 id="_34">充能效率公式</h4>
+<div class="codehilite"><pre><span></span><code>实际获取能量 = 基础能量 × 充能效率％
+
+示例（180%充能效率）：
+元素微粒 = 3 × 1.8 = 5.4点
+元素晶球 = 9 × 1.8 = 16.2点
+</code></pre></div>
+
+<h4 id="_35">充能效率来源</h4>
+<p><strong>装备来源</strong></p>
+<ul>
+<li>时之沙主属性：51.8%</li>
+<li>副词条：4.5%-6.5%每条</li>
+<li>2件绝缘套装：+20%</li>
+</ul>
+<p><strong>武器副属性</strong></p>
+<ul>
+<li>4星武器：30.6%-45.9%</li>
+<li>5星武器：36.8%-55.1%</li>
+<li>西风系列：额外产球</li>
+</ul>
+<p><strong>角色天赋</strong></p>
+<ul>
+<li>雷电将军：基于充能提供伤害</li>
+<li>莫娜：充能转化水伤</li>
+<li>北斗：完美弹反回能</li>
+</ul>
+<h3 id="344">3.4.4 能量循环优化</h3>
+<h4 id="_36">循环计算工具</h4>
+<p><strong>单人循环</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">计算充能需求</span><span class="p">(</span><span class="nx">技能CD</span><span class="p">,</span><span class="w"> </span><span class="nx">大招能量</span><span class="p">,</span><span class="w"> </span><span class="nx">E产球数</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">每轮产球</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">E产球数</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span><span class="w"> </span><span class="c1">// 元素微粒能量</span>
+<span class="w">    </span><span class="nx">循环次数</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="nx">大招能量</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">每轮产球</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">所需时间</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">循环次数</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="nx">技能CD</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nx">理想充能</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">大招能量</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="nx">技能CD内产球</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="mf">3</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">理想充能</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="mf">100</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;%&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>团队循环</strong></p>
+<div class="codehilite"><pre><span></span><code>总产球 = Σ(各角色E技能产球)
+能量分配 = 前台100% + 后台60%×3
+循环时长 = 最长技能CD
+充能要求 = 能量需求 / 循环获取
+</code></pre></div>
+
+<h4 id="_37">充能优化策略</h4>
+<p><strong>角色搭配</strong></p>
+<ul>
+<li>双元素共鸣：产球效率+20%</li>
+<li>充能辅助：雷电将军、菲谢尔</li>
+<li>西风武器：额外无色球</li>
+</ul>
+<p><strong>手法优化</strong></p>
+<ul>
+<li>前台拾取：最大化能量</li>
+<li>漏斗充能：集中给核心角色</li>
+<li>E技能时机：产球后切人</li>
+</ul>
+<p><strong>装备配置</strong></p>
+<ul>
+<li>充能沙漏：保证循环&gt;输出</li>
+<li>绝缘4件：充能转伤害</li>
+<li>充能武器：循环优先</li>
+</ul>
+<h2 id="35_1">3.5 暴击系统</h2>
+<h3 id="351">3.5.1 暴击率与暴击伤害</h3>
+<h4 id="_38">暴击基础数值</h4>
+<p><strong>初始属性</strong></p>
+<ul>
+<li>基础暴击率：5%</li>
+<li>基础暴击伤害：50%</li>
+<li>暴击率上限：100%</li>
+<li>暴击伤害无上限</li>
+</ul>
+<p><strong>属性来源</strong></p>
+<div class="codehilite"><pre><span></span><code>暴击率来源：
+
+- 武器副属性：22.1%-33.1%（5星）
+- 圣遗物主属性：31.1%（头部）
+- 圣遗物副属性：2.7%-3.9%每条
+- 角色突破：19.2%-38.4%
+- 共鸣/buff：15%-20%
+
+暴击伤害来源：
+
+- 武器副属性：44.1%-66.2%（5星）
+- 圣遗物主属性：62.2%（头部）
+- 圣遗物副属性：5.4%-7.8%每条
+- 角色突破：38.4%-88.4%
+</code></pre></div>
+
+<h4 id="_39">暴击判定机制</h4>
+<div class="codehilite"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">暴击判定</span><span class="p">(</span><span class="nx">暴击率</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 生成0-100的随机数</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">roll</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">roll</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">暴击率</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"> </span><span class="c1">// 暴击成功</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"> </span><span class="c1">// 未暴击</span>
+<span class="p">}</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">计算暴击伤害</span><span class="p">(</span><span class="nx">基础伤害</span><span class="p">,</span><span class="w"> </span><span class="nx">暴击伤害</span><span class="err">％</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">暴击判定</span><span class="p">(</span><span class="nx">暴击率</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">基础伤害</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="p">(</span><span class="mf">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">暴击伤害</span><span class="err">％</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">100</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">基础伤害</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="352">3.5.2 暴击收益曲线</h3>
+<h4 id="_40">暴击期望值计算</h4>
+<div class="codehilite"><pre><span></span><code>暴击期望伤害 = 基础伤害 × [1 + (暴击率 × 暴击伤害)]
+
+示例计算：
+70%暴击率，140%暴击伤害
+期望值 = 100 × [1 + (0.7 × 1.4)] = 198
+
+50%暴击率，200%暴击伤害
+期望值 = 100 × [1 + (0.5 × 2.0)] = 200
+</code></pre></div>
+
+<h4 id="_41">暴击配比优化</h4>
+<p><strong>黄金比例</strong></p>
+<ul>
+<li>理想比例：暴击率:暴击伤害 = 1:2</li>
+<li>实战建议：70%暴击率 + 140%暴击伤害</li>
+<li>极限配置：100%暴击率 + 200%+暴击伤害</li>
+</ul>
+<p><strong>收益递减分析</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">计算暴击收益</span><span class="p">(</span><span class="nx">当前暴率</span><span class="p">,</span><span class="w"> </span><span class="nx">当前爆伤</span><span class="p">,</span><span class="w"> </span><span class="nx">新增类型</span><span class="p">,</span><span class="w"> </span><span class="nx">新增值</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">原期望</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="nx">当前暴率</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">当前爆伤</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">新期望</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">新增类型</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;暴击率&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">新期望</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">((</span><span class="nx">当前暴率</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">新增值</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">当前爆伤</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">新期望</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="nx">当前暴率</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="nx">当前爆伤</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">新增值</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="nx">新期望</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">原期望</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">原期望</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">100</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;%提升&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="353">3.5.3 暴击动画与特效</h3>
+<h4 id="_42">暴击视觉反馈</h4>
+<p><strong>数字表现</strong></p>
+<ul>
+<li>普通伤害：白色，标准大小</li>
+<li>暴击伤害：橙色，1.5倍大小</li>
+<li>暴击动画：弹跳效果+光晕扩散</li>
+</ul>
+<p><strong>音效设计</strong></p>
+<ul>
+<li>普通命中：轻微打击音</li>
+<li>暴击命中：重音+金属音</li>
+<li>连续暴击：音调递增</li>
+</ul>
+<p><strong>特效层级</strong></p>
+<ol>
+<li>命中闪光（0.1秒）</li>
+<li>数字弹出（0.3秒）</li>
+<li>光环扩散（0.5秒）</li>
+<li>粒子飞散（0.8秒）</li>
+</ol>
+<h3 id="354">3.5.4 暴击流派构建</h3>
+<h4 id="build">主流暴击build</h4>
+<p><strong>纯暴击流</strong></p>
+<div class="codehilite"><pre><span></span><code>配装思路：
+
+- 武器：高暴击副属性
+- 圣遗物：暴击/爆伤头
+- 副词条：全追暴击双爆
+- 目标：100%暴率，250%+爆伤
+代表角色：甘雨、胡桃
+</code></pre></div>
+
+<p><strong>暴击反应流</strong></p>
+<div class="codehilite"><pre><span></span><code>配装思路：
+
+- 平衡暴击与元素精通
+- 暴击率60-70%
+- 元素精通200-300
+- 利用反应+暴击双重增幅
+代表角色：宵宫、迪卢克
+</code></pre></div>
+
+<p><strong>速切爆发流</strong></p>
+<div class="codehilite"><pre><span></span><code>配装思路：
+
+- 高爆伤，中等暴率
+- 配合增益确保暴击
+- 爆发窗口期输出
+代表角色：优菈、雷电将军
+</code></pre></div>
+
+<h2 id="36-combo_1">3.6 连击与combo系统</h2>
+<h3 id="361">3.6.1 连击计数机制</h3>
+<h4 id="_43">连击判定规则</h4>
+<p><strong>触发条件</strong></p>
+<ul>
+<li>命中间隔 &lt; 3秒</li>
+<li>目标存活</li>
+<li>伤害 &gt; 0</li>
+</ul>
+<p><strong>计数规则</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nx">ComboSystem</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">combo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">lastHitTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">comboTimeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3000</span><span class="p">;</span><span class="w"> </span><span class="c1">// 3秒</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">onHit</span><span class="p">(</span><span class="nx">damage</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">currentTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">currentTime</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">lastHitTime</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">comboTimeout</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">combo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// 重置连击</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">damage</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">combo</span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="nx">lastHitTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">currentTime</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">combo</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4 id="_44">连击显示系统</h4>
+<p><strong>UI表现</strong></p>
+<ul>
+<li>位置：屏幕右侧</li>
+<li>字体：逐渐放大效果</li>
+<li>颜色：随连击数变化</li>
+<li>1-10：白色</li>
+<li>11-30：蓝色</li>
+<li>31-50：紫色</li>
+<li>51-99：金色</li>
+<li>100+：彩虹色</li>
+</ul>
+<h3 id="362">3.6.2 连击伤害加成</h3>
+<h4 id="_45">加成计算公式</h4>
+<div class="codehilite"><pre><span></span><code>连击伤害加成 = min(50%, 连击数 × 0.5%)
+
+实际伤害 = 基础伤害 × (1 + 连击伤害加成)
+
+示例：
+30连击 = 15%伤害加成
+60连击 = 30%伤害加成
+100连击 = 50%伤害加成（上限）
+</code></pre></div>
+
+<h4 id="_46">连击等级奖励</h4>
+<p>| 连击数 | 等级称号 | 伤害加成 | 额外奖励 |</p>
+<table>
+<thead>
+<tr>
+<th>连击数</th>
+<th>等级称号</th>
+<th>伤害加成</th>
+<th>额外奖励</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>新手</td>
+<td>5%</td>
+<td>无</td>
+</tr>
+<tr>
+<td>30</td>
+<td>熟练</td>
+<td>15%</td>
+<td>经验×1.2</td>
+</tr>
+<tr>
+<td>50</td>
+<td>精通</td>
+<td>25%</td>
+<td>掉率×1.5</td>
+</tr>
+<tr>
+<td>100</td>
+<td>传说</td>
+<td>50%</td>
+<td>稀有掉落</td>
+</tr>
+<tr>
+<td>200</td>
+<td>神话</td>
+<td>50%</td>
+<td>成就解锁</td>
+</tr>
+</tbody>
+</table>
+<h3 id="363">3.6.3 连击中断条件</h3>
+<h4 id="_47">中断触发</h4>
+<ul>
+<li><strong>超时中断</strong>：3秒无伤害</li>
+<li><strong>被击中断</strong>：受到重击</li>
+<li><strong>切换角色</strong>：连击保留50%</li>
+<li><strong>场景转换</strong>：完全重置</li>
+</ul>
+<h4 id="_48">连击保护机制</h4>
+<ul>
+<li><strong>格挡保护</strong>：完美格挡不断连</li>
+<li><strong>护盾保护</strong>：护盾期间不断连</li>
+<li><strong>无敌帧</strong>：大招期间连击保护</li>
+<li><strong>复活续连</strong>：复活后3秒内可续</li>
+</ul>
+<h3 id="364">3.6.4 连击奖励系统</h3>
+<h4 id="_49">结算奖励</h4>
+<div class="codehilite"><pre><span></span><code>基础分 = 连击数 × 10
+时间加成 = (1 + 速通系数) × 基础分
+完美加成 = 无伤 ? 基础分 × 2 : 基础分
+
+总分 = 基础分 + 时间加成 + 完美加成
+</code></pre></div>
+
+<h4 id="_50">连击成就</h4>
+<ul>
+<li><strong>初露锋芒</strong>：达成10连击</li>
+<li><strong>势如破竹</strong>：达成50连击</li>
+<li><strong>天下无双</strong>：达成100连击</li>
+<li><strong>超越极限</strong>：达成200连击</li>
+<li><strong>连击之神</strong>：达成500连击</li>
+</ul>
+<h2 id="37-buffdebuff_1">3.7 buff与debuff机制</h2>
+<h3 id="371">3.7.1 增益效果分类</h3>
+<h4 id="_51">属性增益</h4>
+<p><strong>攻击类增益</strong></p>
+<ul>
+<li>攻击力提升：+20%-100%</li>
+<li>攻速提升：+15%-50%</li>
+<li>暴击率提升：+10%-30%</li>
+<li>暴击伤害提升：+20%-60%</li>
+</ul>
+<p><strong>防御类增益</strong></p>
+<ul>
+<li>防御力提升：+20%-50%</li>
+<li>抗性提升：+15%-30%</li>
+<li>护盾强效：+20%-35%</li>
+<li>治疗加成：+15%-25%</li>
+</ul>
+<p><strong>元素类增益</strong></p>
+<ul>
+<li>元素伤害提升：+15%-35%</li>
+<li>元素精通提升：+50-200</li>
+<li>元素充能效率：+20%-45%</li>
+<li>反应伤害加成：+20%-40%</li>
+</ul>
+<h4 id="_52">特殊增益</h4>
+<p><strong>机制类</strong></p>
+<ul>
+<li>霸体状态：免疫击退</li>
+<li>元素附魔：普攻转元素</li>
+<li>冷却缩减：-10%-20%</li>
+<li>移速提升：+10%-30%</li>
+</ul>
+<h3 id="372">3.7.2 减益效果类型</h3>
+<h4 id="_53">属性削弱</h4>
+<p><strong>输出削弱</strong></p>
+<ul>
+<li>攻击力降低：-20%-50%</li>
+<li>攻速降低：-15%-30%</li>
+<li>元素抗性降低：-20%-40%</li>
+</ul>
+<p><strong>防御削弱</strong></p>
+<ul>
+<li>防御力降低：-20%-40%</li>
+<li>易伤状态：+15%-30%受伤</li>
+<li>破甲效果：无视20%-50%防御</li>
+</ul>
+<h4 id="_54">控制效果</h4>
+<p><strong>硬控制</strong></p>
+<ul>
+<li>冻结：2-4秒无法行动</li>
+<li>石化：1-3秒无法行动</li>
+<li>眩晕：0.5-2秒无法行动</li>
+</ul>
+<p><strong>软控制</strong></p>
+<ul>
+<li>减速：-30%-70%移速</li>
+<li>沉默：无法释放技能</li>
+<li>缴械：无法普攻</li>
+</ul>
+<h3 id="373">3.7.3 效果叠加规则</h3>
+<h4 id="_55">叠加类型</h4>
+<p><strong>覆盖叠加</strong></p>
+<ul>
+<li>同类效果取最高值</li>
+<li>持续时间独立计算</li>
+<li>示例：两个攻击力buff取高</li>
+</ul>
+<p><strong>累加叠加</strong></p>
+<ul>
+<li>数值直接相加</li>
+<li>有叠加上限</li>
+<li>示例：护盾值累加</li>
+</ul>
+<p><strong>独立叠加</strong></p>
+<ul>
+<li>各自独立生效</li>
+<li>分别计算效果</li>
+<li>示例：不同来源减防</li>
+</ul>
+<h4 id="_56">叠加公式</h4>
+<div class="codehilite"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">计算最终属性</span><span class="p">(</span><span class="nx">基础值</span><span class="p">,</span><span class="w"> </span><span class="nx">buff数组</span><span class="p">,</span><span class="w"> </span><span class="nx">debuff数组</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">增益总和</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">减益总和</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// 处理增益</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">buff</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">buff数组</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">buff</span><span class="p">.</span><span class="nx">类型</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;累加&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">增益总和</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">buff</span><span class="p">.</span><span class="nx">数值</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">buff</span><span class="p">.</span><span class="nx">类型</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;覆盖&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">增益总和</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">增益总和</span><span class="p">,</span><span class="w"> </span><span class="nx">buff</span><span class="p">.</span><span class="nx">数值</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 处理减益</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">debuff</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">debuff数组</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">减益总和</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nx">debuff</span><span class="p">.</span><span class="nx">数值</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">基础值</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="p">(</span><span class="mf">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">增益总和</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">减益总和</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="374">3.7.4 状态优先级</h3>
+<h4 id="_57">优先级规则</h4>
+<p><strong>控制优先级</strong></p>
+<ol>
+<li>石化（最高）</li>
+<li>冻结</li>
+<li>眩晕</li>
+<li>击飞</li>
+<li>减速（最低）</li>
+</ol>
+<p><strong>buff优先级</strong></p>
+<ol>
+<li>无敌/免伤</li>
+<li>霸体</li>
+<li>护盾</li>
+<li>增益效果</li>
+<li>普通状态</li>
+</ol>
+<h4 id="_58">状态互斥</h4>
+<ul>
+<li>冻结免疫击退</li>
+<li>霸体免疫控制</li>
+<li>护盾阻挡debuff</li>
+<li>净化移除负面</li>
+</ul>
+<h2 id="38-ai_1">3.8 战斗AI系统</h2>
+<h3 id="381-ai">3.8.1 敌人AI行为树</h3>
+<h4 id="_59">行为树结构</h4>
+<div class="codehilite"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nx">EnemyAI</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">行为树</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">根节点</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">类型</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;选择器&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">子节点</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                    </span><span class="k">this</span><span class="p">.</span><span class="nx">生存节点</span><span class="p">(),</span>
+<span class="w">                    </span><span class="k">this</span><span class="p">.</span><span class="nx">攻击节点</span><span class="p">(),</span>
+<span class="w">                    </span><span class="k">this</span><span class="p">.</span><span class="nx">巡逻节点</span><span class="p">()</span>
+<span class="w">                </span><span class="p">]</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">生存节点</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">类型</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;序列器&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">条件</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">hp</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">行为</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;寻找掩护&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;使用治疗&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;召唤支援&quot;</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">攻击节点</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">类型</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;序列器&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">条件</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">检测到敌人</span><span class="p">(),</span>
+<span class="w">            </span><span class="nx">行为</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="s2">&quot;瞄准目标&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;选择技能&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="s2">&quot;执行攻击&quot;</span>
+<span class="w">            </span><span class="p">]</span>
+<span class="w">        </span><span class="p">};</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4 id="ai">AI难度等级</h4>
+<p><strong>简单AI</strong></p>
+<ul>
+<li>反应时间：1-2秒</li>
+<li>技能使用：随机</li>
+<li>躲避率：20%</li>
+<li>配合度：0%</li>
+</ul>
+<p><strong>普通AI</strong></p>
+<ul>
+<li>反应时间：0.5-1秒</li>
+<li>技能使用：条件触发</li>
+<li>躲避率：40%</li>
+<li>配合度：30%</li>
+</ul>
+<p><strong>困难AI</strong></p>
+<ul>
+<li>反应时间：0.2-0.5秒</li>
+<li>技能使用：优化combo</li>
+<li>躲避率：60%</li>
+<li>配合度：70%</li>
+</ul>
+<p><strong>噩梦AI</strong></p>
+<ul>
+<li>反应时间：0.1秒</li>
+<li>技能使用：完美循环</li>
+<li>躲避率：80%</li>
+<li>配合度：95%</li>
+</ul>
+<h3 id="382">3.8.2 仇恨值机制</h3>
+<h4 id="_60">仇恨计算</h4>
+<div class="codehilite"><pre><span></span><code>仇恨值 = 造成伤害 × 仇恨系数 + 技能仇恨 + 距离修正
+
+仇恨系数：
+
+- 主C：1.5
+- 副C：1.2
+- 辅助：0.8
+- 奶妈：0.6
+
+技能仇恨：
+
+- 普攻：+10
+- E技能：+30
+- Q技能：+50
+- 嘲讽：+500
+</code></pre></div>
+
+<h4 id="_61">仇恨转移</h4>
+<ul>
+<li><strong>嘲讽技能</strong>：强制转移</li>
+<li><strong>高伤害</strong>：超过30%血量</li>
+<li><strong>治疗行为</strong>：+20仇恨/秒</li>
+<li><strong>仇恨衰减</strong>：-5/秒</li>
+</ul>
+<h3 id="383">3.8.3 技能释放逻辑</h3>
+<h4 id="_62">技能决策树</h4>
+<div class="codehilite"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">选择技能</span><span class="p">(</span><span class="nx">当前状态</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 优先级判断</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">血量</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">30</span><span class="o">%</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">有治疗技能</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">释放治疗</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">多个敌人</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">有AOE技能</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">释放AOE</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">敌人虚弱</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">有爆发技能</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">释放爆发</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">技能冷却中</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">普通攻击</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">最优技能</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4 id="_63">技能组合</h4>
+<ul>
+<li><strong>连招系统</strong>：A→B→C固定连招</li>
+<li><strong>反应链</strong>：元素技能配合</li>
+<li><strong>时机把握</strong>：预判玩家行动</li>
+<li><strong>假动作</strong>：迷惑玩家</li>
+</ul>
+<h3 id="384-ai">3.8.4 协同作战AI</h3>
+<h4 id="_64">团队配合</h4>
+<p><strong>阵型保持</strong></p>
+<ul>
+<li>前排坦克</li>
+<li>中排输出</li>
+<li>后排辅助</li>
+<li>动态调整</li>
+</ul>
+<p><strong>技能协同</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nx">团队AI</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">协同攻击</span><span class="p">(</span><span class="nx">目标</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 坦克先手控制</span>
+<span class="w">        </span><span class="nx">坦克</span><span class="p">.</span><span class="nx">使用控制技能</span><span class="p">(</span><span class="nx">目标</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// 等待0.5秒</span>
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// 输出集火</span>
+<span class="w">            </span><span class="nx">所有DPS</span><span class="p">.</span><span class="nx">集火</span><span class="p">(</span><span class="nx">目标</span><span class="p">);</span>
+<span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="mf">500</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// 辅助增益</span>
+<span class="w">        </span><span class="nx">辅助</span><span class="p">.</span><span class="nx">释放增益</span><span class="p">(</span><span class="nx">团队</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>战术执行</strong></p>
+<ul>
+<li><strong>集火战术</strong>：优先击杀</li>
+<li><strong>分散战术</strong>：避免AOE</li>
+<li><strong>保护战术</strong>：护卫关键单位</li>
+<li><strong>撤退战术</strong>：有序撤退</li>
+</ul>
+<h2 id="_65">本章小结</h2>
+<p>本章详细阐述了《机甲崩坏：变异纪元》的核心战斗系统与伤害计算机制。通过精确的数值公式和丰富的战斗机制，确保游戏战斗体验既有深度又不失平衡性。</p>
+<p>关键要点：</p>
+<ol>
+<li><strong>伤害计算</strong>采用多层乘区设计，提供丰富的build构建空间</li>
+<li><strong>元素反应</strong>系统继承原神精髓，同时加入机甲特色</li>
+<li><strong>暴击系统</strong>提供稳定收益曲线，避免过度随机</li>
+<li><strong>连击机制</strong>鼓励连续作战，提升操作上限</li>
+<li><strong>AI系统</strong>提供多样化挑战，确保PVE内容可玩性</li>
+</ol>
+<p>所有数值均经过精心设计与平衡，确保不同流派都有其独特优势，为玩家提供多样化的游戏体验。</p>
+<hr />
+<p><em>第三章完</em></p>
+            </article>
+            
+            <nav class="page-nav"><a href="chapter2.html" class="nav-link prev">← 第二章 - UI/UX与唯美风格美术规范</a><a href="chapter4.html" class="nav-link next">第四章 - 武器装备与强化系统 →</a></nav>
+        </main>
+    </div>
+</body>
+</html>

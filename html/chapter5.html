@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="./">
+    <title>第五章 - 机甲驾驶员角色设计</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/highlight.css">
+    <script src="assets/script.js" defer></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']],
+                processEscapes: false,
+                packages: {'[+]': ['noerrors', 'ams']}
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            },
+            loader: {
+                load: ['[tex]/noerrors', '[tex]/ams']
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h3>目录</h3>
+                <button id="sidebar-toggle" class="sidebar-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <div class="sidebar-search">
+                <input type="text" id="sidebar-search-input" placeholder="搜索..." autocomplete="off">
+            </div>
+            <div id="tree-container">
+                <nav class="tree-nav" role="tree">
+                    <div class="tree-item " >
+                        <a href="index.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">机甲崩坏：变异纪元 - 游戏设计规格说明书</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter1.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第一章 - 世界观与故事背景</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter2.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第二章 - UI/UX与唯美风格美术规范</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter3.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第三章 - 战斗系统与伤害计算</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter4.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第四章 - 武器装备与强化系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item active" >
+                        <a href="chapter5.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第五章 - 机甲驾驶员角色设计</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter6.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第六章 - 变异生物图鉴与数值设计</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter7.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第七章 - 提瓦特废土地形系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter8.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第八章 - 圣遗物装备进阶系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter9.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第九章 - 召唤物与僚机系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter10.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十章 - 补给系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter11.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十一章 - 宿舍系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter13.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十章 - 凯瑟琳的试炼（教学关卡）</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter14.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十一章 - 层岩巨渊·机械废墟</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter15.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十二章 - 深渊螺旋·终焉之刻</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="CLAUDE.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">Untitled</span>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </nav>
+        
+        <main class="content">
+            <article>
+                <h1 id="-">第五章 - 机甲驾驶员角色设计</h1>
+<h2 id="_1">概述</h2>
+<h3 id="_2">设计理念</h3>
+<p>在崩坏的提瓦特大陆上，幸存的原神们驾驶着融合了各自元素力量的专属机甲，继续守护着这片满目疮痍的土地。每台机甲都保留了原主人的战斗风格与元素特性，通过天理陨落后残存的神之眼核心驱动，展现出独特的战斗美学。</p>
+<h3 id="_3">角色定位系统</h3>
+<ul>
+<li><strong>主C（Main DPS）</strong>：持续站场输出，需要大量场上时间</li>
+<li><strong>副C（Sub DPS）</strong>：快速切入释放技能后切出，提供后台输出</li>
+<li><strong>辅助（Support）</strong>：提供增益效果、控制、聚怪等功能性支援</li>
+<li><strong>生存位（Sustain）</strong>：提供护盾或治疗，保证队伍生存能力</li>
+</ul>
+<h3 id="_4">通用机甲系统</h3>
+<h4 id="_5">基础数值框架</h4>
+<ul>
+<li><strong>等级范围</strong>：1-90级，设有20/40/50/60/70/80级突破节点</li>
+<li><strong>生命值范围</strong>：15000（辅助型）- 25000（坦克型）</li>
+<li><strong>攻击力范围</strong>：800（防御型）- 1200（输出型）</li>
+<li><strong>防御力范围</strong>：600（输出型）- 900（防御型）</li>
+<li><strong>移动速度</strong>：基础100%，可通过形态切换调整</li>
+</ul>
+<h4 id="_6">技能系统</h4>
+<ul>
+<li><strong>普通攻击</strong>：无冷却，可升级1-10级</li>
+<li><strong>元素战技（E）</strong>：6-12秒冷却，可升级1-10级</li>
+<li><strong>元素爆发（Q）</strong>：需要40-80点能量，可升级1-10级</li>
+<li><strong>被动天赋1</strong>：20级突破解锁</li>
+<li><strong>被动天赋2</strong>：60级突破解锁</li>
+<li><strong>固有天赋</strong>：初始即拥有</li>
+</ul>
+<h4 id="_7">命座系统</h4>
+<p>每个角色拥有6层命座，通过收集对应角色碎片解锁：</p>
+<ul>
+<li><strong>1命</strong>：强化基础机制</li>
+<li><strong>2命</strong>：提升输出能力</li>
+<li><strong>3命</strong>：E技能+3级</li>
+<li><strong>4命</strong>：增加功能性</li>
+<li><strong>5命</strong>：Q技能+3级</li>
+<li><strong>6命</strong>：质变级强化</li>
+</ul>
+<h2 id="c-">火系主C - 「彼岸蝶舞」胡桃型机甲</h2>
+<h3 id="_8">基础信息</h3>
+<ul>
+<li><strong>代号</strong>：HT-77「彼岸蝶舞」</li>
+<li><strong>驾驶员</strong>：往生堂第七十七代传人</li>
+<li><strong>定位</strong>：火元素主C，爆发输出型</li>
+<li><strong>武器类型</strong>：长枪型粒子炮</li>
+<li><strong>特色机制</strong>：HP管理与爆发输出</li>
+</ul>
+<h3 id="_9">外观设计</h3>
+<ul>
+<li><strong>机体配色</strong>：深红主色 + 黑色装甲边缘 + 金色蝴蝶纹饰</li>
+<li><strong>高达形态</strong>：修长灵活的人型机甲，背部配有蝴蝶翼状推进器</li>
+<li><strong>坦克形态</strong>：低矮的突击战车，炮管呈现梅花枪造型</li>
+<li><strong>特效元素</strong>：彼岸花瓣飘散，蝴蝶状火焰环绕</li>
+</ul>
+<h3 id="_10">属性成长</h3>
+<p>| 等级 | 生命值 | 攻击力 | 防御力 | 暴击伤害 |</p>
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>生命值</th>
+<th>攻击力</th>
+<th>防御力</th>
+<th>暴击伤害</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>15552</td>
+<td>106</td>
+<td>68</td>
+<td>50%</td>
+</tr>
+<tr>
+<td>20</td>
+<td>4013</td>
+<td>274</td>
+<td>177</td>
+<td>50%</td>
+</tr>
+<tr>
+<td>40</td>
+<td>6029</td>
+<td>411</td>
+<td>265</td>
+<td>59.6%</td>
+</tr>
+<tr>
+<td>50</td>
+<td>6990</td>
+<td>477</td>
+<td>308</td>
+<td>69.2%</td>
+</tr>
+<tr>
+<td>60</td>
+<td>7926</td>
+<td>540</td>
+<td>349</td>
+<td>69.2%</td>
+</tr>
+<tr>
+<td>70</td>
+<td>8862</td>
+<td>604</td>
+<td>390</td>
+<td>78.8%</td>
+</tr>
+<tr>
+<td>80</td>
+<td>9797</td>
+<td>668</td>
+<td>431</td>
+<td>78.8%</td>
+</tr>
+<tr>
+<td>90</td>
+<td>10826</td>
+<td>738</td>
+<td>476</td>
+<td>88.4%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_11">技能详解</h3>
+<h4 id="-_1">普通攻击 - 往生秘传枪法</h4>
+<ul>
+<li><strong>描述</strong>：挥舞粒子长枪进行至多六段连击</li>
+<li><strong>倍率</strong>（10级）：</li>
+<li>第一段：83.6%</li>
+<li>第二段：86.4%</li>
+<li>第三段：108.9%</li>
+<li>第四段：119.2%</li>
+<li>第五段：59.3% + 62.4%</li>
+<li>第六段：153.4%</li>
+<li><strong>重击</strong>：消耗25点体力，向前突进并造成242%攻击力的伤害</li>
+</ul>
+<h4 id="-_2">元素战技 - 蝶引来生</h4>
+<ul>
+<li><strong>冷却时间</strong>：16秒</li>
+<li><strong>持续时间</strong>：9秒</li>
+<li><strong>效果</strong>：</li>
+<li>消耗当前生命值的30%（最多消耗当前生命值）</li>
+<li>获得「彼岸蝶舞」状态：<ul>
+<li>基于已损失生命值提升攻击力（最高400%基础攻击力）</li>
+<li>将攻击伤害转化为火元素伤害</li>
+<li>提升中断抗性</li>
+<li>普攻与重击附加「血梅香」效果</li>
+</ul>
+</li>
+</ul>
+<h4 id="-_3">元素爆发 - 安神秘法</h4>
+<ul>
+<li><strong>能量需求</strong>：60</li>
+<li><strong>冷却时间</strong>：15秒</li>
+<li><strong>效果</strong>：</li>
+<li>造成范围火元素伤害：617%攻击力</li>
+<li>若命中敌人，为自身恢复生命值</li>
+<li>若生命值低于50%，伤害与治疗量提升33%</li>
+</ul>
+<h4 id="_12">被动天赋</h4>
+<ol>
+<li>
+<p><strong>蝶隐之时</strong>（20级解锁）：
+   - 「彼岸蝶舞」状态结束时，队伍中所有角色暴击率+12%，持续8秒</p>
+</li>
+<li>
+<p><strong>血之灶火</strong>（60级解锁）：
+   - 生命值低于或等于50%时，火元素伤害加成+33%</p>
+</li>
+<li>
+<p><strong>往生堂传承</strong>（固有天赋）：
+   - 对生命值低于50%的敌人造成伤害+25%</p>
+</li>
+</ol>
+<h3 id="_13">命座效果</h3>
+<ol>
+<li><strong>朱色之忆</strong>：E技能期间，重击不消耗体力</li>
+<li><strong>最上妙法</strong>：血梅香造成的伤害提升攻击力的10%为额外伤害</li>
+<li><strong>血染千里</strong>：E技能等级+3</li>
+<li><strong>伴君眠花房</strong>：血梅香暴击时，为胡桃之外的队友增加12%暴击率</li>
+<li><strong>彼岸花开</strong>：Q技能等级+3</li>
+<li><strong>冥蝶振翅</strong>：生命值降至25%以下触发，获得200%暴击率加成，10秒冷却</li>
+</ol>
+<h3 id="_14">推荐配装</h3>
+<ul>
+<li><strong>最佳武器</strong>：护摩之杖（暴击伤害66.2%，基于HP提升攻击）</li>
+<li><strong>替代武器</strong>：和璞鸢、决斗之枪</li>
+<li><strong>圣遗物套装</strong>：</li>
+<li>4件套「炽烈的炎之魔女」：火伤+15%，反应伤害+40%</li>
+<li>2件套「炽烈的炎之魔女」+2件套「千岩牢固」：火伤+15%，HP+20%</li>
+<li><strong>主属性选择</strong>：生命沙漏、火伤杯、暴击/暴伤头</li>
+<li><strong>副属性优先级</strong>：暴击率&gt;暴击伤害&gt;生命%&gt;攻击%&gt;元素精通</li>
+</ul>
+<h3 id="_15">队伍搭配</h3>
+<ul>
+<li><strong>蒸发队</strong>：胡桃 + 行秋 + 钟离 + 万叶</li>
+<li><strong>融化队</strong>：胡桃 + 神里绫华 + 钟离 + 纳西妲</li>
+<li><strong>双火共鸣</strong>：胡桃 + 另一火系 + 行秋 + 万叶</li>
+</ul>
+<h3 id="_16">玩法技巧</h3>
+<ol>
+<li><strong>HP管理</strong>：保持50%以下HP以获得最大输出</li>
+<li><strong>循环节奏</strong>：E → 普攻×N → 重击 → Q（作为终结技）</li>
+<li><strong>取消后摇</strong>：跳跃取消或冲刺取消提高输出效率</li>
+<li><strong>元素附着</strong>：注意内置冷却，合理安排蒸发触发</li>
+</ol>
+<h2 id="c-_1">雷系主C - 「无想的一刀」雷电将军型机甲</h2>
+<h3 id="_17">基础信息</h3>
+<ul>
+<li><strong>代号</strong>：EI-∞「永恒守望」</li>
+<li><strong>驾驶员</strong>：稻妻幕府大将军</li>
+<li><strong>定位</strong>：雷元素主C，充能循环型</li>
+<li><strong>武器类型</strong>：薙刀型电浆炮</li>
+<li><strong>特色机制</strong>：愿力积累与雷罚审判</li>
+</ul>
+<h3 id="_18">外观设计</h3>
+<ul>
+<li><strong>机体配色</strong>：紫色主体 + 黑金装甲 + 雷电纹路</li>
+<li><strong>高达形态</strong>：威严的将军型机甲，背部环绕雷之轮</li>
+<li><strong>坦克形态</strong>：浮空要塞形态，周身环绕紫电护罩</li>
+<li><strong>特效元素</strong>：永恒之环旋转，梦想一心刀光闪烁</li>
+</ul>
+<h3 id="_19">属性成长</h3>
+<p>| 等级 | 生命值 | 攻击力 | 防御力 | 充能效率 |</p>
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>生命值</th>
+<th>攻击力</th>
+<th>防御力</th>
+<th>充能效率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>12907</td>
+<td>26</td>
+<td>61</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>20</td>
+<td>3349</td>
+<td>68</td>
+<td>159</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>40</td>
+<td>5031</td>
+<td>102</td>
+<td>239</td>
+<td>108%</td>
+</tr>
+<tr>
+<td>50</td>
+<td>5833</td>
+<td>118</td>
+<td>277</td>
+<td>116%</td>
+</tr>
+<tr>
+<td>60</td>
+<td>6615</td>
+<td>134</td>
+<td>314</td>
+<td>116%</td>
+</tr>
+<tr>
+<td>70</td>
+<td>7396</td>
+<td>149</td>
+<td>351</td>
+<td>124%</td>
+</tr>
+<tr>
+<td>80</td>
+<td>8178</td>
+<td>165</td>
+<td>388</td>
+<td>124%</td>
+</tr>
+<tr>
+<td>90</td>
+<td>9040</td>
+<td>182</td>
+<td>429</td>
+<td>132%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_20">技能详解</h3>
+<h4 id="-_4">普通攻击 - 源流</h4>
+<ul>
+<li><strong>描述</strong>：进行至多五段的连续枪击</li>
+<li><strong>倍率</strong>（10级）：</li>
+<li>第一段：73.9%</li>
+<li>第二段：71.6%</li>
+<li>第三段：88.3%</li>
+<li>第四段：50.7% + 50.7%</li>
+<li>第五段：120.5%</li>
+<li><strong>重击</strong>：消耗25点体力，造成187%攻击力的伤害</li>
+</ul>
+<h4 id="-_5">元素战技 - 神变·恶曜开眼</h4>
+<ul>
+<li><strong>冷却时间</strong>：10秒</li>
+<li><strong>持续时间</strong>：25秒</li>
+<li><strong>效果</strong>：</li>
+<li>造成雷元素范围伤害：211%攻击力</li>
+<li>为周围队友赋予「雷罚恶曜之眼」：<ul>
+<li>角色攻击命中时，协同攻击造成75%攻击力的雷元素伤害</li>
+<li>每0.9秒触发一次</li>
+<li>产生的元素能量将为雷电将军积累「愿力」层数</li>
+</ul>
+</li>
+</ul>
+<h4 id="-_6">元素爆发 - 奥义·梦想真说</h4>
+<ul>
+<li><strong>能量需求</strong>：90</li>
+<li><strong>冷却时间</strong>：18秒</li>
+<li><strong>持续时间</strong>：7秒</li>
+<li><strong>效果</strong>：</li>
+<li>聚集愿力，斩出梦想一刀：721%攻击力 + 愿力加成</li>
+<li>进入「梦想一心」状态：<ul>
+<li>攻击转化为雷元素伤害</li>
+<li>免疫感电反应</li>
+<li>攻击命中时为全队恢复能量（每秒最多5次）</li>
+<li>基于愿力层数提升伤害</li>
+</ul>
+</li>
+</ul>
+<h4 id="_21">被动天赋</h4>
+<ol>
+<li>
+<p><strong>千万的愿望</strong>（20级解锁）：
+   - 基于充能效率超过100%的部分，提升雷电伤害（每1%充能=0.6%雷伤）</p>
+</li>
+<li>
+<p><strong>殊胜之道</strong>（60级解锁）：
+   - 基于充能效率超过100%的部分，提升能量恢复（每1%充能=0.4%恢复）</p>
+</li>
+<li>
+<p><strong>将军的威严</strong>（固有天赋）：
+   - 队伍元素爆发能量消耗降低20%</p>
+</li>
+</ol>
+<h3 id="_22">命座效果</h3>
+<ol>
+<li><strong>恶曜真眼</strong>：愿力积累速度+20%，愿力层数上限+60</li>
+<li><strong>斩铁断金</strong>：梦想一心状态无视60%防御</li>
+<li><strong>真影旧事</strong>：Q技能等级+3</li>
+<li><strong>誓奉常道</strong>：梦想一心结束后，攻击力+30%，持续10秒</li>
+<li><strong>凶将显现</strong>：E技能等级+3</li>
+<li><strong>负愿前行</strong>：梦想一心状态下，每1秒降低全队元素爆发冷却1秒</li>
+</ol>
+<h3 id="_23">推荐配装</h3>
+<ul>
+<li><strong>最佳武器</strong>：薙草之稻光（充能效率55.1%，攻击力基于充能提升）</li>
+<li><strong>替代武器</strong>：天空之脊、渔获</li>
+<li><strong>圣遗物套装</strong>：</li>
+<li>4件套「绝缘之旗印」：充能+20%，基于充能提升爆发伤害（最高75%）</li>
+<li>2件套「绝缘之旗印」+2件套「追忆之注连」：充能+20%，攻击+18%</li>
+<li><strong>主属性选择</strong>：充能/攻击沙漏、雷伤杯、暴击头</li>
+<li><strong>副属性优先级</strong>：充能效率&gt;暴击率&gt;暴击伤害&gt;攻击%</li>
+</ul>
+<h3 id="_24">队伍搭配</h3>
+<ul>
+<li><strong>雷电国家队</strong>：雷电将军 + 行秋 + 万叶 + 班尼特</li>
+<li><strong>永冻队</strong>：雷电将军 + 神里绫华 + 行秋 + 钟离</li>
+<li><strong>超载队</strong>：雷电将军 + 胡桃 + 万叶 + 纳西妲</li>
+</ul>
+<h3 id="_25">玩法技巧</h3>
+<ol>
+<li><strong>充能循环</strong>：确保充能效率250%+以维持循环</li>
+<li><strong>愿力积累</strong>：Q前先用队友技能积累愿力</li>
+<li><strong>爆发节奏</strong>：E → 队友轮转 → Q → 7秒输出 → 循环</li>
+<li><strong>能量分配</strong>：合理利用Q为全队充能</li>
+</ol>
+<h2 id="c-_2">水系副C - 「古华剑雨」行秋型机甲</h2>
+<h3 id="_26">基础信息</h3>
+<ul>
+<li><strong>代号</strong>：XQ-42「雨帘剑舞」</li>
+<li><strong>驾驶员</strong>：古华派年轻剑客</li>
+<li><strong>定位</strong>：水元素副C，挂水辅助型</li>
+<li><strong>武器类型</strong>：剑型水刃发射器</li>
+<li><strong>特色机制</strong>：雨帘剑护盾与水剑协同</li>
+</ul>
+<h3 id="_27">外观设计</h3>
+<ul>
+<li><strong>机体配色</strong>：深蓝主色 + 青色渐变 + 古华纹饰</li>
+<li><strong>高达形态</strong>：优雅的剑士型机甲，双剑悬浮于背后</li>
+<li><strong>坦克形态</strong>：水幕护卫车，周身环绕水流护盾</li>
+<li><strong>特效元素</strong>：雨帘剑环绕，水波纹扩散效果</li>
+</ul>
+<h3 id="_28">属性成长</h3>
+<p>| 等级 | 生命值 | 攻击力 | 防御力 | 攻击力% |</p>
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>生命值</th>
+<th>攻击力</th>
+<th>防御力</th>
+<th>攻击力%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>10222</td>
+<td>17</td>
+<td>63</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>20</td>
+<td>2646</td>
+<td>43</td>
+<td>163</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>40</td>
+<td>3975</td>
+<td>65</td>
+<td>245</td>
+<td>6%</td>
+</tr>
+<tr>
+<td>50</td>
+<td>4610</td>
+<td>75</td>
+<td>284</td>
+<td>12%</td>
+</tr>
+<tr>
+<td>60</td>
+<td>5228</td>
+<td>85</td>
+<td>322</td>
+<td>12%</td>
+</tr>
+<tr>
+<td>70</td>
+<td>5846</td>
+<td>95</td>
+<td>360</td>
+<td>18%</td>
+</tr>
+<tr>
+<td>80</td>
+<td>6464</td>
+<td>105</td>
+<td>398</td>
+<td>18%</td>
+</tr>
+<tr>
+<td>90</td>
+<td>7190</td>
+<td>117</td>
+<td>442</td>
+<td>24%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_29">技能详解</h3>
+<h4 id="-_7">普通攻击 - 古华剑法</h4>
+<ul>
+<li><strong>描述</strong>：进行至多五段的连续剑击</li>
+<li><strong>倍率</strong>（10级）：</li>
+<li>第一段：87.6%</li>
+<li>第二段：91.2%</li>
+<li>第三段：56.0% + 56.0%</li>
+<li>第四段：101.5%</li>
+<li>第五段：65.4% + 65.4%</li>
+<li><strong>重击</strong>：消耗20点体力，释放两段剑气</li>
+</ul>
+<h4 id="-_8">元素战技 - 古华剑·画雨笼山</h4>
+<ul>
+<li><strong>冷却时间</strong>：21秒</li>
+<li><strong>持续时间</strong>：15秒</li>
+<li><strong>效果</strong>：</li>
+<li>展开两段剑势：<ul>
+<li>第一段：291%攻击力 + 332%攻击力</li>
+<li>创建最大数量的「雨帘剑」环绕角色（减伤20-29%）</li>
+<li>雨帘剑破碎或持续时间结束时恢复生命值</li>
+</ul>
+</li>
+</ul>
+<h4 id="-_9">元素爆发 - 古华剑·裁雨留虹</h4>
+<ul>
+<li><strong>能量需求</strong>：80</li>
+<li><strong>冷却时间</strong>：20秒</li>
+<li><strong>持续时间</strong>：15秒</li>
+<li><strong>效果</strong>：</li>
+<li>展开剑雨结界，持续发动水剑攻击</li>
+<li>普通攻击时触发剑雨攻击：<ul>
+<li>每把剑雨：101%攻击力</li>
+<li>触发间隔：1秒/次</li>
+</ul>
+</li>
+<li>提供20%水元素抗性</li>
+</ul>
+<h4 id="_30">被动天赋</h4>
+<ol>
+<li>
+<p><strong>虚实工法</strong>（20级解锁）：
+   - 雨帘剑存在时，受到的伤害-20%</p>
+</li>
+<li>
+<p><strong>至柔至刚</strong>（60级解锁）：
+   - 基于行秋20%生命值上限，提高雨帘剑的伤害吸收量</p>
+</li>
+<li>
+<p><strong>博学多才</strong>（固有天赋）：
+   - 暴击率+15%（仅对水元素伤害生效）</p>
+</li>
+</ol>
+<h3 id="_31">命座效果</h3>
+<ol>
+<li><strong>雨帘残留</strong>：雨帘剑最大数量增加1</li>
+<li><strong>天青现虹</strong>：古华剑·裁雨留虹持续时间延长3秒</li>
+<li><strong>织诗成锦</strong>：Q技能等级+3</li>
+<li><strong>孤舟斩蛟</strong>：古华剑·裁雨留虹期间，E技能伤害提升50%</li>
+<li><strong>雨帘徘徊</strong>：E技能等级+3</li>
+<li><strong>万剑归宗</strong>：古华剑·裁雨留虹的剑雨攻击变为2/3/5把</li>
+</ol>
+<h3 id="_32">推荐配装</h3>
+<ul>
+<li><strong>最佳武器</strong>：祭礼剑（充能效率61.3%，技能重置）</li>
+<li><strong>替代武器</strong>：西风剑、天目影打刀</li>
+<li><strong>圣遗物套装</strong>：</li>
+<li>4件套「绝缘之旗印」：充能+20%，基于充能提升爆发伤害</li>
+<li>2件套「绝缘之旗印」+2件套「沉沦之心」：充能+20%，水伤+15%</li>
+<li><strong>主属性选择</strong>：攻击/充能沙漏、水伤杯、暴击头</li>
+<li><strong>副属性优先级</strong>：充能效率&gt;暴击率&gt;暴击伤害&gt;攻击%</li>
+</ul>
+<h3 id="_33">队伍搭配</h3>
+<ul>
+<li><strong>蒸发队核心</strong>：行秋 + 胡桃 + 钟离 + 万叶</li>
+<li><strong>感电队</strong>：行秋 + 雷电将军 + 万叶 + 纳西妲</li>
+<li><strong>永冻队</strong>：行秋 + 神里绫华 + 万叶 + 钟离</li>
+</ul>
+<h3 id="_34">玩法技巧</h3>
+<ol>
+<li><strong>充能管理</strong>：保持200%+充能确保大招循环</li>
+<li><strong>技能衔接</strong>：E → Q → 切人，提供持续挂水</li>
+<li><strong>祭礼触发</strong>：E技能两段均可触发祭礼重置</li>
+<li><strong>减伤叠加</strong>：雨帘剑+被动可达40%+减伤</li>
+</ol>
+            </article>
+            
+            <nav class="page-nav"><a href="chapter4.html" class="nav-link prev">← 第四章 - 武器装备与强化系统</a><a href="chapter6.html" class="nav-link next">第六章 - 变异生物图鉴与数值设计 →</a></nav>
+        </main>
+    </div>
+</body>
+</html>

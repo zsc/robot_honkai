@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="./">
+    <title>第十一章 - 层岩巨渊·机械废墟</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/highlight.css">
+    <script src="assets/script.js" defer></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']],
+                processEscapes: false,
+                packages: {'[+]': ['noerrors', 'ams']}
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            },
+            loader: {
+                load: ['[tex]/noerrors', '[tex]/ams']
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h3>目录</h3>
+                <button id="sidebar-toggle" class="sidebar-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <div class="sidebar-search">
+                <input type="text" id="sidebar-search-input" placeholder="搜索..." autocomplete="off">
+            </div>
+            <div id="tree-container">
+                <nav class="tree-nav" role="tree">
+                    <div class="tree-item " >
+                        <a href="index.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">机甲崩坏：变异纪元 - 游戏设计规格说明书</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter1.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第一章 - 世界观与故事背景</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter2.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第二章 - UI/UX与唯美风格美术规范</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter3.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第三章 - 战斗系统与伤害计算</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter4.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第四章 - 武器装备与强化系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter5.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第五章 - 机甲驾驶员角色设计</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter6.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第六章 - 变异生物图鉴与数值设计</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter7.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第七章 - 提瓦特废土地形系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter8.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第八章 - 圣遗物装备进阶系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter9.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第九章 - 召唤物与僚机系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter10.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十章 - 补给系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter11.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十一章 - 宿舍系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter13.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十章 - 凯瑟琳的试炼（教学关卡）</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item active" >
+                        <a href="chapter14.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十一章 - 层岩巨渊·机械废墟</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter15.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十二章 - 深渊螺旋·终焉之刻</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="CLAUDE.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">Untitled</span>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </nav>
+        
+        <main class="content">
+            <article>
+                <h1 id="-">第十一章 - 层岩巨渊·机械废墟</h1>
+<h2 id="_1">章节大纲</h2>
+<h3 id="_2">一、关卡概述</h3>
+<ul>
+<li>关卡定位：中期挑战关卡，考验玩家元素反应掌握和队伍配合</li>
+<li>难度等级：★★★★☆</li>
+<li>建议等级：60-70级</li>
+<li>关卡时长：15-20分钟</li>
+<li>核心机制：多波次防守战 + 精英怪物组合 + 幼体Boss战</li>
+</ul>
+<h3 id="_3">二、环境设计</h3>
+<ul>
+<li>场景风格：废弃的璃月地下矿场 x 机械化改造设施</li>
+<li>视觉元素：岩元素晶体 + 生锈机械 + 紫色深渊侵蚀</li>
+<li>地形特点：多层立体结构，升降平台，矿车轨道</li>
+<li>环境互动：可破坏的支撑柱，岩元素共鸣点，机关陷阱</li>
+</ul>
+<h3 id="_4">三、敌人配置</h3>
+<ul>
+<li>第一阶段：遗迹重机编队</li>
+<li>第二阶段：深渊咏者雷电型</li>
+<li>第三阶段：愚人众先遣队组合</li>
+<li>最终Boss：若陀龙王·幼体</li>
+</ul>
+<h3 id="boss">四、Boss战设计</h3>
+<ul>
+<li>若陀龙王·幼体的机制设计</li>
+<li>元素转换系统</li>
+<li>破盾策略</li>
+<li>狂暴阶段</li>
+</ul>
+<h3 id="_5">五、机关与陷阱</h3>
+<ul>
+<li>岩元素机关谜题</li>
+<li>移动平台挑战</li>
+<li>定时陷阱系统</li>
+<li>环境杀伤利用</li>
+</ul>
+<h3 id="_6">六、收集要素与奖励</h3>
+<ul>
+<li>层岩结晶收集</li>
+<li>隐藏宝箱位置</li>
+<li>成就挑战列表</li>
+<li>通关奖励表</li>
+</ul>
+<hr />
+<h2 id="_7">一、关卡概述</h2>
+<h3 id="11">1.1 故事背景</h3>
+<p>层岩巨渊，曾经是璃月最重要的矿产来源地。在崩坏纪元降临后，这里成为了第一批被深渊力量侵蚀的区域。大量的采矿机械被深渊能量改造，化为了狂暴的杀戮机器。而沉睡在地底深处的若陀龙王，也在深渊的影响下苏醒，虽然只是幼体形态，但其强大的元素力量依然是巨大的威胁。</p>
+<p>玩家小队接到情报，需要深入层岩巨渊核心区域，摧毁深渊教团在此建立的机械改造工厂，并阻止若陀龙王幼体的完全觉醒。</p>
+<h3 id="12">1.2 关卡目标</h3>
+<p><strong>主要目标：</strong></p>
+<ol>
+<li>击败所有遗迹重机守卫（0/3）</li>
+<li>破解岩元素封印机关</li>
+<li>击败深渊咏者·雷电</li>
+<li>清除愚人众先遣队</li>
+<li>击败若陀龙王·幼体</li>
+</ol>
+<p><strong>可选目标：</strong></p>
+<ul>
+<li>收集所有层岩结晶（0/15）</li>
+<li>不使用复活道具通关</li>
+<li>在12分钟内完成关卡</li>
+<li>触发10次以上元素反应击败Boss</li>
+</ul>
+<h3 id="13">1.3 难度设计</h3>
+<p><strong>普通难度：</strong></p>
+<ul>
+<li>敌人血量：100%</li>
+<li>敌人攻击力：100%</li>
+<li>复活次数：3次</li>
+<li>时间限制：无</li>
+</ul>
+<p><strong>困难难度：</strong></p>
+<ul>
+<li>敌人血量：150%</li>
+<li>敌人攻击力：130%</li>
+<li>复活次数：1次</li>
+<li>时间限制：15分钟</li>
+</ul>
+<p><strong>深渊难度：</strong></p>
+<ul>
+<li>敌人血量：200%</li>
+<li>敌人攻击力：150%</li>
+<li>复活次数：0次</li>
+<li>时间限制：12分钟</li>
+<li>特殊词缀：敌人获得元素护盾</li>
+</ul>
+<h3 id="14">1.4 推荐配队</h3>
+<p><strong>配队方案一：岩元素共鸣队</strong></p>
+<ul>
+<li>主C：钟离型机甲（护盾+岩伤）</li>
+<li>副C：阿贝多型机甲（岩元素协同）</li>
+<li>辅助：班尼特型机甲（攻击力加成）</li>
+<li>治疗：七七型机甲（持续回血）</li>
+</ul>
+<p><strong>配队方案二：雷元素反应队</strong></p>
+<ul>
+<li>主C：雷电将军型机甲（充能循环）</li>
+<li>副C：八重神子型机甲（持续雷伤）</li>
+<li>辅助：万叶型机甲（减抗增伤）</li>
+<li>治疗：心海型机甲（水元素治疗）</li>
+</ul>
+<p><strong>配队方案三：物理输出队</strong></p>
+<ul>
+<li>主C：优菈型机甲（物理爆发）</li>
+<li>副C：雷泽型机甲（物理/雷电双修）</li>
+<li>辅助：罗莎莉亚型机甲（暴击率支援）</li>
+<li>治疗：迪奥娜型机甲（护盾+治疗）</li>
+</ul>
+<hr />
+<h2 id="_8">二、环境设计</h2>
+<h3 id="21">2.1 场景构成</h3>
+<p><strong>入口区域 - 废弃矿井</strong></p>
+<ul>
+<li>场景描述：破败的矿井入口，到处是生锈的采矿设备和坍塌的支撑梁</li>
+<li>视觉元素：</li>
+<li>昏暗的矿灯闪烁</li>
+<li>紫色深渊能量脉动</li>
+<li>岩元素结晶散发金光</li>
+<li>破损的矿车倾倒在轨道上</li>
+<li>可交互物体：</li>
+<li>矿车（可推动作为掩体）</li>
+<li>爆炸桶（造成范围伤害）</li>
+<li>升降机开关</li>
+</ul>
+<p><strong>中层区域 - 机械改造工厂</strong></p>
+<ul>
+<li>场景描述：深渊教团改造的机械工厂，充满了被腐蚀的遗迹守卫</li>
+<li>视觉元素：</li>
+<li>巨大的机械臂悬挂在天花板</li>
+<li>传送带上移动的机械零件</li>
+<li>紫色能量管道纵横交错</li>
+<li>熔炉散发着诡异的光芒</li>
+<li>地形特点：</li>
+<li>多层平台结构</li>
+<li>移动的传送带</li>
+<li>旋转的机械齿轮（需要时机跳跃）</li>
+<li>蒸汽喷射口（定时伤害）</li>
+</ul>
+<p><strong>深层区域 - 龙王巢穴</strong></p>
+<ul>
+<li>场景描述：巨大的地下空洞，若陀龙王幼体的栖息地</li>
+<li>视觉元素：</li>
+<li>巨大的岩元素晶簇</li>
+<li>龙王的爪痕遍布岩壁</li>
+<li>地面有元素脉动的纹路</li>
+<li>空中漂浮着岩元素微粒</li>
+<li>战斗场地：</li>
+<li>圆形竞技场（直径约50米）</li>
+<li>四个岩柱（可破坏/可利用）</li>
+<li>地面有元素转换区域</li>
+<li>边缘有深渊（掉落即死）</li>
+</ul>
+<h3 id="22">2.2 光影设计</h3>
+<p><strong>整体光照：</strong></p>
+<ul>
+<li>主光源：破损天顶透入的阳光（局部）</li>
+<li>辅助光源：岩元素晶体发光、机械设备光源</li>
+<li>环境光：深渊紫色氛围光</li>
+</ul>
+<p><strong>特效渲染：</strong></p>
+<ul>
+<li>粒子效果：岩元素晶体粒子飘散</li>
+<li>烟雾效果：工厂区域的蒸汽和烟尘</li>
+<li>光柱效果：Boss房间的岩元素能量柱</li>
+</ul>
+<h3 id="23">2.3 音效设计</h3>
+<p><strong>环境音效：</strong></p>
+<ul>
+<li>矿井：滴水声、风声、远处的机械运转声</li>
+<li>工厂：机械轰鸣、蒸汽喷射、金属撞击</li>
+<li>巢穴：低沉的龙吟、岩石崩裂声、元素共鸣声</li>
+</ul>
+<p><strong>战斗音乐：</strong></p>
+<ul>
+<li>小怪战斗：紧张的电子摇滚风格</li>
+<li>精英战斗：璃月传统乐器混合电音</li>
+<li>Boss战斗：史诗交响乐，分三个阶段递进</li>
+</ul>
+<hr />
+<h2 id="_9">三、敌人配置</h2>
+<h3 id="31-">3.1 第一阶段 - 遗迹重机防线</h3>
+<p><strong>遗迹重机·改（x3）</strong></p>
+<p>基础属性：</p>
+<ul>
+<li>生命值：2000 HP（每个）</li>
+<li>攻击力：150</li>
+<li>防御力：200</li>
+<li>元素抗性：物理抗性50%，岩元素抗性70%</li>
+<li>弱点属性：雷元素（造成150%伤害）</li>
+</ul>
+<p>攻击模式：</p>
+<ol>
+<li>
+<p><strong>旋转激光扫射</strong>
+   - 伤害：50/秒
+   - 范围：360度扫射，半径15米
+   - 持续：3秒
+   - 冷却：8秒
+   - 应对：跳跃躲避或寻找掩体</p>
+</li>
+<li>
+<p><strong>导弹齐射</strong>
+   - 伤害：100/发（6发）
+   - 类型：追踪导弹
+   - 冷却：10秒
+   - 应对：快速移动或使用护盾</p>
+</li>
+<li>
+<p><strong>重锤打击</strong>
+   - 伤害：300
+   - 范围：前方扇形区域
+   - 特效：震荡波（击退效果）
+   - 冷却：12秒
+   - 应对：远程攻击或侧面规避</p>
+</li>
+<li>
+<p><strong>自爆程序</strong>（血量低于20%触发）
+   - 伤害：500
+   - 范围：半径10米
+   - 倒计时：5秒
+   - 应对：迅速远离或击破核心</p>
+</li>
+</ol>
+<p>特殊机制：</p>
+<ul>
+<li><strong>协同作战</strong>：三台遗迹重机会交替使用技能，形成弹幕压制</li>
+<li><strong>零件掉落</strong>：击破后掉落「遗迹机芯」x2</li>
+<li><strong>核心暴露</strong>：使用雷元素攻击可使核心暴露3秒（受到200%伤害）</li>
+</ul>
+<h3 id="32-">3.2 第二阶段 - 深渊咏者降临</h3>
+<p><strong>深渊咏者·雷电</strong></p>
+<p>基础属性：</p>
+<ul>
+<li>生命值：5000 HP</li>
+<li>攻击力：200</li>
+<li>防御力：150</li>
+<li>雷元素护盾：2000 HP（第二阶段生成）</li>
+<li>元素精通：500</li>
+</ul>
+<p>攻击模式：</p>
+<ol>
+<li>
+<p><strong>雷电锁链</strong>
+   - 伤害：80 x 5次
+   - 效果：连锁3个目标
+   - 特效：感电状态3秒
+   - 冷却：6秒</p>
+</li>
+<li>
+<p><strong>瞬移突刺</strong>
+   - 伤害：250
+   - 特点：瞬间移动到玩家身后
+   - 附带：麻痹1秒
+   - 冷却：8秒</p>
+</li>
+<li>
+<p><strong>雷暴领域</strong>
+   - 伤害：60/秒
+   - 范围：半径20米
+   - 持续：5秒
+   - 效果：持续感电 + 减速30%
+   - 冷却：15秒</p>
+</li>
+<li>
+<p><strong>深渊祈祷</strong>（血量50%以下）
+   - 效果：召唤2个深渊法师幻影
+   - 幻影生命：500 HP
+   - 持续：直到幻影被消灭
+   - 冷却：30秒</p>
+</li>
+</ol>
+<p>阶段转换（血量40%）：</p>
+<ul>
+<li>生成雷元素护盾（2000 HP）</li>
+<li>攻击速度提升30%</li>
+<li>获得霸体状态（无法被击退）</li>
+<li>新增技能：<strong>雷神之怒</strong>（全屏落雷，伤害300，需要看地面标记躲避）</li>
+</ul>
+<p>破盾策略：</p>
+<ul>
+<li>冰元素：造成150%护盾伤害</li>
+<li>火元素：触发超载，造成额外300点护盾伤害</li>
+<li>岩元素：结晶反应，生成护盾晶片</li>
+</ul>
+<h3 id="33-">3.3 第三阶段 - 愚人众包围网</h3>
+<p><strong>冰铳手·重装型</strong></p>
+<p>基础属性：</p>
+<ul>
+<li>生命值：1500 HP</li>
+<li>攻击力：120</li>
+<li>防御力：180</li>
+<li>冰元素护盾：1000 HP（初始就有）</li>
+</ul>
+<p>攻击模式：</p>
+<ol>
+<li>
+<p><strong>冰弹连射</strong>
+   - 伤害：40 x 3
+   - 效果：减速40%
+   - 射程：25米</p>
+</li>
+<li>
+<p><strong>冰霜喷射</strong>
+   - 伤害：80/秒
+   - 范围：前方锥形
+   - 效果：冻结（水元素角色）</p>
+</li>
+<li>
+<p><strong>冰墙防御</strong>
+   - 生成3面冰墙（每面500 HP）
+   - 持续：10秒或被击破</p>
+</li>
+</ol>
+<p><strong>雷锤手·狂战型</strong></p>
+<p>基础属性：</p>
+<ul>
+<li>生命值：2000 HP</li>
+<li>攻击力：180</li>
+<li>防御力：150</li>
+<li>雷元素护盾：800 HP（血量50%以下生成）</li>
+</ul>
+<p>攻击模式：</p>
+<ol>
+<li>
+<p><strong>雷锤重击</strong>
+   - 伤害：250
+   - 范围：前方小范围
+   - 特效：电击波扩散</p>
+</li>
+<li>
+<p><strong>雷电冲锋</strong>
+   - 伤害：150
+   - 效果：击退 + 麻痹1秒
+   - 距离：15米直线</p>
+</li>
+<li>
+<p><strong>狂暴模式</strong>（血量30%以下）
+   - 攻击速度+50%
+   - 伤害+30%
+   - 获得霸体</p>
+</li>
+</ol>
+<p>组合战术：</p>
+<ul>
+<li><strong>冰雷组合</strong>：冰铳手冻结 + 雷锤手超导（降低防御40%）</li>
+<li><strong>交替掩护</strong>：一个攻击时另一个防守</li>
+<li><strong>同时狂暴</strong>：血量都低于30%时同时进入狂暴状态</li>
+</ul>
+<h3 id="34-">3.4 精英怪物 - 流浪者机体</h3>
+<p><strong>流浪武士·机械化</strong>（随机出现）</p>
+<p>基础属性：</p>
+<ul>
+<li>生命值：3000 HP</li>
+<li>攻击力：220</li>
+<li>防御力：100</li>
+<li>特点：高攻低防，考验玩家走位</li>
+</ul>
+<p>攻击模式：</p>
+<ol>
+<li>
+<p><strong>居合斩</strong>
+   - 伤害：400
+   - 特点：蓄力1秒后瞬间斩击
+   - 范围：前方扇形180度</p>
+</li>
+<li>
+<p><strong>旋风斩</strong>
+   - 伤害：100 x 5
+   - 范围：自身周围
+   - 移动：可以移动攻击</p>
+</li>
+<li>
+<p><strong>元素附魔</strong>
+   - 随机获得一种元素附魔
+   - 持续30秒
+   - 攻击附带元素伤害</p>
+</li>
+</ol>
+<hr />
+<h2 id="boss-">四、Boss战设计 - 若陀龙王·幼体</h2>
+<h3 id="41-boss">4.1 Boss基础设定</h3>
+<p><strong>若陀龙王·幼体</strong></p>
+<p>基础属性：</p>
+<ul>
+<li>生命值：8000 HP（分三个血条阶段）</li>
+<li>第一血条：3000 HP（岩元素形态）</li>
+<li>第二血条：3000 HP（随机元素形态）</li>
+<li>第三血条：2000 HP（狂暴混合形态）</li>
+<li>攻击力：250-400（根据形态）</li>
+<li>防御力：300</li>
+<li>体型：大型Boss（无法击退）</li>
+<li>弱点：头部（1.5倍伤害）、尾部（1.3倍伤害）</li>
+</ul>
+<h3 id="42-100-66">4.2 第一阶段 - 岩元素形态（100%-66%血量）</h3>
+<p><strong>基础攻击模式：</strong></p>
+<ol>
+<li>
+<p><strong>地震冲击</strong>
+   - 伤害：200
+   - 范围：全屏震荡
+   - 特效：地面出现裂纹预警（1.5秒）
+   - 应对：跳跃躲避
+   - 频率：每15秒</p>
+</li>
+<li>
+<p><strong>岩柱突刺</strong>
+   - 伤害：150/根（5根）
+   - 模式：追踪玩家位置依次突出
+   - 持续：岩柱存在5秒（可作为掩体）
+   - 频率：每10秒</p>
+</li>
+<li>
+<p><strong>尾巴横扫</strong>
+   - 伤害：250
+   - 范围：身后180度
+   - 特效：击飞效果
+   - 频率：玩家在身后时触发</p>
+</li>
+<li>
+<p><strong>岩元素吐息</strong>
+   - 伤害：100/秒
+   - 范围：前方扇形60度
+   - 持续：3秒
+   - 特效：岩元素结晶化
+   - 频率：每20秒</p>
+</li>
+</ol>
+<p><strong>特殊机制：</strong></p>
+<ul>
+<li><strong>岩甲护体</strong>：每30秒生成500HP的岩元素护甲</li>
+<li><strong>共鸣震荡</strong>：场上有3个以上岩柱时，岩柱之间产生共鸣伤害（50/秒）</li>
+</ul>
+<h3 id="43-66-33">4.3 第二阶段 - 元素转换形态（66%-33%血量）</h3>
+<p><strong>元素转换机制：</strong>
+Boss随机转换为以下三种元素形态之一，每种形态持续60秒后转换</p>
+<p><strong>雷元素形态：</strong></p>
+<ol>
+<li>
+<p><strong>雷暴轰击</strong>
+   - 伤害：300/次（5次）
+   - 特效：地面雷圈预警
+   - 附带：麻痹1秒</p>
+</li>
+<li>
+<p><strong>电磁脉冲</strong>
+   - 伤害：150
+   - 范围：自身为中心半径20米
+   - 效果：技能封印2秒</p>
+</li>
+<li>
+<p><strong>连锁闪电</strong>
+   - 伤害：200（主目标）+100（连锁）
+   - 连锁：最多3个目标</p>
+</li>
+</ol>
+<p><strong>火元素形态：</strong></p>
+<ol>
+<li>
+<p><strong>熔岩喷发</strong>
+   - 伤害：250/次
+   - 数量：随机5-8个熔岩池
+   - 持续伤害：50/秒（站在熔岩池）</p>
+</li>
+<li>
+<p><strong>火焰冲锋</strong>
+   - 伤害：350
+   - 路径：直线冲锋留下火焰轨迹
+   - 持续：火焰轨迹5秒</p>
+</li>
+<li>
+<p><strong>爆裂火球</strong>
+   - 伤害：200/个（3个）
+   - 特点：抛物线轨迹，落地爆炸</p>
+</li>
+</ol>
+<p><strong>冰元素形态：</strong></p>
+<ol>
+<li>
+<p><strong>冰霜领域</strong>
+   - 效果：全场减速50%
+   - 持续：整个形态期间</p>
+</li>
+<li>
+<p><strong>冰锥雨</strong>
+   - 伤害：100/根（密集）
+   - 范围：随机区域
+   - 效果：冻结（配合场地水元素）</p>
+</li>
+<li>
+<p><strong>极寒吐息</strong>
+   - 伤害：150/秒
+   - 范围：前方180度扇形
+   - 效果：冻结3秒</p>
+</li>
+</ol>
+<h3 id="44-33-0">4.4 第三阶段 - 狂暴觉醒（33%-0%血量）</h3>
+<p><strong>狂暴机制：</strong></p>
+<ul>
+<li>攻击速度提升50%</li>
+<li>伤害提升30%</li>
+<li>获得霸体（免疫控制）</li>
+<li>同时使用多种元素攻击</li>
+</ul>
+<p><strong>混合攻击模式：</strong></p>
+<ol>
+<li>
+<p><strong>元素乱舞</strong>
+   - 连续使用3种不同元素攻击
+   - 无间隔切换
+   - 持续10秒
+   - 冷却：20秒</p>
+</li>
+<li>
+<p><strong>天崩地裂</strong>
+   - 伤害：500
+   - 范围：全屏
+   - 预警：3秒蓄力动画
+   - 应对：寻找岩柱掩体或无敌技能</p>
+</li>
+<li>
+<p><strong>龙王之怒</strong>
+   - 效果：召唤元素风暴
+   - 持续：15秒
+   - 伤害：随机元素弹幕（80/个）
+   - 密度：每秒5-8个</p>
+</li>
+<li>
+<p><strong>最终吐息</strong>（血量低于10%）
+   - 伤害：800
+   - 范围：全屏螺旋扫射
+   - 持续：5秒
+   - 应对：贴近Boss身下安全区</p>
+</li>
+</ol>
+<h3 id="45">4.5 击败奖励与机制</h3>
+<p><strong>破盾机制：</strong></p>
+<ul>
+<li>岩元素护甲：使用大剑类武器或岩元素攻击效果最佳</li>
+<li>元素护盾：使用相克元素（火克冰、冰克雷、雷克火）</li>
+</ul>
+<p><strong>狂暴倒计时：</strong></p>
+<ul>
+<li>战斗超过5分钟，Boss进入极限狂暴</li>
+<li>所有伤害x2</li>
+<li>攻击频率x2</li>
+</ul>
+<p><strong>弱点暴露：</strong></p>
+<ul>
+<li>每次形态转换时，核心暴露3秒</li>
+<li>核心受到伤害时承受3倍伤害</li>
+</ul>
+<p><strong>击败掉落：</strong></p>
+<ul>
+<li>固定掉落：</li>
+<li>龙王之鳞 x3</li>
+<li>高级经验书 x5</li>
+<li>摩拉 x50000</li>
+<li>概率掉落：</li>
+<li>五星圣遗物（30%）</li>
+<li>龙王核心（10%）</li>
+<li>原石 x100（5%）</li>
+</ul>
+<hr />
+<h2 id="_10">五、机关与陷阱</h2>
+<h3 id="51">5.1 岩元素机关系统</h3>
+<p><strong>岩元素压力板</strong></p>
+<ul>
+<li>触发方式：角色站立或放置岩造物</li>
+<li>效果类型：</li>
+<li>开启大门</li>
+<li>激活升降平台</li>
+<li>启动桥梁</li>
+<li>特殊要求：部分需要特定重量（2人或岩元素造物）</li>
+<li>分布位置：每个区域2-3个</li>
+</ul>
+<p><strong>岩元素共鸣柱</strong></p>
+<ul>
+<li>激活条件：使用岩元素攻击</li>
+<li>连锁机制：</li>
+<li>2柱共鸣：开启普通宝箱</li>
+<li>3柱共鸣：激活隐藏平台</li>
+<li>4柱共鸣：解锁Boss房间</li>
+<li>时限挑战：30秒内激活所有柱子</li>
+<li>重置机制：失败后60秒冷却</li>
+</ul>
+<p><strong>旋转石板谜题</strong></p>
+<ul>
+<li>机制说明：旋转石板对齐图案</li>
+<li>难度等级：</li>
+<li>简单：3x3格子</li>
+<li>中等：4x4格子</li>
+<li>困难：5x5格子（限时）</li>
+<li>奖励：</li>
+<li>层岩结晶 x1-3</li>
+<li>经验书 x2-5</li>
+<li>隐藏成就</li>
+</ul>
+<h3 id="52">5.2 移动平台挑战</h3>
+<p><strong>矿车轨道系统</strong></p>
+<ul>
+<li>基础机制：</li>
+<li>手动推动矿车前进</li>
+<li>矿车可作为移动平台</li>
+<li>部分矿车装载爆炸物</li>
+<li>路线设计：</li>
+<li>直线轨道：基础移动</li>
+<li>分叉轨道：选择路线</li>
+<li>环形轨道：循环利用</li>
+<li>战术应用：</li>
+<li>矿车冲撞（300伤害）</li>
+<li>爆炸矿车（500范围伤害）</li>
+<li>移动掩体</li>
+</ul>
+<p><strong>升降平台网络</strong></p>
+<ul>
+<li>平台类型：</li>
+<li>自动循环平台（固定路线）</li>
+<li>感应式平台（玩家接近启动）</li>
+<li>限时平台（站立5秒后下沉）</li>
+<li>挑战设计：</li>
+<li>垂直攀登：连续跳跃5个平台</li>
+<li>水平穿越：移动平台间跳跃</li>
+<li>混合路线：结合战斗的平台战</li>
+<li>失败惩罚：掉落受到100伤害</li>
+</ul>
+<p><strong>旋转齿轮桥</strong></p>
+<ul>
+<li>机制特点：</li>
+<li>巨大齿轮缓慢旋转</li>
+<li>齿轮边缘可站立</li>
+<li>部分齿轮有尖刺（50伤害/秒）</li>
+<li>通过策略：</li>
+<li>计算旋转时机</li>
+<li>利用远程技能激活机关</li>
+<li>团队配合（一人开关，其他人通过）</li>
+</ul>
+<h3 id="53">5.3 环境陷阱</h3>
+<p><strong>蒸汽喷射口</strong></p>
+<ul>
+<li>伤害：80/秒</li>
+<li>模式：</li>
+<li>定时喷射（3秒喷射，2秒停止）</li>
+<li>感应喷射（玩家接近触发）</li>
+<li>连锁喷射（依次触发）</li>
+<li>视觉提示：喷射前1秒红光预警</li>
+<li>利用方法：引诱敌人进入伤害区</li>
+</ul>
+<p><strong>坍塌陷坑</strong></p>
+<ul>
+<li>触发条件：</li>
+<li>承重超载（3人以上）</li>
+<li>战斗震动（Boss技能触发）</li>
+<li>时间腐蚀（停留10秒）</li>
+<li>预警标识：地面裂纹逐渐扩大</li>
+<li>掉落效果：传送到下层区域 + 200伤害</li>
+</ul>
+<p><strong>电磁力场</strong></p>
+<ul>
+<li>效果：</li>
+<li>减速50%</li>
+<li>技能冷却时间+100%</li>
+<li>每秒损失10点能量</li>
+<li>破解方法：</li>
+<li>摧毁发生器（500HP）</li>
+<li>使用雷元素过载</li>
+<li>找到控制开关</li>
+<li>分布：工厂区域重点区域</li>
+</ul>
+<p><strong>深渊侵蚀区</strong></p>
+<ul>
+<li>特殊效果：</li>
+<li>持续掉血（20HP/秒）</li>
+<li>降低治疗效果50%</li>
+<li>视野变暗</li>
+<li>净化方法：</li>
+<li>激活净化装置（岩元素）</li>
+<li>击败区域守护者</li>
+<li>收集3个净化核心</li>
+<li>奖励：净化后获得大量经验</li>
+</ul>
+<h3 id="54">5.4 机关组合谜题</h3>
+<p><strong>三重封印门</strong></p>
+<ul>
+<li>解锁步骤：
+  1. 击败守门遗迹重机
+  2. 激活3个岩元素共鸣柱
+  3. 完成限时平台跳跃</li>
+<li>时间限制：5分钟</li>
+<li>失败重置：所有步骤重新开始</li>
+<li>奖励：精致宝箱 + 隐藏Boss房间</li>
+</ul>
+<p><strong>元素导能装置</strong></p>
+<ul>
+<li>机制说明：</li>
+<li>引导元素能量到终点</li>
+<li>旋转反射镜改变方向</li>
+<li>不同元素不可交叉</li>
+<li>难度递增：</li>
+<li>第一层：单一元素</li>
+<li>第二层：双元素并行</li>
+<li>第三层：三元素 + 移动镜面</li>
+<li>完成奖励：解锁快速传送点</li>
+</ul>
+<p><strong>时序机关阵</strong></p>
+<ul>
+<li>挑战内容：</li>
+<li>按特定顺序激活6个机关</li>
+<li>每个机关有独立计时</li>
+<li>错误顺序全部重置</li>
+<li>提示系统：</li>
+<li>墙壁壁画暗示顺序</li>
+<li>发光强度表示顺序</li>
+<li>音调高低提示</li>
+<li>终极奖励：开启隐藏宝库</li>
+</ul>
+<h3 id="55">5.5 陷阱利用技巧</h3>
+<p><strong>环境击杀</strong></p>
+<ul>
+<li>推落悬崖：即死（小怪有效）</li>
+<li>爆炸桶连锁：最高1000伤害</li>
+<li>岩柱压制：300伤害 + 击倒</li>
+</ul>
+<p><strong>陷阱免疫</strong></p>
+<ul>
+<li>护盾角色：免疫地形伤害</li>
+<li>风元素：可吹散蒸汽</li>
+<li>岩元素：创造岩柱跳过陷坑</li>
+</ul>
+<p><strong>速通技巧</strong></p>
+<ul>
+<li>矿车快速移动</li>
+<li>平台跳跃捷径</li>
+<li>机关预激活策略</li>
+</ul>
+<hr />
+<h2 id="_11">六、收集要素与奖励</h2>
+<h3 id="61">6.1 层岩结晶收集</h3>
+<p><strong>层岩结晶分布</strong></p>
+<ul>
+<li>总数量：15个</li>
+<li>分布区域：</li>
+<li>入口矿井：3个</li>
+<li>机械工厂：5个</li>
+<li>Boss前厅：4个</li>
+<li>隐藏区域：3个</li>
+</ul>
+<p><strong>获取方式</strong></p>
+<ol>
+<li>
+<p><strong>固定位置</strong>（10个）
+   - 高处平台
+   - 隐藏角落
+   - 机关房间</p>
+</li>
+<li>
+<p><strong>解谜奖励</strong>（3个）
+   - 完成岩元素谜题
+   - 三重封印门
+   - 时序机关阵</p>
+</li>
+<li>
+<p><strong>挑战奖励</strong>（2个）
+   - 无伤击败精英怪
+   - 限时平台全收集</p>
+</li>
+</ol>
+<p><strong>收集奖励</strong></p>
+<ul>
+<li>5个：经验书 x10</li>
+<li>10个：四星圣遗物 x1</li>
+<li>15个：原石 x200 + 成就「层岩探索者」</li>
+</ul>
+<h3 id="62">6.2 宝箱系统</h3>
+<p><strong>普通宝箱</strong>（8个）</p>
+<ul>
+<li>内容：</li>
+<li>摩拉 x5000-10000</li>
+<li>低级材料 x3-5</li>
+<li>经验书 x2-3</li>
+<li>位置：常规探索可见</li>
+</ul>
+<p><strong>精致宝箱</strong>（4个）</p>
+<ul>
+<li>内容：</li>
+<li>摩拉 x20000</li>
+<li>中级材料 x3</li>
+<li>四星圣遗物概率</li>
+<li>获取：击败精英怪、完成机关谜题</li>
+</ul>
+<p><strong>珍贵宝箱</strong>（2个）</p>
+<ul>
+<li>内容：</li>
+<li>摩拉 x50000</li>
+<li>高级材料 x2</li>
+<li>四星武器碎片</li>
+<li>位置：隐藏区域、高难度挑战</li>
+</ul>
+<p><strong>华丽宝箱</strong>（1个）</p>
+<ul>
+<li>内容：</li>
+<li>摩拉 x100000</li>
+<li>五星圣遗物</li>
+<li>限定皮肤碎片</li>
+<li>解锁条件：</li>
+<li>击败Boss</li>
+<li>收集所有层岩结晶</li>
+<li>完成所有支线任务</li>
+</ul>
+<h3 id="63">6.3 成就列表</h3>
+<p><strong>探索成就</strong></p>
+<ul>
+<li>「初入层岩」：首次进入关卡</li>
+<li>「层岩探索者」：收集所有层岩结晶</li>
+<li>「宝箱猎人」：开启所有宝箱</li>
+<li>「机关大师」：完成所有机关谜题</li>
+</ul>
+<p><strong>战斗成就</strong></p>
+<ul>
+<li>「遗迹破坏者」：击败所有遗迹重机</li>
+<li>「深渊制裁」：击败深渊咏者</li>
+<li>「龙王猎手」：击败若陀龙王·幼体</li>
+<li>「无伤传说」：无伤通关</li>
+</ul>
+<p><strong>挑战成就</strong></p>
+<ul>
+<li>「速度与激情」：12分钟内通关</li>
+<li>「元素大师」：触发50次元素反应</li>
+<li>「环境杀手」：使用环境击杀10个敌人</li>
+<li>「完美通关」：达成所有可选目标</li>
+</ul>
+<p><strong>隐藏成就</strong></p>
+<ul>
+<li>「矿车飙车」：使用矿车击杀5个敌人</li>
+<li>「平台跳跃王」：不失误完成所有平台挑战</li>
+<li>「宝库发现者」：找到隐藏宝库</li>
+<li>「幸运儿」：首次击败Boss获得龙王核心</li>
+</ul>
+<h3 id="64">6.4 通关奖励表</h3>
+<p><strong>普通难度</strong></p>
+<ul>
+<li>基础奖励：</li>
+<li>经验值：5000</li>
+<li>摩拉：30000</li>
+<li>冒险阅历：300</li>
+<li>评分奖励（S级以上）：</li>
+<li>四星圣遗物 x1</li>
+<li>高级经验书 x5</li>
+</ul>
+<p><strong>困难难度</strong></p>
+<ul>
+<li>基础奖励：</li>
+<li>经验值：10000</li>
+<li>摩拉：50000</li>
+<li>冒险阅历：500</li>
+<li>评分奖励（S级以上）：</li>
+<li>五星圣遗物概率30%</li>
+<li>武器突破材料 x3</li>
+</ul>
+<p><strong>深渊难度</strong></p>
+<ul>
+<li>基础奖励：</li>
+<li>经验值：20000</li>
+<li>摩拉：100000</li>
+<li>冒险阅历：800</li>
+<li>评分奖励（S级以上）：</li>
+<li>五星圣遗物确定</li>
+<li>限定称号「深渊征服者」</li>
+<li>原石 x300</li>
+</ul>
+<h3 id="65">6.5 材料掉落表</h3>
+<p><strong>遗迹重机掉落</strong></p>
+<ul>
+<li>遗迹机芯（100%）</li>
+<li>混沌装置（30%）</li>
+<li>混沌炉心（10%）</li>
+</ul>
+<p><strong>深渊咏者掉落</strong></p>
+<ul>
+<li>深渊之证（100%）</li>
+<li>雷光棱镜（50%）</li>
+<li>元素核心（20%）</li>
+</ul>
+<p><strong>愚人众掉落</strong></p>
+<ul>
+<li>士官徽章（100%）</li>
+<li>尉官徽章（30%）</li>
+<li>校官徽章（10%）</li>
+</ul>
+<p><strong>若陀龙王·幼体掉落</strong></p>
+<ul>
+<li>龙王之鳞（100%）</li>
+<li>龙骨精华（50%）</li>
+<li>龙王核心（10%）</li>
+<li>原初晶核（5%）</li>
+</ul>
+<h3 id="66">6.6 特殊奖励</h3>
+<p><strong>首通奖励</strong></p>
+<ul>
+<li>限定头像框「层岩勇者」</li>
+<li>机甲涂装「矿场迷彩」</li>
+<li>称号「岩之守护者」</li>
+</ul>
+<p><strong>全收集奖励</strong></p>
+<ul>
+<li>特殊武器「层岩之锋」</li>
+<li>成就点数 x500</li>
+<li>神秘钥匙（开启下一章隐藏内容）</li>
+</ul>
+<p><strong>速通排行奖励</strong>（每周结算）</p>
+<ul>
+<li>第1名：原石 x1000</li>
+<li>第2-10名：原石 x500</li>
+<li>第11-100名：原石 x200</li>
+<li>参与奖：原石 x50</li>
+</ul>
+<h3 id="67">6.7 复刷价值</h3>
+<p><strong>每日可获取</strong></p>
+<ul>
+<li>Boss掉落（每日1次）</li>
+<li>精英怪材料（每日3次）</li>
+<li>矿石采集点（每日刷新）</li>
+</ul>
+<p><strong>每周可获取</strong></p>
+<ul>
+<li>周常Boss材料</li>
+<li>特殊成就挑战</li>
+<li>排行榜奖励</li>
+</ul>
+<p><strong>版本活动</strong></p>
+<ul>
+<li>限时双倍掉落</li>
+<li>特殊词缀挑战</li>
+<li>联机协作模式</li>
+</ul>
+<hr />
+<h2 id="_12">关卡设计总结</h2>
+<p>本关卡作为中期挑战关卡，通过丰富的敌人配置、复杂的机关系统、史诗级的Boss战斗，为玩家提供了全方位的游戏体验。层岩巨渊的工业废墟主题与深渊侵蚀元素的结合，营造出独特的末世机械美感。</p>
+<p>关键设计亮点：</p>
+<ol>
+<li><strong>多样化战斗</strong>：从机械敌人到深渊生物，再到龙王Boss，战斗节奏层层递进</li>
+<li><strong>解谜要素</strong>：岩元素机关与环境互动紧密结合，考验玩家智慧</li>
+<li><strong>收集系统</strong>：丰富的收集要素提供额外探索动力</li>
+<li><strong>重玩价值</strong>：多难度设定和排行榜系统保证长期可玩性</li>
+</ol>
+<p>建议玩家等级60-70级挑战，确保拥有完整的元素反应理解和角色养成。祝各位指挥官武运昌隆！</p>
+            </article>
+            
+            <nav class="page-nav"><a href="chapter13.html" class="nav-link prev">← 第十章 - 凯瑟琳的试炼（教学关卡）</a><a href="chapter15.html" class="nav-link next">第十二章 - 深渊螺旋·终焉之刻 →</a></nav>
+        </main>
+    </div>
+</body>
+</html>

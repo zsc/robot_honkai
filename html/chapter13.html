@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="./">
+    <title>第十章 - 凯瑟琳的试炼（教学关卡）</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/highlight.css">
+    <script src="assets/script.js" defer></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']],
+                processEscapes: false,
+                packages: {'[+]': ['noerrors', 'ams']}
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            },
+            loader: {
+                load: ['[tex]/noerrors', '[tex]/ams']
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h3>目录</h3>
+                <button id="sidebar-toggle" class="sidebar-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <div class="sidebar-search">
+                <input type="text" id="sidebar-search-input" placeholder="搜索..." autocomplete="off">
+            </div>
+            <div id="tree-container">
+                <nav class="tree-nav" role="tree">
+                    <div class="tree-item " >
+                        <a href="index.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">机甲崩坏：变异纪元 - 游戏设计规格说明书</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter1.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第一章 - 世界观与故事背景</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter2.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第二章 - UI/UX与唯美风格美术规范</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter3.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第三章 - 战斗系统与伤害计算</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter4.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第四章 - 武器装备与强化系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter5.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第五章 - 机甲驾驶员角色设计</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter6.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第六章 - 变异生物图鉴与数值设计</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter7.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第七章 - 提瓦特废土地形系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter8.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第八章 - 圣遗物装备进阶系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter9.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第九章 - 召唤物与僚机系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter10.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十章 - 补给系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter11.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十一章 - 宿舍系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item active" >
+                        <a href="chapter13.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十章 - 凯瑟琳的试炼（教学关卡）</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter14.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十一章 - 层岩巨渊·机械废墟</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter15.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十二章 - 深渊螺旋·终焉之刻</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="CLAUDE.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">Untitled</span>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </nav>
+        
+        <main class="content">
+            <article>
+                <h1 id="-">第十章 - 凯瑟琳的试炼（教学关卡）</h1>
+<h2 id="_1">章节概述</h2>
+<p>「凯瑟琳的试炼」是游戏的新手教学关卡，通过冒险者协会的虚拟训练系统，让玩家在安全环境中掌握机甲操作与元素战斗的核心机制。本关卡采用递进式教学设计，从基础移动射击到复杂元素反应，确保玩家充分理解游戏系统后再进入正式战斗。</p>
+<h3 id="_2">关卡定位</h3>
+<ul>
+<li><strong>教学目标</strong>：完整覆盖所有核心玩法机制</li>
+<li><strong>难度曲线</strong>：极其平缓的学习曲线，零失败惩罚</li>
+<li><strong>完成时长</strong>：15-20分钟</li>
+<li><strong>重玩价值</strong>：隐藏成就与评分挑战</li>
+</ul>
+<h3 id="_3">设计理念</h3>
+<ul>
+<li><strong>引导而非说教</strong>：通过实践学习，避免冗长文字说明</li>
+<li><strong>即时反馈</strong>：每个操作都有视觉/音效确认</li>
+<li><strong>容错设计</strong>：允许多次尝试，不会游戏结束</li>
+<li><strong>成就激励</strong>：完成特定操作解锁成就</li>
+</ul>
+<h2 id="1">1. 关卡背景与剧情</h2>
+<h3 id="11">1.1 故事背景</h3>
+<p>在崩坏纪元2077年，冒险者协会的分部负责人凯瑟琳开发了一套虚拟训练系统，用于培训新晋机甲驾驶员。玩家扮演一名刚加入「尘歌壶」反抗军的新人，需要通过凯瑟琳的测试才能获得正式作战资格。</p>
+<h3 id="12">1.2 场景设定</h3>
+<p><strong>训练场地图</strong>：冒险者协会虚拟训练室</p>
+<ul>
+<li><strong>视觉风格</strong>：全息投影风格，蓝色网格线构成的虚拟空间</li>
+<li><strong>场景元素</strong>：</li>
+<li>半透明的全息障碍物</li>
+<li>发光的引导标记</li>
+<li>悬浮的教学提示板</li>
+<li>虚拟靶标与训练假人</li>
+</ul>
+<h3 id="13">1.3 角色设定</h3>
+<p><strong>凯瑟琳（NPC）</strong></p>
+<ul>
+<li><strong>形象</strong>：冒险者协会制服，头戴AR眼镜</li>
+<li><strong>性格</strong>：专业、耐心、鼓励式教学</li>
+<li><strong>语音</strong>：「向着星辰与深渊，欢迎来到冒险者协会」</li>
+</ul>
+<p><strong>派蒙（教学助手）</strong></p>
+<ul>
+<li><strong>形象</strong>：Q版机械精灵，悬浮在玩家身边</li>
+<li><strong>功能</strong>：实时提示、操作引导、吐槽互动</li>
+<li><strong>特色</strong>：应急食品梗，活跃气氛</li>
+</ul>
+<h2 id="2">2. 派蒙引导系统</h2>
+<h3 id="21">2.1 系统设计</h3>
+<p><strong>引导类型</strong></p>
+<ol>
+<li><strong>强制引导</strong>：关键操作必须完成才能继续</li>
+<li><strong>提示引导</strong>：可选操作，完成有额外奖励</li>
+<li><strong>隐藏引导</strong>：发现隐藏技巧的暗示</li>
+</ol>
+<p><strong>表现形式</strong></p>
+<ul>
+<li><strong>语音提示</strong>：派蒙的即时语音反馈</li>
+<li><strong>视觉指引</strong>：</li>
+<li>箭头指向目标位置</li>
+<li>高亮显示可交互物体</li>
+<li>虚线轨迹提示移动路径</li>
+<li><strong>文字说明</strong>：</li>
+<li>屏幕顶部的任务目标</li>
+<li>按键提示悬浮UI</li>
+<li>进度条显示完成度</li>
+</ul>
+<h3 id="22">2.2 派蒙台词设计</h3>
+<p><strong>基础教学台词</strong></p>
+<ul>
+<li>移动教学：「试试用A和D键左右移动吧！」</li>
+<li>跳跃教学：「按空格键跳跃，可以跳得很高哦！」</li>
+<li>射击教学：「左键射击，我来帮你瞄准！」</li>
+</ul>
+<p><strong>鼓励台词</strong></p>
+<ul>
+<li>成功时：「哇！做得好！你学得真快！」</li>
+<li>失败时：「没关系，再试一次就好了！」</li>
+<li>完美操作：「太厉害了！这就是传说中的天才吗？」</li>
+</ul>
+<p><strong>互动台词</strong></p>
+<ul>
+<li>待机过久：「喂！别发呆了，我们还要继续训练呢！」</li>
+<li>发现隐藏：「咦？这里好像有什么秘密...」</li>
+<li>关卡完成：「恭喜通过！你已经是合格的驾驶员了！」</li>
+</ul>
+<h3 id="23">2.3 智能辅助功能</h3>
+<p><strong>自适应难度</strong></p>
+<ul>
+<li>根据玩家表现调整提示频率</li>
+<li>多次失败自动降低难度要求</li>
+<li>完美通过解锁额外挑战</li>
+</ul>
+<p><strong>操作纠正</strong></p>
+<ul>
+<li>检测错误操作并给出正确指引</li>
+<li>预判玩家意图，提前给出提示</li>
+<li>记录常见错误，强化相关教学</li>
+</ul>
+<h2 id="3">3. 基础操作教学模块</h2>
+<h3 id="31">3.1 移动系统教学</h3>
+<p><strong>第一阶段：水平移动</strong></p>
+<ul>
+<li><strong>教学目标</strong>：掌握A/D键左右移动</li>
+<li><strong>场景设计</strong>：</li>
+<li>平坦地形，无障碍物</li>
+<li>地面光标指引移动方向</li>
+<li>到达指定位置获得奖励</li>
+<li><strong>完成标准</strong>：</li>
+<li>成功移动到3个标记点</li>
+<li>用时不超过30秒</li>
+</ul>
+<p><strong>第二阶段：跳跃移动</strong></p>
+<ul>
+<li><strong>教学目标</strong>：掌握空格键跳跃</li>
+<li><strong>场景设计</strong>：</li>
+<li>不同高度的平台</li>
+<li>跳跃轨迹预览线</li>
+<li>失败自动重置位置</li>
+<li><strong>完成标准</strong>：</li>
+<li>跳过3个障碍物</li>
+<li>连续跳跃到达终点</li>
+</ul>
+<p><strong>第三阶段：综合移动</strong></p>
+<ul>
+<li><strong>教学目标</strong>：组合移动技巧</li>
+<li><strong>场景设计</strong>：</li>
+<li>移动平台</li>
+<li>需要跳跃的沟壑</li>
+<li>时限挑战元素</li>
+<li><strong>隐藏成就</strong>：</li>
+<li>「身轻如燕」：不落地通过全程</li>
+<li>「极速传说」：15秒内完成</li>
+</ul>
+<h3 id="32">3.2 射击系统教学</h3>
+<p><strong>基础射击</strong></p>
+<ul>
+<li><strong>教学目标</strong>：了解自动瞄准机制</li>
+<li><strong>训练内容</strong>：</li>
+<li>静止靶标射击（5个）</li>
+<li>移动靶标射击（3个）</li>
+<li>多目标优先级选择</li>
+<li><strong>辅助系统</strong>：</li>
+<li>弹道轨迹显示</li>
+<li>命中反馈特效</li>
+<li>伤害数字弹出</li>
+</ul>
+<p><strong>连击系统</strong></p>
+<ul>
+<li><strong>教学目标</strong>：理解连击机制</li>
+<li><strong>训练内容</strong>：</li>
+<li>10连击挑战</li>
+<li>连击中断与恢复</li>
+<li>连击奖励说明</li>
+<li><strong>评分标准</strong>：</li>
+<li>最高连击数</li>
+<li>命中率统计</li>
+<li>用时记录</li>
+</ul>
+<h3 id="33">3.3 形态切换教学</h3>
+<p><strong>坦克形态</strong></p>
+<ul>
+<li><strong>特性说明</strong>：</li>
+<li>移动速度-30%（实际演示）</li>
+<li>防御力+50%（伤害对比）</li>
+<li>攻击范围+40%（范围标识）</li>
+<li><strong>特殊技能</strong>：护盾展开</li>
+<li>按住Shift展开护盾</li>
+<li>护盾值显示（5000HP）</li>
+<li>360度全方位防护</li>
+</ul>
+<p><strong>高达形态</strong></p>
+<ul>
+<li><strong>特性说明</strong>：</li>
+<li>移动速度+40%（速度线特效）</li>
+<li>攻击速度+35%（连射演示）</li>
+<li>二段跳跃（空中再跳）</li>
+<li><strong>特殊技能</strong>：空中作战</li>
+<li>空中悬停射击</li>
+<li>俯冲攻击（伤害x2）</li>
+<li>滞空时间限制（3秒）</li>
+</ul>
+<p><strong>切换练习</strong></p>
+<ul>
+<li><strong>教学目标</strong>：灵活切换形态</li>
+<li><strong>训练场景</strong>：</li>
+<li>需要护盾的弹幕区</li>
+<li>需要速度的追逐战</li>
+<li>需要跳跃的高台区</li>
+<li><strong>切换技巧</strong>：</li>
+<li>Tab键快速切换</li>
+<li>切换冷却1秒</li>
+<li>形态指示器UI</li>
+</ul>
+<h2 id="4">4. 元素视野教学</h2>
+<h3 id="41">4.1 元素视野机制</h3>
+<p><strong>开启方式</strong></p>
+<ul>
+<li><strong>按键</strong>：E键切换元素视野</li>
+<li><strong>效果</strong>：</li>
+<li>世界变为灰度</li>
+<li>元素用对应颜色高亮</li>
+<li>显示元素流动轨迹</li>
+<li><strong>用途</strong>：</li>
+<li>识别敌人元素属性</li>
+<li>发现隐藏元素机关</li>
+<li>预判元素反应效果</li>
+</ul>
+<h3 id="42">4.2 元素识别训练</h3>
+<p><strong>七元素展示</strong></p>
+<ol>
+<li>
+<p><strong>火元素</strong>（红色）
+   - 视觉：火焰燃烧特效
+   - 标识：火焰图标
+   - 示例：火元素史莱姆</p>
+</li>
+<li>
+<p><strong>水元素</strong>（蓝色）
+   - 视觉：水波流动特效
+   - 标识：水滴图标
+   - 示例：水元素法师护盾</p>
+</li>
+<li>
+<p><strong>雷元素</strong>（紫色）
+   - 视觉：电流闪烁特效
+   - 标识：闪电图标
+   - 示例：雷元素充能装置</p>
+</li>
+<li>
+<p><strong>冰元素</strong>（浅蓝）
+   - 视觉：冰晶凝结特效
+   - 标识：雪花图标
+   - 示例：冰元素地面陷阱</p>
+</li>
+<li>
+<p><strong>风元素</strong>（青色）
+   - 视觉：旋风环绕特效
+   - 标识：风车图标
+   - 示例：风元素上升气流</p>
+</li>
+<li>
+<p><strong>岩元素</strong>（黄色）
+   - 视觉：岩石纹理特效
+   - 标识：山峰图标
+   - 示例：岩元素护盾柱</p>
+</li>
+<li>
+<p><strong>草元素</strong>（绿色）
+   - 视觉：藤蔓生长特效
+   - 标识：叶子图标
+   - 示例：草元素治疗圈</p>
+</li>
+</ol>
+<h3 id="43">4.3 元素附着教学</h3>
+<p><strong>附着机制说明</strong></p>
+<ul>
+<li><strong>附着量</strong>：1U/2U/4U概念介绍</li>
+<li><strong>附着时长</strong>：元素残留时间条</li>
+<li><strong>附着覆盖</strong>：强元素覆盖弱元素</li>
+</ul>
+<p><strong>实践训练</strong></p>
+<ol>
+<li>
+<p><strong>单元素附着</strong>
+   - 对训练假人施加火元素
+   - 观察元素图标与计时器
+   - 等待元素自然消散</p>
+</li>
+<li>
+<p><strong>元素覆盖</strong>
+   - 先附着水元素（1U）
+   - 再附着火元素（2U）
+   - 观察覆盖过程</p>
+</li>
+<li>
+<p><strong>多元素共存</strong>
+   - 特殊情况说明（冻结状态）
+   - 元素优先级规则
+   - 实战应用场景</p>
+</li>
+</ol>
+<h2 id="5">5. 蒸发反应训练（胡桃+行秋配合）</h2>
+<h3 id="51">5.1 蒸发反应机制详解</h3>
+<p><strong>反应公式</strong></p>
+<ul>
+<li><strong>正向蒸发</strong>（火+水）：火元素伤害 × 1.5</li>
+<li><strong>反向蒸发</strong>（水+火）：水元素伤害 × 2.0</li>
+<li><strong>元素精通加成</strong>：基础倍率 × (1 + EM加成%)</li>
+<li><strong>实战意义</strong>：游戏中最强增伤反应之一</li>
+</ul>
+<p><strong>触发条件</strong></p>
+<ol>
+<li>目标身上有水元素附着</li>
+<li>使用火元素攻击触发</li>
+<li>或反向操作（火元素附着→水元素触发）</li>
+</ol>
+<h3 id="52">5.2 角色介绍与配合</h3>
+<p><strong>胡桃型机甲（火系主C）</strong></p>
+<ul>
+<li><strong>普通攻击</strong>：「安神秘法枪术」</li>
+<li>6段连续枪击</li>
+<li>倍率：46%/48%/61%/66%/42%×2/86%</li>
+<li>
+<p>附着：每3击附着1U火元素</p>
+</li>
+<li>
+<p><strong>E技能</strong>：「蝶引来生」</p>
+</li>
+<li>冷却：16秒</li>
+<li>效果：将普攻转化为火元素伤害</li>
+<li>特性：HP低于50%时伤害+33%</li>
+<li>
+<p>持续：9秒</p>
+</li>
+<li>
+<p><strong>Q技能</strong>：「安神秘法」</p>
+</li>
+<li>能量：60</li>
+<li>效果：大范围火元素爆发</li>
+<li>倍率：基于当前HP损失量</li>
+<li>特殊：击杀回复生命值</li>
+</ul>
+<p><strong>行秋型机甲（水系副C）</strong></p>
+<ul>
+<li><strong>普通攻击</strong>：「古华剑法」</li>
+<li>5段剑击</li>
+<li>
+<p>倍率：46%/47%/56%/56%/71%</p>
+</li>
+<li>
+<p><strong>E技能</strong>：「画雨笼山」</p>
+</li>
+<li>冷却：21秒</li>
+<li>效果：水元素斩击+雨帘剑</li>
+<li>
+<p>雨帘剑：减伤20%+打断抵抗</p>
+</li>
+<li>
+<p><strong>Q技能</strong>：「裁雨留虹」</p>
+</li>
+<li>能量：80</li>
+<li>效果：召唤雨帘剑协同攻击</li>
+<li>触发：普攻时自动发射水剑</li>
+<li>持续：15秒/18秒（满命）</li>
+</ul>
+<h3 id="53">5.3 实战训练流程</h3>
+<p><strong>步骤一：单独技能熟悉</strong></p>
+<ol>
+<li>
+<p><strong>胡桃练习</strong>（3分钟）
+   - 目标：训练假人×3
+   - 要求：</p>
+<ul>
+<li>E技能转火练习</li>
+<li>HP管理（保持50%以下）</li>
+<li>Q技能回血时机</li>
+<li>评分：</li>
+<li>总伤害量</li>
+<li>E技能覆盖率</li>
+<li>生存时间</li>
+</ul>
+</li>
+<li>
+<p><strong>行秋练习</strong>（3分钟）
+   - 目标：移动靶标×5
+   - 要求：</p>
+<ul>
+<li>E技能双段打击</li>
+<li>Q技能覆盖维持</li>
+<li>雨帘剑减伤测试</li>
+<li>评分：</li>
+<li>水元素附着率</li>
+<li>Q技能持续时间</li>
+<li>承受伤害量</li>
+</ul>
+</li>
+</ol>
+<p><strong>步骤二：配合训练</strong></p>
+<ol>
+<li>
+<p><strong>基础配合</strong>（5分钟）
+   - <strong>循环一</strong>：行秋QE → 胡桃E普攻
+   - <strong>要点</strong>：</p>
+<ul>
+<li>行秋先手保证挂水</li>
+<li>胡桃输出窗口最大化</li>
+<li>注意水剑CD（1秒）</li>
+</ul>
+</li>
+<li>
+<p><strong>进阶配合</strong>（5分钟）
+   - <strong>循环二</strong>：行秋Q → 胡桃E + 冲刺取消
+   - <strong>技巧</strong>：</p>
+<ul>
+<li>跳跃取消后摇</li>
+<li>冲刺躲避攻击</li>
+<li>保持输出节奏</li>
+</ul>
+</li>
+<li>
+<p><strong>完美配合</strong>（5分钟）
+   - <strong>循环三</strong>：双暴击蒸发链
+   - <strong>要求</strong>：</p>
+<ul>
+<li>暴击率&gt;60%</li>
+<li>每次蒸发都暴击</li>
+<li>15秒内打出10次蒸发</li>
+</ul>
+</li>
+</ol>
+<p><strong>步骤三：实战模拟</strong></p>
+<p><strong>场景：遗迹守卫挑战</strong></p>
+<ul>
+<li><strong>敌人</strong>：虚拟遗迹守卫（20000HP）</li>
+<li><strong>阶段一</strong>（100%-70%HP）</li>
+<li>常规攻击模式</li>
+<li>
+<p>练习基础蒸发循环</p>
+</li>
+<li>
+<p><strong>阶段二</strong>（70%-40%HP）</p>
+</li>
+<li>旋转攻击+导弹</li>
+<li>
+<p>需要利用雨帘剑减伤</p>
+</li>
+<li>
+<p><strong>阶段三</strong>（40%-0%HP）</p>
+</li>
+<li>狂暴模式</li>
+<li>考验极限输出能力</li>
+</ul>
+<p><strong>评分标准</strong></p>
+<ul>
+<li><strong>S级</strong>：60秒内击败</li>
+<li><strong>A级</strong>：90秒内击败</li>
+<li><strong>B级</strong>：120秒内击败</li>
+<li><strong>特殊成就</strong>：</li>
+<li>「完美蒸发」：所有火元素攻击都触发蒸发</li>
+<li>「极限输出」：单次蒸发伤害超过10000</li>
+<li>「无伤大师」：不受任何伤害通过</li>
+</ul>
+<h3 id="54">5.4 蒸发反应进阶技巧</h3>
+<p><strong>元素量管理</strong></p>
+<ul>
+<li><strong>强水弱火</strong>：2U水可以承受多次1U火</li>
+<li><strong>元素残留</strong>：利用残留元素打连续蒸发</li>
+<li><strong>双火蒸发</strong>：特定帧数下的双重触发</li>
+</ul>
+<p><strong>队伍搭配建议</strong></p>
+<ol>
+<li>
+<p><strong>标准蒸发队</strong>
+   - 胡桃+行秋+钟离+阿贝多
+   - 输出+挂水+护盾+增伤</p>
+</li>
+<li>
+<p><strong>双火蒸发队</strong>
+   - 胡桃+行秋+班尼特+香菱
+   - 双火共鸣+双重蒸发</p>
+</li>
+<li>
+<p><strong>纯粹蒸发队</strong>
+   - 胡桃+行秋+砂糖+托马
+   - 精通加成+火盾保护</p>
+</li>
+</ol>
+<h2 id="6">6. 护盾机制入门（钟离石柱共鸣）</h2>
+<h3 id="61">6.1 护盾系统基础</h3>
+<p><strong>护盾类型</strong></p>
+<ol>
+<li>
+<p><strong>元素护盾</strong>
+   - 对应元素减伤250%
+   - 其他元素减伤100%
+   - 可被对应反应破除</p>
+</li>
+<li>
+<p><strong>全元素护盾</strong>
+   - 所有伤害减免150%
+   - 不受元素克制影响
+   - 钟离专属机制</p>
+</li>
+<li>
+<p><strong>伤害吸收盾</strong>
+   - 固定血量护盾
+   - 破盾前完全免伤
+   - 可叠加多层</p>
+</li>
+</ol>
+<p><strong>护盾公式</strong></p>
+<div class="codehilite"><pre><span></span><code>护盾值 = 基础护盾 × (1 + 护盾强效%)
+实际减伤 = 护盾值 × 元素克制系数
+持续时间 = 基础时长（不可延长）
+</code></pre></div>
+
+<h3 id="62">6.2 钟离型机甲详解</h3>
+<p><strong>角色定位</strong>：岩系护盾辅助</p>
+<ul>
+<li><strong>生命值</strong>：28000（全游戏最高）</li>
+<li><strong>护盾强度</strong>：基础12000 + 25%最大生命值</li>
+<li><strong>特色</strong>：全队护盾共享机制</li>
+</ul>
+<p><strong>技能组详解</strong></p>
+<p><strong>普通攻击</strong>：「岩雨」</p>
+<ul>
+<li>6段枪击</li>
+<li>倍率：30%/31%/39%/43%/11%×4/55%</li>
+<li>特殊：重击消耗体力进行岩元素攻击</li>
+</ul>
+<p><strong>E技能</strong>：「地心·玉璋护盾」</p>
+<ul>
+<li><strong>点按</strong>：岩脊（石柱）</li>
+<li>生成岩元素创造物</li>
+<li>持续30秒</li>
+<li>共鸣伤害：每2秒一次</li>
+<li>
+<p>最多存在1个（C1后为2个）</p>
+</li>
+<li>
+<p><strong>长按</strong>：玉璋护盾</p>
+</li>
+<li>护盾值：基础2311 + 12.8%最大HP</li>
+<li>持续：20秒</li>
+<li>特性：150%全元素物理伤害吸收</li>
+<li>附加：附近敌人全元素抗性&amp;物理抗性-20%</li>
+</ul>
+<p><strong>Q技能</strong>：「天星」</p>
+<ul>
+<li>能量需求：40（全游戏最低）</li>
+<li>效果：巨大陨石坠落</li>
+<li>伤害：岩元素范围伤害</li>
+<li>控制：石化3.1秒</li>
+<li>倍率：590%（1级）→1109%（10级）</li>
+</ul>
+<h3 id="63">6.3 石柱共鸣机制训练</h3>
+<p><strong>共鸣机制说明</strong></p>
+<ul>
+<li>
+<p><strong>触发条件</strong>：
+  1. 场上存在岩脊（石柱）
+  2. 其他岩元素创造物存在
+  3. 自动产生共鸣脉冲</p>
+</li>
+<li>
+<p><strong>共鸣特性</strong>：</p>
+</li>
+<li>伤害范围：以石柱为中心</li>
+<li>触发间隔：2秒</li>
+<li>可破坏物体：矿石、护盾等</li>
+</ul>
+<p><strong>基础训练</strong></p>
+<ol>
+<li>
+<p><strong>石柱放置练习</strong>
+   - 目标：在指定位置放置石柱
+   - 要求：</p>
+<ul>
+<li>精确控制放置距离</li>
+<li>理解石柱生成规则</li>
+<li>避免石柱被破坏</li>
+</ul>
+</li>
+<li>
+<p><strong>护盾维持练习</strong>
+   - 目标：保持护盾100%覆盖率
+   - 内容：</p>
+<ul>
+<li>长按E刷新护盾</li>
+<li>计算护盾持续时间</li>
+<li>管理技能CD</li>
+</ul>
+</li>
+<li>
+<p><strong>共鸣伤害练习</strong>
+   - 目标：多个训练假人
+   - 要求：</p>
+<ul>
+<li>利用共鸣范围AOE</li>
+<li>最大化共鸣伤害</li>
+<li>配合其他岩创造物</li>
+</ul>
+</li>
+</ol>
+<p><strong>进阶训练</strong></p>
+<p><strong>场景一：护盾耐久测试</strong></p>
+<ul>
+<li>敌人：弓箭手×5（持续射击）</li>
+<li>目标：维持护盾60秒不破</li>
+<li>技巧：</li>
+<li>计算护盾剩余量</li>
+<li>及时刷新护盾</li>
+<li>利用石柱阻挡射击</li>
+</ul>
+<p><strong>场景二：石化控制链</strong></p>
+<ul>
+<li>敌人：高速移动单位×3</li>
+<li>目标：连续石化控制</li>
+<li>流程：
+  1. Q技能石化（3.1秒）
+  2. 护盾减抗debuff
+  3. 配合队友爆发输出</li>
+</ul>
+<p><strong>场景三：元素结晶训练</strong></p>
+<ul>
+<li>环境：多元素场地</li>
+<li>目标：收集各色结晶</li>
+<li>机制：</li>
+<li>岩+其他元素=结晶反应</li>
+<li>拾取结晶获得对应元素护盾</li>
+<li>护盾可叠加至上限</li>
+</ul>
+<h3 id="64">6.4 护盾队伍搭配</h3>
+<p><strong>标准护盾队</strong></p>
+<ul>
+<li>钟离+阿贝多+胡桃+行秋</li>
+<li>岩系共鸣+蒸发反应</li>
+<li>极致生存+稳定输出</li>
+</ul>
+<p><strong>护盾辅助要点</strong></p>
+<ol>
+<li><strong>开场手法</strong>：钟离长E开盾→减抗→切主C</li>
+<li><strong>循环维持</strong>：20秒刷新一次护盾</li>
+<li><strong>应急处理</strong>：Q技能石化打断危险技能</li>
+<li><strong>站位管理</strong>：石柱卡位限制敌人移动</li>
+</ol>
+<h2 id="7">7. 训练进度检查点与综合评估</h2>
+<h3 id="71">7.1 检查点系统设计</h3>
+<p><strong>检查点分布</strong></p>
+<ol>
+<li>
+<p><strong>CP1 - 基础操作</strong>（5分钟）
+   - 移动跳跃熟练度
+   - 射击准确率&gt;70%
+   - 形态切换3次</p>
+</li>
+<li>
+<p><strong>CP2 - 元素认知</strong>（10分钟）
+   - 识别7种元素
+   - 元素视野使用5次
+   - 元素附着成功率&gt;80%</p>
+</li>
+<li>
+<p><strong>CP3 - 反应掌握</strong>（15分钟）
+   - 触发蒸发10次
+   - 连续蒸发3次
+   - 反应伤害&gt;5000</p>
+</li>
+<li>
+<p><strong>CP4 - 护盾运用</strong>（20分钟）
+   - 护盾覆盖率&gt;90%
+   - 石柱共鸣击杀5个敌人
+   - 无伤通过一波攻击</p>
+</li>
+</ol>
+<p><strong>检查点奖励</strong></p>
+<ul>
+<li>通过CP1：解锁「新手上路」成就</li>
+<li>通过CP2：解锁元素精通+50</li>
+<li>通过CP3：解锁蒸发伤害+10%</li>
+<li>通过CP4：解锁护盾强效+15%</li>
+</ul>
+<h3 id="72">7.2 综合实战考核</h3>
+<p><strong>考核关卡：凯瑟琳的最终试炼</strong></p>
+<p><strong>关卡设定</strong></p>
+<ul>
+<li>时限：5分钟</li>
+<li>地图：多层立体训练场</li>
+<li>敌人：波次刷新机制</li>
+</ul>
+<p><strong>第一波：基础考验</strong>（0-60秒）</p>
+<ul>
+<li>敌人配置：</li>
+<li>史莱姆×5（各元素）</li>
+<li>丘丘人×3</li>
+<li>考核点：</li>
+<li>快速清理小怪</li>
+<li>元素反应运用</li>
+<li>移动射击准确性</li>
+</ul>
+<p><strong>第二波：配合考验</strong>（60-180秒）</p>
+<ul>
+<li>敌人配置：</li>
+<li>深渊法师×2（水/火）</li>
+<li>丘丘暴徒×1</li>
+<li>考核点：</li>
+<li>破盾效率</li>
+<li>角色切换时机</li>
+<li>蒸发反应输出</li>
+</ul>
+<p><strong>第三波：生存考验</strong>（180-300秒）</p>
+<ul>
+<li>敌人配置：</li>
+<li>遗迹守卫×1（削弱版）</li>
+<li>遗迹猎手×2</li>
+<li>考核点：</li>
+<li>护盾维持能力</li>
+<li>危机处理能力</li>
+<li>极限输出能力</li>
+</ul>
+<h3 id="73">7.3 评分标准与奖励</h3>
+<p><strong>评分维度</strong></p>
+<ol>
+<li>
+<p><strong>时间评分</strong>（40%）
+   - S：&lt;3分钟
+   - A：3-4分钟
+   - B：4-5分钟
+   - C：&gt;5分钟</p>
+</li>
+<li>
+<p><strong>技巧评分</strong>（30%）
+   - 元素反应次数
+   - 完美闪避次数
+   - 形态切换合理性
+   - 技能连招完成度</p>
+</li>
+<li>
+<p><strong>生存评分</strong>（20%）
+   - 剩余HP百分比
+   - 护盾破碎次数
+   - 复活使用次数</p>
+</li>
+<li>
+<p><strong>收集评分</strong>（10%）
+   - 能量球收集
+   - 结晶收集
+   - 隐藏道具发现</p>
+</li>
+</ol>
+<p><strong>综合评级</strong></p>
+<ul>
+<li><strong>SSS级</strong>（95+分）</li>
+<li>奖励：传说皮肤「见习冒险家」</li>
+<li>成就：「完美毕业」</li>
+<li>
+<p>称号：「天才新人」</p>
+</li>
+<li>
+<p><strong>SS级</strong>（90-94分）</p>
+</li>
+<li>奖励：高级经验书×20</li>
+<li>
+<p>成就：「优秀学员」</p>
+</li>
+<li>
+<p><strong>S级</strong>（80-89分）</p>
+</li>
+<li>奖励：中级经验书×30</li>
+<li>
+<p>成就：「合格驾驶员」</p>
+</li>
+<li>
+<p><strong>A级</strong>（70-79分）</p>
+</li>
+<li>
+<p>奖励：初级经验书×50</p>
+</li>
+<li>
+<p><strong>B级</strong>（60-69分）</p>
+</li>
+<li>
+<p>奖励：摩拉×10000</p>
+</li>
+<li>
+<p><strong>C级</strong>（&lt;60分）</p>
+</li>
+<li>鼓励重新挑战</li>
+<li>派蒙安慰台词</li>
+</ul>
+<h3 id="74">7.4 隐藏要素与彩蛋</h3>
+<p><strong>隐藏成就列表</strong></p>
+<ol>
+<li><strong>「我全都要」</strong>：使用所有角色形态各击杀1个敌人</li>
+<li><strong>「元素大师」</strong>：触发全部7种元素反应</li>
+<li><strong>「无伤传说」</strong>：不受任何伤害完成试炼</li>
+<li><strong>「速通达人」</strong>：2分钟内完成试炼</li>
+<li><strong>「应急食品」</strong>：发现隐藏的派蒙彩蛋</li>
+</ol>
+<p><strong>彩蛋内容</strong></p>
+<ul>
+<li>凯瑟琳的秘密：调查特定位置触发剧情</li>
+<li>派蒙的宝箱：隐藏房间的特殊奖励</li>
+<li>开发者留言：特定操作组合显示感谢信息</li>
+</ul>
+<p><strong>新手礼包</strong>
+完成教学关卡后自动获得：</p>
+<ul>
+<li>4星角色体验卡×1（7天）</li>
+<li>强化材料包×1</li>
+<li>抽卡券×10</li>
+<li>专属头像框「见习者」</li>
+</ul>
+<h2 id="_4">总结</h2>
+<p>「凯瑟琳的试炼」作为游戏的教学关卡，通过精心设计的递进式教学流程，确保新手玩家能够全面掌握游戏的核心机制。从基础移动射击到复杂的元素反应系统，从单人操作到团队配合，每个环节都配有详细的引导和即时反馈。派蒙的陪伴让学习过程充满乐趣，而丰富的成就和奖励则激励玩家不断挑战自我，追求完美表现。这个教学关卡不仅是新手的起点，也是资深玩家检验技巧、挑战极限的训练场。</p>
+            </article>
+            
+            <nav class="page-nav"><a href="chapter11.html" class="nav-link prev">← 第十一章 - 宿舍系统</a><a href="chapter14.html" class="nav-link next">第十一章 - 层岩巨渊·机械废墟 →</a></nav>
+        </main>
+    </div>
+</body>
+</html>

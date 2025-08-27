@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="./">
+    <title>第九章 - 召唤物与僚机系统</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/highlight.css">
+    <script src="assets/script.js" defer></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']],
+                processEscapes: false,
+                packages: {'[+]': ['noerrors', 'ams']}
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            },
+            loader: {
+                load: ['[tex]/noerrors', '[tex]/ams']
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h3>目录</h3>
+                <button id="sidebar-toggle" class="sidebar-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <div class="sidebar-search">
+                <input type="text" id="sidebar-search-input" placeholder="搜索..." autocomplete="off">
+            </div>
+            <div id="tree-container">
+                <nav class="tree-nav" role="tree">
+                    <div class="tree-item " >
+                        <a href="index.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">机甲崩坏：变异纪元 - 游戏设计规格说明书</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter1.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第一章 - 世界观与故事背景</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter2.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第二章 - UI/UX与唯美风格美术规范</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter3.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第三章 - 战斗系统与伤害计算</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter4.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第四章 - 武器装备与强化系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter5.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第五章 - 机甲驾驶员角色设计</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter6.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第六章 - 变异生物图鉴与数值设计</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter7.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第七章 - 提瓦特废土地形系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter8.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第八章 - 圣遗物装备进阶系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item active" >
+                        <a href="chapter9.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第九章 - 召唤物与僚机系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter10.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十章 - 补给系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter11.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十一章 - 宿舍系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter13.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十章 - 凯瑟琳的试炼（教学关卡）</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter14.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十一章 - 层岩巨渊·机械废墟</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter15.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十二章 - 深渊螺旋·终焉之刻</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="CLAUDE.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">Untitled</span>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </nav>
+        
+        <main class="content">
+            <article>
+                <h1 id="-">第九章 - 召唤物与僚机系统</h1>
+<h2 id="_1">章节概览</h2>
+<p>本章详细规定各机甲驾驶员的召唤物与忠诚僚机系统，包括召唤机制、AI行为模式、协同作战策略、属性共享机制等。每个角色都拥有独特的召唤单位，作为战斗中的得力助手，极大丰富了战术深度和视觉表现。</p>
+<h2 id="91">9.1 系统核心机制</h2>
+<h3 id="911">9.1.1 召唤物定位</h3>
+<h4 id="_2">战术层面设计</h4>
+<ul>
+<li><strong>战术意义</strong>：提供额外火力支援、控制、辅助效果，形成立体化作战体系</li>
+<li>火力延伸：覆盖主机甲攻击盲区，形成交叉火力网</li>
+<li>战术牵制：分散敌人注意力，创造输出窗口期</li>
+<li>功能补充：弥补主机甲短板，如远程单位配近战召唤物</li>
+<li><strong>独立单位</strong>：拥有独立血条和AI行为，可被敌人攻击</li>
+<li>生命系统：独立计算受击伤害，死亡后进入冷却</li>
+<li>仇恨机制：根据威胁值吸引敌人攻击（基础仇恨值500）</li>
+<li>碰撞体积：占据实际空间，可阻挡敌人移动路线</li>
+<li><strong>元素协同</strong>：与主机甲形成元素反应配合</li>
+<li>元素附着独立计算，遵循ICD规则</li>
+<li>反应优先级：主机甲触发 &gt; 召唤物触发</li>
+<li>元素共鸣加成：同元素召唤物获得25%伤害加成</li>
+<li><strong>视觉强化</strong>：增强战斗场面的壮观程度</li>
+<li>粒子特效：召唤时的华丽出场动画（持续1.5秒）</li>
+<li>光影效果：实时阴影投射，增强立体感</li>
+<li>轨迹残影：高速移动时拖尾效果</li>
+</ul>
+<h4 id="_3">战略价值评估</h4>
+<ul>
+<li><strong>资源交换</strong>：用能量换取持续输出/防护</li>
+<li><strong>节奏控制</strong>：关键时刻改变战局走向</li>
+<li><strong>容错机制</strong>：为操作失误提供补救机会</li>
+<li><strong>深度拓展</strong>：增加Build构筑的可能性</li>
+</ul>
+<h3 id="912">9.1.2 召唤触发条件</h3>
+<h4 id="_4">标准召唤机制</h4>
+<ul>
+<li><strong>普通召唤</strong>：消耗50%能量值（SP），持续时间30秒</li>
+<li>能量获取：普攻每hit获得1点，元素微粒3-4点，晶球6-8点</li>
+<li>充能效率影响：实际消耗 = 50% / (1 + 充能效率%)</li>
+<li>冷却时间：召唤结束后15秒冷却</li>
+<li>召唤动作：1秒吟唱时间，可被打断</li>
+<li><strong>觉醒召唤</strong>：大招状态下自动召唤强化版本，持续15秒</li>
+<li>触发条件：释放必杀技时自动激活</li>
+<li>强化倍率：属性提升50%，技能冷却-30%</li>
+<li>视觉特效：召唤物获得觉醒光环特效</li>
+<li>不占用普通召唤冷却</li>
+<li><strong>被动召唤</strong>：特定角色命座解锁后战斗开始自动召唤</li>
+<li>1命效果：战斗开始召唤弱化版（50%属性）</li>
+<li>4命效果：召唤物获得额外技能</li>
+<li>6命效果：可同时存在2个召唤物</li>
+<li><strong>连携召唤</strong>：队伍特定组合触发联合召唤</li>
+<li>双元素共鸣：火+雷组合召唤"过载兽"</li>
+<li>三角连携：水+冰+雷召唤"极寒风暴体"</li>
+<li>全队合击：QTE完美触发后的合体召唤</li>
+</ul>
+<h4 id="_5">特殊召唤规则</h4>
+<ul>
+<li><strong>紧急召唤</strong>：生命值低于30%时可无视冷却立即召唤（每场限1次）</li>
+<li><strong>祭献召唤</strong>：消耗当前召唤物，立即召唤另一个（属性+30%）</li>
+<li><strong>共鸣召唤</strong>：多人模式下，队友同时召唤触发共鸣强化</li>
+</ul>
+<h3 id="913-ai">9.1.3 僚机AI行为模式</h3>
+<h4 id="_6">基础行为模式</h4>
+<ol>
+<li>
+<p><strong>跟随模式</strong>：保持在主机甲周围3个身位内
+   - 位置计算：使用贝塞尔曲线平滑移动路径
+   - 跟随优先级：躲避 &gt; 跟随 &gt; 攻击
+   - 失联重连：超出10个身位自动传送回主机甲身边
+   - 地形适应：自动调整高度适应地形</p>
+</li>
+<li>
+<p><strong>护卫模式</strong>：优先攻击威胁主机甲的敌人
+   - 威胁判定：距离主机甲5个身位内的敌人优先级+50%
+   - 拦截行为：主动拦截飞行道具
+   - 反击触发：主机甲受击时立即反击攻击源
+   - 保护站位：自动调整到主机甲与敌人之间</p>
+</li>
+<li>
+<p><strong>突击模式</strong>：主动寻找并攻击最近敌人<br />
+   - 索敌范围：8个身位半径
+   - 追击判定：敌人血量&lt;30%时追击优先级+100%
+   - 连续打击：锁定目标直至击败
+   - 切换延迟：目标死亡后0.5秒重新索敌</p>
+</li>
+<li>
+<p><strong>支援模式</strong>：提供治疗、护盾或增益效果
+   - 治疗时机：队友血量&lt;50%触发
+   - 护盾刷新：护盾破碎3秒后重新生成
+   - BUFF维持：保持增益效果100%覆盖率
+   - 优先级排序：濒死队友 &gt; 主机甲 &gt; 其他队友</p>
+</li>
+</ol>
+<h4 id="_7">智能决策系统</h4>
+<ul>
+<li><strong>威胁评估</strong>：根据敌人类型和距离判定优先级</li>
+<li>Boss单位：基础优先级1000</li>
+<li>精英单位：基础优先级500  </li>
+<li>普通单位：基础优先级100</li>
+<li>距离修正：每个身位距离优先级-10</li>
+<li>血量修正：敌人血量百分比 × 50</li>
+<li><strong>元素配合</strong>：自动配合主机甲制造元素反应</li>
+<li>元素识别：检测主机甲当前使用元素</li>
+<li>时机把控：在主机甲攻击0.3秒后补充元素</li>
+<li>反应优化：优先触发高倍率反应（蒸发/融化）</li>
+<li><strong>规避机制</strong>：躲避Boss技能和弹幕攻击</li>
+<li>危险预警：Boss抬手动作检测</li>
+<li>弹幕识别：计算弹道预判躲避路径</li>
+<li>紧急闪避：0.2秒反应时间内快速位移</li>
+<li><strong>集火指令</strong>：响应玩家标记的重点目标</li>
+<li>标记识别：鼠标中键标记目标</li>
+<li>优先级覆盖：标记目标优先级直接设为最高</li>
+<li>协同攻击：所有召唤物同时攻击标记目标</li>
+</ul>
+<h4 id="_8">行为树结构</h4>
+<div class="codehilite"><pre><span></span><code>根节点
+├─ 生存检查（HP&lt;20%进入逃避）
+├─ 指令响应（玩家手动指令最优先）
+├─ 模式选择
+│  ├─ 护卫模式条件检查
+│  ├─ 支援模式条件检查
+│  └─ 默认突击模式
+└─ 行动执行
+   ├─ 移动行为
+   ├─ 攻击行为
+   └─ 技能释放
+</code></pre></div>
+
+<h3 id="914">9.1.4 属性继承系统</h3>
+<h4 id="_9">基础继承机制</h4>
+<ul>
+<li><strong>攻击力继承</strong>：继承主机甲50-100%攻击力</li>
+<li>基础继承率：50%</li>
+<li>羁绊加成：每级羁绊+5%（最高10级）</li>
+<li>装备加成：特定圣遗物提供额外继承率</li>
+<li>计算公式：召唤物攻击力 = 主机甲攻击力 × (基础率 + 羁绊加成 + 装备加成)</li>
+<li><strong>暴击率共享</strong>：与主机甲相同暴击率</li>
+<li>完全继承主机甲暴击率（上限75%）</li>
+<li>暴击伤害继承80%</li>
+<li>独立暴击判定，不消耗主机甲暴击次数</li>
+<li><strong>元素精通加成</strong>：额外获得主机甲30%元素精通</li>
+<li>基础继承：30%元素精通</li>
+<li>元素反应伤害独立计算</li>
+<li>特定召唤物（如纳西妲）继承率提升至50%</li>
+<li><strong>圣遗物效果</strong>：部分套装效果对召唤物生效</li>
+<li>2件套效果：100%生效（如攻击力+18%）</li>
+<li>4件套效果：特定套装生效（如绝缘4件套）</li>
+<li>专属适配：部分圣遗物有召唤物专属描述</li>
+</ul>
+<h4 id="_10">进阶继承规则</h4>
+<ul>
+<li><strong>防御力继承</strong>：继承25%防御力，坦克型召唤物50%</li>
+<li><strong>生命值计算</strong>：基础生命值 + 主机甲生命值 × 继承百分比</li>
+<li><strong>速度同步</strong>：移动速度、攻击速度继承主机甲80%</li>
+<li><strong>特殊属性</strong>：</li>
+<li>元素充能效率：不继承，召唤物无需充能</li>
+<li>治疗加成：支援型召唤物继承100%</li>
+<li>护盾强效：防御型召唤物继承150%</li>
+</ul>
+<h4 id="_11">动态调整机制</h4>
+<ul>
+<li><strong>等级差补正</strong>：召唤物等级低于敌人时获得补正系数</li>
+<li><strong>属性克制</strong>：元素克制关系影响最终伤害</li>
+<li><strong>场地加成</strong>：特定地形召唤物获得属性加成</li>
+</ul>
+<h2 id="92-">9.2 火系召唤物 - 胡桃的蝴蝶精灵</h2>
+<h3 id="921">9.2.1 彼岸蝶群</h3>
+<h4 id="_12">视觉设计规范</h4>
+<ul>
+<li><strong>外观设计</strong>：血色蝴蝶群，半透明火焰翅膀，轨迹留下火星</li>
+<li>翅膀材质：渐变透明度（中心80% → 边缘20%），火焰纹理动态流动</li>
+<li>粒子效果：每只蝴蝶尾部释放3-5个火星粒子/秒，粒子生命周期0.8秒</li>
+<li>飞行动画：翅膀扇动频率2Hz，采用正弦波轨迹 + 随机扰动</li>
+<li>光照效果：自发光强度随生命值变化（100%HP=1.0光强，30%HP=2.0光强）</li>
+<li><strong>数量配置</strong>：基础6只，命座提升至12只</li>
+<li>0命：6只标准蝴蝶</li>
+<li>2命：8只蝴蝶，体型缩小15%以保持视觉平衡</li>
+<li>6命：12只蝴蝶，可分为两组执行不同任务</li>
+<li><strong>单体属性</strong>：</li>
+<li>生命值：主机甲生命值的10%（最低500HP）</li>
+<li>攻击力：主机甲攻击力的30% + 元素精通×0.2</li>
+<li>攻击频率：每秒2次扑击，命中后0.3秒攻击后摇</li>
+<li>移动速度：基础8个身位/秒，追击时12个身位/秒</li>
+</ul>
+<h4 id="_13">蝴蝶个体特性</h4>
+<ul>
+<li><strong>生命周期</strong>：存活30秒或HP归零</li>
+<li><strong>碰撞体积</strong>：0.3×0.3身位，可穿过队友但不可穿过地形</li>
+<li><strong>元素附着</strong>：1U火元素，ICD 2.5秒/3次攻击</li>
+<li><strong>仇恨值</strong>：单体50点（普通敌人会忽略，精英以上会攻击）</li>
+</ul>
+<h3 id="922">9.2.2 行为模式</h3>
+<h4 id="_14">战术行为详解</h4>
+<ul>
+<li><strong>分散攻击</strong>：蝴蝶分散攻击不同目标，造成火元素伤害</li>
+<li>目标分配算法：贪心算法，优先分配给最近且未被覆盖的敌人</li>
+<li>攻击半径：单只蝴蝶负责3个身位范围</li>
+<li>伤害计算：攻击力×120%技能倍率×元素克制系数</li>
+<li>暴击判定：独立判定，暴击时蝴蝶短暂变大120%（0.2秒）</li>
+<li><strong>聚合爆炸</strong>：生命值低于30%时自爆，造成范围火元素爆炸</li>
+<li>自爆范围：2个身位半径球形</li>
+<li>爆炸伤害：剩余HP×5 + 攻击力×300%</li>
+<li>连锁反应：一只蝴蝶自爆会对周围蝴蝶造成20%最大HP伤害</li>
+<li>视觉效果：爆炸瞬间屏幕轻微抖动，火花四溅</li>
+<li><strong>血梅绽放</strong>：击败敌人后原地绽放火焰花朵，持续造成燃烧</li>
+<li>花朵持续：5秒</li>
+<li>燃烧伤害：每秒攻击力×50%</li>
+<li>花朵上限：同时存在最多6朵</li>
+<li>特殊交互：队友踩到花朵获得10%攻击力加成（3秒）</li>
+<li><strong>护主模式</strong>：主机甲生命值低于50%时环绕保护</li>
+<li>环绕半径：1个身位</li>
+<li>防御优先：停止主动攻击，专注拦截飞行道具</li>
+<li>伤害减免：为主机甲提供10%减伤（蝴蝶存活期间）</li>
+<li>反击机制：主机甲受击时，所有蝴蝶立即扑向攻击源</li>
+</ul>
+<h4 id="ai">AI决策权重</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="ss">(</span>主机甲<span class="nv">HP</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">50</span><span class="o">%</span><span class="ss">)</span><span class="w"> </span>{
+<span class="w">    </span>护主模式权重<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span>
+}<span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span>存在标记目标<span class="ss">)</span><span class="w"> </span>{
+<span class="w">    </span>集火权重<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">80</span>
+}<span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span>自身<span class="nv">HP</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">30</span><span class="o">%</span><span class="ss">)</span><span class="w"> </span>{
+<span class="w">    </span>自爆权重<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">60</span>
+}<span class="w"> </span><span class="k">else</span><span class="w"> </span>{
+<span class="w">    </span>分散攻击权重<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">40</span>
+}
+</code></pre></div>
+
+<h3 id="923-">9.2.3 觉醒强化 - 彼岸花海</h3>
+<h4 id="_15">觉醒形态升级</h4>
+<ul>
+<li><strong>召唤数量</strong>：24只强化蝴蝶</li>
+<li>分为4个编队，每队6只</li>
+<li>编队间保持菱形阵型</li>
+<li>可独立指挥各编队</li>
+<li><strong>特殊效果</strong>：蝴蝶飞过路径生成火焰地带</li>
+<li>火径宽度：0.5个身位</li>
+<li>持续时间：3秒</li>
+<li>叠加机制：多条火径叠加伤害递增（上限300%）</li>
+<li>额外效果：敌人穿过火径获得"引燃"debuff（持续燃烧5秒）</li>
+<li><strong>终极技能</strong>：所有蝴蝶聚合成巨大彼岸花爆炸</li>
+<li>聚合时间：1.5秒（期间无敌）</li>
+<li>彼岸花直径：8个身位</li>
+<li>爆炸伤害：所有蝴蝶攻击力总和×500%</li>
+<li>残留效果：爆炸区域变为火海（10秒）</li>
+</ul>
+<h2 id="93-">9.3 雷系召唤物 - 雷电将军的雷鸟</h2>
+<h3 id="931">9.3.1 鸣神雷鸟</h3>
+<h4 id="_16">设计理念与规范</h4>
+<ul>
+<li><strong>外观设计</strong>：紫电环绕的能量鸟，翅膀闪烁雷光，尾迹为电弧</li>
+<li>主体构成：纯能量体，半透明紫色基调 + 电弧白色高光</li>
+<li>羽翼特效：每片羽毛末端持续放电，形成电网视觉</li>
+<li>飞行轨迹：留下持续0.5秒的紫色雷电痕迹</li>
+<li>音效设计：持续低频电流声 + 俯冲时的雷鸣</li>
+<li><strong>体型规格</strong>：展翅宽度3个身位，悬浮高度2个身位</li>
+<li>碰撞判定：2×1.5个身位椭圆形</li>
+<li>悬浮动画：上下浮动±0.3个身位，周期3秒</li>
+<li>转向速度：180度/秒，保持优雅</li>
+<li><strong>基础属性</strong>：</li>
+<li>生命值：主机甲生命值的40%（最低2000HP）</li>
+<li>攻击力：主机甲攻击力的80% + 元素充能效率×100</li>
+<li>攻击模式：雷电俯冲（主） + 电弧扫射（辅）</li>
+<li>雷元素附着：2U，无ICD限制</li>
+</ul>
+<h4 id="_17">雷鸟特性系统</h4>
+<ul>
+<li><strong>雷电亲和</strong>：免疫雷元素伤害，受到雷元素攻击回复5%最大生命值</li>
+<li><strong>高速机动</strong>：移动速度不受减速效果影响</li>
+<li><strong>雷暴核心</strong>：周围3个身位内的敌人攻击速度-20%</li>
+<li><strong>能量共振</strong>：主机甲获得元素微粒时，雷鸟获得5%攻击力加成（最高50%）</li>
+</ul>
+<h3 id="932">9.3.2 战斗能力</h3>
+<h4 id="_18">技能机制详解</h4>
+<ul>
+<li><strong>雷暴俯冲</strong>：每5秒俯冲攻击，路径上连锁闪电</li>
+<li>俯冲距离：8个身位直线</li>
+<li>主目标伤害：攻击力×400%</li>
+<li>连锁次数：最多弹跳5次，每次衰减20%</li>
+<li>连锁范围：3个身位</li>
+<li>特殊效果：俯冲路径上留下"雷痕"（2秒内踩中的敌人被麻痹0.5秒）</li>
+<li><strong>静电场域</strong>：悬停时周围形成减速电场</li>
+<li>场域半径：4个身位</li>
+<li>减速效果：30%移动速度 + 20%攻击速度</li>
+<li>静电积累：每秒叠加1层，5层时触发电爆（攻击力×200%范围伤害）</li>
+<li>视觉表现：紫色电圈向外扩散动画</li>
+<li><strong>雷种标记</strong>：攻击附加雷元素标记，提高感电伤害</li>
+<li>标记持续：10秒</li>
+<li>伤害增幅：被标记敌人受到的雷元素伤害+30%</li>
+<li>连锁触发：标记敌人死亡时，标记传递给最近的敌人</li>
+<li>标记上限：同时存在5个</li>
+<li><strong>充能支援</strong>：击败敌人为主机甲恢复10点能量</li>
+<li>精英敌人：15点能量</li>
+<li>Boss级：25点能量</li>
+<li>冷却时间：同一敌人3秒内只触发一次</li>
+<li>额外效果：触发时雷鸟短暂变大150%（0.5秒）</li>
+</ul>
+<h4 id="_19">连招系统</h4>
+<ol>
+<li>标记 → 俯冲 → 静电场 = 高爆发combo</li>
+<li>静电场（蓄力） → 电爆 → 俯冲收割</li>
+<li>持续扫射积累标记 → 引爆连锁反应</li>
+</ol>
+<h3 id="933-">9.3.3 觉醒强化 - 雷神之眼</h3>
+<h4 id="_20">觉醒变身机制</h4>
+<ul>
+<li><strong>形态进化</strong>：变为巨大雷眼悬浮监视</li>
+<li>外观变化：从鸟形态变为竖瞳雷眼，直径3个身位</li>
+<li>悬浮高度：5个身位（超出普通攻击范围）</li>
+<li>视线追踪：眼球会看向最大威胁目标</li>
+<li>威压效果：普通敌人30%概率麻痹（0.2秒）</li>
+<li><strong>全屏落雷</strong>：每秒随机3道落雷打击</li>
+<li>落雷范围：全屏任意位置</li>
+<li>单次伤害：攻击力×250%</li>
+<li>预警机制：落雷前0.5秒地面出现紫色法阵</li>
+<li>连续命中：同一敌人连续被击中伤害递增50%（上限3次）</li>
+<li><strong>雷罚审判</strong>：锁定血量最高敌人持续电击</li>
+<li>锁定时间：5秒（期间无法切换目标）</li>
+<li>伤害频率：每0.2秒一次</li>
+<li>单次伤害：攻击力×50%</li>
+<li>终结一击：锁定结束时释放攻击力×1000%的雷柱</li>
+</ul>
+<h2 id="94-">9.4 水系召唤物 - 行秋的雨帘剑</h2>
+<h3 id="941">9.4.1 古华剑雨</h3>
+<h4 id="_21">剑阵美学设计</h4>
+<ul>
+<li><strong>外观设计</strong>：水晶质感的飞剑阵列，剑身流转水光，萦绕水汽</li>
+<li>剑体材质：冰蓝色半透明水晶 + 内部流动水纹</li>
+<li>剑刃特效：持续滴落水珠，落地形成涟漪</li>
+<li>阵法轨迹：太极图案运转，剑与剑之间有水流连接</li>
+<li>音效层次：剑鸣声 + 水流声 + 破空声</li>
+<li><strong>数量配置</strong>：基础3把剑，最高6把（通过命座）</li>
+<li>0命：3把剑，正三角形排列</li>
+<li>2命：4把剑，正方形排列</li>
+<li>6命：6把剑，六芒星排列</li>
+<li><strong>运行轨迹</strong>：环绕主机甲旋转，形成剑阵</li>
+<li>旋转速度：60度/秒（可根据战况加速）</li>
+<li>轨道半径：2个身位</li>
+<li>高度变化：±0.5个身位起伏，营造飘逸感</li>
+<li><strong>基础属性</strong>：</li>
+<li>单剑耐久：主机甲生命值的15%（最低800HP）</li>
+<li>攻击力：主机甲攻击力的40% + 生命值×0.01</li>
+<li>攻击间隔：1.5秒</li>
+<li>水元素附着：1U，标准ICD</li>
+</ul>
+<h4 id="_22">剑阵特性</h4>
+<ul>
+<li><strong>剑气相连</strong>：剑与剑之间的水流可以传导伤害</li>
+<li><strong>雨润万物</strong>：剑阵范围内队友获得每秒1%最大生命值回复</li>
+<li><strong>古华秘传</strong>：每把剑都有独立的AI，可单独行动</li>
+<li><strong>断剑重铸</strong>：剑被击碎后，15秒后自动重生（需要主机甲存活）</li>
+</ul>
+<h3 id="942">9.4.2 守护机制</h3>
+<h4 id="_23">防御系统详解</h4>
+<ul>
+<li><strong>自动格挡</strong>：拦截飞行道具，消耗耐久</li>
+<li>格挡判定：1个身位范围内的所有投射物</li>
+<li>耐久消耗：根据投射物伤害，1点伤害=1点耐久</li>
+<li>格挡动画：剑瞬间移动到弹道路径上，溅起水花</li>
+<li>完美格挡：格挡Boss技能时，反弹30%伤害</li>
+<li><strong>水帘护盾</strong>：剑阵展开形成减伤护盾（减伤30%）</li>
+<li>护盾范围：3个身位半径</li>
+<li>持续时间：主动维持，每秒消耗5%剑阵能量</li>
+<li>护盾强度：额外吸收主机甲最大生命值20%的伤害</li>
+<li>破盾惩罚：护盾破碎时所有剑进入2秒虚弱状态</li>
+<li><strong>断流斩</strong>：主动射出攻击，造成水元素伤害</li>
+<li>射程：6个身位</li>
+<li>弹道速度：10个身位/秒</li>
+<li>穿透特性：可穿透2个敌人</li>
+<li>剑雨模式：6把剑同时射出形成弹幕</li>
+<li><strong>雨帘恢复</strong>：每把剑破碎时小范围治疗</li>
+<li>治疗量：剑最大耐久的50%</li>
+<li>治疗范围：2个身位</li>
+<li>额外效果：清除一个负面状态</li>
+<li>视觉效果：剑碎成水花，洒向队友</li>
+</ul>
+<h4 id="_24">防御优先级逻辑</h4>
+<div class="codehilite"><pre><span></span><code><span class="mf">1.</span><span class="w"> </span><span class="n">Boss大招</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">精英技能</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">普通投射物</span>
+<span class="mf">2.</span><span class="w"> </span><span class="n">瞄准主机甲的攻击</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">瞄准队友的攻击</span>
+<span class="mf">3.</span><span class="w"> </span><span class="n">高伤害</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">低伤害</span>
+<span class="mf">4.</span><span class="w"> </span><span class="n">不可闪避攻击</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">可闪避攻击</span>
+</code></pre></div>
+
+<h3 id="943-">9.4.3 觉醒强化 - 裁雨留虹</h3>
+<h4 id="_25">觉醒剑仙境界</h4>
+<ul>
+<li><strong>剑阵扩展</strong>：12把飞剑组成双层防御</li>
+<li>内层6剑：专注防御，格挡优先级最高</li>
+<li>外层6剑：专注进攻，持续输出压制</li>
+<li>剑阵共鸣：内外层剑阵反向旋转，形成水龙卷</li>
+<li><strong>虹光连斩</strong>：所有剑同时攻击造成连击</li>
+<li>连击数：12次（每把剑1次）</li>
+<li>连击间隔：0.1秒</li>
+<li>伤害递增：每次连击伤害+10%</li>
+<li>终结技：第12击必定暴击，击退3个身位</li>
+<li><strong>古华剑界</strong>：形成水之结界，内部持续回血</li>
+<li>结界范围：5个身位半径</li>
+<li>持续时间：10秒</li>
+<li>回复效果：每秒5%最大生命值</li>
+<li>结界特性：内部移动速度+30%，技能冷却-20%</li>
+<li>崩坏效果：结界消失时爆发巨浪，推开所有敌人</li>
+</ul>
+<h2 id="95-">9.5 冰系召唤物 - 神里绫华的冰鹤</h2>
+<h3 id="951">9.5.1 霜见雪鹤</h3>
+<ul>
+<li><strong>外观设计</strong>：冰晶凝聚的仙鹤，羽毛如雪花飘散，眼眸冰蓝</li>
+<li><strong>飞行高度</strong>：低空盘旋，优雅滑翔</li>
+<li><strong>基础属性</strong>：</li>
+<li>生命值：主机甲生命值的35%</li>
+<li>攻击力：主机甲攻击力的60%</li>
+<li>特殊：攻击必定附加冰元素</li>
+</ul>
+<h3 id="952">9.5.2 冰雪技能</h3>
+<ul>
+<li><strong>霜羽飞射</strong>：发射冰羽扇形弹幕</li>
+<li><strong>冰莲绽放</strong>：降落点生成冰莲花，持续冰冻</li>
+<li><strong>雪见回舞</strong>：旋转攻击周围敌人</li>
+<li><strong>永冻之羽</strong>：羽毛命中减速50%，持续3秒</li>
+</ul>
+<h3 id="953-">9.5.3 觉醒强化 - 神里流·霜灭</h3>
+<ul>
+<li><strong>鹤群降临</strong>：召唤3只冰鹤协同作战</li>
+<li><strong>暴风雪域</strong>：制造持续暴风雪天气</li>
+<li><strong>绝对零度</strong>：终极技瞬间冰冻全屏</li>
+</ul>
+<h2 id="96-">9.6 风系召唤物 - 万叶的枫叶精灵</h2>
+<h3 id="961">9.6.1 千风之诗</h3>
+<ul>
+<li><strong>外观设计</strong>：红枫叶汇聚的风元素精灵，飘舞轨迹优美</li>
+<li><strong>形态变化</strong>：可分散为叶片群或聚合为旋风</li>
+<li><strong>基础属性</strong>：</li>
+<li>生命值：主机甲生命值的25%</li>
+<li>不造成直接伤害，专注元素扩散</li>
+<li>聚怪范围：5个身位</li>
+</ul>
+<h3 id="962">9.6.2 风之辅助</h3>
+<ul>
+<li><strong>聚怪旋风</strong>：持续牵引周围敌人</li>
+<li><strong>元素染色</strong>：接触其他元素后扩散该元素</li>
+<li><strong>乱叶斩</strong>：枫叶化作利刃切割</li>
+<li><strong>风之庇护</strong>：为队友提供移速加成30%</li>
+</ul>
+<h3 id="963-">9.6.3 觉醒强化 - 万叶之一刀</h3>
+<ul>
+<li><strong>风暴眼</strong>：形成巨大龙卷风持续聚怪</li>
+<li><strong>元素风暴</strong>：同时扩散3种元素</li>
+<li><strong>绝息之风</strong>：抽空区域内氧气造成窒息</li>
+</ul>
+<h2 id="97-">9.7 岩系召唤物 - 钟离的玄岩共鸣体</h2>
+<h3 id="971">9.7.1 岩脊巨兽</h3>
+<ul>
+<li><strong>外观设计</strong>：岩石构成的龙形生物，表面金色符文，威严厚重</li>
+<li><strong>体型巨大</strong>：占据4x2身位空间</li>
+<li><strong>基础属性</strong>：</li>
+<li>生命值：主机甲生命值的200%（超高耐久）</li>
+<li>攻击力：主机甲攻击力的50%</li>
+<li>移动缓慢但防御极高</li>
+</ul>
+<h3 id="972">9.7.2 岩之守护</h3>
+<ul>
+<li><strong>玉璋护盾</strong>：为全队提供岩元素护盾</li>
+<li><strong>地脉共鸣</strong>：震击地面造成范围击退</li>
+<li><strong>石柱阵列</strong>：召唤石柱阻挡敌人</li>
+<li><strong>天星坠落</strong>：从天空投掷巨岩</li>
+</ul>
+<h3 id="973-">9.7.3 觉醒强化 - 天动万象</h3>
+<ul>
+<li><strong>岩神化身</strong>：体型翻倍，获得霸体</li>
+<li><strong>地脉封印</strong>：石化范围内所有敌人</li>
+<li><strong>陨石天降</strong>：连续陨石雨轰炸</li>
+</ul>
+<h2 id="98-">9.8 草系召唤物 - 纳西妲的智慧之种</h2>
+<h3 id="981">9.8.1 摩诃善法</h3>
+<ul>
+<li><strong>外观设计</strong>：发光的绿色种子群，漂浮并散发生机，连接藤蔓</li>
+<li><strong>智能等级</strong>：最高AI智能，可预判敌人行动</li>
+<li><strong>基础属性</strong>：</li>
+<li>单体生命值低，但数量众多（12个）</li>
+<li>攻击力：主机甲攻击力的20%</li>
+<li>特殊：提供持续治疗光环</li>
+</ul>
+<h3 id="982">9.8.2 生命赋予</h3>
+<ul>
+<li><strong>藤蔓缠绕</strong>：控制敌人2秒</li>
+<li><strong>生命绽放</strong>：原地生成治疗花朵</li>
+<li><strong>智慧连锁</strong>：种子间传导伤害和治疗</li>
+<li><strong>净化之光</strong>：解除负面状态</li>
+</ul>
+<h3 id="983-">9.8.3 觉醒强化 - 心景幻成</h3>
+<ul>
+<li><strong>智慧树</strong>：所有种子合成巨大智慧树</li>
+<li><strong>全知领域</strong>：揭示所有敌人弱点</li>
+<li><strong>梦想一心</strong>：大幅提升全队元素精通</li>
+</ul>
+<h2 id="99-">9.9 物理系召唤物 - 优菈的光影骑士</h2>
+<h3 id="991">9.9.1 劳伦斯骑士团</h3>
+<ul>
+<li><strong>外观设计</strong>：半透明的光影骑士，手持巨剑，冰蓝色铠甲</li>
+<li><strong>编制规模</strong>：3名骑士小队</li>
+<li><strong>基础属性</strong>：</li>
+<li>单体生命值：主机甲生命值的50%</li>
+<li>攻击力：主机甲攻击力的70%</li>
+<li>特殊：物理伤害无视30%防御</li>
+</ul>
+<h3 id="992">9.9.2 骑士战技</h3>
+<ul>
+<li><strong>冰浪斩</strong>：横扫攻击附加冰元素</li>
+<li><strong>骑士冲锋</strong>：列队冲锋击退敌人</li>
+<li><strong>贵族礼仪</strong>：击败敌人后鞠躬（回复能量）</li>
+<li><strong>光影剑舞</strong>：高速连斩combo</li>
+</ul>
+<h3 id="993-">9.9.3 觉醒强化 - 凛冬骑士长</h3>
+<ul>
+<li><strong>骑士长降临</strong>：召唤巨大骑士长虚影</li>
+<li><strong>断罪之剑</strong>：蓄力斩击秒杀精英</li>
+<li><strong>贵族宣言</strong>：全队物理伤害+100%</li>
+</ul>
+<h2 id="910">9.10 召唤物升级系统</h2>
+<h3 id="9101">9.10.1 等级提升</h3>
+<ul>
+<li><strong>等级上限</strong>：与主机甲等级同步</li>
+<li><strong>属性成长</strong>：每级提升5%基础属性</li>
+<li><strong>技能解锁</strong>：20/40/60/80级解锁新技能</li>
+</ul>
+<h3 id="9102">9.10.2 天赋强化</h3>
+<ul>
+<li><strong>天赋等级</strong>：1-10级独立升级</li>
+<li><strong>材料消耗</strong>：与主机甲共用天赋材料</li>
+<li><strong>效果提升</strong>：伤害倍率/持续时间/冷却缩减</li>
+</ul>
+<h3 id="9103">9.10.3 专属装备</h3>
+<ul>
+<li><strong>召唤物核心</strong>：提升召唤物基础属性的装备</li>
+<li><strong>行为芯片</strong>：改变AI行为模式</li>
+<li><strong>元素结晶</strong>：强化元素反应效果</li>
+</ul>
+<h2 id="911_1">9.11 召唤物配队策略</h2>
+<h3 id="9111">9.11.1 双召唤体系</h3>
+<ul>
+<li><strong>主从搭配</strong>：主C召唤物 + 辅助召唤物</li>
+<li><strong>元素共鸣</strong>：同元素召唤物伤害+25%</li>
+<li><strong>交替掩护</strong>：轮流吸引火力</li>
+</ul>
+<h3 id="9112">9.11.2 召唤物海战术</h3>
+<ul>
+<li><strong>数量优势</strong>：纳西妲种子 + 胡桃蝴蝶 + 优菈骑士团</li>
+<li><strong>全屏弹幕</strong>：覆盖式火力压制</li>
+<li><strong>分散仇恨</strong>：避免主机甲被集火</li>
+</ul>
+<h3 id="9113">9.11.3 单核保护流</h3>
+<ul>
+<li><strong>钟离岩兽</strong>：超级肉盾吸收伤害</li>
+<li><strong>行秋剑阵</strong>：提供减伤和格挡</li>
+<li><strong>主C安心输出</strong>：在保护下全力输出</li>
+</ul>
+<h2 id="912_1">9.12 召唤物特殊机制</h2>
+<h3 id="9121">9.12.1 羁绊系统</h3>
+<ul>
+<li><strong>忠诚度</strong>：战斗次数提升忠诚度</li>
+<li><strong>羁绊加成</strong>：忠诚度影响属性继承比例</li>
+<li><strong>特殊互动</strong>：休息界面可与召唤物互动</li>
+</ul>
+<h3 id="9122">9.12.2 进化路线</h3>
+<ul>
+<li><strong>形态分支</strong>：根据培养方向进化不同形态</li>
+<li><strong>属性特化</strong>：攻击型/防御型/辅助型</li>
+<li><strong>外观定制</strong>：解锁皮肤和特效</li>
+</ul>
+<h3 id="9123">9.12.3 召唤物试炼</h3>
+<ul>
+<li><strong>专属关卡</strong>：召唤物单独作战的挑战</li>
+<li><strong>评分奖励</strong>：根据表现获得强化材料</li>
+<li><strong>成就解锁</strong>：完成特定条件的成就</li>
+</ul>
+<h2 id="913">9.13 性能优化</h2>
+<h3 id="9131">9.13.1 渲染优化</h3>
+<ul>
+<li><strong>LOD系统</strong>：远距离降低召唤物模型精度</li>
+<li><strong>批处理</strong>：同类召唤物合并渲染</li>
+<li><strong>特效分级</strong>：根据性能动态调整特效</li>
+</ul>
+<h3 id="9132-ai">9.13.2 AI优化</h3>
+<ul>
+<li><strong>决策缓存</strong>：缓存常用AI决策</li>
+<li><strong>行为预测</strong>：预计算移动路径</li>
+<li><strong>碰撞简化</strong>：使用简化碰撞盒</li>
+</ul>
+<h3 id="9133">9.13.3 数量限制</h3>
+<ul>
+<li><strong>同屏上限</strong>：最多16个召唤物单位</li>
+<li><strong>自动合并</strong>：超过上限时小单位自动合并</li>
+<li><strong>优先级</strong>：保留高级召唤物</li>
+</ul>
+<h2 id="_26">本章小结</h2>
+<p>召唤物与僚机系统为游戏增添了丰富的战术深度和视觉效果。每个角色的独特召唤物不仅强化了角色特色，还创造了更多的配队可能性。通过精心设计的AI行为和属性继承机制，召唤物成为了战斗中不可或缺的伙伴。玩家需要合理运用召唤物的特性，配合主机甲的技能，才能在面对强大敌人时取得胜利。</p>
+            </article>
+            
+            <nav class="page-nav"><a href="chapter8.html" class="nav-link prev">← 第八章 - 圣遗物装备进阶系统</a><a href="chapter10.html" class="nav-link next">第十章 - 补给系统 →</a></nav>
+        </main>
+    </div>
+</body>
+</html>

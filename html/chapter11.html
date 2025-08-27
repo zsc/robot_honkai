@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="./">
+    <title>第十一章 - 宿舍系统</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/highlight.css">
+    <script src="assets/script.js" defer></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']],
+                processEscapes: false,
+                packages: {'[+]': ['noerrors', 'ams']}
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            },
+            loader: {
+                load: ['[tex]/noerrors', '[tex]/ams']
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h3>目录</h3>
+                <button id="sidebar-toggle" class="sidebar-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <div class="sidebar-search">
+                <input type="text" id="sidebar-search-input" placeholder="搜索..." autocomplete="off">
+            </div>
+            <div id="tree-container">
+                <nav class="tree-nav" role="tree">
+                    <div class="tree-item " >
+                        <a href="index.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">机甲崩坏：变异纪元 - 游戏设计规格说明书</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter1.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第一章 - 世界观与故事背景</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter2.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第二章 - UI/UX与唯美风格美术规范</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter3.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第三章 - 战斗系统与伤害计算</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter4.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第四章 - 武器装备与强化系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter5.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第五章 - 机甲驾驶员角色设计</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter6.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第六章 - 变异生物图鉴与数值设计</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter7.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第七章 - 提瓦特废土地形系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter8.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第八章 - 圣遗物装备进阶系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter9.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第九章 - 召唤物与僚机系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter10.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十章 - 补给系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item active" >
+                        <a href="chapter11.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十一章 - 宿舍系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter13.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十章 - 凯瑟琳的试炼（教学关卡）</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter14.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十一章 - 层岩巨渊·机械废墟</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter15.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十二章 - 深渊螺旋·终焉之刻</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="CLAUDE.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">Untitled</span>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </nav>
+        
+        <main class="content">
+            <article>
+                <h1 id="-">第十一章 - 宿舍系统</h1>
+<h2 id="_1">章节概览</h2>
+<p>本章详细规定游戏的宿舍系统，包括宿舍装扮、角色互动、好感度培养、休息恢复、宿舍事件等机制。宿舍系统为玩家提供了轻松的养成玩法，增强角色与玩家之间的情感连接。</p>
+<h2 id="111">11.1 宿舍系统概述</h2>
+<h3 id="1111">11.1.1 系统定位</h3>
+<ul>
+<li><strong>休闲玩法</strong>：战斗之外的轻松养成</li>
+<li><strong>角色互动</strong>：增进与角色的情感联系</li>
+<li><strong>资源产出</strong>：被动获取游戏资源</li>
+<li><strong>展示空间</strong>：个性化装扮展示</li>
+</ul>
+<h3 id="1112">11.1.2 解锁条件</h3>
+<ul>
+<li><strong>等级要求</strong>：玩家等级达到15级</li>
+<li><strong>主线进度</strong>：完成第二章主线</li>
+<li><strong>初始状态</strong>：解锁基础宿舍一间</li>
+<li><strong>扩展条件</strong>：等级提升解锁更多房间</li>
+</ul>
+<h3 id="1113">11.1.3 宿舍等级</h3>
+<ul>
+<li><strong>1级宿舍</strong>：1个房间，容纳2名角色</li>
+<li><strong>2级宿舍</strong>：2个房间，容纳4名角色</li>
+<li><strong>3级宿舍</strong>：3个房间，容纳6名角色</li>
+<li><strong>4级宿舍</strong>：4个房间+花园，容纳8名角色</li>
+<li><strong>5级宿舍</strong>：豪华别墅，全角色入住</li>
+</ul>
+<h2 id="112">11.2 宿舍布局与装扮</h2>
+<h3 id="1121">11.2.1 房间类型</h3>
+<ol>
+<li>
+<p><strong>卧室</strong>
+   - 面积：4×4格子
+   - 必备家具：床、衣柜、书桌
+   - 装饰上限：20件
+   - 角色容量：2人</p>
+</li>
+<li>
+<p><strong>客厅</strong>
+   - 面积：6×6格子
+   - 必备家具：沙发、茶几、电视
+   - 装饰上限：30件
+   - 角色容量：4人</p>
+</li>
+<li>
+<p><strong>厨房</strong>
+   - 面积：4×3格子
+   - 必备家具：灶台、冰箱、餐桌
+   - 特殊功能：制作料理
+   - 角色容量：2人</p>
+</li>
+<li>
+<p><strong>浴室</strong>
+   - 面积：3×3格子
+   - 必备家具：浴缸、洗手台
+   - 特殊功能：恢复心情值
+   - 角色容量：1人</p>
+</li>
+<li>
+<p><strong>花园</strong>（4级解锁）
+   - 面积：8×8格子
+   - 特殊家具：花圃、秋千、喷泉
+   - 特殊功能：种植系统
+   - 角色容量：6人</p>
+</li>
+</ol>
+<h3 id="1122">11.2.2 家具系统</h3>
+<h4 id="_2">家具分类</h4>
+<ul>
+<li><strong>基础家具</strong>：床、桌、椅、柜</li>
+<li><strong>装饰家具</strong>：画、花瓶、地毯、灯具</li>
+<li><strong>功能家具</strong>：游戏机、音响、健身器材</li>
+<li><strong>限定家具</strong>：活动获取的特殊家具</li>
+<li><strong>互动家具</strong>：可触发角色特殊动作</li>
+</ul>
+<h4 id="_3">家具获取</h4>
+<ul>
+<li><strong>商店购买</strong>：使用宿舍币购买</li>
+<li><strong>制作系统</strong>：收集材料制作</li>
+<li><strong>活动奖励</strong>：限定活动获取</li>
+<li><strong>好感奖励</strong>：角色好感度奖励</li>
+</ul>
+<h4 id="_4">家具摆放</h4>
+<ul>
+<li><strong>网格系统</strong>：基于网格的自由摆放</li>
+<li><strong>旋转功能</strong>：360度自由旋转</li>
+<li><strong>套装加成</strong>：成套家具提供属性加成</li>
+<li><strong>风格评分</strong>：统一风格获得额外评分</li>
+</ul>
+<h3 id="1123">11.2.3 装扮主题</h3>
+<ol>
+<li><strong>现代简约</strong>：黑白灰配色，简洁线条</li>
+<li><strong>日式和风</strong>：榻榻米、障子门、樱花装饰</li>
+<li><strong>欧式古典</strong>：华丽吊灯、壁炉、油画</li>
+<li><strong>赛博朋克</strong>：霓虹灯、全息投影、金属质感</li>
+<li><strong>自然森林</strong>：原木家具、绿植、阳光</li>
+<li><strong>海洋主题</strong>：蓝色调、贝壳装饰、水族箱</li>
+</ol>
+<h2 id="113">11.3 角色互动系统</h2>
+<h3 id="1131">11.3.1 日常互动</h3>
+<ol>
+<li>
+<p><strong>抚摸互动</strong>
+   - 触摸方式：点击角色头部
+   - 好感增加：+5点/次
+   - 每日上限：每角色3次
+   - 特殊反应：不同角色不同反应</p>
+</li>
+<li>
+<p><strong>对话互动</strong>
+   - 触发方式：点击对话气泡
+   - 对话内容：随机日常对话
+   - 好感增加：+3点/次
+   - 语音播放：配音演出</p>
+</li>
+<li>
+<p><strong>送礼互动</strong>
+   - 礼物类型：食物、饰品、书籍
+   - 喜好系统：不同角色喜好不同
+   - 好感增加：+10~50点（根据喜好）
+   - 特殊礼物：生日礼物双倍好感</p>
+</li>
+</ol>
+<h3 id="1132">11.3.2 特殊互动</h3>
+<ol>
+<li>
+<p><strong>一起用餐</strong>
+   - 触发条件：厨房+多名角色
+   - 互动效果：群体好感度提升
+   - 特殊料理：触发专属剧情</p>
+</li>
+<li>
+<p><strong>游戏对战</strong>
+   - 触发条件：客厅游戏机
+   - 互动效果：增进角色间关系
+   - 胜负结果：影响角色心情</p>
+</li>
+<li>
+<p><strong>一起运动</strong>
+   - 触发条件：健身器材
+   - 互动效果：提升角色属性
+   - 持续时间：30分钟/次</p>
+</li>
+</ol>
+<h3 id="1133-ai">11.3.3 角色行为AI</h3>
+<ul>
+<li><strong>自主行动</strong>：角色在宿舍内自由活动</li>
+<li><strong>作息规律</strong>：早起、用餐、休息时间</li>
+<li><strong>互相交流</strong>：角色之间自动互动</li>
+<li><strong>情绪表现</strong>：开心、困倦、无聊等状态</li>
+<li><strong>特殊动作</strong>：看书、听音乐、做运动</li>
+</ul>
+<h2 id="114">11.4 好感度系统</h2>
+<h3 id="1141">11.4.1 好感等级</h3>
+<div class="codehilite"><pre><span></span><code>等级1：陌生（0-100）
+等级2：认识（101-500）
+等级3：友好（501-1500）
+等级4：亲密（1501-3000）
+等级5：信赖（3001-5000）
+等级6：挚友（5001-8000）
+等级7：羁绊（8001-12000）
+等级8：真爱（12001-20000）
+等级9：灵魂伴侣（20001-30000）
+等级10：永恒誓约（30001+）
+</code></pre></div>
+
+<h3 id="1142">11.4.2 好感度获取</h3>
+<ul>
+<li><strong>日常互动</strong>：抚摸、对话（5-10点/次）</li>
+<li><strong>送礼</strong>：根据喜好程度（10-100点）</li>
+<li><strong>一起战斗</strong>：出战获得（20点/场）</li>
+<li><strong>完成委托</strong>：角色专属任务（50-200点）</li>
+<li><strong>生日庆祝</strong>：生日当天互动（500点）</li>
+</ul>
+<h3 id="1143">11.4.3 好感度奖励</h3>
+<ol>
+<li><strong>等级2解锁</strong>：角色资料、背景故事</li>
+<li><strong>等级3解锁</strong>：专属语音包1</li>
+<li><strong>等级4解锁</strong>：触摸互动特殊反应</li>
+<li><strong>等级5解锁</strong>：专属剧情CG</li>
+<li><strong>等级6解锁</strong>：Live2D动态立绘</li>
+<li><strong>等级7解锁</strong>：约会剧情</li>
+<li><strong>等级8解锁</strong>：专属皮肤</li>
+<li><strong>等级9解锁</strong>：誓约系统</li>
+<li><strong>等级10解锁</strong>：专属宿舍、终极剧情</li>
+</ol>
+<h3 id="1144">11.4.4 誓约系统</h3>
+<ul>
+<li><strong>誓约条件</strong>：好感度达到等级9</li>
+<li><strong>誓约道具</strong>：誓约之戒（商店购买）</li>
+<li><strong>誓约仪式</strong>：专属CG动画演出</li>
+<li><strong>誓约效果</strong>：</li>
+<li>属性加成：全属性+10%</li>
+<li>专属称号：显示誓约标识</li>
+<li>特殊互动：解锁亲密互动</li>
+<li>专属语音：誓约专属语音</li>
+</ul>
+<h2 id="115">11.5 心情值系统</h2>
+<h3 id="1151">11.5.1 心情值机制</h3>
+<ul>
+<li><strong>初始值</strong>：100点满值</li>
+<li><strong>自然恢复</strong>：每小时+10点</li>
+<li><strong>消耗机制</strong>：</li>
+<li>战斗出战：-20点/场</li>
+<li>高难度关卡：-30点/场</li>
+<li>战斗失败：-50点</li>
+</ul>
+<h3 id="1152">11.5.2 心情影响</h3>
+<ul>
+<li><strong>100-80</strong>：完美状态，全属性+10%</li>
+<li><strong>79-60</strong>：良好状态，无影响</li>
+<li><strong>59-40</strong>：疲劳状态，全属性-5%</li>
+<li><strong>39-20</strong>：低落状态，全属性-10%</li>
+<li><strong>19-0</strong>：崩溃状态，无法出战</li>
+</ul>
+<h3 id="1153">11.5.3 心情恢复</h3>
+<ul>
+<li><strong>宿舍休息</strong>：每小时+20点</li>
+<li><strong>泡澡放松</strong>：立即+30点</li>
+<li><strong>美食享用</strong>：立即+20点</li>
+<li><strong>互动安慰</strong>：立即+15点</li>
+<li><strong>睡眠休息</strong>：8小时恢复满值</li>
+</ul>
+<h2 id="116">11.6 休息与恢复</h2>
+<h3 id="1161">11.6.1 体力恢复</h3>
+<ul>
+<li><strong>基础恢复</strong>：6分钟恢复1点体力</li>
+<li><strong>宿舍加成</strong>：入住角色5分钟恢复1点</li>
+<li><strong>舒适度加成</strong>：高舒适度额外加快恢复</li>
+</ul>
+<h3 id="1162">11.6.2 舒适度系统</h3>
+<ul>
+<li><strong>计算方式</strong>：家具评分+装饰评分+套装加成</li>
+<li><strong>舒适度等级</strong>：</li>
+<li>0-1000：简陋（无加成）</li>
+<li>1001-3000：舒适（恢复速度+10%）</li>
+<li>3001-5000：豪华（恢复速度+20%）</li>
+<li>5001-8000：奢华（恢复速度+30%）</li>
+<li>8001+：天堂（恢复速度+50%）</li>
+</ul>
+<h3 id="1163">11.6.3 特殊恢复</h3>
+<ul>
+<li><strong>按摩椅</strong>：使用后立即恢复50体力</li>
+<li><strong>能量饮料</strong>：使用后2小时内恢复速度翻倍</li>
+<li><strong>香薰疗法</strong>：24小时内心情值不降低</li>
+</ul>
+<h2 id="117">11.7 宿舍事件</h2>
+<h3 id="1171">11.7.1 日常事件</h3>
+<ol>
+<li><strong>早安问候</strong>：早上登录触发</li>
+<li><strong>午餐时光</strong>：中午12点触发</li>
+<li><strong>下午茶</strong>：下午3点触发</li>
+<li><strong>晚餐准备</strong>：晚上6点触发</li>
+<li><strong>睡前故事</strong>：晚上10点触发</li>
+</ol>
+<h3 id="1172">11.7.2 随机事件</h3>
+<ul>
+<li><strong>角色来访</strong>：其他角色拜访宿舍</li>
+<li><strong>生日派对</strong>：角色生日自动触发</li>
+<li><strong>节日庆祝</strong>：现实节日特殊事件</li>
+<li><strong>突发状况</strong>：停电、漏水等小事件</li>
+<li><strong>宿舍比赛</strong>：装扮评比活动</li>
+</ul>
+<h3 id="1173">11.7.3 互动剧情</h3>
+<ul>
+<li><strong>双人剧情</strong>：两个角色之间的互动</li>
+<li><strong>多人剧情</strong>：3人以上的群体剧情</li>
+<li><strong>连锁剧情</strong>：多日连续的剧情线</li>
+<li><strong>隐藏剧情</strong>：特定条件触发的稀有剧情</li>
+</ul>
+<h2 id="118">11.8 种植系统</h2>
+<h3 id="1181">11.8.1 花园种植</h3>
+<ul>
+<li><strong>解锁条件</strong>：4级宿舍开放花园</li>
+<li><strong>种植位</strong>：初始4个，最多扩展到12个</li>
+<li><strong>作物类型</strong>：</li>
+<li>蔬菜类：番茄、黄瓜、胡萝卜</li>
+<li>水果类：草莓、西瓜、苹果</li>
+<li>花卉类：玫瑰、向日葵、樱花</li>
+<li>特殊类：元素花、水晶果</li>
+</ul>
+<h3 id="1182">11.8.2 种植机制</h3>
+<ul>
+<li><strong>播种</strong>：消耗种子进行种植</li>
+<li><strong>浇水</strong>：每日浇水加速生长</li>
+<li><strong>施肥</strong>：使用肥料提高产量</li>
+<li><strong>收获</strong>：成熟后收获作物</li>
+<li><strong>枯萎</strong>：超时未收获会枯萎</li>
+</ul>
+<h3 id="1183">11.8.3 作物用途</h3>
+<ul>
+<li><strong>制作料理</strong>：作为料理材料</li>
+<li><strong>送礼</strong>：作为礼物送给角色</li>
+<li><strong>兑换</strong>：兑换稀有道具</li>
+<li><strong>装饰</strong>：花卉可作为装饰品</li>
+</ul>
+<h2 id="119">11.9 宿舍商店</h2>
+<h3 id="1191">11.9.1 商店内容</h3>
+<ol>
+<li><strong>基础家具</strong>：床、桌、椅等</li>
+<li><strong>装饰品</strong>：画作、摆件、地毯</li>
+<li><strong>功能道具</strong>：体力药、心情药</li>
+<li><strong>种子材料</strong>：各类种子、肥料</li>
+<li><strong>限定商品</strong>：每周刷新的特殊物品</li>
+</ol>
+<h3 id="1192">11.9.2 货币系统</h3>
+<ul>
+<li><strong>宿舍币</strong>：日常获取的基础货币</li>
+<li><strong>装饰券</strong>：活动获取的高级货币</li>
+<li><strong>获取途径</strong>：</li>
+<li>每日任务：50宿舍币</li>
+<li>宿舍事件：20-100宿舍币</li>
+<li>好感奖励：等级提升奖励</li>
+<li>种植收获：售卖作物获得</li>
+</ul>
+<h2 id="1110">11.10 宿舍小游戏</h2>
+<h3 id="11101">11.10.1 料理制作</h3>
+<ul>
+<li><strong>玩法</strong>：按照食谱制作料理</li>
+<li><strong>评分标准</strong>：材料、火候、调味</li>
+<li><strong>奖励</strong>：成功制作获得料理道具</li>
+</ul>
+<h3 id="11102">11.10.2 宿舍保卫战</h3>
+<ul>
+<li><strong>玩法</strong>：防御入侵的小怪物</li>
+<li><strong>难度递增</strong>：波次越高奖励越好</li>
+<li><strong>角色参战</strong>：入住角色自动参战</li>
+</ul>
+<h3 id="11103">11.10.3 寻宝游戏</h3>
+<ul>
+<li><strong>玩法</strong>：在宿舍中寻找隐藏物品</li>
+<li><strong>时间限制</strong>：3分钟内找齐</li>
+<li><strong>奖励</strong>：稀有装饰品、宿舍币</li>
+</ul>
+<h2 id="1111_1">11.11 社交功能</h2>
+<h3 id="11111">11.11.1 好友访问</h3>
+<ul>
+<li><strong>访问权限</strong>：可设置开放/好友/私密</li>
+<li><strong>留言系统</strong>：访客可留言互动</li>
+<li><strong>点赞系统</strong>：为好友宿舍点赞</li>
+<li><strong>参观奖励</strong>：每日访问5个宿舍获得奖励</li>
+</ul>
+<h3 id="11112">11.11.2 宿舍排行</h3>
+<ul>
+<li><strong>评分维度</strong>：</li>
+<li>舒适度评分</li>
+<li>装饰评分</li>
+<li>人气评分</li>
+<li>综合评分</li>
+<li><strong>排行奖励</strong>：每周结算，前100名获得装饰券</li>
+</ul>
+<h3 id="11113">11.11.3 宿舍派对</h3>
+<ul>
+<li><strong>举办派对</strong>：邀请好友参加</li>
+<li><strong>派对游戏</strong>：小游戏增进互动</li>
+<li><strong>派对奖励</strong>：参与者都能获得奖励</li>
+</ul>
+<h2 id="1112-live2d">11.12 Live2D展示</h2>
+<h3 id="11121">11.12.1 动态立绘</h3>
+<ul>
+<li><strong>触发条件</strong>：好感度达到6级</li>
+<li><strong>表现形式</strong>：角色Live2D动态展示</li>
+<li><strong>互动动作</strong>：</li>
+<li>眨眼微笑</li>
+<li>挥手致意</li>
+<li>害羞脸红</li>
+<li>生气鼓腮</li>
+</ul>
+<h3 id="11122">11.12.2 换装系统</h3>
+<ul>
+<li><strong>服装类型</strong>：</li>
+<li>日常装：休闲服饰</li>
+<li>战斗装：机甲外观</li>
+<li>泳装：夏日限定</li>
+<li>礼服：正式场合</li>
+<li>睡衣：宿舍专属</li>
+</ul>
+<h3 id="11123">11.12.3 动作定制</h3>
+<ul>
+<li><strong>预设动作</strong>：系统提供的动作集</li>
+<li><strong>自定义</strong>：玩家自定义动作序列</li>
+<li><strong>保存分享</strong>：保存并分享给好友</li>
+</ul>
+<h2 id="_5">本章小结</h2>
+<p>宿舍系统作为游戏的休闲养成玩法，为玩家提供了丰富的角色互动体验。通过装扮系统展现个性，通过好感度系统加深与角色的情感联系，通过各种宿舍活动获取资源和乐趣。Live2D技术的应用让角色更加生动，社交功能的加入增强了玩家间的互动。整个系统设计注重轻松愉快的体验，成为紧张战斗之余的温馨港湾。</p>
+            </article>
+            
+            <nav class="page-nav"><a href="chapter10.html" class="nav-link prev">← 第十章 - 补给系统</a><a href="chapter13.html" class="nav-link next">第十章 - 凯瑟琳的试炼（教学关卡） →</a></nav>
+        </main>
+    </div>
+</body>
+</html>

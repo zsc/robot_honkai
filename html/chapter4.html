@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="./">
+    <title>第四章 - 武器装备与强化系统</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/highlight.css">
+    <script src="assets/script.js" defer></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']],
+                processEscapes: false,
+                packages: {'[+]': ['noerrors', 'ams']}
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            },
+            loader: {
+                load: ['[tex]/noerrors', '[tex]/ams']
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h3>目录</h3>
+                <button id="sidebar-toggle" class="sidebar-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <div class="sidebar-search">
+                <input type="text" id="sidebar-search-input" placeholder="搜索..." autocomplete="off">
+            </div>
+            <div id="tree-container">
+                <nav class="tree-nav" role="tree">
+                    <div class="tree-item " >
+                        <a href="index.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">机甲崩坏：变异纪元 - 游戏设计规格说明书</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter1.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第一章 - 世界观与故事背景</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter2.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第二章 - UI/UX与唯美风格美术规范</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter3.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第三章 - 战斗系统与伤害计算</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item active" >
+                        <a href="chapter4.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第四章 - 武器装备与强化系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter5.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第五章 - 机甲驾驶员角色设计</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter6.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第六章 - 变异生物图鉴与数值设计</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter7.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第七章 - 提瓦特废土地形系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter8.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第八章 - 圣遗物装备进阶系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter9.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第九章 - 召唤物与僚机系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter10.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十章 - 补给系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter11.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十一章 - 宿舍系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter13.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十章 - 凯瑟琳的试炼（教学关卡）</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter14.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十一章 - 层岩巨渊·机械废墟</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter15.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十二章 - 深渊螺旋·终焉之刻</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="CLAUDE.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">Untitled</span>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </nav>
+        
+        <main class="content">
+            <article>
+                <h1 id="-">第四章 - 武器装备与强化系统</h1>
+<h2 id="_1">章节概览</h2>
+<p>本章详细描述机甲崩坏世界中的武器装备体系，包括武器系统、圣遗物机制、强化材料获取与使用。所有装备系统都基于原神的养成框架，但融入了机甲战斗的独特元素。</p>
+<h2 id="41">4.1 武器系统</h2>
+<h3 id="411">4.1.1 武器类型分类</h3>
+<h4 id="_2">单手剑型机甲武装</h4>
+<ul>
+<li><strong>基础属性</strong>：攻击速度快，连击流畅</li>
+<li><strong>攻击频率</strong>：0.8秒/次</li>
+<li><strong>攻击范围</strong>：近战120度扇形，射程3米</li>
+<li><strong>特殊机制</strong>：可在空中进行三段斩击</li>
+<li><strong>适配角色</strong>：刻晴型机甲、神里绫人型机甲、行秋型机甲</li>
+<li><strong>独特优势</strong>：</li>
+<li>元素附着频率高（每3次攻击附着1次）</li>
+<li>可取消后摇实现无缝连击</li>
+<li>充能效率基础值+15%</li>
+</ul>
+<h4 id="_3">双手剑型机甲武装</h4>
+<ul>
+<li><strong>基础属性</strong>：高单次伤害，击退效果强</li>
+<li><strong>攻击频率</strong>：1.5秒/次</li>
+<li><strong>攻击范围</strong>：近战180度横扫，射程4米</li>
+<li><strong>特殊机制</strong>：蓄力重击可破盾</li>
+<li><strong>适配角色</strong>：迪卢克型机甲、优菈型机甲、北斗型机甲</li>
+<li><strong>独特优势</strong>：</li>
+<li>削韧值高（普攻20点，重击50点）</li>
+<li>对护甲敌人伤害+30%</li>
+<li>霸体时间延长0.5秒</li>
+</ul>
+<h4 id="_4">长枪型机甲武装</h4>
+<ul>
+<li><strong>基础属性</strong>：攻击距离远，穿透效果</li>
+<li><strong>攻击频率</strong>：1.0秒/次</li>
+<li><strong>攻击范围</strong>：直线贯穿，射程6米</li>
+<li><strong>特殊机制</strong>：冲刺攻击距离翻倍</li>
+<li><strong>适配角色</strong>：胡桃型机甲、雷电将军型机甲、钟离型机甲</li>
+<li><strong>独特优势</strong>：</li>
+<li>可同时攻击直线上所有敌人</li>
+<li>暴击后额外贯穿2个目标</li>
+<li>冲刺消耗体力-20%</li>
+</ul>
+<h4 id="_5">法器型机甲武装</h4>
+<ul>
+<li><strong>基础属性</strong>：远程追踪，元素纯伤</li>
+<li><strong>攻击频率</strong>：0.6秒/次</li>
+<li><strong>攻击范围</strong>：自动锁定，射程15米</li>
+<li><strong>特殊机制</strong>：100%元素伤害转化</li>
+<li><strong>适配角色</strong>：可莉型机甲、莫娜型机甲、纳西妲型机甲</li>
+<li><strong>独特优势</strong>：</li>
+<li>攻击自动追踪最近敌人</li>
+<li>元素精通收益+50%</li>
+<li>可在移动中攻击</li>
+</ul>
+<h4 id="_6">弓箭型机甲武装</h4>
+<ul>
+<li><strong>基础属性</strong>：超远程狙击，精准打击</li>
+<li><strong>攻击频率</strong>：1.2秒/次（蓄力2.5秒）</li>
+<li><strong>攻击范围</strong>：单体精准，射程30米</li>
+<li><strong>特殊机制</strong>：蓄力爆头3倍伤害</li>
+<li><strong>适配角色</strong>：甘雨型机甲、宵宫型机甲、提纳里型机甲</li>
+<li><strong>独特优势</strong>：</li>
+<li>弱点打击伤害+100%</li>
+<li>蓄力攻击穿透护盾</li>
+<li>瞄准时时间减速30%</li>
+</ul>
+<h3 id="412">4.1.2 武器稀有度体系</h3>
+<h4 id="_7">⭐⭐⭐ 三星武器</h4>
+<ul>
+<li><strong>基础攻击力</strong>：39-401（1级-90级）</li>
+<li><strong>副属性数值</strong>：较低（如攻击力23.5%、元素精通94）</li>
+<li><strong>武器技能</strong>：单一效果，精炼提升15-30%</li>
+<li><strong>获取途径</strong>：商店购买、任务奖励、低级素材合成</li>
+<li><strong>代表武器</strong>：</li>
+<li><strong>黎明神剑</strong>：暴击率+10.2%，生命值高于90%时暴击率额外+14%</li>
+<li><strong>冷刃</strong>：攻击力+23.5%，对水/冰附着敌人伤害+12%</li>
+<li><strong>魔导绪论</strong>：元素精通+187，触发元素反应后攻击力+20%</li>
+</ul>
+<h4 id="_8">⭐⭐⭐⭐ 四星武器</h4>
+<ul>
+<li><strong>基础攻击力</strong>：42-510（1级-90级）</li>
+<li><strong>副属性数值</strong>：中等（如暴击率27.6%、充能效率45.9%）</li>
+<li><strong>武器技能</strong>：复合效果，精炼提升20-40%</li>
+<li><strong>获取途径</strong>：祈愿系统、活动奖励、锻造台制作</li>
+<li><strong>代表武器</strong>：</li>
+<li><strong>祭礼大剑</strong>：充能效率+30.6%，E技能有40%概率重置冷却</li>
+<li><strong>西风长枪</strong>：充能效率+30.6%，暴击产生元素微粒</li>
+<li><strong>流浪乐章</strong>：暴击伤害+55.1%，随机获得攻击/元素/精通加成</li>
+</ul>
+<h4 id="_9">⭐⭐⭐⭐⭐ 五星武器</h4>
+<ul>
+<li><strong>基础攻击力</strong>：44-608（1级-90级）或46-741（高白值系列）</li>
+<li><strong>副属性数值</strong>：顶级（如暴击率33.1%、暴击伤害66.2%）</li>
+<li><strong>武器技能</strong>：独特机制，精炼提升25-50%</li>
+<li><strong>获取途径</strong>：限定祈愿、活动首通奖励</li>
+<li><strong>代表武器</strong>：</li>
+<li><strong>护摩之杖</strong>：暴击伤害+66.2%，生命值转化攻击力</li>
+<li><strong>雾切之回光</strong>：暴击伤害+44.1%，元素伤害递增机制</li>
+<li><strong>若水</strong>：暴击伤害+88.2%，生命值变化增伤机制</li>
+</ul>
+<h3 id="413">4.1.3 武器突破与精炼</h3>
+<h4 id="_10">突破等级节点</h4>
+<ul>
+<li><strong>20级突破</strong>：解锁副属性10%效果</li>
+<li><strong>40级突破</strong>：解锁副属性40%效果</li>
+<li><strong>50级突破</strong>：解锁副属性50%效果</li>
+<li><strong>60级突破</strong>：解锁副属性60%效果</li>
+<li><strong>70级突破</strong>：解锁副属性70%效果</li>
+<li><strong>80级突破</strong>：解锁副属性85%效果</li>
+<li><strong>90级满级</strong>：副属性100%效果</li>
+</ul>
+<h4 id="_11">精炼系统</h4>
+<ul>
+<li><strong>精炼1阶</strong>：武器技能基础效果</li>
+<li><strong>精炼2阶</strong>：效果提升25%</li>
+<li><strong>精炼3阶</strong>：效果提升50%</li>
+<li><strong>精炼4阶</strong>：效果提升75%</li>
+<li><strong>精炼5阶</strong>：效果提升100%（翻倍）</li>
+</ul>
+<h4 id="_12">突破材料需求</h4>
+<ul>
+<li><strong>武器突破石</strong>：</li>
+<li>铁块碎片（1-20级）x3</li>
+<li>铁块断片（20-40级）x9</li>
+<li>铁块残章（40-60级）x9</li>
+<li>铁块原核（60-90级）x6</li>
+<li><strong>精英素材</strong>：</li>
+<li>混沌装置（遗迹守卫掉落）x23</li>
+<li>混沌回路（遗迹猎者掉落）x27</li>
+<li>混沌核心（遗迹重机掉落）x41</li>
+<li><strong>通用材料</strong>：</li>
+<li>史莱姆凝液 x15</li>
+<li>史莱姆清 x23</li>
+<li>史莱姆原浆 x27</li>
+</ul>
+<h2 id="42">4.2 圣遗物系统</h2>
+<h3 id="421">4.2.1 圣遗物部位详解</h3>
+<h4 id="_13">生之花（固定主属性：生命值）</h4>
+<ul>
+<li><strong>主属性数值</strong>：</li>
+<li>1级：717 HP</li>
+<li>20级：4,780 HP</li>
+<li><strong>叙述定位</strong>：机甲的核心能源炉，提供基础生命保障</li>
+<li><strong>特殊效果</strong>：部分套装的生之花提供额外护盾强效</li>
+</ul>
+<h4 id="_14">死之羽（固定主属性：攻击力）</h4>
+<ul>
+<li><strong>主属性数值</strong>：</li>
+<li>1级：47 ATK</li>
+<li>20级：311 ATK</li>
+<li><strong>叙述定位</strong>：机甲的武器系统核心，直接影响输出能力</li>
+<li><strong>特殊效果</strong>：部分套装的死之羽提供穿透效果</li>
+</ul>
+<h4 id="_15">时之沙（主属性可选）</h4>
+<ul>
+<li><strong>可选主属性</strong>：</li>
+<li>攻击力%：7.0% → 46.6%</li>
+<li>防御力%：8.7% → 58.3%</li>
+<li>生命值%：7.0% → 46.6%</li>
+<li>元素精通：28 → 187</li>
+<li>充能效率：7.8% → 51.8%</li>
+<li><strong>叙述定位</strong>：机甲的时间管理模块，影响技能循环</li>
+<li><strong>推荐搭配</strong>：</li>
+<li>主C角色：攻击力%沙</li>
+<li>辅助角色：充能效率%沙</li>
+<li>反应角色：元素精通沙</li>
+</ul>
+<h4 id="_16">空之杯（主属性可选）</h4>
+<ul>
+<li><strong>可选主属性</strong>：</li>
+<li>攻击力%：7.0% → 46.6%</li>
+<li>元素伤害加成：7.0% → 46.6%</li>
+<li>物理伤害加成：8.7% → 58.3%</li>
+<li>生命值%：7.0% → 46.6%</li>
+<li>防御力%：8.7% → 58.3%</li>
+<li>元素精通：28 → 187</li>
+<li><strong>叙述定位</strong>：机甲的属性转换器，决定伤害类型</li>
+<li><strong>推荐搭配</strong>：</li>
+<li>元素输出：对应元素伤害杯</li>
+<li>物理输出：物理伤害杯</li>
+<li>辅助角色：生命值%或精通杯</li>
+</ul>
+<h4 id="_17">理之冠（主属性可选）</h4>
+<ul>
+<li><strong>可选主属性</strong>：</li>
+<li>暴击率：4.7% → 31.1%</li>
+<li>暴击伤害：9.3% → 62.2%</li>
+<li>攻击力%：7.0% → 46.6%</li>
+<li>防御力%：8.7% → 58.3%</li>
+<li>生命值%：7.0% → 46.6%</li>
+<li>元素精通：28 → 187</li>
+<li>治疗加成：5.4% → 35.9%</li>
+<li><strong>叙述定位</strong>：机甲的战术处理器，优化伤害计算</li>
+<li><strong>推荐搭配</strong>：</li>
+<li>DPS角色：暴击率或暴击伤害头</li>
+<li>治疗角色：治疗加成头</li>
+<li>护盾角色：防御力%或生命值%头</li>
+</ul>
+<h3 id="422">4.2.2 副属性机制</h3>
+<h4 id="_18">副属性种类与数值范围</h4>
+<ul>
+<li><strong>暴击率</strong>：2.7% / 3.1% / 3.5% / 3.9%</li>
+<li><strong>暴击伤害</strong>：5.4% / 6.2% / 7.0% / 7.8%</li>
+<li><strong>攻击力%</strong>：4.1% / 4.7% / 5.3% / 5.8%</li>
+<li><strong>攻击力</strong>：14 / 16 / 18 / 19</li>
+<li><strong>防御力%</strong>：5.1% / 5.8% / 6.6% / 7.3%</li>
+<li><strong>防御力</strong>：16 / 19 / 21 / 23</li>
+<li><strong>生命值%</strong>：4.1% / 4.7% / 5.3% / 5.8%</li>
+<li><strong>生命值</strong>：209 / 239 / 269 / 299</li>
+<li><strong>元素精通</strong>：16 / 19 / 21 / 23</li>
+<li><strong>充能效率</strong>：4.5% / 5.2% / 5.8% / 6.5%</li>
+</ul>
+<h4 id="_19">副属性强化规则</h4>
+<ul>
+<li><strong>初始副属性</strong>：</li>
+<li>5星圣遗物：3-4条初始副属性</li>
+<li>4星圣遗物：2-3条初始副属性</li>
+<li><strong>强化节点</strong>：</li>
+<li>每4级强化一次副属性</li>
+<li>如果初始不满4条，优先补齐到4条</li>
+<li>满4条后，随机强化已有副属性</li>
+<li><strong>强化权重</strong>：</li>
+<li>每个副属性有相同概率被选中强化</li>
+<li>强化数值在该副属性的4个档位中随机</li>
+</ul>
+<h4 id="_20">有效副属性评分标准</h4>
+<ul>
+<li><strong>DPS角色优先级</strong>：
+  1. 双暴（暴击率、暴击伤害）：权重100%
+  2. 攻击力%：权重80%
+  3. 元素精通：权重60%（反应队）
+  4. 攻击力：权重40%
+  5. 充能效率：权重40%</li>
+<li><strong>辅助角色优先级</strong>：
+  1. 充能效率：权重100%
+  2. 双暴：权重60%
+  3. 生命值%/防御力%：权重80%（根据技能机制）
+  4. 元素精通：权重60%</li>
+<li><strong>圣遗物评分计算</strong>：</li>
+</ul>
+<div class="codehilite"><pre><span></span><code>总分 = Σ(副属性数值 × 权重) / 理论最大值 × 100
+</code></pre></div>
+
+<h3 id="423">4.2.3 套装效果体系</h3>
+<h4 id="_21">输出向套装</h4>
+<p><strong>绝缘之旗印（充能爆发套）</strong></p>
+<ul>
+<li><strong>2件套效果</strong>：充能效率+20%</li>
+<li><strong>4件套效果</strong>：基于充能效率的25%，提高元素爆发伤害，最多75%</li>
+<li><strong>适用角色</strong>：雷电将军型、行秋型、香菱型机甲</li>
+<li><strong>搭配建议</strong>：充能沙 + 元素伤害杯 + 暴击头</li>
+<li><strong>数值模拟</strong>：250%充能效率时，Q技能伤害+62.5%</li>
+</ul>
+<p><strong>追忆之注连（普攻输出套）</strong></p>
+<ul>
+<li><strong>2件套效果</strong>：攻击力+18%</li>
+<li><strong>4件套效果</strong>：施放元素战技时消耗15点能量，普攻伤害+50%，持续10秒</li>
+<li><strong>适用角色</strong>：宵宫型、甘雨型、神里绫华型机甲</li>
+<li><strong>搭配建议</strong>：攻击沙 + 元素伤害杯 + 暴击头</li>
+<li><strong>使用技巧</strong>：控制E技能释放时机，确保能量充足</li>
+</ul>
+<p><strong>苍白之火（物理输出套）</strong></p>
+<ul>
+<li><strong>2件套效果</strong>：物理伤害加成+25%</li>
+<li><strong>4件套效果</strong>：元素战技命中后，攻击力+9%，持续7秒，2层时额外物理伤害+25%</li>
+<li><strong>适用角色</strong>：优菈型、雷泽型物理机甲</li>
+<li><strong>搭配建议</strong>：攻击沙 + 物理伤害杯 + 暴击头</li>
+<li><strong>叠层机制</strong>：需要7秒内E技能命中2次</li>
+</ul>
+<h4 id="_22">辅助向套装</h4>
+<p><strong>翠绿之影（风系减抗套）</strong></p>
+<ul>
+<li><strong>2件套效果</strong>：风元素伤害加成+15%</li>
+<li><strong>4件套效果</strong>：扩散反应伤害+60%，扩散元素抗性-40%，持续10秒</li>
+<li><strong>适用角色</strong>：万叶型、温迪型、砂糖型机甲</li>
+<li><strong>搭配建议</strong>：精通沙 + 精通杯 + 精通头（全精通流）</li>
+<li><strong>减抗机制</strong>：可同时降低多种元素抗性</li>
+</ul>
+<p><strong>千岩牢固（护盾增益套）</strong></p>
+<ul>
+<li><strong>2件套效果</strong>：生命值+20%</li>
+<li><strong>4件套效果</strong>：元素战技命中后，全队护盾强效+30%，攻击力+20%，持续3秒</li>
+<li><strong>适用角色</strong>：钟离型、阿贝多型机甲</li>
+<li><strong>搭配建议</strong>：生命沙 + 生命杯 + 生命头（纯盾辅）</li>
+<li><strong>团队增益</strong>：提供全队攻击力加成</li>
+</ul>
+<p><strong>海染砗磲（治疗输出套）</strong></p>
+<ul>
+<li><strong>2件套效果</strong>：治疗加成+15%</li>
+<li><strong>4件套效果</strong>：治疗时记录治疗量，3秒后造成90%治疗量的物理伤害</li>
+<li><strong>适用角色</strong>：珊瑚宫心海型、七七型机甲</li>
+<li><strong>搭配建议</strong>：生命沙 + 生命杯 + 治疗头</li>
+<li><strong>伤害上限</strong>：单次最高30,000伤害</li>
+</ul>
+<h4 id="_23">通用套装</h4>
+<p><strong>散件搭配（2+2组合）</strong></p>
+<ul>
+<li><strong>角斗士2件 + 追忆2件</strong>：攻击力+36%</li>
+<li><strong>千岩2件 + 海染2件</strong>：生命值+20%，治疗加成+15%</li>
+<li><strong>翠绿2件 + 流浪2件</strong>：风伤+15%，精通+80</li>
+<li><strong>适用情况</strong>：</li>
+<li>缺少完整套装时的过渡选择</li>
+<li>特定角色的最优配装（如某些副C）</li>
+<li>追求极限副属性时的选择</li>
+</ul>
+<h2 id="43">4.3 强化材料系统</h2>
+<h3 id="431">4.3.1 经验材料体系</h3>
+<h4 id="_24">角色经验书</h4>
+<ul>
+<li><strong>流浪者的经验</strong>：</li>
+<li>经验值：1,000 EXP</li>
+<li>获取途径：日常任务、新手关卡</li>
+<li>摩拉消耗：每本200摩拉</li>
+<li>
+<p>使用建议：仅用于1-20级低级角色</p>
+</li>
+<li>
+<p><strong>冒险家的经验</strong>：</p>
+</li>
+<li>经验值：5,000 EXP</li>
+<li>获取途径：地脉挑战、活动奖励</li>
+<li>摩拉消耗：每本1,000摩拉</li>
+<li>
+<p>使用建议：20-60级中期培养</p>
+</li>
+<li>
+<p><strong>英雄的经验</strong>：</p>
+</li>
+<li>经验值：20,000 EXP</li>
+<li>获取途径：深渊挑战、限时活动</li>
+<li>摩拉消耗：每本4,000摩拉</li>
+<li>使用建议：60-90级后期培养</li>
+</ul>
+<h4 id="_25">武器经验矿</h4>
+<ul>
+<li><strong>精锻用杂矿</strong>：</li>
+<li>经验值：400 EXP</li>
+<li>获取途径：矿点采集、每日锻造</li>
+<li>摩拉消耗：每个80摩拉</li>
+<li>
+<p>每日锻造上限：30个</p>
+</li>
+<li>
+<p><strong>精锻用良矿</strong>：</p>
+</li>
+<li>经验值：2,000 EXP</li>
+<li>获取途径：商店兑换、活动奖励</li>
+<li>摩拉消耗：每个400摩拉</li>
+<li>
+<p>兑换限制：每周100个</p>
+</li>
+<li>
+<p><strong>精锻用魔矿</strong>：</p>
+</li>
+<li>经验值：10,000 EXP</li>
+<li>获取途径：深渊宝箱、版本活动</li>
+<li>摩拉消耗：每个2,000摩拉</li>
+<li>稀有度：限量获取</li>
+</ul>
+<h4 id="_26">圣遗物经验</h4>
+<ul>
+<li><strong>1-2星圣遗物</strong>：</li>
+<li>狗粮经验：420 EXP</li>
+<li>获取途径：普通关卡掉落</li>
+<li>摩拉消耗：每件84摩拉</li>
+<li>
+<p>强化效率：极低，仅作狗粮</p>
+</li>
+<li>
+<p><strong>3-4星圣遗物</strong>：</p>
+</li>
+<li>狗粮经验：840/1,260 EXP</li>
+<li>获取途径：精英怪掉落、圣遗物副本</li>
+<li>摩拉消耗：每件168/252摩拉</li>
+<li>
+<p>强化效率：中等，过渡期可用</p>
+</li>
+<li>
+<p><strong>5星圣遗物</strong>：</p>
+</li>
+<li>狗粮经验：3,780 EXP</li>
+<li>获取途径：圣遗物秘境、世界Boss</li>
+<li>摩拉消耗：每件756摩拉</li>
+<li>强化效率：主要培养对象</li>
+</ul>
+<h3 id="432">4.3.2 突破材料分类</h3>
+<h4 id="_27">元素宝石系列</h4>
+<p><strong>火元素宝石（燃愿玛瑙）</strong></p>
+<ul>
+<li><strong>碎屑</strong>：20级突破需3个</li>
+<li><strong>断片</strong>：40级突破需6个</li>
+<li><strong>块</strong>：60级突破需6个</li>
+<li><strong>晶石</strong>：80级突破需6个</li>
+<li><strong>获取Boss</strong>：火之高达型Boss、爆炎树</li>
+<li><strong>合成公式</strong>：3碎屑 = 1断片，3断片 = 1块，3块 = 1晶石</li>
+</ul>
+<p><strong>水元素宝石（涤净青金）</strong></p>
+<ul>
+<li><strong>碎屑</strong>：20级突破需3个</li>
+<li><strong>断片</strong>：40级突破需6个</li>
+<li><strong>块</strong>：60级突破需6个</li>
+<li><strong>晶石</strong>：80级突破需6个</li>
+<li><strong>获取Boss</strong>：纯水精灵、海兽型Boss</li>
+<li><strong>合成公式</strong>：同上</li>
+</ul>
+<p><strong>雷元素宝石（最胜紫晶）</strong></p>
+<ul>
+<li><strong>碎屑</strong>：20级突破需3个</li>
+<li><strong>断片</strong>：40级突破需6个</li>
+<li><strong>块</strong>：60级突破需6个</li>
+<li><strong>晶石</strong>：80级突破需6个</li>
+<li><strong>获取Boss</strong>：无相之雷、雷音权现</li>
+<li><strong>合成公式</strong>：同上</li>
+</ul>
+<p><strong>冰元素宝石（哀叙冰玉）</strong></p>
+<ul>
+<li><strong>碎屑</strong>：20级突破需3个</li>
+<li><strong>断片</strong>：40级突破需6个</li>
+<li><strong>块</strong>：60级突破需6个</li>
+<li><strong>晶石</strong>：80级突破需6个</li>
+<li><strong>获取Boss</strong>：急冻树、冰风组曲</li>
+<li><strong>合成公式</strong>：同上</li>
+</ul>
+<p><strong>风元素宝石（自在松石）</strong></p>
+<ul>
+<li><strong>碎屑</strong>：20级突破需3个</li>
+<li><strong>断片</strong>：40级突破需6个</li>
+<li><strong>块</strong>：60级突破需6个</li>
+<li><strong>晶石</strong>：80级突破需6个</li>
+<li><strong>获取Boss</strong>：无相之风、风魔龙</li>
+<li><strong>合成公式</strong>：同上</li>
+</ul>
+<p><strong>岩元素宝石（坚牢黄玉）</strong></p>
+<ul>
+<li><strong>碎屑</strong>：20级突破需3个</li>
+<li><strong>断片</strong>：40级突破需6个</li>
+<li><strong>块</strong>：60级突破需6个</li>
+<li><strong>晶石</strong>：80级突破需6个</li>
+<li><strong>获取Boss</strong>：无相之岩、古岩龙蜥</li>
+<li><strong>合成公式</strong>：同上</li>
+</ul>
+<p><strong>草元素宝石（生长碧翡）</strong></p>
+<ul>
+<li><strong>碎屑</strong>：20级突破需3个</li>
+<li><strong>断片</strong>：40级突破需6个</li>
+<li><strong>块</strong>：60级突破需6个</li>
+<li><strong>晶石</strong>：80级突破需6个</li>
+<li><strong>获取Boss</strong>：翠翎恐蕈、草龙</li>
+<li><strong>合成公式</strong>：同上</li>
+</ul>
+<h4 id="_28">地区特产材料</h4>
+<p><strong>蒙德特产</strong></p>
+<ul>
+<li><strong>蒲公英籽</strong>：获取地点：蒙德城门、风起地</li>
+<li><strong>风车菊</strong>：获取地点：风车平原</li>
+<li><strong>塞西莉亚花</strong>：获取地点：摘星崖</li>
+<li><strong>慕风蘑菇</strong>：获取地点：春香窑、达达乌帕谷</li>
+<li><strong>钩钩果</strong>：获取地点：奔狼领</li>
+<li><strong>落落莓</strong>：获取地点：低语森林</li>
+<li><strong>刷新时间</strong>：48小时</li>
+</ul>
+<p><strong>璃月特产</strong></p>
+<ul>
+<li><strong>清心</strong>：获取地点：庆云顶、绝云间</li>
+<li><strong>绝云椒椒</strong>：获取地点：庆云顶、轻策庄</li>
+<li><strong>夜泊石</strong>：获取地点：明冠峡、天衡山</li>
+<li><strong>霓裳花</strong>：获取地点：璃月港、渌华池</li>
+<li><strong>琉璃百合</strong>：获取地点：璃月港、轻策庄</li>
+<li><strong>石珀</strong>：获取地点：璃月山区（矿石形式）</li>
+<li><strong>刷新时间</strong>：48小时</li>
+</ul>
+<p><strong>稻妻特产</strong></p>
+<ul>
+<li><strong>血斛</strong>：获取地点：鸣神岛、八酝岛</li>
+<li><strong>鸣草</strong>：获取地点：鸣神大社、清籁岛</li>
+<li><strong>晶化骨髓</strong>：获取地点：八酝岛蛇骨矿洞</li>
+<li><strong>天云草实</strong>：获取地点：清籁岛</li>
+<li><strong>海灵芝</strong>：获取地点：鹤观、清籁岛海滩</li>
+<li><strong>珊瑚真珠</strong>：获取地点：珊瑚宫周围</li>
+<li><strong>刷新时间</strong>：48小时</li>
+</ul>
+<p><strong>须弥特产</strong></p>
+<ul>
+<li><strong>帕蒂沙兰</strong>：获取地点：维摩庄、无郁稠林</li>
+<li><strong>月莲</strong>：获取地点：化城郭、护世森</li>
+<li><strong>赤念果</strong>：获取地点：阿如村、荼诃落谷</li>
+<li><strong>劫波莲</strong>：获取地点：护世森水域</li>
+<li><strong>圣金虫</strong>：获取地点：沙漠区域</li>
+<li><strong>沙脂蛹</strong>：获取地点：沙漠地下</li>
+<li><strong>刷新时间</strong>：48小时</li>
+</ul>
+<h4 id="_29">天赋材料</h4>
+<p><strong>天赋书本（周一/四/日）</strong></p>
+<ul>
+<li><strong>「自由」的教导</strong>：1-3级天赋升级</li>
+<li><strong>「自由」的指引</strong>：4-6级天赋升级</li>
+<li><strong>「自由」的哲学</strong>：7-10级天赋升级</li>
+<li><strong>获取副本</strong>：忘却之峡</li>
+<li><strong>角色对应</strong>：温迪型、可莉型、芭芭拉型机甲</li>
+</ul>
+<p><strong>天赋书本（周二/五/日）</strong></p>
+<ul>
+<li><strong>「抗争」的教导</strong>：1-3级天赋升级</li>
+<li><strong>「抗争」的指引</strong>：4-6级天赋升级</li>
+<li><strong>「抗争」的哲学</strong>：7-10级天赋升级</li>
+<li><strong>获取副本</strong>：忘却之峡</li>
+<li><strong>角色对应</strong>：迪卢克型、莫娜型、班尼特型机甲</li>
+</ul>
+<p><strong>天赋书本（周三/六/日）</strong></p>
+<ul>
+<li><strong>「诗文」的教导</strong>：1-3级天赋升级</li>
+<li><strong>「诗文」的指引</strong>：4-6级天赋升级</li>
+<li><strong>「诗文」的哲学</strong>：7-10级天赋升级</li>
+<li><strong>获取副本</strong>：忘却之峡</li>
+<li><strong>角色对应</strong>：琴型、丽莎型、菲谢尔型机甲</li>
+</ul>
+<p><strong>周本Boss材料</strong></p>
+<ul>
+<li><strong>风魔龙的吐息</strong>：8-10级天赋突破</li>
+<li><strong>风魔龙的羽毛</strong>：8-10级天赋突破</li>
+<li><strong>风魔龙的爪子</strong>：8-10级天赋突破</li>
+<li><strong>获取Boss</strong>：风魔龙·特瓦林</li>
+<li><strong>每周限制</strong>：3种材料随机掉落1个</li>
+</ul>
+<h3 id="433">4.3.3 摩拉消耗计算</h3>
+<h4 id="_30">角色培养总消耗</h4>
+<ul>
+<li><strong>1-90级升级</strong>：</li>
+<li>经验书消耗：419本英雄经验</li>
+<li>摩拉消耗：1,673,400摩拉</li>
+<li><strong>突破消耗</strong>（20/40/50/60/70/80级）：</li>
+<li>摩拉消耗：420,000摩拉</li>
+<li><strong>天赋升级</strong>（1-10级，3个天赋）：</li>
+<li>摩拉消耗：4,957,500摩拉</li>
+<li><strong>总计</strong>：约700万摩拉培养一个满级角色</li>
+</ul>
+<h4 id="_31">武器培养总消耗</h4>
+<ul>
+<li><strong>1-90级升级</strong>：</li>
+<li>经验矿消耗：907个精锻用魔矿</li>
+<li>摩拉消耗：1,153,825摩拉</li>
+<li><strong>突破消耗</strong>（20/40/50/60/70/80级）：</li>
+<li>摩拉消耗：225,000摩拉</li>
+<li><strong>总计</strong>：约138万摩拉培养一把满级武器</li>
+</ul>
+<h4 id="_32">圣遗物强化消耗</h4>
+<ul>
+<li><strong>0-20级单件圣遗物</strong>：</li>
+<li>经验需求：270,475 EXP</li>
+<li>狗粮消耗：约72个5星圣遗物</li>
+<li>摩拉消耗：270,475摩拉</li>
+<li><strong>全套5件强化</strong>：</li>
+<li>摩拉消耗：1,352,375摩拉</li>
+<li><strong>追求极品词条</strong>：</li>
+<li>平均消耗：20-50套圣遗物刷取</li>
+<li>强化消耗：2000万+摩拉</li>
+</ul>
+<h3 id="434">4.3.4 材料获取优化策略</h3>
+<h4 id="_33">日常材料规划</h4>
+<ul>
+<li><strong>周一</strong>：刷取「自由」系列天赋书</li>
+<li><strong>周二</strong>：刷取「抗争」系列天赋书</li>
+<li><strong>周三</strong>：刷取「诗文」系列天赋书</li>
+<li><strong>周四</strong>：补充「自由」系列</li>
+<li><strong>周五</strong>：补充「抗争」系列</li>
+<li><strong>周六</strong>：补充「诗文」系列</li>
+<li><strong>周日</strong>：三种天赋书全开放，按需选择</li>
+</ul>
+<h4 id="_34">体力分配建议</h4>
+<ul>
+<li><strong>前期（1-45级）</strong>：</li>
+<li>40%体力：角色经验地脉</li>
+<li>30%体力：摩拉地脉</li>
+<li>30%体力：Boss材料</li>
+<li><strong>中期（45-50级）</strong>：</li>
+<li>20%体力：天赋本</li>
+<li>40%体力：圣遗物本（过渡装备）</li>
+<li>40%体力：武器突破材料</li>
+<li><strong>后期（50+级）</strong>：</li>
+<li>60%体力：圣遗物本（毕业装备）</li>
+<li>20%体力：天赋本</li>
+<li>20%体力：周本Boss</li>
+</ul>
+<h4 id="_35">材料兑换系统</h4>
+<ul>
+<li><strong>星尘商店</strong>：</li>
+<li>每月限购：纠缠之缘×5、相遇之缘×5</li>
+<li>材料兑换：经验书、摩拉（不推荐）</li>
+<li><strong>星辉商店</strong>：</li>
+<li>角色兑换：34星辉换取4星角色</li>
+<li>命座提升：重复角色转化为命座</li>
+<li><strong>尘歌壶商店</strong>：</li>
+<li>每周限购：经验书×20、摩拉×20万</li>
+<li>圣遗物经验：1000信任度换取5个</li>
+</ul>
+<h4 id="_36">活动材料获取</h4>
+<ul>
+<li><strong>限时活动</strong>：</li>
+<li>皇冠：天赋10级突破必需品，极其稀有</li>
+<li>精炼材料：活动武器精炼材料</li>
+<li>大量摩拉/经验书：活动商店兑换</li>
+<li><strong>深渊重置</strong>：</li>
+<li>每月1号/16号重置</li>
+<li>9-12层每层3星，共600原石</li>
+<li>首次通关额外奖励</li>
+</ul>
+<h2 id="44">4.4 装备养成路线规划</h2>
+<h3 id="441-1-45">4.4.1 新手期装备选择（1-45级）</h3>
+<h4 id="c">主C角色配装</h4>
+<ul>
+<li><strong>武器选择</strong>：</li>
+<li>优先级1：锻造4星武器（试作系列）</li>
+<li>优先级2：活动赠送4星武器</li>
+<li>优先级3：3星武器过渡（黎明神剑等）</li>
+<li><strong>圣遗物搭配</strong>：</li>
+<li>2+2套装组合（如角斗士2+狂战士2）</li>
+<li>主属性优先级 &gt; 套装效果</li>
+<li>不要浪费资源强化4星以下圣遗物</li>
+<li><strong>强化策略</strong>：</li>
+<li>武器升至40级</li>
+<li>圣遗物花羽强化至+12</li>
+<li>其余部位+8即可</li>
+</ul>
+<h4 id="_37">辅助角色配装</h4>
+<ul>
+<li><strong>武器选择</strong>：</li>
+<li>充能武器优先（西风系列、祭礼系列）</li>
+<li>3星充能武器也可用（如讨龙英杰谭）</li>
+<li><strong>圣遗物搭配</strong>：</li>
+<li>教官4件套（元素精通+120）</li>
+<li>流放者4件套（充能效率+20%）</li>
+<li><strong>强化策略</strong>：</li>
+<li>武器升至20级即可</li>
+<li>圣遗物不强化或+4</li>
+</ul>
+<h3 id="442-45-55">4.4.2 成长期装备过渡（45-55级）</h3>
+<h4 id="_38">圣遗物农本准备</h4>
+<ul>
+<li><strong>45级解锁最高级圣遗物副本</strong>：</li>
+<li>保证5星圣遗物掉落</li>
+<li>建议组队挑战提高效率</li>
+<li><strong>优先刷取顺序</strong>：
+  1. 绝缘之旗印（通用性最强）
+  2. 翠绿之影（风系必备）
+  3. 千岩牢固（护盾辅助）
+  4. 其他针对性套装</li>
+</ul>
+<h4 id="_39">过渡期圣遗物标准</h4>
+<ul>
+<li><strong>主属性正确</strong>：最重要的标准</li>
+<li><strong>套装效果匹配</strong>：2件套即可生效</li>
+<li><strong>副属性要求</strong>：</li>
+<li>有效词条2-3个即可</li>
+<li>双暴各有1-2次强化</li>
+<li>不追求极品，够用即可</li>
+</ul>
+<h4 id="_40">武器升级节奏</h4>
+<ul>
+<li><strong>主C武器</strong>：优先升至70级</li>
+<li><strong>副C武器</strong>：升至60级</li>
+<li><strong>辅助武器</strong>：保持40-50级</li>
+<li><strong>精炼优先级</strong>：</li>
+<li>西风/祭礼系列优先精炼</li>
+<li>DPS武器看情况精炼</li>
+</ul>
+<h3 id="443-55">4.4.3 毕业期装备标准（55级+）</h3>
+<h4 id="c_1">主C毕业标准</h4>
+<ul>
+<li><strong>武器要求</strong>：</li>
+<li>5星专武或高精炼4星毕业武器</li>
+<li>90级满级满突破</li>
+<li>精炼根据资源情况提升</li>
+<li><strong>圣遗物标准</strong>：</li>
+<li>正确的4件套或2+2组合</li>
+<li>暴击率：60-70%</li>
+<li>暴击伤害：140-200%+</li>
+<li>有效词条数：每件25+（满分50）</li>
+<li><strong>面板参考</strong>：</li>
+<li>攻击力：2000-2500（带攻击沙）</li>
+<li>元素伤害加成：46.6%+（元素杯）</li>
+<li>专属属性达标（如胡桃生命值30000+）</li>
+</ul>
+<h4 id="_41">辅助毕业标准</h4>
+<ul>
+<li><strong>武器要求</strong>：</li>
+<li>充能武器精5</li>
+<li>70-80级即可</li>
+<li><strong>圣遗物标准</strong>：</li>
+<li>功能性4件套（翠绿、千岩、宗室等）</li>
+<li>充能效率：180-220%</li>
+<li>生命值/防御力：根据技能机制堆叠</li>
+<li><strong>面板参考</strong>：</li>
+<li>充能效率达到大招循环要求</li>
+<li>生存能力足够（HP 20000+）</li>
+</ul>
+<h4 id="_42">极限毕业追求</h4>
+<ul>
+<li><strong>圣遗物极品标准</strong>：</li>
+<li>初始4词条</li>
+<li>双暴起手</li>
+<li>5次强化至少3次进双暴</li>
+<li>单件圣遗物40+评分</li>
+<li><strong>投入产出比</strong>：</li>
+<li>从及格到优秀：1-2个月</li>
+<li>从优秀到极品：3-6个月</li>
+<li>建议理性追求，不要过度内卷</li>
+</ul>
+<h3 id="444">4.4.4 配队装备搭配</h3>
+<h4 id="_43">蒸发队配装</h4>
+<ul>
+<li><strong>胡桃（主C）</strong>：</li>
+<li>武器：护摩之杖/龙脊长枪</li>
+<li>圣遗物：追忆4件/魔女4件</li>
+<li>属性：生命沙、火伤杯、暴击头</li>
+<li><strong>行秋（副C）</strong>：</li>
+<li>武器：祭礼剑/西风剑</li>
+<li>圣遗物：绝缘4件</li>
+<li>属性：攻击沙、水伤杯、暴击头</li>
+<li><strong>钟离（护盾）</strong>：</li>
+<li>武器：黑缨枪/西风长枪</li>
+<li>圣遗物：千岩4件</li>
+<li>属性：生命沙、生命杯、生命头</li>
+<li><strong>万叶（增伤）</strong>：</li>
+<li>武器：苍古自由之誓/铁蜂刺</li>
+<li>圣遗物：翠绿4件</li>
+<li>属性：精通沙、精通杯、精通头</li>
+</ul>
+<h4 id="_44">永冻队配装</h4>
+<ul>
+<li><strong>神里绫华（主C）</strong>：</li>
+<li>武器：雾切之回光/天目影打刀</li>
+<li>圣遗物：冰风4件</li>
+<li>属性：攻击沙、冰伤杯、暴伤头</li>
+<li><strong>莫娜（增伤挂水）</strong>：</li>
+<li>武器：讨龙英杰谭/试作金珀</li>
+<li>圣遗物：宗室4件</li>
+<li>属性：充能沙、水伤杯、暴击头</li>
+<li><strong>申鹤（冰伤增益）</strong>：</li>
+<li>武器：息灾/西风长枪</li>
+<li>圣遗物：宗室4件/千岩4件</li>
+<li>属性：攻击沙、攻击杯、攻击头</li>
+<li><strong>万叶（聚怪减抗）</strong>：</li>
+<li>配装同上蒸发队</li>
+</ul>
+<h4 id="_45">雷神国家队配装</h4>
+<ul>
+<li><strong>雷电将军（充能主C）</strong>：</li>
+<li>武器：薙草之稻光/渔获</li>
+<li>圣遗物：绝缘4件</li>
+<li>属性：充能沙、雷伤杯、暴击头</li>
+<li><strong>班尼特（攻击拐）</strong>：</li>
+<li>武器：天空之刃/腐殖之剑</li>
+<li>圣遗物：宗室4件</li>
+<li>属性：生命沙、生命杯、治疗头</li>
+<li><strong>香菱（火伤副C）</strong>：</li>
+<li>武器：渔获/千岩长枪</li>
+<li>圣遗物：绝缘4件</li>
+<li>属性：充能沙、火伤杯、暴击头</li>
+<li><strong>行秋（水伤副C）</strong>：</li>
+<li>配装同上蒸发队</li>
+</ul>
+<h2 id="45">4.5 强化系统深度机制</h2>
+<h3 id="451">4.5.1 隐藏数值系统</h3>
+<h4 id="_46">强化成功率</h4>
+<ul>
+<li><strong>武器强化</strong>：100%成功率</li>
+<li><strong>圣遗物强化</strong>：</li>
+<li>1-4级：100%成功</li>
+<li>5-8级：大成功概率5%（1.5倍经验）</li>
+<li>9-12级：大成功概率5%</li>
+<li>13-16级：大成功概率5%</li>
+<li>17-20级：大成功概率5%</li>
+</ul>
+<h4 id="_47">副属性权重系统</h4>
+<ul>
+<li><strong>同属性不共存原则</strong>：</li>
+<li>主属性为攻击%时，副属性不会出现攻击%</li>
+<li>主属性为暴击率时，副属性不会出现暴击率</li>
+<li><strong>初始词条概率</strong>：</li>
+<li>4词条概率：20%（5星圣遗物）</li>
+<li>3词条概率：80%（5星圣遗物）</li>
+<li><strong>强化选择权重</strong>：</li>
+<li>每个副属性：25%概率被强化</li>
+<li>完全随机，无隐藏偏向</li>
+</ul>
+<h3 id="452">4.5.2 效率优化技巧</h3>
+<h4 id="_48">圣遗物强化技巧</h4>
+<ul>
+<li><strong>垫子理论</strong>：先强化垃圾圣遗物"垫手气"（心理作用，实际无效）</li>
+<li><strong>分段强化</strong>：</li>
+<li>+4查看是否值得继续</li>
+<li>+8再次评估</li>
+<li>+12决定是否追求+20</li>
+<li><strong>狗粮循环</strong>：</li>
+<li>+20失败的圣遗物作为+0狗粮</li>
+<li>返还80%经验值</li>
+<li>有效降低总消耗</li>
+</ul>
+<h4 id="_49">武器强化技巧</h4>
+<ul>
+<li><strong>矿石获取优化</strong>：</li>
+<li>每日锻造上限利用</li>
+<li>标记富矿区域每日采集</li>
+<li>好友世界矿石共享</li>
+<li><strong>优先级管理</strong>：</li>
+<li>主C武器直接90</li>
+<li>辅助武器分阶段提升</li>
+<li>备用武器保持1级</li>
+</ul>
+<h3 id="453">4.5.3 资源价值换算</h3>
+<h4 id="_50">体力价值计算</h4>
+<ul>
+<li><strong>20树脂 = 1次地脉</strong>：</li>
+<li>60000摩拉或4-5本紫书</li>
+<li><strong>20树脂 = 1次圣遗物副本</strong>：</li>
+<li>1-2个5星圣遗物</li>
+<li><strong>40树脂 = 1次Boss</strong>：</li>
+<li>2-3个角色突破材料</li>
+<li><strong>60树脂 = 1次周本</strong>：</li>
+<li>2-3个5星圣遗物 + 天赋材料</li>
+</ul>
+<h4 id="_51">原石价值评估</h4>
+<ul>
+<li><strong>50原石 = 1次体力回复</strong>：</li>
+<li>回复60体力</li>
+<li>不建议使用原石买体力</li>
+<li><strong>160原石 = 1次祈愿</strong>：</li>
+<li>期望价值：1个角色或武器</li>
+<li>建议全部用于抽卡</li>
+</ul>
+<h2 id="46">4.6 本章总结</h2>
+<h3 id="_52">关键要点回顾</h3>
+<ol>
+<li><strong>武器系统</strong>：5种武器类型对应不同战斗风格，稀有度直接影响基础面板</li>
+<li><strong>圣遗物系统</strong>：5个部位提供不同属性加成，副属性决定装备上限</li>
+<li><strong>强化材料</strong>：合理规划日常体力，优化材料获取路线</li>
+<li><strong>养成路线</strong>：分阶段培养，避免资源浪费</li>
+<li><strong>配队思路</strong>：装备搭配服务于队伍整体输出链</li>
+</ol>
+<h3 id="_53">进阶建议</h3>
+<ul>
+<li><strong>前期重武器，后期重圣遗物</strong></li>
+<li><strong>主C优先满级，辅助够用即可</strong></li>
+<li><strong>不要过度追求极品装备</strong></li>
+<li><strong>根据深渊环境灵活调整配装</strong></li>
+</ul>
+<h3 id="_54">相关章节链接</h3>
+<ul>
+<li>第三章：战斗系统与伤害计算（了解伤害公式）</li>
+<li>第五章：机甲驾驶员角色设计（查看角色定位）</li>
+<li>第八章：圣遗物装备进阶系统（深入了解套装效果）</li>
+</ul>
+            </article>
+            
+            <nav class="page-nav"><a href="chapter3.html" class="nav-link prev">← 第三章 - 战斗系统与伤害计算</a><a href="chapter5.html" class="nav-link next">第五章 - 机甲驾驶员角色设计 →</a></nav>
+        </main>
+    </div>
+</body>
+</html>

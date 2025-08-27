@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="./">
+    <title>第六章 - 变异生物图鉴与数值设计</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/highlight.css">
+    <script src="assets/script.js" defer></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']],
+                processEscapes: false,
+                packages: {'[+]': ['noerrors', 'ams']}
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            },
+            loader: {
+                load: ['[tex]/noerrors', '[tex]/ams']
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h3>目录</h3>
+                <button id="sidebar-toggle" class="sidebar-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <div class="sidebar-search">
+                <input type="text" id="sidebar-search-input" placeholder="搜索..." autocomplete="off">
+            </div>
+            <div id="tree-container">
+                <nav class="tree-nav" role="tree">
+                    <div class="tree-item " >
+                        <a href="index.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">机甲崩坏：变异纪元 - 游戏设计规格说明书</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter1.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第一章 - 世界观与故事背景</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter2.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第二章 - UI/UX与唯美风格美术规范</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter3.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第三章 - 战斗系统与伤害计算</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter4.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第四章 - 武器装备与强化系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter5.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第五章 - 机甲驾驶员角色设计</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item active" >
+                        <a href="chapter6.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第六章 - 变异生物图鉴与数值设计</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter7.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第七章 - 提瓦特废土地形系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter8.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第八章 - 圣遗物装备进阶系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter9.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第九章 - 召唤物与僚机系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter10.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十章 - 补给系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter11.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十一章 - 宿舍系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter13.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十章 - 凯瑟琳的试炼（教学关卡）</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter14.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十一章 - 层岩巨渊·机械废墟</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter15.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十二章 - 深渊螺旋·终焉之刻</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="CLAUDE.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">Untitled</span>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </nav>
+        
+        <main class="content">
+            <article>
+                <h1 id="-">第六章 - 变异生物图鉴与数值设计</h1>
+<h2 id="_1">概述</h2>
+<p>深渊侵蚀后的提瓦特大陆，原生物种发生大规模变异，与残存的机械文明融合，形成了全新的敌对生态系统。本章详细定义所有敌人的数值设计、行为模式、弱点机制以及战斗策略。</p>
+<h2 id="61">6.1 敌人分类体系</h2>
+<h3 id="611">6.1.1 威胁等级划分</h3>
+<ul>
+<li><strong>普通级（Common）</strong>：基础小怪，1-3击可消灭</li>
+<li><strong>精英级（Elite）</strong>：强化单位，需要策略应对</li>
+<li><strong>统领级（Commander）</strong>：小Boss，具备特殊机制</li>
+<li><strong>霸主级（Lord）</strong>：关卡Boss，多阶段血条</li>
+<li><strong>深渊级（Abyss）</strong>：终极Boss，复杂机制组合</li>
+</ul>
+<h3 id="612">6.1.2 属性抗性系统</h3>
+<ul>
+<li><strong>元素抗性</strong>：-20%（弱点）到 70%（免疫）</li>
+<li><strong>物理抗性</strong>：通常10%-50%</li>
+<li><strong>削韧抗性</strong>：影响硬直和打断</li>
+<li><strong>暴击抗性</strong>：部分敌人降低暴击效果</li>
+</ul>
+<h3 id="613">6.1.3 行为模式分类</h3>
+<ul>
+<li><strong>巡逻型</strong>：固定路线移动</li>
+<li><strong>追击型</strong>：主动接近玩家</li>
+<li><strong>远程型</strong>：保持距离攻击</li>
+<li><strong>召唤型</strong>：呼叫增援</li>
+<li><strong>防御型</strong>：护盾/格挡机制</li>
+</ul>
+<h2 id="62">6.2 普通敌人设计</h2>
+<h3 id="621">6.2.1 史莱姆系列（基础威胁）</h3>
+<h4 id="_2">火史莱姆</h4>
+<ul>
+<li><strong>基础数值</strong></li>
+<li>生命值：150 HP</li>
+<li>攻击力：30</li>
+<li>防御力：50</li>
+<li>移动速度：2.0 单位/秒</li>
+<li><strong>元素抗性</strong></li>
+<li>火：免疫（100%）</li>
+<li>水：弱点（-30%）</li>
+<li>其他：普通（10%）</li>
+<li><strong>攻击模式</strong></li>
+<li>弹跳冲撞：每2秒一次，伤害50</li>
+<li>自爆：生命值低于20%时触发，范围伤害150</li>
+<li><strong>特殊机制</strong></li>
+<li>点燃地面：经过区域燃烧3秒</li>
+<li>火元素护盾：吸收100点伤害</li>
+</ul>
+<h4 id="_3">水史莱姆</h4>
+<ul>
+<li><strong>基础数值</strong></li>
+<li>生命值：180 HP</li>
+<li>攻击力：25</li>
+<li>防御力：60</li>
+<li>移动速度：1.8 单位/秒</li>
+<li><strong>元素抗性</strong></li>
+<li>水：免疫（100%）</li>
+<li>雷：弱点（-30%）</li>
+<li>冰：弱点（-20%）</li>
+<li><strong>攻击模式</strong></li>
+<li>水泡喷射：1.5秒间隔，伤害40</li>
+<li>潜水突袭：遁入地面后突然出现</li>
+<li><strong>特殊机制</strong></li>
+<li>湿润光环：周围2米内附加潮湿状态</li>
+<li>分裂：死亡时分裂成2个小史莱姆（50HP）</li>
+</ul>
+<h4 id="_4">雷史莱姆</h4>
+<ul>
+<li><strong>基础数值</strong></li>
+<li>生命值：160 HP</li>
+<li>攻击力：35</li>
+<li>防御力：45</li>
+<li>移动速度：2.5 单位/秒</li>
+<li><strong>元素抗性</strong></li>
+<li>雷：免疫（100%）</li>
+<li>岩：弱点（-25%）</li>
+<li><strong>攻击模式</strong></li>
+<li>电击链：连接3米内目标，持续伤害20/秒</li>
+<li>闪电冲刺：快速移动并放电</li>
+<li><strong>特殊机制</strong></li>
+<li>静电场：被击中后麻痹0.5秒</li>
+<li>能量传导：多个雷史莱姆互相强化</li>
+</ul>
+<h3 id="622">6.2.2 丘丘人变异体（智能威胁）</h3>
+<h4 id="_5">变异丘丘人战士</h4>
+<ul>
+<li><strong>基础数值</strong></li>
+<li>生命值：400 HP</li>
+<li>攻击力：60</li>
+<li>防御力：80</li>
+<li>移动速度：3.0 单位/秒</li>
+<li><strong>装备</strong></li>
+<li>腐蚀木棒：普攻造成毒素伤害</li>
+<li>破损盾牌：格挡30%伤害</li>
+<li><strong>攻击模式</strong></li>
+<li>三连击：木棒挥舞combo，总伤害150</li>
+<li>冲锋：加速冲撞，击退效果</li>
+<li>投掷石块：远程攻击，伤害40</li>
+<li><strong>AI行为</strong></li>
+<li>发现玩家后呼叫同伴</li>
+<li>血量50%以下进入狂暴状态（攻速+50%）</li>
+<li>会主动格挡玩家攻击</li>
+</ul>
+<h4 id="_6">变异丘丘萨满</h4>
+<ul>
+<li><strong>基础数值</strong></li>
+<li>生命值：350 HP</li>
+<li>攻击力：45</li>
+<li>防御力：60</li>
+<li>移动速度：2.0 单位/秒</li>
+<li><strong>元素能力</strong></li>
+<li>随机掌握一种元素（火/水/雷）</li>
+<li>元素护盾：200HP</li>
+<li><strong>攻击模式</strong></li>
+<li>元素弹幕：发射3发追踪弹，单发伤害30</li>
+<li>召唤图腾：生成元素图腾持续攻击</li>
+<li>群体强化：为周围敌人添加元素附魔</li>
+<li><strong>特殊机制</strong></li>
+<li>咏唱施法：可被打断</li>
+<li>死亡诅咒：死亡时范围debuff</li>
+</ul>
+<h3 id="623">6.2.3 深渊使徒系列（精英威胁）</h3>
+<h4 id="_7">深渊咏者·激流</h4>
+<ul>
+<li><strong>基础数值</strong></li>
+<li>生命值：1200 HP</li>
+<li>攻击力：80</li>
+<li>防御力：100</li>
+<li>移动速度：2.5 单位/秒</li>
+<li><strong>护盾系统</strong></li>
+<li>水元素护盾：800 HP（需要冰/雷元素破盾）</li>
+<li>护盾regenerate：每秒恢复20HP</li>
+<li><strong>攻击模式</strong></li>
+<li>水刃六连斩：快速斩击，总伤害300</li>
+<li>激流漩涡：范围控制技能，持续3秒</li>
+<li>水幕屏障：反弹远程攻击</li>
+<li><strong>特殊机制</strong></li>
+<li>瞬间移动：每10秒传送一次</li>
+<li>深渊祝福：死亡时强化周围敌人</li>
+</ul>
+<h2 id="63">6.3 机械系敌人</h2>
+<h3 id="631">6.3.1 遗迹守卫（机械威胁）</h3>
+<h4 id="_8">遗迹守卫·暴走型</h4>
+<ul>
+<li><strong>基础数值</strong></li>
+<li>生命值：5000 HP</li>
+<li>攻击力：150</li>
+<li>防御力：200</li>
+<li>移动速度：2.0/4.0 单位/秒（常态/冲刺）</li>
+<li><strong>弱点系统</strong></li>
+<li>核心（眼部）：2倍伤害，击中2次瘫痪5秒</li>
+<li>关节：1.5倍伤害</li>
+<li>装甲：0.5倍伤害</li>
+<li><strong>攻击模式</strong></li>
+<li>旋转扫击：360度攻击，伤害200</li>
+<li>导弹齐射：锁定6发追踪导弹，单发80</li>
+<li>激光扫射：持续3秒，每秒100伤害</li>
+<li>跳跃践踏：AOE震地，伤害250</li>
+<li><strong>阶段变化</strong></li>
+<li>第一阶段（100%-60%）：常规攻击模式</li>
+<li>第二阶段（60%-30%）：攻速+30%，新增旋风斩</li>
+<li>第三阶段（30%-0%）：狂暴模式，所有技能CD减半</li>
+</ul>
+<h3 id="632">6.3.2 遗迹猎者（飞行威胁）</h3>
+<h4 id="_9">遗迹猎者·追踪型</h4>
+<ul>
+<li><strong>基础数值</strong></li>
+<li>生命值：3500 HP</li>
+<li>攻击力：120</li>
+<li>防御力：150</li>
+<li>飞行高度：5-15米可变</li>
+<li><strong>攻击模式</strong></li>
+<li>俯冲斩击：从空中急速下坠攻击</li>
+<li>能量炮：蓄力2秒，伤害400</li>
+<li>钻地突袭：遁地后从玩家脚下钻出</li>
+<li><strong>特殊机制</strong></li>
+<li>高度优势：飞行时减少50%近战伤害</li>
+<li>维修协议：每30秒回复10%生命值</li>
+</ul>
+<h2 id="64-boss">6.4 Boss设计详解</h2>
+<h3 id="641">6.4.1 无相元素系列</h3>
+<h4 id="_10">无相之火</h4>
+<ul>
+<li><strong>基础数值</strong></li>
+<li>生命值：10000 HP × 3血条</li>
+<li>攻击力：200</li>
+<li>防御力：150</li>
+<li>元素抗性：火免疫，水-50%</li>
+<li><strong>核心机制</strong></li>
+<li>立方体形态：8个火焰立方体环绕</li>
+<li>核心暴露：每次攻击后暴露3秒</li>
+<li>火焰领域：战斗区域持续燃烧</li>
+<li><strong>技能组合</strong></li>
+<li>火柱喷发：地面出现预警圈，2秒后喷发，伤害300</li>
+<li>流星火雨：全屏火球轰炸，每发150伤害</li>
+<li>炎爆冲击：核心蓄力大爆炸，伤害800</li>
+<li>火墙推进：三道火墙横扫全场</li>
+<li><strong>阶段机制</strong></li>
+<li>第一血条：基础攻击循环</li>
+<li>第二血条：攻击频率+50%，新增分身</li>
+<li>第三血条：狂暴模式，所有攻击附加灼烧</li>
+<li>濒死阶段（5%）：自爆倒计时15秒</li>
+</ul>
+<h4 id="_11">无相之雷</h4>
+<ul>
+<li><strong>基础数值</strong></li>
+<li>生命值：12000 HP × 3血条</li>
+<li>攻击力：180</li>
+<li>防御力：140</li>
+<li>元素抗性：雷免疫，岩-40%</li>
+<li><strong>核心机制</strong></li>
+<li>电磁立方：可组合变形攻击</li>
+<li>充能状态：每20秒进入超载模式</li>
+<li>传导连锁：攻击可在金属物体间传导</li>
+<li><strong>技能组合</strong></li>
+<li>雷电牢笼：限制移动区域，触碰边界麻痹</li>
+<li>电磁炮：锁定激光，蓄力3秒，伤害1000</li>
+<li>雷暴领域：全场落雷，需要寻找安全点</li>
+<li>电流网格：地面电网扩散</li>
+<li><strong>特殊阶段</strong></li>
+<li>充能收集：释放3个能量球，需要收集阻止其回充</li>
+</ul>
+<h3 id="642-boss">6.4.2 深渊教团Boss</h3>
+<h4 id="_12">深渊使徒·紫电</h4>
+<ul>
+<li><strong>基础数值</strong></li>
+<li>生命值：15000 HP（本体） + 5000 HP（护盾）</li>
+<li>攻击力：250</li>
+<li>防御力：180</li>
+<li>移动速度：瞬移机制</li>
+<li><strong>战斗阶段</strong></li>
+<li>第一阶段（100%-70%）：近战剑术为主</li>
+<li>第二阶段（70%-40%）：召唤雷电分身</li>
+<li>第三阶段（40%-0%）：狂暴觉醒，技能强化</li>
+<li><strong>核心技能</strong></li>
+<li>紫电九连斩：超快速斩击，需要精准闪避</li>
+<li>雷光剑气：十字斩击波，范围覆盖</li>
+<li>瞬雷领域：时停效果3秒内连续攻击</li>
+<li>深渊降临：召唤深渊裂隙，持续伤害区域</li>
+</ul>
+<h3 id="643-boss">6.4.3 机械龙兽Boss</h3>
+<h4 id="_13">黄金王兽</h4>
+<ul>
+<li><strong>基础数值</strong></li>
+<li>生命值：25000 HP</li>
+<li>攻击力：300</li>
+<li>防御力：250</li>
+<li>特殊：腐蚀光环（全队持续掉血）</li>
+<li><strong>形态变化</strong></li>
+<li>兽形态：地面冲撞，尾扫攻击</li>
+<li>龙形态：飞行轰炸，能量吐息</li>
+<li>终极形态：融合形态，全方位攻击</li>
+<li><strong>核心技能</strong></li>
+<li>腐蚀射线：扇形扫射，附加腐蚀debuff</li>
+<li>次元撕裂：空间裂缝，即死机制</li>
+<li>黄金风暴：全屏弹幕，需要找掩体</li>
+<li>王兽践踏：巨型化攻击，震荡波扩散</li>
+</ul>
+<h2 id="65">6.5 特殊敌人设计</h2>
+<h3 id="651">6.5.1 愚人众先遣队</h3>
+<h4 id="_14">冰铳手</h4>
+<ul>
+<li><strong>基础数值</strong></li>
+<li>生命值：2000 HP</li>
+<li>攻击力：100</li>
+<li>防御力：120</li>
+<li>冰元素护盾：1000 HP</li>
+<li><strong>战术配合</strong></li>
+<li>与雷锤手组合：超导反应降防</li>
+<li>冰冻控制：创造输出窗口</li>
+<li>护盾支援：为队友提供保护</li>
+</ul>
+<h4 id="_15">雷锤手</h4>
+<ul>
+<li><strong>基础数值</strong></li>
+<li>生命值：2500 HP</li>
+<li>攻击力：150</li>
+<li>防御力：150</li>
+<li>雷元素护盾：1200 HP</li>
+<li><strong>狂战士模式</strong></li>
+<li>血量50%以下：攻速+100%</li>
+<li>雷电强化：攻击附带感电</li>
+<li>霸体状态：免疫控制效果</li>
+</ul>
+<h3 id="652">6.5.2 变异兽群</h3>
+<h4 id="_16">飞行蝠群</h4>
+<ul>
+<li><strong>基础数值</strong></li>
+<li>单体生命值：50 HP</li>
+<li>群体数量：10-20只</li>
+<li>攻击力：20/只</li>
+<li>集群智能：协同攻击</li>
+<li><strong>群体战术</strong></li>
+<li>音波干扰：造成眩晕</li>
+<li>俯冲轰炸：连续攻击</li>
+<li>分散重组：躲避AOE</li>
+</ul>
+<h4 id="_17">腐蚀虫群</h4>
+<ul>
+<li><strong>基础数值</strong></li>
+<li>虫巢生命值：1000 HP</li>
+<li>虫群伤害：10/秒（叠加）</li>
+<li>繁殖速度：每5秒生成5只</li>
+<li><strong>特殊机制</strong></li>
+<li>腐蚀地形：经过区域变为毒沼</li>
+<li>护甲侵蚀：降低防御力</li>
+<li>母巢召唤：Boss血量联动</li>
+</ul>
+<h2 id="66-ai">6.6 敌人AI行为树</h2>
+<h3 id="661-ai">6.6.1 基础AI状态机</h3>
+<div class="codehilite"><pre><span></span><code>待机状态 → 巡逻状态 → 警戒状态 → 战斗状态 → 追击状态
+    ↑                               ↓
+    ←───────── 脱战状态 ←───────────
+</code></pre></div>
+
+<h3 id="662">6.6.2 智能行为模式</h3>
+<h4 id="ai">近战型AI</h4>
+<ul>
+<li><strong>接近策略</strong></li>
+<li>直线冲刺（速度优先）</li>
+<li>Z字走位（躲避弹道）</li>
+<li>包围战术（多单位协同）</li>
+<li><strong>攻击决策</strong></li>
+<li>连击判定：根据玩家状态选择combo</li>
+<li>防御预判：识别玩家大招前摇</li>
+<li>后撤时机：技能冷却期间拉开距离</li>
+</ul>
+<h4 id="ai_1">远程型AI</h4>
+<ul>
+<li><strong>位置选择</strong></li>
+<li>最佳射击点：寻找高地优势</li>
+<li>安全距离：保持6-10米距离</li>
+<li>掩体利用：自动寻找掩护</li>
+<li><strong>火力压制</strong></li>
+<li>预判射击：计算玩家移动轨迹</li>
+<li>弹幕封锁：限制玩家走位</li>
+<li>集火协同：多单位同时锁定</li>
+</ul>
+<h3 id="663-boss-ai">6.6.3 Boss AI系统</h3>
+<h4 id="_18">阶段触发逻辑</h4>
+<ul>
+<li><strong>血量阈值</strong>：75%/50%/25%/10%</li>
+<li><strong>时间触发</strong>：每30秒强制转阶段</li>
+<li><strong>条件触发</strong>：特定行为触发机制变化</li>
+</ul>
+<h4 id="_19">技能释放优先级</h4>
+<ol>
+<li><strong>必杀技</strong>：冷却完成立即释放</li>
+<li><strong>控制技</strong>：玩家集火时使用</li>
+<li><strong>召唤技</strong>：单独时召唤援军</li>
+<li><strong>防御技</strong>：血量降低时触发</li>
+<li><strong>普通攻击</strong>：填充技能真空期</li>
+</ol>
+<h2 id="67">6.7 伤害计算公式</h2>
+<h3 id="671">6.7.1 敌人对玩家伤害</h3>
+<div class="codehilite"><pre><span></span><code>实际伤害 = 敌人攻击力 × 技能倍率 × (1 - 玩家减伤率) × 等级压制系数
+</code></pre></div>
+
+<h3 id="672">6.7.2 等级压制机制</h3>
+<ul>
+<li>同等级：100%伤害</li>
+<li>高5级：110%伤害</li>
+<li>高10级：125%伤害</li>
+<li>高15级：150%伤害</li>
+</ul>
+<h3 id="673">6.7.3 抗性减免公式</h3>
+<div class="codehilite"><pre><span></span><code>抗性减免 = 1 - (抗性值 / (抗性值 + 100))
+当抗性值为负时：增伤% = |抗性值| × 0.5%
+</code></pre></div>
+
+<h2 id="68">6.8 掉落系统</h2>
+<h3 id="681">6.8.1 掉落概率表</h3>
+<h4 id="_20">普通敌人</h4>
+<ul>
+<li>经验材料：100%（1-3个）</li>
+<li>通用材料：50%（1-2个）</li>
+<li>稀有材料：10%（1个）</li>
+<li>元素结晶：20%（对应元素）</li>
+</ul>
+<h4 id="_21">精英敌人</h4>
+<ul>
+<li>经验材料：100%（3-5个）</li>
+<li>通用材料：100%（2-3个）</li>
+<li>稀有材料：30%（1-2个）</li>
+<li>装备零件：15%（随机品质）</li>
+</ul>
+<h4 id="boss">Boss敌人</h4>
+<ul>
+<li>经验材料：100%（10-15个）</li>
+<li>稀有材料：100%（3-5个）</li>
+<li>专属材料：100%（1-2个）</li>
+<li>装备图纸：25%（高品质）</li>
+<li>角色碎片：10%（限定池）</li>
+</ul>
+<h3 id="682">6.8.2 掉落加成机制</h3>
+<ul>
+<li>首次击杀：掉落率×2</li>
+<li>无伤击杀：额外奖励</li>
+<li>元素反应击杀：元素结晶×2</li>
+<li>连击击杀：经验材料×1.5</li>
+</ul>
+<h2 id="69-boss">6.9 深渊秘境Boss</h2>
+<h3 id="691">6.9.1 「女士」·炽焰魔女</h3>
+<h4 id="_22">第一形态：冰之女王</h4>
+<ul>
+<li><strong>基础数值</strong></li>
+<li>生命值：8000 HP</li>
+<li>攻击力：180</li>
+<li>防御力：160</li>
+<li>冰元素抗性：70%</li>
+<li><strong>技能机制</strong></li>
+<li>冰锥突刺：地面连续冰刺，路径预判</li>
+<li>暴风雪：全场降雪，持续冻伤</li>
+<li>冰晶镜像：创造3个分身同时攻击</li>
+<li>极寒领域：场地结冰，移动速度-50%</li>
+</ul>
+<h4 id="_23">第二形态：炽焰魔女</h4>
+<ul>
+<li><strong>基础数值</strong></li>
+<li>生命值：12000 HP</li>
+<li>攻击力：250</li>
+<li>防御力：140</li>
+<li>火元素抗性：70%</li>
+<li><strong>技能机制</strong></li>
+<li>陨石轰炸：5波火焰陨石</li>
+<li>炎蝶追踪：释放6只追踪火蝶</li>
+<li>地狱火环：扩散火圈，需要跳跃躲避</li>
+<li>涅槃重生：濒死时全屏爆炸，复活一次</li>
+</ul>
+<h3 id="692">6.9.2 「散兵」·正机之神</h3>
+<h4 id="_24">机甲形态</h4>
+<ul>
+<li><strong>基础数值</strong></li>
+<li>生命值：20000 HP × 3能量核心</li>
+<li>攻击力：300</li>
+<li>防御力：200</li>
+<li>全元素抗性：30%</li>
+<li><strong>核心系统</strong></li>
+<li>能量矩阵：需要破坏3个能量节点</li>
+<li>元素转换：每阶段切换主导元素</li>
+<li>浮空平台：战斗区域多层次化</li>
+<li><strong>必杀技能</strong></li>
+<li>元素轰炸：根据当前元素释放弹幕</li>
+<li>机械手臂：巨型手臂砸击和抓取</li>
+<li>激光矩阵：多角度激光网格切割</li>
+<li>神罚·天谴：全屏终极攻击，躲避点判定</li>
+</ul>
+<h3 id="693">6.9.3 若陀龙王·岩龙形态</h3>
+<ul>
+<li><strong>基础数值</strong></li>
+<li>生命值：30000 HP</li>
+<li>攻击力：350</li>
+<li>防御力：300</li>
+<li>特殊机制：元素灌注（每25%血切换）</li>
+<li><strong>元素形态</strong></li>
+<li>岩元素：地震冲击波，岩柱突刺</li>
+<li>火元素：熔岩喷发，火焰吐息</li>
+<li>水元素：水龙卷，潮汐冲击</li>
+<li>雷元素：落雷阵，电球追踪</li>
+<li><strong>龙王技能</strong></li>
+<li>尾扫横击：180度扇形攻击</li>
+<li>践踏震地：AOE震荡3次</li>
+<li>钻地突袭：潜入地下后多点突破</li>
+<li>元素风暴：4种元素同时释放</li>
+</ul>
+<h2 id="610">6.10 敌人生成与刷新机制</h2>
+<h3 id="6101">6.10.1 波次生成系统</h3>
+<h4 id="_25">普通关卡波次</h4>
+<ul>
+<li><strong>第一波</strong>：教学型配置（3-5个普通敌人）</li>
+<li><strong>第二波</strong>：强度递增（5-8个混合敌人）</li>
+<li><strong>第三波</strong>：精英挑战（2个精英+若干普通）</li>
+<li><strong>最终波</strong>：Boss战或精英团战</li>
+</ul>
+<h4 id="_26">生存模式波次</h4>
+<ul>
+<li>无限波次递增</li>
+<li>每5波一个小Boss</li>
+<li>每10波一个大Boss</li>
+<li>敌人属性按波次强化（每波+10%）</li>
+</ul>
+<h3 id="6102">6.10.2 动态难度调整</h3>
+<h4 id="_27">难度系数计算</h4>
+<div class="codehilite"><pre><span></span><code>难度系数 = 基础难度 × (1 + 波次×0.1) × (1 + 连胜×0.05)
+</code></pre></div>
+
+<h4 id="_28">敌人强化规则</h4>
+<ul>
+<li>生命值强化：难度系数 × 基础HP</li>
+<li>攻击力强化：难度系数 × 基础ATK × 0.8</li>
+<li>防御力强化：难度系数 × 基础DEF × 0.6</li>
+<li>新增能力：高难度解锁特殊技能</li>
+</ul>
+<h3 id="6103">6.10.3 刷新点位设计</h3>
+<h4 id="_29">地面刷新点</h4>
+<ul>
+<li>屏幕左右边缘</li>
+<li>地形高低差位置</li>
+<li>掩体后方</li>
+<li>传送门机制</li>
+</ul>
+<h4 id="_30">空中刷新点</h4>
+<ul>
+<li>屏幕上方俯冲</li>
+<li>背景远处飞入</li>
+<li>地面召唤升空</li>
+<li>空间裂隙传送</li>
+</ul>
+<h2 id="611_1">6.11 环境互动机制</h2>
+<h3 id="6111">6.11.1 地形杀伤</h3>
+<h4 id="_31">爆炸桶</h4>
+<ul>
+<li>生命值：1</li>
+<li>爆炸伤害：500</li>
+<li>爆炸范围：3米</li>
+<li>连锁反应：可引爆附近爆炸物</li>
+</ul>
+<h4 id="_32">电力设施</h4>
+<ul>
+<li>破坏后持续放电</li>
+<li>水地形触发感电</li>
+<li>金属敌人额外伤害</li>
+</ul>
+<h4 id="_33">悬崖地形</h4>
+<ul>
+<li>击退可造成坠落</li>
+<li>Boss免疫坠落</li>
+<li>某些敌人会飞回</li>
+</ul>
+<h3 id="6112">6.11.2 元素地形</h3>
+<h4 id="_34">水域战斗</h4>
+<ul>
+<li>所有单位持续潮湿</li>
+<li>雷元素伤害+50%</li>
+<li>冰冻效果时间×2</li>
+<li>火元素伤害-30%</li>
+</ul>
+<h4 id="_35">熔岩地带</h4>
+<ul>
+<li>持续灼烧伤害50/秒</li>
+<li>火元素敌人回血</li>
+<li>冰元素技能产生蒸汽遮挡视野</li>
+</ul>
+<h4 id="_36">毒沼泽地</h4>
+<ul>
+<li>移动速度-40%</li>
+<li>持续毒素伤害30/秒</li>
+<li>治疗效果-50%</li>
+<li>火元素可点燃清除</li>
+</ul>
+<h3 id="6113">6.11.3 机关陷阱</h3>
+<h4 id="_37">激光阵列</h4>
+<ul>
+<li>固定路径扫射</li>
+<li>触碰即死机制</li>
+<li>可用岩元素阻挡</li>
+<li>破坏控制器关闭</li>
+</ul>
+<h4 id="_38">重力场</h4>
+<ul>
+<li>改变跳跃高度</li>
+<li>影响弹道轨迹</li>
+<li>Boss技能可利用</li>
+<li>风元素可抵消</li>
+</ul>
+<h2 id="612_1">6.12 特殊事件敌人</h2>
+<h3 id="6121">6.12.1 限时挑战敌人</h3>
+<h4 id="_39">黄金史莱姆</h4>
+<ul>
+<li>生命值：500 HP</li>
+<li>存在时间：10秒</li>
+<li>击杀奖励：大量摩拉</li>
+<li>逃跑AI：优先逃离</li>
+</ul>
+<h4 id="_40">宝箱怪</h4>
+<ul>
+<li>伪装成宝箱</li>
+<li>被攻击后显形</li>
+<li>掉落稀有材料</li>
+<li>高闪避率</li>
+</ul>
+<h3 id="6122-boss">6.12.2 联动Boss</h3>
+<h4 id="_41">雷电将军 + 八重神子</h4>
+<ul>
+<li>协同攻击模式</li>
+<li>共享血条机制</li>
+<li>击败顺序影响难度</li>
+<li>合体必杀技</li>
+</ul>
+<h4 id="_42">钟离 + 古岩龙蜥</h4>
+<ul>
+<li>护盾共鸣强化</li>
+<li>岩元素共振</li>
+<li>地形改造配合</li>
+<li>石化连携技</li>
+</ul>
+<h2 id="613_1">6.13 敌人技能详解</h2>
+<h3 id="6131">6.13.1 状态异常技能</h3>
+<h4 id="_43">腐蚀</h4>
+<ul>
+<li>全队持续扣血</li>
+<li>无法被护盾阻挡</li>
+<li>降低治疗效果30%</li>
+<li>持续时间10秒</li>
+</ul>
+<h4 id="_44">封印</h4>
+<ul>
+<li>无法使用元素技能</li>
+<li>持续时间5秒</li>
+<li>可净化解除</li>
+<li>多层叠加延长时间</li>
+</ul>
+<h4 id="_45">虚弱</h4>
+<ul>
+<li>全属性降低20%</li>
+<li>移动速度降低30%</li>
+<li>技能冷却时间+50%</li>
+<li>受到伤害提高25%</li>
+</ul>
+<h3 id="6132">6.13.2 召唤类技能</h3>
+<h4 id="_46">召唤图腾</h4>
+<ul>
+<li>图腾生命值：500</li>
+<li>攻击频率：1次/2秒</li>
+<li>存在上限：3个</li>
+<li>死亡爆炸：范围200伤害</li>
+</ul>
+<h4 id="_47">召唤护卫</h4>
+<ul>
+<li>护卫数量：2-4个</li>
+<li>护卫强度：精英级50%</li>
+<li>护卫技能：简化版Boss技能</li>
+<li>击杀奖励：恢复能量</li>
+</ul>
+<h3 id="6133">6.13.3 领域类技能</h3>
+<h4 id="_48">死亡领域</h4>
+<ul>
+<li>范围：8米半径</li>
+<li>效果：每秒100伤害</li>
+<li>特殊：治疗转换为伤害</li>
+<li>破解：摧毁领域核心</li>
+</ul>
+<h4 id="_49">时空牢笱</h4>
+<ul>
+<li>效果：区域内时间减缓80%</li>
+<li>持续：直到离开区域</li>
+<li>范围：5米半径</li>
+<li>对策：远程攻击</li>
+</ul>
+<h2 id="614">6.14 敌人弱点系统</h2>
+<h3 id="6141">6.14.1 部位破坏</h3>
+<h4 id="_50">装甲破坏</h4>
+<ul>
+<li>破坏后防御-50%</li>
+<li>暴露核心弱点</li>
+<li>触发硬直3秒</li>
+<li>掉落额外材料</li>
+</ul>
+<h4 id="_51">武器破坏</h4>
+<ul>
+<li>攻击力降低40%</li>
+<li>失去特定技能</li>
+<li>攻击模式改变</li>
+<li>增加暴击率</li>
+</ul>
+<h3 id="6142">6.14.2 元素弱点</h3>
+<h4 id="_52">元素核心</h4>
+<ul>
+<li>对应元素伤害×3</li>
+<li>破坏后大硬直5秒</li>
+<li>限时暴露机制</li>
+<li>位置随机变换</li>
+</ul>
+<h4 id="_53">能量过载</h4>
+<ul>
+<li>吸收过多同元素触发</li>
+<li>自爆倒计时</li>
+<li>伤害敌我双方</li>
+<li>可主动诱导</li>
+</ul>
+<h2 id="615">6.15 敌人音效与视觉反馈</h2>
+<h3 id="6151">6.15.1 音效设计</h3>
+<h4 id="_54">普通敌人音效</h4>
+<ul>
+<li><strong>脚步声</strong>：根据体型和材质区分</li>
+<li><strong>攻击音</strong>：挥击、射击、施法各异</li>
+<li><strong>受击音</strong>：金属、肉体、元素不同</li>
+<li><strong>死亡音</strong>：爆炸、消散、惨叫分类</li>
+</ul>
+<h4 id="boss_1">Boss音效</h4>
+<ul>
+<li><strong>登场音</strong>：震撼的出场音乐</li>
+<li><strong>阶段转换</strong>：音乐节奏变化</li>
+<li><strong>必杀前奏</strong>：危险提示音</li>
+<li><strong>击败音效</strong>：史诗级胜利音</li>
+</ul>
+<h3 id="6152">6.15.2 视觉特效</h3>
+<h4 id="_55">受击特效</h4>
+<ul>
+<li>普通受击：小型火花</li>
+<li>暴击受击：放大震动</li>
+<li>弱点受击：特殊颜色标记</li>
+<li>破防受击：装甲碎裂效果</li>
+</ul>
+<h4 id="_56">状态显示</h4>
+<ul>
+<li>霸体状态：金色轮廓</li>
+<li>虚弱状态：灰暗化</li>
+<li>狂暴状态：红色光环</li>
+<li>护盾状态：元素色包围</li>
+</ul>
+<h2 id="616">6.16 稀有与隐藏敌人</h2>
+<h3 id="6161">6.16.1 稀有精英</h3>
+<h4 id="_57">深渊镜像</h4>
+<ul>
+<li><strong>生成条件</strong>：击杀100个敌人后低概率出现</li>
+<li><strong>特殊机制</strong>：复制玩家当前角色能力</li>
+<li><strong>奖励</strong>：角色专属材料</li>
+<li><strong>挑战性</strong>：镜像反转玩家操作</li>
+</ul>
+<h4 id="_58">黄金王冠史莱姆</h4>
+<ul>
+<li><strong>出现率</strong>：0.1%替代普通史莱姆</li>
+<li><strong>特征</strong>：全元素免疫，只受物理伤害</li>
+<li><strong>掉落</strong>：大量原石奖励</li>
+<li><strong>逃跑机制</strong>：10秒后消失</li>
+</ul>
+<h3 id="6162-boss">6.16.2 隐藏Boss</h3>
+<h4 id="_59">「天理的维系者」</h4>
+<ul>
+<li><strong>解锁条件</strong>：</li>
+<li>全S评价通关</li>
+<li>收集所有隐藏要素</li>
+<li>特定元素反应击杀数达标</li>
+<li><strong>战斗特点</strong>：</li>
+<li>生命值：50000 HP</li>
+<li>全元素掌控</li>
+<li>时空操控能力</li>
+<li>7阶段形态变化</li>
+<li><strong>奖励</strong>：</li>
+<li>解锁隐藏角色</li>
+<li>特殊称号</li>
+<li>专属武器图纸</li>
+</ul>
+<h2 id="617">6.17 多人协作敌人设计</h2>
+<h3 id="6171-boss">6.17.1 协作专属Boss</h3>
+<h4 id="_60">双生古龙</h4>
+<ul>
+<li><strong>机制特点</strong>：</li>
+<li>两条龙分别在屏幕两侧</li>
+<li>需要同时击杀（10秒内）</li>
+<li>一方死亡另一方狂暴强化</li>
+<li>合体技需要分散站位</li>
+<li><strong>协作要点</strong>：</li>
+<li>伤害分配协调</li>
+<li>元素反应配合</li>
+<li>仇恨值管理</li>
+<li>复活救援机制</li>
+</ul>
+<h3 id="6172">6.17.2 分工型敌人</h3>
+<h4 id="_61">机械工厂</h4>
+<ul>
+<li><strong>结构设计</strong>：</li>
+<li>生产线：持续生产小怪</li>
+<li>防御塔：远程火力压制</li>
+<li>能量核心：需要同时破坏</li>
+<li>修复单元：治疗其他部件</li>
+<li><strong>分工策略</strong>：</li>
+<li>1人负责清小怪</li>
+<li>1人压制防御塔</li>
+<li>2人集火核心</li>
+</ul>
+<h2 id="618">6.18 敌人数据表格汇总</h2>
+<h3 id="6181">6.18.1 普通敌人数值一览</h3>
+<p>| 敌人名称 | 生命值 | 攻击力 | 防御力 | 移动速度 | 元素属性 | 威胁等级 |</p>
+<table>
+<thead>
+<tr>
+<th>敌人名称</th>
+<th>生命值</th>
+<th>攻击力</th>
+<th>防御力</th>
+<th>移动速度</th>
+<th>元素属性</th>
+<th>威胁等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>火史莱姆</td>
+<td>150</td>
+<td>30</td>
+<td>50</td>
+<td>2.0</td>
+<td>火</td>
+<td>普通</td>
+</tr>
+<tr>
+<td>水史莱姆</td>
+<td>180</td>
+<td>25</td>
+<td>60</td>
+<td>1.8</td>
+<td>水</td>
+<td>普通</td>
+</tr>
+<tr>
+<td>雷史莱姆</td>
+<td>160</td>
+<td>35</td>
+<td>45</td>
+<td>2.5</td>
+<td>雷</td>
+<td>普通</td>
+</tr>
+<tr>
+<td>丘丘人战士</td>
+<td>400</td>
+<td>60</td>
+<td>80</td>
+<td>3.0</td>
+<td>物理</td>
+<td>普通</td>
+</tr>
+<tr>
+<td>丘丘萨满</td>
+<td>350</td>
+<td>45</td>
+<td>60</td>
+<td>2.0</td>
+<td>随机</td>
+<td>精英</td>
+</tr>
+<tr>
+<td>深渊咏者</td>
+<td>1200</td>
+<td>80</td>
+<td>100</td>
+<td>2.5</td>
+<td>水</td>
+<td>精英</td>
+</tr>
+<tr>
+<td>遗迹守卫</td>
+<td>5000</td>
+<td>150</td>
+<td>200</td>
+<td>2.0</td>
+<td>物理</td>
+<td>统领</td>
+</tr>
+</tbody>
+</table>
+<h3 id="6182-boss">6.18.2 Boss数值一览</h3>
+<p>| Boss名称 | 总生命值 | 阶段数 | 攻击力范围 | 元素抗性 | 特殊机制 |</p>
+<table>
+<thead>
+<tr>
+<th>Boss名称</th>
+<th>总生命值</th>
+<th>阶段数</th>
+<th>攻击力范围</th>
+<th>元素抗性</th>
+<th>特殊机制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无相之火</td>
+<td>30000</td>
+<td>3</td>
+<td>200-400</td>
+<td>火免疫</td>
+<td>核心暴露</td>
+</tr>
+<tr>
+<td>无相之雷</td>
+<td>36000</td>
+<td>3</td>
+<td>180-350</td>
+<td>雷免疫</td>
+<td>充能收集</td>
+</tr>
+<tr>
+<td>女士</td>
+<td>20000</td>
+<td>2</td>
+<td>180-250</td>
+<td>冰火70%</td>
+<td>形态转换</td>
+</tr>
+<tr>
+<td>散兵</td>
+<td>60000</td>
+<td>3</td>
+<td>300-500</td>
+<td>全30%</td>
+<td>能量矩阵</td>
+</tr>
+<tr>
+<td>若陀龙王</td>
+<td>30000</td>
+<td>4</td>
+<td>350-500</td>
+<td>岩50%</td>
+<td>元素灌注</td>
+</tr>
+<tr>
+<td>黄金王兽</td>
+<td>25000</td>
+<td>3</td>
+<td>300-450</td>
+<td>物理30%</td>
+<td>腐蚀光环</td>
+</tr>
+</tbody>
+</table>
+<h2 id="619">6.19 敌人平衡性设计原则</h2>
+<h3 id="6191">6.19.1 难度曲线</h3>
+<ul>
+<li><strong>新手期</strong>：低威胁，单一攻击模式</li>
+<li><strong>成长期</strong>：中等威胁，元素机制介入</li>
+<li><strong>挑战期</strong>：高威胁，复合机制考验</li>
+<li><strong>精通期</strong>：极限威胁，完整系统掌握</li>
+</ul>
+<h3 id="6192">6.19.2 奖惩平衡</h3>
+<ul>
+<li><strong>风险收益比</strong>：</li>
+<li>高难度 = 高奖励</li>
+<li>特殊挑战 = 独特奖励</li>
+<li>完美表现 = 额外加成</li>
+<li><strong>失败保护</strong>：</li>
+<li>保底掉落机制</li>
+<li>累计挑战次数奖励</li>
+<li>难度动态调整</li>
+</ul>
+<h3 id="6193">6.19.3 多样性保证</h3>
+<ul>
+<li><strong>敌人组合</strong>：避免单一配置</li>
+<li><strong>应对策略</strong>：多种解法并存</li>
+<li><strong>元素相性</strong>：无绝对优劣</li>
+<li><strong>装备适应</strong>：不同流派可行</li>
+</ul>
+<h2 id="620">6.20 未来更新预留</h2>
+<h3 id="6201">6.20.1 新敌人类型预留</h3>
+<ul>
+<li><strong>虚空系列</strong>：空间属性敌人</li>
+<li><strong>时间系列</strong>：时间操控敌人</li>
+<li><strong>混沌系列</strong>：多元素融合</li>
+<li><strong>梦境系列</strong>：幻觉类敌人</li>
+</ul>
+<h3 id="6202">6.20.2 机制扩展预留</h3>
+<ul>
+<li><strong>敌人进化</strong>：战斗中升级</li>
+<li><strong>敌人学习</strong>：记忆玩家行为</li>
+<li><strong>敌人联动</strong>：跨关卡追击</li>
+<li><strong>敌人养成</strong>：可捕获培养</li>
+</ul>
+<h2 id="_62">总结</h2>
+<p>本章详细定义了《机甲崩坏：变异纪元》中的敌人系统，包括：</p>
+<ol>
+<li><strong>分类体系</strong>：5级威胁等级，覆盖普通到深渊级</li>
+<li><strong>数值设计</strong>：精确的HP/ATK/DEF/抗性数据</li>
+<li><strong>AI行为</strong>：智能化的战斗决策树</li>
+<li><strong>Boss机制</strong>：多阶段、多形态的史诗战斗</li>
+<li><strong>环境互动</strong>：地形杀伤与元素场地</li>
+<li><strong>特殊系统</strong>：弱点、召唤、状态异常</li>
+<li><strong>平衡设计</strong>：难度曲线与奖励机制</li>
+</ol>
+<p>敌人设计遵循"易学难精"原则，确保新手能快速上手，同时为高玩提供足够的挑战深度。通过丰富的敌人种类和机制组合，创造出多样化的战斗体验。</p>
+            </article>
+            
+            <nav class="page-nav"><a href="chapter5.html" class="nav-link prev">← 第五章 - 机甲驾驶员角色设计</a><a href="chapter7.html" class="nav-link next">第七章 - 提瓦特废土地形系统 →</a></nav>
+        </main>
+    </div>
+</body>
+</html>

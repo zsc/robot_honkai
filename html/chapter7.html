@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="./">
+    <title>第七章 - 提瓦特废土地形系统</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/highlight.css">
+    <script src="assets/script.js" defer></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']],
+                processEscapes: false,
+                packages: {'[+]': ['noerrors', 'ams']}
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            },
+            loader: {
+                load: ['[tex]/noerrors', '[tex]/ams']
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h3>目录</h3>
+                <button id="sidebar-toggle" class="sidebar-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <div class="sidebar-search">
+                <input type="text" id="sidebar-search-input" placeholder="搜索..." autocomplete="off">
+            </div>
+            <div id="tree-container">
+                <nav class="tree-nav" role="tree">
+                    <div class="tree-item " >
+                        <a href="index.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">机甲崩坏：变异纪元 - 游戏设计规格说明书</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter1.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第一章 - 世界观与故事背景</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter2.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第二章 - UI/UX与唯美风格美术规范</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter3.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第三章 - 战斗系统与伤害计算</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter4.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第四章 - 武器装备与强化系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter5.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第五章 - 机甲驾驶员角色设计</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter6.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第六章 - 变异生物图鉴与数值设计</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item active" >
+                        <a href="chapter7.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第七章 - 提瓦特废土地形系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter8.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第八章 - 圣遗物装备进阶系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter9.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第九章 - 召唤物与僚机系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter10.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十章 - 补给系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter11.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十一章 - 宿舍系统</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter13.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十章 - 凯瑟琳的试炼（教学关卡）</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter14.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十一章 - 层岩巨渊·机械废墟</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="chapter15.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">第十二章 - 深渊螺旋·终焉之刻</span>
+                        </a>
+                    </div>
+                
+                    <div class="tree-item " >
+                        <a href="CLAUDE.html" class="tree-link">
+                            <span class="tree-icon">📄</span>
+                            <span class="tree-title">Untitled</span>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </nav>
+        
+        <main class="content">
+            <article>
+                <h1 id="-">第七章 - 提瓦特废土地形系统</h1>
+<h2 id="71">7.1 世界观概述</h2>
+<h3 id="711">7.1.1 崩坏后的提瓦特大陆</h3>
+<p>在深渊侵蚀与机械化改造的双重影响下，曾经美丽的提瓦特大陆已化为满目疮痍的废土。七国的独特地貌虽然保留了元素特征，但都已被扭曲成危险的战场环境。</p>
+<p><strong>地形系统核心理念</strong>：</p>
+<ul>
+<li><strong>元素地脉活化</strong>：各地区的地脉异常活跃，定期喷发元素能量</li>
+<li><strong>机械遗迹融合</strong>：坎瑞亚科技与现代废墟交织，形成独特地形机关</li>
+<li><strong>动态环境变化</strong>：随着战斗进行，地形会产生实时破坏与重构</li>
+<li><strong>垂直空间利用</strong>：多层次平台设计，鼓励立体化战斗</li>
+</ul>
+<h3 id="712">7.1.2 地形交互基础规则</h3>
+<p><strong>物理交互</strong>：</p>
+<ul>
+<li>可破坏物体：木箱、石柱、墙体（HP: 100-500）</li>
+<li>可移动物体：金属箱、能量球（需要特定元素激活）</li>
+<li>危险地形：尖刺、深渊、激光网（接触伤害: 10%最大HP/秒）</li>
+</ul>
+<p><strong>元素交互</strong>：</p>
+<ul>
+<li>元素共鸣点：散发特定元素能量，为对应元素充能</li>
+<li>元素屏障：需要特定元素或元素反应才能破除</li>
+<li>地形连锁：一个机关激活可能触发连锁反应</li>
+</ul>
+<h2 id="72-">7.2 蒙德废墟 - 风之残响</h2>
+<h3 id="721">7.2.1 区域特色</h3>
+<p><strong>「千风神殿遗址」</strong></p>
+<ul>
+<li><strong>背景设定</strong>：风神巴巴托斯陨落之地，风元素极度不稳定</li>
+<li><strong>视觉风格</strong>：破碎的风车塔、飘浮的建筑碎片、永恒的龙卷风墙</li>
+<li><strong>主色调</strong>：青绿色风元素粒子 + 灰白色废墟</li>
+</ul>
+<h3 id="722">7.2.2 风元素地形机制</h3>
+<p><strong>上升气流系统</strong>：</p>
+<div class="codehilite"><pre><span></span><code>触发条件：站立于风场中心3秒
+效果：
+
+- 垂直上升高度：15米
+- 滞空时间：5秒
+- 空中可进行二段跳跃
+- 射击精度提升30%（风场稳定瞄准）
+</code></pre></div>
+
+<p><strong>风压加速带</strong>：</p>
+<div class="codehilite"><pre><span></span><code>分布位置：主要通道两侧
+效果：
+
+- 移动速度 +200%
+- 无法改变方向
+- 持续时间：2秒
+- 可用于快速穿越危险区域
+</code></pre></div>
+
+<p><strong>龙卷风屏障</strong>：</p>
+<div class="codehilite"><pre><span></span><code>属性：
+
+- HP: 2000
+- 元素抗性：风元素免疫，其他元素抗性50%
+- 破除方法：
+  1. 使用岩元素创造护盾穿过
+  2. 连续攻击削减HP
+  3. 寻找控制开关暂时关闭
+</code></pre></div>
+
+<h3 id="723">7.2.3 特殊地形物件</h3>
+<p><strong>风之种子</strong>：</p>
+<ul>
+<li>外观：悬浮的青色光球</li>
+<li>交互：收集3个可召唤临时上升气流</li>
+<li>持续时间：30秒</li>
+</ul>
+<p><strong>共鸣风铃</strong>：</p>
+<ul>
+<li>触发：使用任意远程攻击</li>
+<li>效果：产生音波冲击，击退范围内敌人</li>
+<li>冷却：10秒</li>
+</ul>
+<p><strong>风神瞳残片</strong>：</p>
+<ul>
+<li>收集奖励：永久提升跳跃高度5%（最多叠加3次）</li>
+</ul>
+<h2 id="73-">7.3 璃月遗迹 - 岩之沉积</h2>
+<h3 id="731">7.3.1 区域特色</h3>
+<p><strong>「绝云间深渊」</strong></p>
+<ul>
+<li><strong>背景设定</strong>：岩王帝君的封印之地，重力异常区域</li>
+<li><strong>视觉风格</strong>：倒悬的山峰、浮空的巨岩、螺旋上升的石阶</li>
+<li><strong>主色调</strong>：金黄色岩元素 + 深褐色山体</li>
+</ul>
+<h3 id="732">7.3.2 岩元素地形机制</h3>
+<p><strong>重力场变化区</strong>：</p>
+<div class="codehilite"><pre><span></span><code>类型1 - 低重力区：
+
+- 重力降低60%
+- 跳跃高度 x3
+- 下落速度减缓
+- 适合空中战斗
+
+类型2 - 高重力区：
+
+- 重力增加150%
+- 移动速度 -40%
+- 无法跳跃
+- 防御力 +30%（被迫进入防守姿态）
+</code></pre></div>
+
+<p><strong>震波传导板</strong>：</p>
+<div class="codehilite"><pre><span></span><code>激活方式：使用下落攻击或岩元素技能
+传导效果：
+
+- 震波扩散范围：10米
+- 震波伤害：200% ATK
+- 击飞效果：小型敌人2秒
+- 连锁激活：可触发临近传导板
+</code></pre></div>
+
+<p><strong>岩元素方尖碑</strong>：</p>
+<div class="codehilite"><pre><span></span><code>状态：
+
+- 未激活：阻挡通路
+- 半激活：可作为掩体（HP: 3000）
+- 完全激活：生成岩元素护盾（吸收伤害: 5000）
+
+激活条件：
+
+- 岩元素攻击3次
+- 或任意元素结晶反应
+</code></pre></div>
+
+<h3 id="733">7.3.3 特殊地形物件</h3>
+<p><strong>琉璃百合机关</strong>：</p>
+<ul>
+<li>解谜元素：按特定顺序激活5朵琉璃百合</li>
+<li>成功奖励：开启隐藏宝箱区域</li>
+<li>失败惩罚：触发落石陷阱</li>
+</ul>
+<p><strong>仙力结界</strong>：</p>
+<ul>
+<li>通过条件：队伍总岩元素角色≥2</li>
+<li>或携带「百无禁忌箓」道具</li>
+<li>结界内部：元素充能效率+50%</li>
+</ul>
+<p><strong>帝君遗像</strong>：</p>
+<ul>
+<li>互动效果：全队获得岩元素护盾（15秒）</li>
+<li>冷却时间：60秒</li>
+<li>护盾强度：基于队伍最高防御力计算</li>
+</ul>
+<h2 id="74-">7.4 稻妻雷域 - 雷之永恒</h2>
+<h3 id="741">7.4.1 区域特色</h3>
+<p><strong>「无想刃狭间」</strong></p>
+<ul>
+<li><strong>背景设定</strong>：雷电将军的永恒领域崩坏后的雷暴区</li>
+<li><strong>视觉风格</strong>：紫色雷电网格、悬浮的鸟居、破碎的天守阁</li>
+<li><strong>主色调</strong>：紫色电光 + 黑色焦土</li>
+</ul>
+<h3 id="742">7.4.2 雷元素地形机制</h3>
+<p><strong>雷暴感电区</strong>：</p>
+<div class="codehilite"><pre><span></span><code>环境状态：
+
+- 每3秒落雷一次（随机位置）
+- 落雷伤害：500 + 20%最大HP
+- 预警时间：1.5秒（地面出现紫色光圈）
+- 湿润状态下：感电扩散至5米范围
+</code></pre></div>
+
+<p><strong>雷樱传送网络</strong>：</p>
+<div class="codehilite"><pre><span></span><code>传送点类型：
+
+- 小型雷樱：短距传送（20米内）
+- 中型雷樱：中距传送（50米内）
+- 大型雷樱：远距传送（100米内）
+
+传送机制：
+
+- 消耗：10/20/30点能量
+- 冷却：3/5/10秒
+- 特殊效果：传送后获得雷元素附魔5秒
+</code></pre></div>
+
+<p><strong>电磁悬浮板</strong>：</p>
+<div class="codehilite"><pre><span></span><code>激活条件：携带雷元素
+悬浮特性：
+
+- 浮空高度：3-5米
+- 移动速度：正常速度的80%
+- 可连接：相邻悬浮板形成电流桥
+- 持续消耗：5点能量/秒
+</code></pre></div>
+
+<h3 id="743">7.4.3 特殊地形物件</h3>
+<p><strong>雷种子收集器</strong>：</p>
+<ul>
+<li>容量：最多储存3个雷种子</li>
+<li>用途：激活大型机关或召唤雷暴</li>
+<li>获取：击败雷元素敌人掉落</li>
+</ul>
+<p><strong>稻妻结界柱</strong>：</p>
+<ul>
+<li>解除方法：同时攻击3根结界柱</li>
+<li>时限要求：5秒内完成</li>
+<li>奖励：解锁专属buff「雷神的祝福」（攻速+30%）</li>
+</ul>
+<p><strong>八重神社遗址</strong>：</p>
+<ul>
+<li>特殊机制：绘制狐狸图案解谜</li>
+<li>完成奖励：召唤「八重神子」幻影协助战斗30秒</li>
+</ul>
+<h2 id="75-">7.5 须弥雨林 - 草之智慧</h2>
+<h3 id="751">7.5.1 区域特色</h3>
+<p><strong>「智慧之树废墟」</strong></p>
+<ul>
+<li><strong>背景设定</strong>：大慈树王遗址，知识与生命交织之地</li>
+<li><strong>视觉风格</strong>：巨型树根盘绕、发光孢子飘散、梦境般的迷雾</li>
+<li><strong>主色调</strong>：翠绿色生机 + 金色智慧之光</li>
+</ul>
+<h3 id="752">7.5.2 草元素地形机制</h3>
+<p><strong>蘑菇跳跃网络</strong>：</p>
+<div class="codehilite"><pre><span></span><code>蘑菇类型：
+
+- 弹跳蘑菇：垂直弹跳10米
+- 滑翔蘑菇：横向滑翔20米
+- 巨型蘑菇：可作为临时平台（30秒）
+
+特殊效果：
+
+- 连续跳跃：combo次数提升伤害（每次+10%，最高50%）
+- 孢子迷雾：跳跃时释放，造成草元素持续伤害
+</code></pre></div>
+
+<p><strong>藤蔓攀爬系统</strong>：</p>
+<div class="codehilite"><pre><span></span><code>藤蔓种类：
+
+- 普通藤蔓：正常攀爬速度
+- 荆棘藤蔓：攀爬时每秒损失2%HP
+- 活性藤蔓：会主动攻击，需要先击败
+
+攀爬技巧：
+
+- 快速攀爬：消耗体力换取2倍速度
+- 藤蔓摆荡：可在藤蔓间摆荡跳跃
+</code></pre></div>
+
+<p><strong>梦境迷雾区</strong>：</p>
+<div class="codehilite"><pre><span></span><code>迷雾效果：
+
+- 视野范围：降低至5米
+- 幻象敌人：出现虚假目标
+- 方向混乱：移动方向随机反转
+
+净化方法：
+
+- 使用草元素技能驱散
+- 收集3个「清心」花朵
+- 找到并激活净化图腾
+</code></pre></div>
+
+<h3 id="753">7.5.3 特殊地形物件</h3>
+<p><strong>智慧种子</strong>：</p>
+<ul>
+<li>效果：提升元素精通100点（60秒）</li>
+<li>叠加上限：3层</li>
+<li>获取方式：解答环境谜题</li>
+</ul>
+<p><strong>生命之泉</strong>：</p>
+<ul>
+<li>恢复效果：每秒回复5%最大生命值</li>
+<li>持续时间：站立其中时持续生效</li>
+<li>限制：每个泉水仅可使用一次</li>
+</ul>
+<p><strong>兰那罗隐藏通道</strong>：</p>
+<ul>
+<li>开启条件：演奏正确的音符序列</li>
+<li>通道特点：可快速穿越至地图其他区域</li>
+<li>隐藏奖励：稀有材料或装备</li>
+</ul>
+<h2 id="76-">7.6 枫丹水域 - 水之审判</h2>
+<h3 id="761">7.6.1 区域特色</h3>
+<p><strong>「歌剧院深渊」</strong></p>
+<ul>
+<li><strong>背景设定</strong>：正义之神的审判庭沉没后的水下世界</li>
+<li><strong>视觉风格</strong>：水下歌剧院废墟、气泡升降梯、水晶管道</li>
+<li><strong>主色调</strong>：深蓝色水光 + 珍珠白色建筑</li>
+</ul>
+<h3 id="762">7.6.2 水元素地形机制</h3>
+<p><strong>水下战斗系统</strong>：</p>
+<div class="codehilite"><pre><span></span><code>氧气管理：
+
+- 基础氧气：100点（维持100秒）
+- 氧气消耗：普通移动1点/秒，战斗2点/秒
+- 补充方式：
+  1. 氧气泡（+30点）
+  2. 水面换气（全部恢复）
+  3. 特殊道具「潜水头盔」（消耗减半）
+
+水下移动：
+
+- 三维移动：可在XYZ轴自由移动
+- 速度调整：深度越深速度越慢
+- 水流影响：顺流+50%速度，逆流-50%速度
+</code></pre></div>
+
+<p><strong>水压伤害区</strong>：</p>
+<div class="codehilite"><pre><span></span><code>深度分层：
+
+- 浅水区（0-10米）：无额外效果
+- 中层区（10-30米）：每秒损失1%HP
+- 深水区（30米+）：每秒损失3%HP + 移速-30%
+
+抵抗方式：
+
+- 水元素角色：免疫水压伤害
+- 护盾防护：减少50%水压伤害
+- 深潜装备：完全免疫（限时道具）
+</code></pre></div>
+
+<p><strong>激流管道</strong>：</p>
+<div class="codehilite"><pre><span></span><code>管道类型：
+
+- 单向激流：快速到达指定位置
+- 环形激流：循环路线，可中途脱离
+- 分支激流：多个出口，需要选择
+
+特殊机制：
+
+- 管道内无敌状态
+- 可发射鱼雷攻击管道外敌人
+- 某些管道需要解谜开启
+</code></pre></div>
+
+<h3 id="763">7.6.3 特殊地形物件</h3>
+<p><strong>芙宁娜的泪滴</strong>：</p>
+<ul>
+<li>收集效果：临时获得水下呼吸能力（120秒）</li>
+<li>数量限制：每关限定3个</li>
+<li>隐藏位置：通常在困难到达的区域</li>
+</ul>
+<p><strong>审判天平</strong>：</p>
+<ul>
+<li>机制：天平两端放置物品保持平衡</li>
+<li>成功条件：3秒内保持完全平衡</li>
+<li>奖励：开启隐藏boss房间</li>
+</ul>
+<p><strong>水晶音乐盒</strong>：</p>
+<ul>
+<li>互动方式：按照提示演奏旋律</li>
+<li>效果：改变区域水位高度</li>
+<li>战术用途：淹没敌人或创造新路径</li>
+</ul>
+<h2 id="77">7.7 通用地形交互机制</h2>
+<h3 id="771">7.7.1 元素反应地形</h3>
+<p><strong>元素混合区</strong>：</p>
+<div class="codehilite"><pre><span></span><code>双元素场：
+
+- 火+风：火旋风（持续扩散火伤害）
+- 水+雷：电导水域（全区域感电）
+- 冰+水：冰封地面（移动困难但防御提升）
+- 岩+任意：结晶雨（随机掉落护盾晶片）
+
+三元素场（稀有）：
+
+- 火+水+雷：蒸汽电场（视野受限+持续伤害）
+- 冰+风+水：暴风雪（减速+冻结几率）
+- 草+火+风：燎原之势（火焰快速蔓延）
+</code></pre></div>
+
+<h3 id="772">7.7.2 可破坏环境</h3>
+<p><strong>破坏等级系统</strong>：</p>
+<div class="codehilite"><pre><span></span><code>等级1 - 轻度破坏：
+
+- 木箱、栅栏、玻璃（HP: 100）
+- 任意攻击均可破坏
+- 掉落：基础材料
+
+等级2 - 中度破坏：
+
+- 石柱、墙体、大门（HP: 500）
+- 需要重击或技能
+- 掉落：稀有材料
+
+等级3 - 重度破坏：
+
+- 机关核心、承重墙（HP: 2000）
+- 需要元素爆发或特定元素
+- 掉落：高级材料 + 隐藏通道
+</code></pre></div>
+
+<h3 id="773">7.7.3 环境联动系统</h3>
+<p><strong>连锁反应触发</strong>：</p>
+<ul>
+<li>爆炸桶链：一个爆炸触发连环爆炸</li>
+<li>导电系统：雷电通过金属/水传导</li>
+<li>燃烧蔓延：火焰沿可燃物扩散</li>
+<li>冰冻扩散：水域逐渐冻结</li>
+</ul>
+<p><strong>环境陷阱利用</strong>：</p>
+<ul>
+<li>引诱敌人进入陷阱区域</li>
+<li>破坏支撑造成坍塌伤害</li>
+<li>利用地形高低差制造优势</li>
+</ul>
+<h2 id="78">7.8 环境危机事件</h2>
+<h3 id="781">7.8.1 定时危机</h3>
+<p><strong>元素风暴</strong>（每5分钟）：</p>
+<div class="codehilite"><pre><span></span><code>风暴类型随机：
+
+- 火焰风暴：全图火雨，需要寻找掩体
+- 雷电风暴：连续落雷，金属装备成为导体
+- 冰霜风暴：逐渐冻结，需要火元素解冻
+- 沙尘风暴：视野严重受限，依靠声音定位
+
+持续时间：30-60秒
+预警时间：10秒倒计时
+生存奖励：稀有材料×3
+</code></pre></div>
+
+<h3 id="782">7.8.2 触发式危机</h3>
+<p><strong>Boss乱入事件</strong>：</p>
+<div class="codehilite"><pre><span></span><code>触发条件：
+
+- 连续击败50个敌人
+- 或收集全部隐藏物品
+- 或停留同一区域超过10分钟
+
+Boss类型：
+
+- 遗迹守卫·暴走型（机械系）
+- 深渊使徒·复仇者（深渊系）
+- 元素领主（对应当前区域元素）
+
+击败奖励：
+
+- 专属称号
+- 稀有装备蓝图
+- 大量经验值
+</code></pre></div>
+
+<h3 id="783">7.8.3 随机事件</h3>
+<p><strong>神秘商人出现</strong>：</p>
+<ul>
+<li>出现几率：5%（每个区域）</li>
+<li>贩卖物品：稀有材料、限定皮肤、强化道具</li>
+<li>支付方式：游戏内货币或完成特殊挑战</li>
+</ul>
+<p><strong>元素精灵祝福</strong>：</p>
+<ul>
+<li>触发：救助受困的元素精灵</li>
+<li>效果：30秒内该元素伤害+100%</li>
+<li>额外：可能开启隐藏关卡入口</li>
+</ul>
+<h2 id="79">7.9 地形挑战模式</h2>
+<h3 id="791">7.9.1 竞速挑战</h3>
+<p><strong>「风之试炼」</strong>：</p>
+<ul>
+<li>目标：利用所有风场在3分钟内到达终点</li>
+<li>限制：不能使用传送，地面接触超过5秒失败</li>
+<li>奖励：永久移速+5%</li>
+</ul>
+<p><strong>「雷光疾走」</strong>：</p>
+<ul>
+<li>目标：通过雷樱传送网络，30秒内收集10个雷种子</li>
+<li>限制：每个传送点只能使用一次</li>
+<li>奖励：传送冷却-20%</li>
+</ul>
+<h3 id="792">7.9.2 生存挑战</h3>
+<p><strong>「深渊凝视」</strong>：</p>
+<ul>
+<li>目标：在不断缩小的安全区内生存5分钟</li>
+<li>机制：安全区外每秒损失10%HP</li>
+<li>奖励：HP上限+10%</li>
+</ul>
+<p><strong>「元素炼狱」</strong>：</p>
+<ul>
+<li>目标：在随机切换的元素场中存活</li>
+<li>机制：每30秒切换一次伤害元素类型</li>
+<li>奖励：全元素抗性+15%</li>
+</ul>
+<h3 id="793">7.9.3 解谜挑战</h3>
+<p><strong>「天理残片」</strong>：</p>
+<ul>
+<li>目标：收集7个不同元素的天理碎片</li>
+<li>机制：每个碎片需要对应元素角色才能拾取</li>
+<li>奖励：解锁真实结局剧情</li>
+</ul>
+<p><strong>「时空回廊」</strong>：</p>
+<ul>
+<li>目标：按正确顺序激活时空节点</li>
+<li>机制：错误会重置所有进度</li>
+<li>奖励：获得时光回溯能力（复活一次）</li>
+</ul>
+<h2 id="710">7.10 地形系统数值平衡</h2>
+<h3 id="7101">7.10.1 伤害计算</h3>
+<p><strong>环境伤害公式</strong>：</p>
+<div class="codehilite"><pre><span></span><code>基础环境伤害 = 固定值 + 百分比最大HP
+实际伤害 = 基础伤害 × (1 - 元素抗性) × (1 - 防御减免)
+</code></pre></div>
+
+<p><strong>地形加成公式</strong>：</p>
+<div class="codehilite"><pre><span></span><code>高地优势：伤害 +20%，命中 +15%
+低地劣势：伤害 -10%，受击 +10%
+掩体防护：减伤 30-50%（根据掩体类型）
+</code></pre></div>
+
+<h3 id="7102">7.10.2 资源分布</h3>
+<p><strong>材料刷新规则</strong>：</p>
+<ul>
+<li>普通材料：每3分钟刷新</li>
+<li>稀有材料：每10分钟刷新</li>
+<li>史诗材料：每关卡限定数量</li>
+</ul>
+<p><strong>隐藏要素密度</strong>：</p>
+<ul>
+<li>每个区域3-5个隐藏宝箱</li>
+<li>1-2个隐藏Boss</li>
+<li>1个隐藏剧情片段</li>
+</ul>
+<h3 id="7103">7.10.3 难度递进</h3>
+<p><strong>区域难度系数</strong>：</p>
+<ol>
+<li>蒙德废墟：1.0（新手友好）</li>
+<li>璃月遗迹：1.3（中等难度）</li>
+<li>稻妻雷域：1.6（高难度）</li>
+<li>须弥雨林：1.4（解谜为主）</li>
+<li>枫丹水域：1.8（综合挑战）</li>
+</ol>
+<p><strong>动态难度调整</strong>：</p>
+<ul>
+<li>根据玩家表现自动调整敌人强度（±20%）</li>
+<li>死亡次数过多时提供辅助道具</li>
+<li>连续完美通关提升奖励品质</li>
+</ul>
+            </article>
+            
+            <nav class="page-nav"><a href="chapter6.html" class="nav-link prev">← 第六章 - 变异生物图鉴与数值设计</a><a href="chapter8.html" class="nav-link next">第八章 - 圣遗物装备进阶系统 →</a></nav>
+        </main>
+    </div>
+</body>
+</html>
