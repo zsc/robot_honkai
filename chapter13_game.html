@@ -258,6 +258,37 @@
             z-index: 50;
             transition: left 0.1s ease-out, bottom 0.2s ease-out;
         }
+        
+        #playerMecha.walking .mecha-leg-left {
+            animation: walkLeft 0.4s ease-in-out infinite;
+            transform-origin: 50% 10%;
+        }
+        
+        #playerMecha.walking .mecha-leg-right {
+            animation: walkRight 0.4s ease-in-out infinite;
+            transform-origin: 50% 10%;
+        }
+        
+        #playerMecha.walking .mecha-body {
+            animation: bodyBob 0.4s ease-in-out infinite;
+        }
+        
+        @keyframes walkLeft {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-20deg) translateY(-2px); }
+            75% { transform: rotate(10deg) translateY(2px); }
+        }
+        
+        @keyframes walkRight {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg) translateY(2px); }
+            75% { transform: rotate(-20deg) translateY(-2px); }
+        }
+        
+        @keyframes bodyBob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
 
         #playerMecha.jumping {
             animation: jump 0.6s ease-out;
@@ -282,9 +313,33 @@
         /* 敌人 */
         .enemy {
             position: absolute;
-            width: 80px;
-            height: 100px;
+            width: 120px;
+            height: 150px;
             z-index: 40;
+        }
+        
+        .enemy.bouncing {
+            animation: slimeBounce 0.5s ease-in-out;
+        }
+        
+        @keyframes slimeBounce {
+            0% { transform: translateY(0) scaleY(1); }
+            25% { transform: translateY(-5px) scaleY(0.9); }
+            50% { transform: translateY(-15px) scaleY(1.1); }
+            75% { transform: translateY(-8px) scaleY(0.95); }
+            100% { transform: translateY(0) scaleY(1); }
+        }
+        
+        .enemy.walking {
+            animation: enemyWalk 0.6s ease-in-out infinite;
+        }
+        
+        @keyframes enemyWalk {
+            0% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-2px) rotate(-2deg); }
+            50% { transform: translateY(0) rotate(0deg); }
+            75% { transform: translateY(-2px) rotate(2deg); }
+            100% { transform: translateY(0) rotate(0deg); }
         }
 
         .enemy-hp-bar {
@@ -487,6 +542,131 @@
             pointer-events: none;
         }
 
+        /* 玩家状态栏 */
+        #playerStatusBar {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            z-index: 105;
+        }
+        
+        .player-hp-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .hp-label, .burst-label {
+            font-size: 18px;
+            font-weight: bold;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        
+        .player-hp-bar {
+            position: relative;
+            width: 300px;
+            height: 30px;
+            background: rgba(0,0,0,0.7);
+            border: 2px solid #8B0000;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .player-hp-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FF6347, #DC143C);
+            border-radius: 13px;
+            width: 100%;
+            transition: width 0.3s ease;
+        }
+        
+        .hp-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #FFF;
+            font-size: 14px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+        
+        .burst-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
+        
+        .burst-bar {
+            position: relative;
+            width: 200px;
+            height: 30px;
+            background: rgba(0,0,0,0.7);
+            border: 2px solid #FFD700;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .burst-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            border-radius: 13px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .burst-fill.ready {
+            animation: burstReady 1s ease-in-out infinite;
+        }
+        
+        @keyframes burstReady {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .burst-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: translateX(-100%);
+            display: none;
+        }
+        
+        .burst-fill.ready ~ .burst-glow {
+            display: block;
+            animation: burstGlowMove 2s linear infinite;
+        }
+        
+        @keyframes burstGlowMove {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .burst-icon {
+            position: relative;
+            filter: grayscale(1);
+            transition: filter 0.3s;
+        }
+        
+        .burst-icon.ready {
+            filter: grayscale(0);
+            animation: iconPulse 1s ease-in-out infinite;
+        }
+        
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
         /* 评级显示 */
         #rankDisplay {
             position: absolute;
@@ -576,7 +756,7 @@
                 <!-- 机甲主体 -->
                 <g transform="translate(60, 75)">
                     <!-- 躯干 -->
-                    <path d="M 0,-45 L 18,-40 L 25,-20 L 28,5 L 25,30 L 12,45 L 0,50 
+                    <path class="mecha-body" d="M 0,-45 L 18,-40 L 25,-20 L 28,5 L 25,30 L 12,45 L 0,50 
                              L -12,45 L -25,30 L -28,5 L -25,-20 L -18,-40 Z" 
                           fill="#1C0F08" stroke="#8B0000" stroke-width="2" opacity="0.9"/>
                     
@@ -611,8 +791,8 @@
                     </g>
                     
                     <!-- 腿部 -->
-                    <rect x="-15" y="35" width="12" height="30" fill="#1C0F08" stroke="#8B0000"/>
-                    <rect x="3" y="35" width="12" height="30" fill="#1C0F08" stroke="#8B0000"/>
+                    <rect class="mecha-leg-left" x="-15" y="35" width="12" height="30" fill="#1C0F08" stroke="#8B0000"/>
+                    <rect class="mecha-leg-right" x="3" y="35" width="12" height="30" fill="#1C0F08" stroke="#8B0000"/>
                 </g>
             </svg>
             </div>
@@ -623,6 +803,34 @@
             <!-- 分数显示 -->
             <div id="scoreDisplay">
                 得分: <span id="score">0</span>
+            </div>
+            
+            <!-- 玩家状态栏 (底部) -->
+            <div id="playerStatusBar">
+                <!-- HP条 -->
+                <div class="player-hp-container">
+                    <div class="hp-label">HP</div>
+                    <div class="player-hp-bar">
+                        <div class="player-hp-fill" id="playerHpFill"></div>
+                        <span class="hp-text" id="playerHpText">1000/1000</span>
+                    </div>
+                </div>
+                
+                <!-- Q技能充能条 -->
+                <div class="burst-container">
+                    <div class="burst-label">Q</div>
+                    <div class="burst-bar">
+                        <div class="burst-fill" id="burstFill"></div>
+                        <div class="burst-glow"></div>
+                    </div>
+                    <div class="burst-icon">
+                        <svg width="40" height="40">
+                            <circle cx="20" cy="20" r="18" fill="none" stroke="#FFD700" stroke-width="2"/>
+                            <path d="M20,8 L24,18 L34,18 L26,24 L30,34 L20,28 L10,34 L14,24 L6,18 L16,18 Z" 
+                                  fill="#FFD700" opacity="0.8"/>
+                        </svg>
+                    </div>
+                </div>
             </div>
 
             <!-- 连击计数器 -->
@@ -744,6 +952,10 @@
             currentStage: 0,
             playerX: 50,
             playerY: 0,
+            playerHP: 1000,
+            playerMaxHP: 1000,
+            burstCharge: 0,
+            burstMaxCharge: 100,
             isJumping: false,
             isDashing: false,
             isTimeDilation: false,
@@ -775,6 +987,8 @@
             setupEventListeners();
             showPaimonDialog('欢迎来到虚拟训练室！让我们开始训练吧～');
             startTutorialStage(0);
+            updatePlayerHP();
+            updateBurstCharge();
             gameLoop();
         }
 
@@ -816,13 +1030,13 @@
                     performDodge();
                     break;
                 case 'e':
-                    switchWeapon(1);
+                    useSkill();
                     break;
                 case 'q':
-                    switchWeapon(-1);
-                    break;
-                case 'r':
                     useUltimate();
+                    break;
+                case 'tab':
+                    switchWeapon(1);
                     break;
                 case ' ':
                     jump();
@@ -849,6 +1063,19 @@
                 dx *= 0.707;
                 dy *= 0.707;
             }
+            
+            // 添加行走动画
+            if (dx !== 0 || dy !== 0) {
+                player.classList.add('walking');
+                // 根据方向翻转
+                if (dx < 0) {
+                    player.style.transform = `translateX(-50%) scaleX(-1)`;
+                } else if (dx > 0) {
+                    player.style.transform = `translateX(-50%) scaleX(1)`;
+                }
+            } else {
+                player.classList.remove('walking');
+            }
 
             // 更新位置 - 更大的移动范围
             game.playerX = Math.max(2, Math.min(98, game.playerX + dx * 0.7));
@@ -864,7 +1091,8 @@
             // 2.5D深度缩放 - Y越大（越远越上）越小
             const depthScale = 1.4 - (game.playerY / 100) * 0.9;
             const zIndex = Math.floor(100 - game.playerY);
-            player.style.transform = `translateX(-50%) scale(${depthScale})`;
+            const flipX = player.style.transform.includes('scaleX(-1)') ? -1 : 1;
+            player.style.transform = `translateX(-50%) scale(${depthScale * flipX}, ${depthScale})`;
             player.style.zIndex = zIndex;
         }
 
@@ -993,7 +1221,7 @@
             
             // 更新武器显示
             const hint = document.getElementById('tutorialHint');
-            hint.innerHTML = `当前武器: <span class="key-hint">${weapon.name}</span> | Q/E切换武器`;
+            hint.innerHTML = `当前武器: <span class="key-hint">${weapon.name}</span> | Tab切换武器`;
         }
 
         // 更新子弹
@@ -1006,7 +1234,14 @@
                 bullet.element.style.bottom = bullet.y + 'px';
                 
                 // 检测碰撞
-                const hit = checkBulletCollision(bullet);
+                let hit = false;
+                if (bullet.isEnemy) {
+                    // 敌人子弹检测与玩家碰撞
+                    hit = checkPlayerCollision(bullet);
+                } else {
+                    // 玩家子弹检测与敌人碰撞
+                    hit = checkBulletCollision(bullet);
+                }
                 
                 // 移除超出屏幕的子弹
                 if (bullet.x < -5 || bullet.x > 105 || bullet.y < 0 || bullet.y > window.innerHeight || hit) {
@@ -1016,6 +1251,25 @@
                 
                 return true;
             });
+        }
+        
+        // 检测玩家碰撞
+        function checkPlayerCollision(bullet) {
+            const player = document.getElementById('playerMecha');
+            const playerRect = player.getBoundingClientRect();
+            const bulletRect = bullet.element.getBoundingClientRect();
+            
+            if (bulletRect.left < playerRect.right &&
+                bulletRect.right > playerRect.left &&
+                bulletRect.top < playerRect.bottom &&
+                bulletRect.bottom > playerRect.top) {
+                
+                // 玩家受伤
+                damagePlayer(30);
+                createParticles(bullet.x, bullet.y);
+                return true;
+            }
+            return false;
         }
 
         // 检测子弹碰撞
@@ -1145,6 +1399,10 @@
         // 使用必杀技
         function useUltimate() {
             if (document.getElementById('ultimateBtn').classList.contains('cooldown')) return;
+            if (game.burstCharge < game.burstMaxCharge) {
+                showPaimonDialog('充能不足！继续战斗来积累能量吧！');
+                return;
+            }
             
             // 播放必杀技动画
             const cutscene = document.getElementById('ultimateCutscene');
@@ -1165,6 +1423,10 @@
                     createParticles(Math.random() * 100, 150 + Math.random() * 200);
                 }
             }, 1000);
+            
+            // 消耗充能
+            game.burstCharge = 0;
+            updateBurstCharge();
             
             startCooldown('ultimateBtn', 20000);
             
@@ -1270,22 +1532,157 @@
         }
 
         // 生成敌人
-        function spawnEnemy(x, y) {
+        function spawnEnemy(x, y, type) {
             const enemy = document.createElement('div');
             enemy.className = 'enemy';
             enemy.style.left = x + '%';
             enemy.style.bottom = (y || 150) + 'px';
             
+            // 根据类型或随机选择敌人
+            const enemyTypes = ['fire-slime', 'water-slime', 'thunder-slime', 'mutant-hilichurl'];
+            const enemyType = type || enemyTypes[Math.floor(Math.random() * enemyTypes.length)];
+            
+            let enemySVG = '';
+            let hp = 200;
+            let scale = 1;
+            
+            switch(enemyType) {
+                case 'fire-slime':
+                    hp = 150;
+                    scale = 1.0;
+                    enemySVG = `
+                        <svg width="120" height="120" viewBox="0 0 220 220">
+                            <defs>
+                                <radialGradient id="fire-grad-${Date.now()}">
+                                    <stop offset="0%" stop-color="#FFD700"/>
+                                    <stop offset="40%" stop-color="#FF6347"/>
+                                    <stop offset="100%" stop-color="#8B0000"/>
+                                </radialGradient>
+                            </defs>
+                            <g transform="translate(110, 130)">
+                                <ellipse cx="0" cy="0" rx="55" ry="45" fill="#FF6347" opacity="0.3"/>
+                                <path d="M -40,20 Q -45,0 -35,-20 Q -25,-35 0,-40 Q 25,-35 35,-20 Q 45,0 40,20 Q 30,35 0,40 Q -30,35 -40,20 Z"
+                                      fill="url(#fire-grad-${Date.now()})" stroke="#DC143C" stroke-width="2">
+                                    <animate attributeName="d" 
+                                             values="M -40,20 Q -45,0 -35,-20 Q -25,-35 0,-40 Q 25,-35 35,-20 Q 45,0 40,20 Q 30,35 0,40 Q -30,35 -40,20 Z;
+                                                     M -42,22 Q -47,2 -37,-18 Q -27,-33 0,-38 Q 27,-33 37,-18 Q 47,2 42,22 Q 32,37 0,42 Q -32,37 -42,22 Z;
+                                                     M -40,20 Q -45,0 -35,-20 Q -25,-35 0,-40 Q 25,-35 35,-20 Q 45,0 40,20 Q 30,35 0,40 Q -30,35 -40,20 Z"
+                                             dur="3s" repeatCount="indefinite"/>
+                                </path>
+                                <ellipse cx="-12" cy="-10" rx="5" ry="8" fill="#8B0000"/>
+                                <ellipse cx="-12" cy="-10" rx="3" ry="5" fill="#FFD700">
+                                    <animate attributeName="ry" values="5;2;5" dur="4s" repeatCount="indefinite"/>
+                                </ellipse>
+                                <ellipse cx="12" cy="-10" rx="5" ry="8" fill="#8B0000"/>
+                                <ellipse cx="12" cy="-10" rx="3" ry="5" fill="#FFD700">
+                                    <animate attributeName="ry" values="5;2;5" dur="4s" repeatCount="indefinite"/>
+                                </ellipse>
+                            </g>
+                        </svg>`;
+                    break;
+                    
+                case 'water-slime':
+                    hp = 180;
+                    scale = 1.0;
+                    enemySVG = `
+                        <svg width="120" height="120" viewBox="0 0 220 220">
+                            <defs>
+                                <radialGradient id="water-grad-${Date.now()}">
+                                    <stop offset="0%" stop-color="#00CED1"/>
+                                    <stop offset="50%" stop-color="#1E90FF"/>
+                                    <stop offset="100%" stop-color="#000080"/>
+                                </radialGradient>
+                            </defs>
+                            <g transform="translate(110, 130)">
+                                <path d="M 0,-45 Q 25,-35 35,-15 Q 40,5 35,20 Q 25,35 0,40 Q -25,35 -35,20 Q -40,5 -35,-15 Q -25,-35 0,-45 Z"
+                                      fill="url(#water-grad-${Date.now()})" stroke="#4169E1" stroke-width="1.5" opacity="0.85">
+                                    <animateTransform attributeName="transform" type="rotate"
+                                                      values="-5;5;-5" dur="4s" repeatCount="indefinite"/>
+                                </path>
+                                <ellipse cx="-10" cy="-8" rx="4" ry="7" fill="#000080"/>
+                                <ellipse cx="-10" cy="-8" rx="2" ry="4" fill="#00CED1">
+                                    <animate attributeName="ry" values="4;2;4" dur="3.5s" repeatCount="indefinite"/>
+                                </ellipse>
+                                <ellipse cx="10" cy="-8" rx="4" ry="7" fill="#000080"/>
+                                <ellipse cx="10" cy="-8" rx="2" ry="4" fill="#00CED1">
+                                    <animate attributeName="ry" values="4;2;4" dur="3.5s" repeatCount="indefinite"/>
+                                </ellipse>
+                            </g>
+                        </svg>`;
+                    break;
+                    
+                case 'thunder-slime':
+                    hp = 160;
+                    scale = 1.0;
+                    enemySVG = `
+                        <svg width="120" height="120" viewBox="0 0 220 220">
+                            <defs>
+                                <radialGradient id="thunder-grad-${Date.now()}">
+                                    <stop offset="0%" stop-color="#DDA0DD"/>
+                                    <stop offset="50%" stop-color="#9370DB"/>
+                                    <stop offset="100%" stop-color="#4B0082"/>
+                                </radialGradient>
+                            </defs>
+                            <g transform="translate(110, 130)">
+                                <ellipse cx="0" cy="0" rx="55" ry="50" fill="#9370DB" opacity="0.2"/>
+                                <path d="M 0,-42 L 8,-38 L 15,-40 L 20,-35 L 30,-30 L 35,-20 L 38,-10 L 40,0 L 38,10 L 35,20 L 30,30 L 20,35 L 0,40 L -20,35 L -30,30 L -35,20 L -38,10 L -40,0 L -38,-10 L -35,-20 L -30,-30 L -20,-35 L -15,-40 L -8,-38 Z"
+                                      fill="url(#thunder-grad-${Date.now()})" stroke="#8B008B" stroke-width="2">
+                                    <animate attributeName="opacity" values="0.9;1;0.9" dur="0.5s" repeatCount="indefinite"/>
+                                </path>
+                                <ellipse cx="-12" cy="-10" rx="5" ry="8" fill="#4B0082"/>
+                                <ellipse cx="-12" cy="-10" rx="3" ry="5" fill="#FFFF00">
+                                    <animate attributeName="fill" values="#FFFF00;#FFFFFF;#FFFF00" dur="1s" repeatCount="indefinite"/>
+                                </ellipse>
+                                <ellipse cx="12" cy="-10" rx="5" ry="8" fill="#4B0082"/>
+                                <ellipse cx="12" cy="-10" rx="3" ry="5" fill="#FFFF00">
+                                    <animate attributeName="fill" values="#FFFF00;#FFFFFF;#FFFF00" dur="1s" repeatCount="indefinite"/>
+                                </ellipse>
+                            </g>
+                        </svg>`;
+                    break;
+                    
+                case 'mutant-hilichurl':
+                    hp = 400;
+                    scale = 1.2;
+                    enemySVG = `
+                        <svg width="140" height="140" viewBox="0 0 220 220">
+                            <defs>
+                                <radialGradient id="mutant-grad-${Date.now()}">
+                                    <stop offset="0%" stop-color="#8B4513"/>
+                                    <stop offset="50%" stop-color="#654321"/>
+                                    <stop offset="100%" stop-color="#3E2723"/>
+                                </radialGradient>
+                            </defs>
+                            <g transform="translate(110, 110)">
+                                <ellipse cx="0" cy="15" rx="30" ry="40" fill="url(#mutant-grad-${Date.now()})"/>
+                                <circle cx="0" cy="-20" r="22" fill="url(#mutant-grad-${Date.now()})"/>
+                                <path d="M -15,-25 L -10,-30 L 0,-32 L 10,-30 L 15,-25 L 12,-15 L 0,-10 L -12,-15 Z"
+                                      fill="#1C1C1C" opacity="0.8"/>
+                                <circle cx="-7" cy="-20" r="3" fill="#FF0000">
+                                    <animate attributeName="r" values="3;4;3" dur="2s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="7" cy="-20" r="3" fill="#FF0000">
+                                    <animate attributeName="r" values="3;4;3" dur="2s" repeatCount="indefinite"/>
+                                </circle>
+                                <g transform="rotate(30)">
+                                    <rect x="25" y="-5" width="35" height="8" fill="#4B382A" rx="2"/>
+                                    <polygon points="60,-2 65,-5 63,0 65,5 60,2" fill="#800080"/>
+                                </g>
+                            </g>
+                        </svg>`;
+                    break;
+            }
+            
             enemy.innerHTML = `
-                <svg width="80" height="100">
-                    <rect x="20" y="30" width="40" height="50" fill="#4B0082" stroke="#8B008B" stroke-width="2"/>
-                    <circle cx="40" cy="20" r="15" fill="#4B0082" stroke="#8B008B" stroke-width="2"/>
-                    <rect x="35" y="45" width="10" height="10" fill="#FFD700"/>
-                </svg>
+                <div style="transform: scale(${scale});">
+                    ${enemySVG}
+                </div>
                 <div class="enemy-hp-bar">
                     <div class="enemy-hp-fill" style="width: 100%"></div>
                 </div>
             `;
+            
+            enemy.style.transform = `translateX(-50%) scale(${1 + (100 - y) * 0.003})`;
             
             document.getElementById('gameContainer').appendChild(enemy);
             
@@ -1293,8 +1690,10 @@
                 element: enemy,
                 x: x,
                 y: y || 150,
-                hp: 200,
-                maxHp: 200
+                hp: hp,
+                maxHp: hp,
+                type: enemyType,
+                scale: scale
             };
             
             game.enemies.push(enemyData);
@@ -1327,6 +1726,9 @@
                 // 加分
                 game.score += 100;
                 updateScore();
+                
+                // 增加充能
+                addBurstCharge(10);
             }
         }
 
@@ -1347,6 +1749,70 @@
         // 更新分数
         function updateScore() {
             document.getElementById('score').textContent = game.score;
+        }
+        
+        // 更新玩家HP
+        function updatePlayerHP() {
+            const hpFill = document.getElementById('playerHpFill');
+            const hpText = document.getElementById('playerHpText');
+            const hpPercent = Math.max(0, (game.playerHP / game.playerMaxHP) * 100);
+            
+            hpFill.style.width = hpPercent + '%';
+            hpText.textContent = `${Math.max(0, Math.floor(game.playerHP))}/${game.playerMaxHP}`;
+            
+            // 低血量警告
+            if (hpPercent < 30) {
+                hpFill.style.background = 'linear-gradient(90deg, #8B0000, #DC143C)';
+            } else {
+                hpFill.style.background = 'linear-gradient(90deg, #FF6347, #DC143C)';
+            }
+        }
+        
+        // 更新充能条
+        function updateBurstCharge() {
+            const burstFill = document.getElementById('burstFill');
+            const burstIcon = document.querySelector('.burst-icon');
+            const chargePercent = Math.min(100, (game.burstCharge / game.burstMaxCharge) * 100);
+            
+            burstFill.style.width = chargePercent + '%';
+            
+            // 充能满时的特效
+            if (chargePercent >= 100) {
+                burstFill.classList.add('ready');
+                burstIcon.classList.add('ready');
+            } else {
+                burstFill.classList.remove('ready');
+                burstIcon.classList.remove('ready');
+            }
+        }
+        
+        // 玩家受伤
+        function damagePlayer(damage) {
+            // 闪避状态下免疫伤害
+            if (game.isDashing) return;
+            
+            game.playerHP -= damage;
+            updatePlayerHP();
+            
+            // 屏幕闪红
+            const container = document.getElementById('gameContainer');
+            container.style.animation = 'damageFlash 0.3s';
+            setTimeout(() => {
+                container.style.animation = '';
+            }, 300);
+            
+            // 检查游戏结束
+            if (game.playerHP <= 0) {
+                game.playerHP = 0;
+                updatePlayerHP();
+                gameOver();
+            }
+        }
+        
+        // 增加充能
+        function addBurstCharge(amount) {
+            game.burstCharge = Math.min(game.burstMaxCharge, game.burstCharge + amount);
+            updateBurstCharge();
         }
 
         // 显示派蒙对话
@@ -1387,27 +1853,50 @@
                     break;
                 case 1: // 闪避教学
                     showPaimonDialog('按Shift键闪避，时机正确会触发时间减缓哦！');
-                    spawnEnemy(70, 150);
+                    spawnEnemy(70, 150, 'fire-slime');
                     break;
                 case 2: // 连击教学
                     showPaimonDialog('连续攻击敌人，达成10连击！');
-                    spawnEnemy(30, 150);
-                    spawnEnemy(50, 150);
-                    spawnEnemy(70, 150);
+                    spawnEnemy(30, 150, 'water-slime');
+                    spawnEnemy(50, 150, 'thunder-slime');
+                    spawnEnemy(70, 150, 'fire-slime');
                     break;
                 case 3: // QTE教学
                     showPaimonDialog('切换角色时会触发QTE，按提示键配合攻击！');
-                    spawnEnemy(60, 150);
+                    spawnEnemy(60, 150, 'mutant-hilichurl');
                     break;
                 case 4: // 必杀技教学
                     showPaimonDialog('按Q键释放华丽的必杀技！');
-                    for (let i = 0; i < 5; i++) {
-                        spawnEnemy(20 + i * 15, 150);
-                    }
+                    // 给满充能用于测试
+                    game.burstCharge = game.burstMaxCharge;
+                    updateBurstCharge();
+                    spawnEnemy(20, 150, 'fire-slime');
+                    spawnEnemy(35, 150, 'water-slime');
+                    spawnEnemy(50, 150, 'thunder-slime');
+                    spawnEnemy(65, 150, 'fire-slime');
+                    spawnEnemy(80, 150, 'mutant-hilichurl');
                     break;
             }
         }
 
+        // 游戏结束
+        function gameOver() {
+            game.isPaused = true;
+            showPaimonDialog('战斗失败！不要气馁，再接再厉！');
+            
+            // 显示评级
+            const rankDisplay = document.getElementById('rankDisplay');
+            rankDisplay.textContent = 'F';
+            rankDisplay.style.color = '#8B0000';
+            rankDisplay.classList.add('show');
+            
+            setTimeout(() => {
+                if (confirm('是否重新开始？')) {
+                    location.reload();
+                }
+            }, 2000);
+        }
+        
         // 完成教程
         function completeTutorial() {
             showPaimonDialog('恭喜你完成了所有训练！你已经是合格的驾驶员了！');
@@ -1452,6 +1941,34 @@
                     const direction = enemy.x > game.playerX ? -1 : 1;
                     enemy.x += direction * 0.3;
                     enemy.element.style.left = enemy.x + '%';
+                    
+                    // 添加移动动画
+                    if (enemy.type && enemy.type.includes('slime')) {
+                        // 史莱姆弹跳
+                        if (!enemy.bouncing) {
+                            enemy.bouncing = true;
+                            enemy.element.classList.add('bouncing');
+                            setTimeout(() => {
+                                enemy.bouncing = false;
+                            }, 500);
+                        }
+                    } else if (enemy.type === 'mutant-hilichurl') {
+                        // 丘丘人行走
+                        enemy.element.classList.add('walking');
+                    }
+                    
+                    // 翻转朝向
+                    const svg = enemy.element.querySelector('div');
+                    if (svg) {
+                        if (direction < 0) {
+                            svg.style.transform = `scale(${enemy.scale || 1}) scaleX(-1)`;
+                        } else {
+                            svg.style.transform = `scale(${enemy.scale || 1})`;
+                        }
+                    }
+                } else {
+                    enemy.element.classList.remove('walking');
+                    enemy.element.classList.remove('bouncing');
                 }
                 
                 // 敌人攻击（靠近玩家时）
@@ -1553,6 +2070,12 @@
             @keyframes particleFly {
                 0% { transform: translate(0, 0); opacity: 1; }
                 100% { transform: translate(var(--vx), var(--vy)); opacity: 0; }
+            }
+            
+            @keyframes damageFlash {
+                0% { filter: brightness(1); }
+                50% { filter: brightness(1.5) saturate(0.5) hue-rotate(-10deg); }
+                100% { filter: brightness(1); }
             }
         `;
         document.head.appendChild(style);

@@ -238,6 +238,109 @@
                     </div>
                     <p class="description">火系主C机甲，往生堂主题，幽蝶环绕召唤系统，生命值燃烧机制带来极致爆发</p>
                 </div>
+                
+                <!-- 玩家机甲（带行走动画） -->
+                <div class="resource-card">
+                    <h3>玩家机甲 - 行走动画版</h3>
+                    <div class="svg-container">
+                        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <radialGradient id="playerFireGrad">
+                                    <stop offset="0%" stop-color="#FFD700"/>
+                                    <stop offset="100%" stop-color="#DC143C"/>
+                                </radialGradient>
+                                <radialGradient id="playerGhostFire">
+                                    <stop offset="0%" stop-color="#FF69B4" stop-opacity="0.8"/>
+                                    <stop offset="100%" stop-color="#8B008B" stop-opacity="0.2"/>
+                                </radialGradient>
+                            </defs>
+                            
+                            <style>
+                                @keyframes legWalkLeft {
+                                    0%, 100% { transform: rotate(0deg); }
+                                    25% { transform: rotate(-20deg) translateY(-2px); }
+                                    75% { transform: rotate(10deg) translateY(2px); }
+                                }
+                                
+                                @keyframes legWalkRight {
+                                    0%, 100% { transform: rotate(0deg); }
+                                    25% { transform: rotate(10deg) translateY(2px); }
+                                    75% { transform: rotate(-20deg) translateY(-2px); }
+                                }
+                                
+                                @keyframes bodyBobbing {
+                                    0%, 100% { transform: translateY(0); }
+                                    50% { transform: translateY(-3px); }
+                                }
+                                
+                                .mecha-walking .leg-left {
+                                    animation: legWalkLeft 0.6s ease-in-out infinite;
+                                    transform-origin: 50% 10%;
+                                }
+                                
+                                .mecha-walking .leg-right {
+                                    animation: legWalkRight 0.6s ease-in-out infinite;
+                                    transform-origin: 50% 10%;
+                                }
+                                
+                                .mecha-walking .mecha-torso {
+                                    animation: bodyBobbing 0.6s ease-in-out infinite;
+                                }
+                            </style>
+                            
+                            <!-- 机甲主体 -->
+                            <g transform="translate(110, 120)" class="mecha-walking">
+                                <!-- 躯干 -->
+                                <path class="mecha-torso" d="M 0,-45 L 18,-40 L 25,-20 L 28,5 L 25,30 L 12,45 L 0,50 
+                                         L -12,45 L -25,30 L -28,5 L -25,-20 L -18,-40 Z" 
+                                      fill="#1C0F08" stroke="#8B0000" stroke-width="2" opacity="0.9"/>
+                                
+                                <!-- 头部 -->
+                                <ellipse cx="0" cy="-35" rx="15" ry="12" fill="#2C1810" stroke="#8B0000" stroke-width="2"/>
+                                
+                                <!-- 观测窗 -->
+                                <rect x="-10" y="-38" width="20" height="5" fill="#FF1493" opacity="0.9">
+                                    <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/>
+                                </rect>
+                                
+                                <!-- 核心 -->
+                                <circle cx="0" cy="0" r="10" fill="none" stroke="#FF69B4" stroke-width="3" opacity="0.8">
+                                    <animate attributeName="r" values="8;12;8" dur="1.5s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="0" cy="0" r="5" fill="url(#playerGhostFire)"/>
+                                
+                                <!-- 武器系统 - 左臂 -->
+                                <g transform="translate(-35, -10)">
+                                    <rect width="12" height="35" fill="#1C0F08" stroke="#8B0000"/>
+                                    <circle cx="6" cy="35" r="8" fill="#FF6347" opacity="0.7">
+                                        <animate attributeName="opacity" values="0.5;0.9;0.5" dur="1s" repeatCount="indefinite"/>
+                                    </circle>
+                                </g>
+                                
+                                <!-- 武器系统 - 右臂 -->
+                                <g transform="translate(23, -10)">
+                                    <rect width="12" height="35" fill="#1C0F08" stroke="#8B0000"/>
+                                    <circle cx="6" cy="35" r="8" fill="#FF6347" opacity="0.7">
+                                        <animate attributeName="opacity" values="0.5;0.9;0.5" dur="1s" repeatCount="indefinite"/>
+                                    </circle>
+                                </g>
+                                
+                                <!-- 腿部（带动画类） -->
+                                <rect class="leg-left" x="-15" y="35" width="12" height="30" fill="#1C0F08" stroke="#8B0000"/>
+                                <rect class="leg-right" x="3" y="35" width="12" height="30" fill="#1C0F08" stroke="#8B0000"/>
+                                
+                                <!-- 能量尾焰 -->
+                                <g opacity="0.6">
+                                    <ellipse cx="0" cy="50" rx="20" ry="5" fill="url(#playerFireGrad)">
+                                        <animate attributeName="ry" values="3;7;3" dur="0.6s" repeatCount="indefinite"/>
+                                        <animate attributeName="opacity" values="0.4;0.8;0.4" dur="0.6s" repeatCount="indefinite"/>
+                                    </ellipse>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="description">玩家通用机甲，支持行走动画，腿部独立动作，躯干晃动效果，能量尾焰随动</p>
+                </div>
 
                 <!-- 雷电将军型机甲（雷系主C） -->
                 <div class="resource-card">
